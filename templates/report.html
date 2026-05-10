@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ name }} · {{ month_theme.month_name }} {{ month_theme.year }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0d1117;
+  color: #e6edf3;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  padding: 24px 16px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.header {
+  padding: 28px 32px;
+  background: linear-gradient(135deg, #161b22, #1a1f2e);
+  border-radius: 16px;
+  border: 1px solid #30363d;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.header-name { font-size: 1rem; color: #8b949e; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.header-month { font-size: 2rem; font-weight: 700; color: #f59e0b; }
+.header-year { font-size: 1.2rem; color: #8b949e; font-weight: 300; }
+.header-sun { font-size: 0.82rem; color: #6e7681; margin-top: 8px; }
+
+/* ── Section titles ── */
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #8b949e;
+  margin: 28px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #21262d;
+}
+
+/* ── Theme block ── */
+.theme-block {
+  background: #161b22;
+  border-left: 4px solid #7c3aed;
+  border-radius: 0 12px 12px 0;
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+.theme-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #e6edf3;
+}
+.theme-subtitle {
+  font-size: 0.9rem;
+  color: #8b949e;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+.theme-bullets { list-style: none; margin-bottom: 16px; }
+.theme-bullets li {
+  padding: 4px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 0.9rem;
+  color: #c9d1d9;
+}
+.theme-bullets li::before { content: "•"; position: absolute; left: 0; color: #7c3aed; }
+.theme-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.theme-topic {
+  background: #21262d;
+  border: 1px solid #30363d;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  color: #8b949e;
+}
+.theme-mantra {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f59e0b;
+  font-style: italic;
+}
+.theme-mantra::before { content: "👉 "; }
+
+/* ── Period table ── */
+.period-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+.period-table tr:nth-child(even) td { background: #161b22; }
+.period-table td { padding: 10px 14px; font-size: 0.88rem; border-bottom: 1px solid #21262d; }
+.period-table td:first-child { font-weight: 600; color: #e6edf3; white-space: nowrap; width: 140px; }
+.period-table td:last-child { color: #8b949e; }
+
+/* ── Sphere cards ── */
+.cards-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+.card {
+  background: #161b22;
+  border-radius: 12px;
+  border: 1px solid #21262d;
+  overflow: hidden;
+}
+.card-header {
+  padding: 4px 0 0;
+  border-top: 3px solid var(--card-color, #7c3aed);
+}
+.card-body { padding: 16px 20px; }
+.card-title { font-size: 1rem; font-weight: 600; margin-bottom: 12px; }
+
+.window {
+  padding: 12px 16px;
+  background: #0d1117;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border-left: 3px solid transparent;
+}
+.window.hot { border-left-color: #ef4444; }
+.window.good { border-left-color: #22c55e; }
+.window-dates { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+.window-tip { font-size: 0.8rem; color: #8b949e; margin-top: 4px; font-style: italic; }
+
+.avoid-line { font-size: 0.82rem; color: #8b949e; margin-top: 8px; }
+.avoid-line span { color: #ef4444; }
+
+/* ── Danger zones ── */
+.danger-card {
+  background: #1a0505;
+  border: 1px solid #7f1d1d;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 8px;
+}
+.danger-dates { font-weight: 700; color: #ef4444; margin-bottom: 8px; font-size: 0.95rem; }
+.danger-list { list-style: none; margin-bottom: 8px; }
+.danger-list li { font-size: 0.85rem; color: #fca5a5; padding: 2px 0; padding-left: 18px; position: relative; }
+.danger-list li::before { content: "•"; position: absolute; left: 0; color: #ef4444; }
+.danger-avoid { font-size: 0.82rem; color: #8b949e; }
+.danger-avoid span { color: #ef4444; }
+.danger-tip { font-size: 0.82rem; color: #6b7280; margin-top: 6px; font-style: italic; }
+
+/* ── Psychological insight ── */
+.insight-block {
+  background: #161b22;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 10px 10px 0;
+  padding: 18px 24px;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: #c9d1d9;
+  line-height: 1.7;
+}
+
+/* ── Strongest day ── */
+.strongest-block {
+  background: linear-gradient(135deg, #1a1325, #161b22);
+  border: 1px solid #7c3aed;
+  border-radius: 16px;
+  padding: 24px 28px;
+  text-align: center;
+}
+.strongest-date { font-size: 1.4rem; font-weight: 700; color: #f59e0b; margin-bottom: 12px; }
+.strongest-label { font-size: 0.75rem; color: #8b949e; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.strongest-list { list-style: none; }
+.strongest-list li { font-size: 0.9rem; color: #c9d1d9; padding: 3px 0; }
+.strongest-list li::before { content: "• "; color: #7c3aed; }
+.strongest-moon { font-size: 0.82rem; color: #6e7681; margin-top: 10px; }
+
+/* ── Summary table ── */
+.summary-table { width: 100%; border-collapse: collapse; }
+.summary-table th { text-align: left; padding: 8px 14px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #6e7681; border-bottom: 1px solid #21262d; }
+.summary-table td { padding: 10px 14px; font-size: 0.87rem; border-bottom: 1px solid #161b22; }
+.summary-table tr:hover td { background: #161b22; }
+.summary-table td:first-child { color: #c9d1d9; }
+.summary-table td:last-child { color: #7c3aed; font-weight: 500; }
+
+/* ── Footer ── */
+.footer { text-align: center; color: #484f58; font-size: 0.78rem; margin-top: 32px; padding: 16px; }
+.footer code { background: #161b22; padding: 2px 8px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-name">{{ name }}</div>
+  <div><span class="header-month">{{ month_theme.month_name }}</span> <span class="header-year">{{ month_theme.year }}</span></div>
+  <div class="header-sun">☀️ Астрологічний місячний звіт</div>
+</div>
+
+<!-- THEME -->
+<div class="section-title">🌟 Головна тема місяця</div>
+<div class="theme-block">
+  <div class="theme-title">"{{ month_theme.title }}"</div>
+  <div class="theme-subtitle">{{ month_theme.subtitle }}</div>
+  <ul class="theme-bullets">
+    {% for bullet in month_theme.bullets %}
+    <li>{{ bullet }}</li>
+    {% endfor %}
+  </ul>
+  <div class="theme-topics">
+    {% for theme in month_theme.core_themes %}
+    <span class="theme-topic">{{ theme }}</span>
+    {% endfor %}
+    {% if month_theme.retro_planets %}
+    {% for p in month_theme.retro_planets %}
+    <span class="theme-topic" style="color:#ef4444;border-color:#7f1d1d">☿ {{ p }} ретро</span>
+    {% endfor %}
+    {% endif %}
+  </div>
+  <div class="theme-mantra">{{ month_theme.mantra }}</div>
+</div>
+
+<!-- PERIOD OVERVIEW -->
+<div class="section-title">📅 Ключові фази місяця</div>
+<table class="period-table">
+  {% for period in period_overview %}
+  <tr>
+    <td>{{ period.period }}</td>
+    <td>{{ period.theme }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<!-- SPHERES -->
+<div class="section-title">🎯 Вікна дій по сферах</div>
+<div class="cards-grid">
+{% for key, sec in sections.items() %}
+{% if sec.has_windows %}
+<div class="card" style="--card-color: {{ sec.color }}">
+  <div class="card-header"></div>
+  <div class="card-body">
+    <div class="card-title">{{ sec.emoji }} {{ sec.label }}</div>
+    {% for w in sec.windows %}
+    <div class="window {% if w.hot %}hot{% else %}good{% endif %}">
+      <div class="window-dates">{% if w.hot %}🔥{% else %}🟢{% endif %} {{ w.dates }}</div>
+      {% if w.tip %}<div class="window-tip">{{ w.tip }}</div>{% endif %}
+    </div>
+    {% endfor %}
+    {% if sec.avoid %}
+    <div class="avoid-line">❌ Уникати: <span>{{ sec.avoid | join(", ") }}</span></div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+
+<!-- DANGER ZONES -->
+{% if danger_zones %}
+<div class="section-title">🔴 Коли краще не форсувати</div>
+{% for zone in danger_zones %}
+<div class="danger-card">
+  <div class="danger-dates">⚠ {{ zone.dates }}</div>
+  <ul class="danger-list">
+    {% for r in zone.reasons %}
+    <li>{{ r }}</li>
+    {% endfor %}
+  </ul>
+  {% if zone.avoid %}
+  <div class="danger-avoid">❌ Не: <span>{{ zone.avoid | join(", ") }}</span></div>
+  {% endif %}
+  <div class="danger-tip">💡 {{ zone.tip }}</div>
+</div>
+{% endfor %}
+{% endif %}
+
+<!-- STRONGEST DAY -->
+{% if strongest_day %}
+<div class="section-title">🌟 Найсильніший день місяця</div>
+<div class="strongest-block">
+  <div class="strongest-label">Пік енергії</div>
+  <div class="strongest-date">🔥 {{ strongest_day.date }}</div>
+  <ul class="strongest-list">
+    {% for item in strongest_day.best_for %}
+    <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+  <div class="strongest-moon">{{ strongest_day.moon }}</div>
+</div>
+{% endif %}
+
+<!-- SUMMARY TABLE -->
+<div class="section-title">📊 Підсумок</div>
+<table class="summary-table">
+  <thead>
+    <tr><th>Сфера</th><th>Найкращий період</th></tr>
+  </thead>
+  <tbody>
+    {% for row in summary_table %}
+    <tr>
+      <td>{{ row.sphere }}</td>
+      <td>{{ row.best }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- FOOTER -->
+<div class="footer">
+  Згенеровано: {{ generated_at }} &nbsp;·&nbsp;
+  Оновити: <code>python3 generate_report.py --type month</code>
+</div>
+
+</body>
+</html>

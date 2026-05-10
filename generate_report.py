@@ -23,6 +23,7 @@ from engine.lunar import (
     get_phase_emoji, get_phase_name_ua, get_sign_name_ua, get_sign_emoji,
     get_month_lunar_events
 )
+from engine.synthesizer import build_report_sections
 
 MONTH_NAMES_UA = {
     1: "Січень", 2: "Лютий", 3: "Березень", 4: "Квітень",
@@ -85,6 +86,31 @@ def build_day_context(daily_data: dict, today: date) -> dict:
         "overall": overall,
         "label_js": label,
     }
+
+
+def generate_month_report_v2(year: int, month: int) -> str:
+    print(f"Генерую місячний звіт v2: {MONTH_NAMES_UA[month]} {year}...")
+    birth_data = load_birth_data()
+
+    month_data = get_month_data(year, month, birth_data)
+    report = build_report_sections(month_data, birth_data)
+
+    env = Environment(loader=FileSystemLoader(os.path.join(BASE_DIR, "templates")))
+    template = env.get_template("report.html")
+
+    html = template.render(
+        **report,
+        generated_at=datetime.now().strftime("%d.%m.%Y %H:%M"),
+    )
+
+    os.makedirs(REPORTS_DIR, exist_ok=True)
+    filename = f"{year}-{month:02d}-report.html"
+    filepath = os.path.join(REPORTS_DIR, filename)
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    print(f"Збережено: {filepath}")
+    return filepath
 
 
 def generate_month_report(year: int, month: int) -> str:
@@ -254,7 +280,7 @@ def main():
     args = parser.parse_args()
 
     if args.type == "month":
-        path = generate_month_report(args.year, args.month)
+        path = generate_month_report_v2(args.year, args.month)
         print(f"\nВідкрити: open '{path}'")
     elif args.type == "today":
         report = generate_today_report()
