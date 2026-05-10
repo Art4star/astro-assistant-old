@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Астро-календар {{ month_name }} {{ year }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d1117;
+    color: #e6edf3;
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding: 16px 24px;
+    background: #161b22;
+    border-radius: 12px;
+    border: 1px solid #30363d;
+  }
+  .header h1 { font-size: 1.5rem; font-weight: 600; }
+  .header h1 span { color: #f59e0b; }
+  .nav-btn {
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #e6edf3;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+  }
+  .nav-btn:hover { background: #7c3aed; }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: #161b22;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: #8b949e;
+  }
+  .legend-dot {
+    width: 14px; height: 14px;
+    border-radius: 4px;
+  }
+
+  /* Filters */
+  .filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .filter-btn {
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #8b949e;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: #7c3aed; color: #e6edf3; }
+  .filter-btn.active {
+    background: #7c3aed;
+    border-color: #7c3aed;
+    color: #fff;
+  }
+
+  /* Calendar grid */
+  .weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .weekday {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #8b949e;
+    padding: 6px 0;
+    font-weight: 500;
+  }
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  /* Day cell */
+  .day {
+    border-radius: 10px;
+    padding: 10px 8px;
+    min-height: 90px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.15s, box-shadow 0.15s;
+    border: 1px solid transparent;
+  }
+  .day:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    border-color: #7c3aed;
+    z-index: 2;
+  }
+  .day.today { border-color: #f59e0b !important; }
+  .day.empty { background: transparent !important; cursor: default; }
+  .day.empty:hover { transform: none; box-shadow: none; border-color: transparent; }
+
+  .day-num {
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .day-phase { font-size: 1.1rem; }
+  .day-sign { font-size: 0.75rem; color: #8b949e; margin-top: 2px; }
+  .day-icons { font-size: 0.85rem; margin-top: 3px; letter-spacing: 1px; }
+  .day-label {
+    font-size: 0.68rem;
+    margin-top: 6px;
+    font-weight: 500;
+    opacity: 0.9;
+  }
+
+  /* Tooltip */
+  .tooltip {
+    display: none;
+    position: fixed;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 14px;
+    min-width: 240px;
+    max-width: 300px;
+    z-index: 9999;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    pointer-events: none;
+  }
+  .tooltip.visible { display: block; }
+  .tooltip h3 { font-size: 0.9rem; margin-bottom: 8px; color: #f59e0b; }
+  .tooltip-section { margin: 6px 0; }
+  .tooltip-label { color: #8b949e; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+  .score-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 2px 0;
+    font-size: 0.75rem;
+  }
+  .score-bar-name { width: 90px; color: #8b949e; }
+  .score-bar-fill {
+    height: 6px;
+    border-radius: 3px;
+    background: #7c3aed;
+    min-width: 2px;
+    transition: width 0.2s;
+  }
+  .score-bar-neg { background: #dc2626; }
+  .score-num { color: #e6edf3; min-width: 24px; }
+
+  /* Sidebar / warnings */
+  .sidebar {
+    margin-top: 24px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .sidebar h2 { font-size: 1rem; margin-bottom: 12px; color: #f59e0b; }
+  .warning-item {
+    padding: 8px 12px;
+    background: #21262d;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 24px;
+    text-align: center;
+    color: #8b949e;
+    font-size: 0.8rem;
+    padding: 12px;
+  }
+  .footer code {
+    background: #21262d;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <button class="nav-btn" onclick="history.back()">←</button>
+  <h1>{{ user_name }} · <span>{{ month_name }} {{ year }}</span></h1>
+  <button class="nav-btn" onclick="history.forward()">→</button>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#166534"></div> Відмінний (&gt;5)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#365314"></div> Хороший (2–5)</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#1f2937"></div> Нейтральний</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#7c2d12"></div> Краще почекати</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#450a0a"></div> Відпочинок</div>
+</div>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="overall" onclick="setFilter(this,'overall')">Всі</button>
+  <button class="filter-btn" data-filter="finance" onclick="setFilter(this,'finance')">Фінанси</button>
+  <button class="filter-btn" data-filter="work_technical" onclick="setFilter(this,'work_technical')">Робота</button>
+  <button class="filter-btn" data-filter="negotiations" onclick="setFilter(this,'negotiations')">Переговори</button>
+  <button class="filter-btn" data-filter="content_publishing" onclick="setFilter(this,'content_publishing')">Контент</button>
+  <button class="filter-btn" data-filter="rest_reflection" onclick="setFilter(this,'rest_reflection')">Відпочинок</button>
+  <button class="filter-btn" data-filter="new_beginnings" onclick="setFilter(this,'new_beginnings')">Нові починання</button>
+  <button class="filter-btn" data-filter="health_body" onclick="setFilter(this,'health_body')">Здоров'я</button>
+</div>
+
+<div class="weekdays">
+  <div class="weekday">Пн</div>
+  <div class="weekday">Вт</div>
+  <div class="weekday">Ср</div>
+  <div class="weekday">Чт</div>
+  <div class="weekday">Пт</div>
+  <div class="weekday">Сб</div>
+  <div class="weekday">Нд</div>
+</div>
+
+<div class="calendar" id="calendar">
+{% for day in days %}
+{% if day.empty %}
+  <div class="day empty"></div>
+{% else %}
+  <div class="day {% if day.is_today %}today{% endif %}"
+       id="day-{{ day.num }}"
+       style="background: {{ day.color }};"
+       data-scores='{{ day.scores_json }}'
+       data-overall="{{ day.overall_score }}"
+       data-color-overall="{{ day.color }}"
+       {% for act, col in day.activity_colors.items() %}data-color-{{ act }}="{{ col }}" {% endfor %}
+       onmouseenter="showTooltip(event, this, {{ day.num }})"
+       onmouseleave="hideTooltip()">
+    <div class="day-num">{{ day.num }}</div>
+    <div class="day-phase">{{ day.phase_emoji }} <span class="day-sign">{{ day.sign_short }}</span></div>
+    <div class="day-icons">{% if day.mercury_retro %}☿{% endif %}{% if day.moon_voc %}🌀{% endif %}</div>
+    <div class="day-label">{{ day.label }}</div>
+  </div>
+{% endif %}
+{% endfor %}
+</div>
+
+<div class="sidebar">
+  <h2>⚠️ Глобальні попередження місяця</h2>
+  {% for warning in month_warnings %}
+  <div class="warning-item">{{ warning }}</div>
+  {% endfor %}
+  {% if not month_warnings %}
+  <div class="warning-item">Суттєвих попереджень немає</div>
+  {% endif %}
+</div>
+
+<div class="footer">
+  Згенеровано: {{ generated_at }} &nbsp;|&nbsp;
+  Оновити: <code>python generate_report.py --type month --year {{ year }} --month {{ month_num }}</code>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+const DAYS_DATA = {{ days_data_json }};
+
+const SCORE_COLORS = {
+  positive: "#7c3aed",
+  negative: "#dc2626",
+};
+
+const ACT_LABELS = {
+  finance: "Фінанси",
+  work_technical: "Робота",
+  negotiations: "Переговори",
+  content_publishing: "Контент",
+  rest_reflection: "Відпочинок",
+  new_beginnings: "Нові починання",
+  health_body: "Здоров'я",
+};
+
+const COLOR_MAP = [
+  [6, "#166534"],
+  [2, "#365314"],
+  [-1, "#1f2937"],
+  [-4, "#7c2d12"],
+  [-Infinity, "#450a0a"],
+];
+
+function scoreToColor(s) {
+  for (const [threshold, color] of COLOR_MAP) {
+    if (s > threshold) return color;
+  }
+  return "#450a0a";
+}
+
+let currentFilter = "overall";
+
+function setFilter(btn, filter) {
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  currentFilter = filter;
+
+  document.querySelectorAll(".day:not(.empty)").forEach(cell => {
+    const num = parseInt(cell.id.replace("day-", ""));
+    const d = DAYS_DATA[num];
+    if (!d) return;
+    const score = filter === "overall" ? d.overall : d.scores[filter];
+    cell.style.background = scoreToColor(score);
+  });
+}
+
+function showTooltip(e, el, dayNum) {
+  const d = DAYS_DATA[dayNum];
+  if (!d) return;
+  const tt = document.getElementById("tooltip");
+
+  const dateStr = d.date_str;
+  const phaseEmoji = d.phase_emoji;
+  const phaseName = d.phase_name;
+  const moonSign = d.moon_sign_ua;
+  const warnings = d.warnings;
+  const recs = d.recommendations;
+  const scores = d.scores;
+  const tip = d.tip;
+  const overall = d.overall;
+  const label = d.label;
+
+  let html = `<h3>📅 ${dateStr}</h3>`;
+  html += `<div class="tooltip-section">${phaseEmoji} ${phaseName} у ${moonSign}</div>`;
+  html += `<div class="tooltip-section"><strong>${label} (${overall > 0 ? '+' : ''}${overall})</strong></div>`;
+
+  if (warnings.length) {
+    html += `<div class="tooltip-section"><div class="tooltip-label">Попередження</div>${warnings.join('<br>')}`;
+    html += `</div>`;
+  }
+
+  if (recs.best_for.length) {
+    html += `<div class="tooltip-section"><div class="tooltip-label">✅ Найкраще для</div>${recs.best_for.join(', ')}</div>`;
+  }
+  if (recs.avoid.length) {
+    html += `<div class="tooltip-section"><div class="tooltip-label">⚡ Уникати</div>${recs.avoid.join(', ')}</div>`;
+  }
+
+  html += `<div class="tooltip-section"><div class="tooltip-label">📊 Оцінки</div>`;
+  for (const [act, label] of Object.entries(ACT_LABELS)) {
+    const sc = scores[act] || 0;
+    const barW = Math.abs(sc) * 10;
+    const barClass = sc < 0 ? "score-bar-neg" : "";
+    html += `<div class="score-bar">
+      <span class="score-bar-name">${label}</span>
+      <div class="score-bar-fill ${barClass}" style="width:${barW}px"></div>
+      <span class="score-num">${sc > 0 ? '+' : ''}${sc}</span>
+    </div>`;
+  }
+  html += `</div>`;
+
+  if (tip) {
+    html += `<div class="tooltip-section" style="color:#f59e0b">💡 ${tip}</div>`;
+  }
+
+  tt.innerHTML = html;
+  positionTooltip(e, tt);
+  tt.classList.add("visible");
+}
+
+function positionTooltip(e, tt) {
+  tt.style.display = "block";
+  const w = tt.offsetWidth;
+  const h = tt.offsetHeight;
+  let x = e.clientX + 12;
+  let y = e.clientY + 12;
+  if (x + w > window.innerWidth - 10) x = e.clientX - w - 12;
+  if (y + h > window.innerHeight - 10) y = e.clientY - h - 12;
+  tt.style.left = x + "px";
+  tt.style.top = y + "px";
+}
+
+function hideTooltip() {
+  document.getElementById("tooltip").classList.remove("visible");
+}
+
+document.addEventListener("mousemove", function(e) {
+  const tt = document.getElementById("tooltip");
+  if (tt.classList.contains("visible")) {
+    positionTooltip(e, tt);
+  }
+});
+
+// Highlight today
+const todayEl = document.querySelector(".day.today");
+if (todayEl) {
+  todayEl.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+</script>
+</body>
+</html>

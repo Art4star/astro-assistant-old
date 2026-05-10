@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+output/reports/
+data/birth_data.json
+/tmp/astro*.log
+.DS_Store

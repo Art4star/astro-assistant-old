@@ -1,0 +1,51 @@
+#!/bin/bash
+
+PROJ_DIR="$HOME/Projects/astro-assistant"
+cd "$PROJ_DIR"
+
+case "$1" in
+  month)
+    YEAR=${2:-$(date +%Y)}
+    MONTH=${3:-$(date +%m)}
+    python3 generate_report.py --type month --year $YEAR --month $MONTH
+    ;;
+  today)
+    python3 generate_report.py --type today
+    python3 send_telegram.py --type today
+    ;;
+  week)
+    python3 generate_report.py --type week
+    ;;
+  best)
+    python3 generate_report.py --type best --activity ${2:-finance} --days ${3:-30}
+    ;;
+  setup)
+    python3 setup.py
+    ;;
+  send)
+    python3 send_telegram.py --type ${2:-today}
+    ;;
+  open)
+    YEAR=${2:-$(date +%Y)}
+    MONTH=${3:-$(date +%m)}
+    FILE="output/reports/${YEAR}-$(printf '%02d' $MONTH)-month.html"
+    if [ -f "$FILE" ]; then
+      open "$FILE"
+    else
+      echo "Файл не знайдено: $FILE"
+      echo "Спочатку: astro month $YEAR $MONTH"
+    fi
+    ;;
+  *)
+    echo "Astro Assistant"
+    echo ""
+    echo "Використання:"
+    echo "  astro month [рік] [місяць]   — HTML звіт на місяць"
+    echo "  astro today                  — прогноз на сьогодні + Telegram"
+    echo "  astro week                   — тижневий звіт"
+    echo "  astro best [активність]      — найкращі дні (фінанси за замовчуванням)"
+    echo "  astro setup                  — ввести натальні дані"
+    echo "  astro send [тип]             — відправити в Telegram"
+    echo "  astro open [рік] [місяць]    — відкрити HTML звіт"
+    ;;
+esac
