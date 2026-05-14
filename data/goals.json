@@ -1,25 +1,85 @@
 {
   "active": [
     {
-      "id": "boss_talk",
-      "title": "Переговори з начальником",
-      "category": "negotiations",
+      "id": "blue_card",
+      "title": "Blue Card — підтвердити статус",
+      "category": "documents",
       "priority": 1,
-      "added": "2026-05-01",
+      "added": "2026-05-14",
       "deadline": "2026-05-31",
-      "notes": "Blue Card + підвищення",
+      "notes": "Вже подано з поточним роботодавцем. Чекаю відповіді. Без цього нічого іншого не рухається.",
       "status": "active",
       "completed_date": null,
       "best_windows": []
     },
     {
-      "id": "role_change",
-      "title": "Змінити роль / нова посада",
-      "category": "career",
+      "id": "relocation",
+      "title": "Переїзд — нове місто",
+      "category": "personal",
       "priority": 1,
+      "added": "2026-05-14",
+      "deadline": "2026-07-31",
+      "notes": "Червень-липень. Worms не фінальна точка. Після підтвердження Blue Card.",
+      "status": "active",
+      "completed_date": null,
+      "best_windows": []
+    },
+    {
+      "id": "financial_cushion",
+      "title": "Фінансова подушка — 3 місяці витрат",
+      "category": "finance",
+      "priority": 1,
+      "added": "2026-05-14",
+      "deadline": "2026-12-31",
+      "notes": "Витрачати менше ніж заробляю. Резерв на 3 місяці. Pluto/Venus вимагає трансформації фінансових звичок цього року.",
+      "status": "active",
+      "completed_date": null,
+      "best_windows": []
+    },
+    {
+      "id": "boss_talk",
+      "title": "Переговори з начальником — PO шлях",
+      "category": "negotiations",
+      "priority": 2,
       "added": "2026-05-01",
-      "deadline": null,
-      "notes": "Хочу перейти в BA або консалтинг",
+      "deadline": "2026-06-30",
+      "notes": "Blue Card вже в процесі. Тепер: обговорити internal шлях до Product Owner в GovIT. Що потрібно від компанії — проекти, менторство, перехід.",
+      "status": "active",
+      "completed_date": null,
+      "best_windows": []
+    },
+    {
+      "id": "po_first_step",
+      "title": "Product Owner — перший конкретний крок",
+      "category": "career",
+      "priority": 2,
+      "added": "2026-05-14",
+      "deadline": "2026-10-31",
+      "notes": "Не «стати PO» цього року — а один конкретний крок: курс / сертифікат PSPO / менторство / PO-відповідальність на проекті. GovIT → консалтинг — це 2-3 роки, 2026 це старт.",
+      "status": "active",
+      "completed_date": null,
+      "best_windows": []
+    },
+    {
+      "id": "deutsch",
+      "title": "Deutsch B1 → B2",
+      "category": "learning",
+      "priority": 2,
+      "added": "2026-05-14",
+      "deadline": "2026-12-31",
+      "notes": "Головний блокер для PO в GovIT і консалтингу. Системна практика, не стрибки. Після переїзду — Sprachkurs або tandem.",
+      "status": "active",
+      "completed_date": null,
+      "best_windows": []
+    },
+    {
+      "id": "driving_license",
+      "title": "Німецькі права",
+      "category": "documents",
+      "priority": 3,
+      "added": "2026-05-01",
+      "deadline": "2026-09-30",
+      "notes": "Почати після переїзду, липень-серпень. Зараз можна їздити на українських правах. Автошкола вже почалась.",
       "status": "active",
       "completed_date": null,
       "best_windows": []
@@ -28,39 +88,52 @@
       "id": "buy_car",
       "title": "Купити авто",
       "category": "purchase",
-      "priority": 2,
-      "added": "2026-05-01",
-      "deadline": "2026-09-01",
-      "notes": "Вживане, до 20к євро",
-      "status": "active",
-      "completed_date": null,
-      "best_windows": []
-    },
-    {
-      "id": "driving_license",
-      "title": "Здати на права",
-      "category": "documents",
       "priority": 3,
       "added": "2026-05-01",
-      "deadline": null,
-      "notes": "Автошкола вже почалась",
+      "deadline": "2026-10-31",
+      "notes": "Старий Mercedes зламався, зараз оренда. Нічого не підходить — не поспішати. Після Blue Card + переїзду + стабілізації фінансів. Вживане, до 20к євро.",
       "status": "active",
       "completed_date": null,
       "best_windows": []
     },
     {
-      "id": "dating",
-      "title": "Особисте / побачення",
+      "id": "social_circle",
+      "title": "Vereine + нове соціальне коло",
       "category": "personal",
       "priority": 3,
-      "added": "2026-05-01",
+      "added": "2026-05-14",
+      "deadline": "2026-08-31",
+      "notes": "Мінімум один Verein після переїзду. Знайти друзів-німців, інтеграція. Окремо від романтичного — спочатку спільнота.",
+      "status": "active",
+      "completed_date": null,
+      "best_windows": []
+    },
+    {
+      "id": "personal_life",
+      "title": "Особисте — нові емоції, відкритість",
+      "category": "personal",
+      "priority": 4,
+      "added": "2026-05-14",
       "deadline": null,
-      "notes": "",
+      "notes": "Хочу закохатись — нові емоції, не обов'язково довго. Відкритість, не пошук. Neptune/ASC цього року підсилює романтизм але і ілюзії — бути чесним із собою.",
       "status": "active",
       "completed_date": null,
       "best_windows": []
     }
   ],
   "completed": [],
-  "paused": []
+  "paused": [
+    {
+      "id": "role_change_old",
+      "title": "Змінити роль / нова посада (загально)",
+      "category": "career",
+      "priority": 1,
+      "added": "2026-05-01",
+      "deadline": null,
+      "notes": "Замінено на po_first_step — конкретніша версія. PO в GovIT → консалтинг, горизонт 2-3 роки.",
+      "status": "paused",
+      "completed_date": null,
+      "best_windows": []
+    }
+  ]
 }
