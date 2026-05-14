@@ -116,59 +116,113 @@ def find_avoid_windows(month_data: list, activity: str, max_score: int = -2) -> 
 
 
 def get_period_overview(month_data: list) -> list:
-    """Divide month into 3-4 meaningful segments based on score patterns."""
+    """Divide month into meaningful periods based on actual lunar phase transitions."""
     month = _month_num(month_data[0])
     mn = MONTH_NAMES_GEN[month]
     days_count = len(month_data)
 
-    def avg_score(days_slice):
-        scores = []
-        for d in days_slice:
-            s = score_day(d)
-            scores.append(get_overall_score(s))
-        return sum(scores) / len(scores) if scores else 0
+    # --- Збираємо ключові події ---
+    events = {}  # day_num -> list of event strings
 
-    boundaries = [0, 7, 15, 22, days_count]
+    prev_phase = None
+    for d in month_data:
+        day = _day_num(d)
+        phase = d.get("moon_phase")
+        retro = d.get("mercury_retrograde")
+
+        if phase != prev_phase:
+            if phase == "new":
+                events.setdefault(day, []).append("new_moon")
+            elif phase == "full":
+                events.setdefault(day, []).append("full_moon")
+            elif phase == "first_quarter":
+                events.setdefault(day, []).append("first_quarter")
+            elif phase == "last_quarter":
+                events.setdefault(day, []).append("last_quarter")
+            elif phase == "waxing_crescent" and prev_phase == "new":
+                events.setdefault(day, []).append("waxing_start")
+            elif phase == "waning_gibbous" and prev_phase == "full":
+                events.setdefault(day, []).append("waning_start")
+            elif phase == "balsamic":
+                events.setdefault(day, []).append("balsamic")
+        prev_phase = phase
+
+    # Межі відрізків — дні ключових подій
+    boundary_days = sorted(set([1] + list(events.keys()) + [days_count]))
+
+    # Мерджимо суміжні межі що стоять менш ніж 3 дні окремо
+    merged = [boundary_days[0]]
+    for b in boundary_days[1:]:
+        if b - merged[-1] >= 3:
+            merged.append(b)
+    merged.append(days_count + 1)
+
+    # --- Будуємо відрізки ---
+    def avg_score(slice_):
+        vals = [get_overall_score(score_day(d)) for d in slice_]
+        return sum(vals) / len(vals) if vals else 0
+
+    def retro_days_in(slice_):
+        return sum(1 for d in slice_ if d.get("mercury_retrograde"))
+
+    def voc_days_in(slice_):
+        return sum(1 for d in slice_ if d.get("moon_voc"))
+
     periods = []
-    for i in range(len(boundaries) - 1):
-        start_idx = boundaries[i]
-        end_idx = boundaries[i + 1]
-        if start_idx >= days_count:
-            break
-        slice_ = month_data[start_idx:end_idx]
+    for i in range(len(merged) - 1):
+        start_day = merged[i]
+        end_day = merged[i + 1] - 1
+        if end_day < start_day:
+            continue
+
+        slice_ = [d for d in month_data if start_day <= _day_num(d) <= end_day]
         if not slice_:
             continue
+
         avg = avg_score(slice_)
-        start_day = _day_num(slice_[0])
-        end_day = _day_num(slice_[-1])
-        dates_str = f"{start_day}–{end_day} {mn}"
+        retro = retro_days_in(slice_)
+        voc = voc_days_in(slice_)
+        period_events = []
+        for day in range(start_day, end_day + 1):
+            period_events += events.get(day, [])
 
-        retro_count = sum(1 for d in slice_ if d.get("mercury_retrograde"))
-        voc_count = sum(1 for d in slice_ if d.get("moon_voc"))
-        full_moon = any(d.get("moon_phase") == "full" for d in slice_)
-        new_moon = any(d.get("moon_phase") == "new" for d in slice_)
+        dates_str = f"{start_day}–{end_day} {mn}" if start_day != end_day else f"{start_day} {mn}"
 
-        if avg > 4:
-            theme = "найсильніше вікно для дій"
-        elif avg > 2:
-            theme = "активна, сприятлива фаза"
-        elif avg > 0:
-            theme = "помірний темп, вибіркові дії"
-        elif avg > -2:
-            theme = "уповільнення, не форсувати"
-        else:
-            theme = "відпочинок і відновлення"
+        # Визначаємо тему за подіями і score
+        parts = []
 
-        if retro_count > 3:
-            theme += " · перевіряйте деталі"
-        if full_moon:
-            theme += " · повний місяць — пік енергії"
-        if new_moon:
-            theme += " · новий місяць — нові наміри"
-        if voc_count > 4:
-            theme += " · багато VOC"
+        if "new_moon" in period_events:
+            parts.append("🌑 Новий місяць — час нових намірів і починань")
+        elif "full_moon" in period_events:
+            parts.append("🌕 Повний місяць — емоційний пік, кульмінація справ")
+        elif "first_quarter" in period_events:
+            parts.append("🌓 Перша чверть — подолання першого опору")
+        elif "last_quarter" in period_events:
+            parts.append("🌗 Остання чверть — час підсумків і відпускання")
+        elif "balsamic" in period_events:
+            parts.append("🌘 Бальзамічна фаза — відпочинок, не починати нового")
+        elif "waxing_start" in period_events:
+            parts.append("🌒 Місяць росте — сприятливо для дій і просування")
+        elif "waning_start" in period_events:
+            parts.append("🌖 Місяць спадає — завершення, аналіз, відпочинок")
 
-        periods.append({"period": dates_str, "theme": theme, "avg": round(avg, 1)})
+        if retro > len(slice_) // 2:
+            parts.append("☿ Меркурій ретро — перевіряйте деталі, не підписуйте")
+        if voc > len(slice_) // 2:
+            parts.append("🌀 Багато VOC — плануйте важливе заздалегідь")
+
+        if not parts:
+            if avg > 3:
+                parts.append("Активна, сприятлива фаза для дій")
+            elif avg > 1:
+                parts.append("Помірний темп, обирайте моменти")
+            elif avg > -1:
+                parts.append("Нейтральний фон, без різких кроків")
+            else:
+                parts.append("Краще уникати великих рішень")
+
+        theme = " · ".join(parts)
+        periods.append({"period": dates_str, "theme": theme})
 
     return periods
 
@@ -371,7 +425,58 @@ def get_danger_zones(month_data: list) -> list:
     return zones[:3]
 
 
-def build_report_sections(month_data: list, birth_data: dict) -> dict:
+def build_goal_sections(month_data: list, goals: list, birth_data: dict) -> list:
+    """Build personalized goal cards for active goals."""
+    from engine.goal_matcher import (
+        find_best_windows_in_month, find_avoid_windows_for_goal,
+        get_warnings_for_goal, PRIORITY_EMOJI
+    )
+    from datetime import datetime
+
+    month = _month_num(month_data[0])
+    year = int(month_data[0]["date"].split("-")[0])
+    mn_gen = MONTH_NAMES_GEN[month]
+
+    active = sorted(
+        [g for g in goals if g.get("status") == "active"],
+        key=lambda g: g.get("priority", 9)
+    )
+
+    goal_cards = []
+    for goal in active:
+        favorable = find_best_windows_in_month(goal, month_data)
+        avoid = find_avoid_windows_for_goal(goal, month_data)
+        windows = sorted(favorable + avoid, key=lambda w: w["start"])
+        warnings = get_warnings_for_goal(goal, month_data)
+        priority = goal.get("priority", 3)
+        emoji = PRIORITY_EMOJI.get(priority, "⚪")
+
+        deadline_str = ""
+        if goal.get("deadline"):
+            try:
+                dl = datetime.strptime(goal["deadline"], "%Y-%m-%d")
+                if dl.year == year and dl.month == month:
+                    deadline_str = f"{dl.day} {MONTH_NAMES_GEN[dl.month]}"
+            except Exception:
+                pass
+
+        goal_cards.append({
+            "id": goal["id"],
+            "title": goal["title"],
+            "category": goal["category"],
+            "priority": priority,
+            "priority_emoji": emoji,
+            "deadline": deadline_str,
+            "notes": goal.get("notes", ""),
+            "windows": windows,
+            "warnings": warnings,
+            "has_windows": len(windows) > 0,
+        })
+
+    return goal_cards
+
+
+def build_report_sections(month_data: list, birth_data: dict, goals: list = None) -> dict:
     """Main function — builds full structure for the report template."""
     month_theme = get_month_theme(month_data, birth_data)
     period_overview = get_period_overview(month_data)
@@ -425,37 +530,67 @@ def build_report_sections(month_data: list, birth_data: dict) -> dict:
 
         window_details = []
         for w in windows[:3]:
-            strongest = None
-            for d in month_data:
-                if w["start"] <= _day_num(d) <= w["end"]:
-                    sc = score_day(d).get(act, 0)
-                    if strongest is None or sc > strongest[1]:
-                        strongest = (d, sc)
+            days_in_window = [d for d in month_data if w["start"] <= _day_num(d) <= w["end"]]
+
+            # Найкращий день без VOC і без ретро — для позитивного tip
+            best_clean = None
+            for d in days_in_window:
+                sc = score_day(d).get(act, 0)
+                if not d.get("moon_voc") and not d.get("mercury_retrograde"):
+                    if best_clean is None or sc > best_clean[1]:
+                        best_clean = (d, sc)
+
+            # Підрахунок VOC і ретро днів у вікні
+            voc_days = sum(1 for d in days_in_window if d.get("moon_voc"))
+            retro_days = sum(1 for d in days_in_window if d.get("mercury_retrograde"))
+            total = len(days_in_window)
+
             tip = ""
-            if strongest:
-                d = strongest[0]
-                if not d.get("mercury_retrograde") and not d.get("moon_voc"):
-                    tip = "Меркурій прямий, Місяць активний — ідеальний час"
-                elif d.get("mercury_retrograde"):
-                    tip = "Перевіряйте деталі — Меркурій ретроградний"
-                elif d.get("moon_voc"):
-                    tip = "Уникайте початків під VOC"
+            if best_clean:
+                tip = "Місяць активний — ідеальний час для дій"
+            elif retro_days == total:
+                tip = "Весь відрізок — Меркурій ретро, діяти обережно"
+
+            # Попередження — окремо від tip
+            warnings = []
+            if voc_days > 0:
+                warnings.append(f"⚠ {voc_days} VOC-{'день' if voc_days == 1 else 'дні'} у вікні — уникайте початків саме тоді")
+            if retro_days > 0 and retro_days < total:
+                warnings.append(f"⚠ Меркурій ретро {retro_days}д — перевіряйте деталі")
+
+            sc = w["score"]
             window_details.append({
                 "dates": w["dates"],
-                "score": w["score"],
-                "hot": w["score"] > 5,
-                "tip": tip,
+                "score": sc,
+                "emoji": "🔥" if sc >= 6 else ("🟢" if sc >= 3 else "🟡"),
+                "level": "hot" if sc >= 6 else ("good" if sc >= 3 else "mild"),
+                "reasons": [tip] if tip else [],
+                "warnings": warnings,
+                "start": w["start"],
+                "end": w["end"],
             })
 
-        avoid_strs = [a["dates"] for a in avoid[:2]]
+        avoid_details = []
+        for a in avoid[:2]:
+            avoid_details.append({
+                "dates": a["dates"],
+                "score": a["score"],
+                "emoji": "❌",
+                "level": "avoid",
+                "reasons": [],
+                "warnings": [],
+                "start": a["start"],
+                "end": a["end"],
+            })
+
+        all_windows = sorted(window_details + avoid_details, key=lambda w: w["start"])
 
         sections[key] = {
             "label": meta["label"],
             "emoji": meta["emoji"],
             "color": meta["color"],
-            "windows": window_details,
-            "avoid": avoid_strs,
-            "has_windows": len(window_details) > 0,
+            "windows": all_windows,
+            "has_windows": len(all_windows) > 0,
         }
 
     summary_table = []
@@ -476,6 +611,8 @@ def build_report_sections(month_data: list, birth_data: dict) -> dict:
 
     name = birth_data.get("name", "")
 
+    goal_cards = build_goal_sections(month_data, goals or [], birth_data) if goals else []
+
     return {
         "month_theme": month_theme,
         "period_overview": period_overview,
@@ -484,4 +621,5 @@ def build_report_sections(month_data: list, birth_data: dict) -> dict:
         "strongest_day": strongest_day,
         "summary_table": summary_table,
         "name": name,
+        "goal_cards": goal_cards,
     }

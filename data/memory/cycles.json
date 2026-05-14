@@ -1,0 +1,27 @@
+{
+  "_meta": {
+    "description": "Major astrological cycles by year — updated by Coordinator after each forecast",
+    "last_updated": "2026-05-10"
+  },
+
+  "2026": [
+    {
+      "period": "2026-01 → 2026-12",
+      "theme": "identity pressure and restructuring",
+      "cause": ["Saturn square ASC (ongoing)", "Neptune square ASC (ongoing)", "Jupiter opposition Sun (spring)"],
+      "risk_level": "high",
+      "opportunity_level": "medium",
+      "identity_patterns_activated": ["career_reinvention", "decision_under_saturn", "neptune_boundary_loss"],
+      "coordinator_note": "Two outer planets simultaneously squaring ASC — rare. External world challenging self-image. Not the year to start new things, the year to consolidate and clarify identity."
+    },
+    {
+      "period": "2026-03 → 2026-09",
+      "theme": "career pivot window",
+      "cause": ["Jupiter opposition natal Sun", "Saturn square natal Saturn (Saturn square natal Saturn = Saturn half-return)", "Pluto square natal MC"],
+      "risk_level": "high",
+      "opportunity_level": "high",
+      "identity_patterns_activated": ["career_reinvention", "decision_under_saturn"],
+      "coordinator_note": "High-tension period. Pluto squaring MC = external career disruption or transformation. Saturn squaring natal Saturn = mid-life authority test. Dual signal: things are breaking AND building simultaneously."
+    }
+  ]
+}

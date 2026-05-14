@@ -109,6 +109,57 @@ body {
 .period-table td:first-child { font-weight: 600; color: #e6edf3; white-space: nowrap; width: 140px; }
 .period-table td:last-child { color: #8b949e; }
 
+/* ── Goal cards ── */
+.goal-card {
+  background: #161b22;
+  border-radius: 12px;
+  border: 1px solid #21262d;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.goal-header {
+  padding: 14px 20px 10px;
+  border-bottom: 1px solid #21262d;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.goal-priority { font-size: 1rem; }
+.goal-title { font-size: 1rem; font-weight: 700; flex: 1; }
+.goal-deadline {
+  font-size: 0.75rem;
+  color: #ef4444;
+  background: #2d0a0a;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+.goal-body { padding: 14px 20px; }
+.goal-window {
+  background: #0d1117;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-left: 3px solid transparent;
+}
+.goal-window.hot  { border-left-color: #ef4444; }
+.goal-window.good { border-left-color: #22c55e; }
+.goal-window.mild { border-left-color: #eab308; }
+.goal-window.avoid { border-left-color: #7f1d1d; background: #1a0505; }
+.goal-window.avoid .goal-window-dates { color: #f87171; }
+.goal-window.avoid .goal-window-reasons { color: #6b7280; }
+.goal-window-dates { font-weight: 700; font-size: 0.92rem; margin-bottom: 4px; }
+.goal-window-reasons { font-size: 0.78rem; color: #8b949e; }
+.goal-window-warn { font-size: 0.78rem; color: #f59e0b; }
+.goal-warnings { margin-top: 8px; }
+.goal-warn-item { font-size: 0.8rem; color: #fbbf24; padding: 3px 0; }
+.goal-no-windows {
+  font-size: 0.85rem;
+  color: #6e7681;
+  font-style: italic;
+  padding: 6px 0;
+}
+
 /* ── Sphere cards ── */
 .cards-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
 .card {
@@ -227,6 +278,38 @@ body {
   <div class="theme-mantra">{{ month_theme.mantra }}</div>
 </div>
 
+<!-- GOALS -->
+{% if goal_cards %}
+<div class="section-title">🎯 Твої теми цього місяця</div>
+{% for goal in goal_cards %}
+<div class="goal-card">
+  <div class="goal-header">
+    <span class="goal-priority">{{ goal.priority_emoji }} ПРІОРИТЕТ #{{ goal.priority }}</span>
+    <span class="goal-title">{{ goal.title }}</span>
+    {% if goal.deadline %}<span class="goal-deadline">дедлайн: {{ goal.deadline }}</span>{% endif %}
+  </div>
+  <div class="goal-body">
+    {% if goal.windows %}
+      {% for w in goal.windows %}
+      <div class="goal-window {{ w.level }}">
+        <div class="goal-window-dates">{{ w.emoji }} {{ w.dates }}</div>
+        {% if w.reasons %}<div class="goal-window-reasons">{{ w.reasons | join(" · ") }}</div>{% endif %}
+        {% if w.warnings %}<div class="goal-window-warn">{{ w.warnings[0] }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="goal-no-windows">Активних вікон цього місяця немає — плануйте наперед</div>
+    {% endif %}
+    {% if goal.warnings %}
+    <div class="goal-warnings">
+      {% for w in goal.warnings %}<div class="goal-warn-item">{{ w }}</div>{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+
 <!-- PERIOD OVERVIEW -->
 <div class="section-title">📅 Ключові фази місяця</div>
 <table class="period-table">
@@ -248,14 +331,11 @@ body {
   <div class="card-body">
     <div class="card-title">{{ sec.emoji }} {{ sec.label }}</div>
     {% for w in sec.windows %}
-    <div class="window {% if w.hot %}hot{% else %}good{% endif %}">
-      <div class="window-dates">{% if w.hot %}🔥{% else %}🟢{% endif %} {{ w.dates }}</div>
-      {% if w.tip %}<div class="window-tip">{{ w.tip }}</div>{% endif %}
+    <div class="goal-window {{ w.level }}">
+      <div class="goal-window-dates">{{ w.emoji }} {{ w.dates }}</div>
+      {% if w.reasons %}<div class="goal-window-reasons">{{ w.reasons | join(" · ") }}</div>{% endif %}
     </div>
     {% endfor %}
-    {% if sec.avoid %}
-    <div class="avoid-line">❌ Уникати: <span>{{ sec.avoid | join(", ") }}</span></div>
-    {% endif %}
   </div>
 </div>
 {% endif %}

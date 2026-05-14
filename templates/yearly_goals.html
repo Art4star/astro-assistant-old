@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ name }} · Цілі {{ year }}</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0d1117; color: #e6edf3; font-family: 'Inter', system-ui, sans-serif; padding: 24px 16px; max-width: 900px; margin: 0 auto; line-height: 1.6; }
+.header { text-align: center; padding: 28px; background: linear-gradient(135deg, #161b22, #1a1f2e); border-radius: 16px; border: 1px solid #30363d; margin-bottom: 28px; }
+.header-name { font-size: 0.85rem; color: #8b949e; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.header-title { font-size: 1.8rem; font-weight: 700; color: #f59e0b; }
+.header-sub { font-size: 0.9rem; color: #6e7681; margin-top: 6px; }
+
+.section-title { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: #8b949e; margin: 28px 0 14px; display: flex; align-items: center; gap: 8px; }
+.section-title::after { content: ''; flex: 1; height: 1px; background: #21262d; }
+
+.goal-block { background: #161b22; border-radius: 12px; border: 1px solid #21262d; margin-bottom: 14px; overflow: hidden; }
+.goal-block-header { padding: 14px 20px; background: #1c2128; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.goal-prio { font-size: 1rem; }
+.goal-title { font-size: 1rem; font-weight: 700; flex: 1; }
+.goal-cat { font-size: 0.72rem; color: #8b949e; background: #21262d; padding: 2px 8px; border-radius: 10px; }
+
+.months-table { width: 100%; border-collapse: collapse; }
+.months-table th { padding: 8px 14px; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: #6e7681; border-bottom: 1px solid #21262d; text-align: left; }
+.months-table td { padding: 9px 14px; font-size: 0.85rem; border-bottom: 1px solid #0d1117; }
+.months-table tr:hover td { background: #1c2128; }
+.months-table td:first-child { font-weight: 600; color: #c9d1d9; width: 120px; }
+.months-table td:nth-child(2) { color: #7c3aed; }
+.months-table td:nth-child(3) { color: #8b949e; font-size: 0.78rem; }
+.score-badge { display: inline-block; padding: 1px 7px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; margin-left: 6px; }
+.score-hot { background: #450a0a; color: #ef4444; }
+.score-good { background: #14532d; color: #22c55e; }
+
+.summary-table { width: 100%; border-collapse: collapse; }
+.summary-table th { padding: 8px 14px; font-size: 0.72rem; text-transform: uppercase; color: #6e7681; border-bottom: 1px solid #21262d; text-align: left; }
+.summary-table td { padding: 10px 14px; font-size: 0.85rem; border-bottom: 1px solid #161b22; }
+.summary-table tr:hover td { background: #161b22; }
+.summary-table td:first-child { color: #c9d1d9; }
+.summary-table td:nth-child(2) { color: #7c3aed; font-weight: 500; }
+.summary-table td:nth-child(3) { color: #ef4444; font-size: 0.8rem; }
+
+.footer { text-align: center; color: #484f58; font-size: 0.78rem; margin-top: 32px; padding: 16px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-name">{{ name }}</div>
+  <div class="header-title">Твої цілі · {{ year }}</div>
+  <div class="header-sub">Найкращий астрологічний час для кожної теми</div>
+</div>
+
+<div class="section-title">📋 Зведена таблиця</div>
+<table class="summary-table">
+  <thead><tr><th>Ціль</th><th>Найкращі місяці</th><th>Дедлайн</th></tr></thead>
+  <tbody>
+  {% for goal in goals %}
+  {% set windows = calendar[goal.id] %}
+  <tr>
+    <td>{{ goal.title }}</td>
+    <td>{% for w in windows[:2] %}{{ w.month }}{% if not loop.last %}, {% endif %}{% endfor %}</td>
+    <td>{% if goal.deadline %}{{ goal.deadline }}{% else %}—{% endif %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<div class="section-title">🎯 Детально по цілях</div>
+{% for goal in goals %}
+{% set windows = calendar[goal.id] %}
+<div class="goal-block">
+  <div class="goal-block-header">
+    <span class="goal-prio">{% if goal.priority == 1 %}🔴{% elif goal.priority == 2 %}🟡{% else %}🟢{% endif %}</span>
+    <span class="goal-title">{{ goal.title }}</span>
+    <span class="goal-cat">{{ goal.category }}</span>
+  </div>
+  {% if windows %}
+  <table class="months-table">
+    <thead><tr><th>Місяць</th><th>Найкраще вікно</th><th>Чому</th></tr></thead>
+    <tbody>
+    {% for w in windows[:6] %}
+    <tr>
+      <td>{{ w.month }}</td>
+      <td>
+        {{ w.period }}
+        {% if w.score >= 7 %}<span class="score-badge score-hot">🔥 сильне</span>
+        {% elif w.score >= 4 %}<span class="score-badge score-good">✓ добре</span>{% endif %}
+      </td>
+      <td>{% if w.reasons %}{{ w.reasons[0] }}{% endif %}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div style="padding:14px 20px;color:#6e7681;font-size:0.85rem">Сприятливих вікон у {{ year }} не знайдено</div>
+  {% endif %}
+</div>
+{% endfor %}
+
+<div class="footer">Згенеровано: {{ generated_at }}</div>
+</body>
+</html>

@@ -4,6 +4,16 @@ PROJ_DIR="$HOME/Projects/astro-assistant"
 cd "$PROJ_DIR"
 
 case "$1" in
+  goals)
+    shift
+    python3 manage_goals.py ${@:-list}
+    ;;
+  yearly)
+    YEAR=${2:-$(date +%Y)}
+    python3 generate_report.py --type yearly_goals --year $YEAR
+    FILE="output/reports/${YEAR}-yearly-goals.html"
+    [ -f "$FILE" ] && open "$FILE"
+    ;;
   month)
     YEAR=${2:-$(date +%Y)}
     MONTH=${3:-$(date +%m)}
@@ -25,6 +35,40 @@ case "$1" in
   send)
     python3 send_telegram.py --type ${2:-today}
     ;;
+  interpret)
+    YEAR=${2:-$(date +%Y)}
+    MONTH=${3:-$(date +%m)}
+    FORCE=${4:-""}
+    python3 -c "
+import sys; sys.path.insert(0, '.')
+from agents.prepare_interpret import run
+run($YEAR, $MONTH, force='$FORCE' == '--force')
+"
+    ;;
+  log)
+    python3 -c "
+import sys; sys.path.insert(0, '.')
+from agents.protocol import get_recent, get_errors
+import json
+msgs = get_recent(${2:-15})
+for m in msgs:
+    icon = {'TASK_REQUEST': '→', 'TASK_COMPLETE': '✓', 'TASK_ERROR': '✗', 'HANDOFF': '⇒', 'MEMORY_WRITE': '💾', 'CONTEXT_UPDATE': '📝'}.get(m['type'], '·')
+    print(f\"{icon} [{m['timestamp'][11:19]}] {m['sender']:14} → {m['receiver']:14} | {m['type']} | {m['payload'].get('task', m['payload'].get('path', ''))}\")
+"
+    ;;
+  errors)
+    python3 -c "
+import sys; sys.path.insert(0, '.')
+from agents.protocol import get_errors
+import json
+errors = get_errors()
+if not errors:
+    print('No errors in message log.')
+else:
+    for e in errors:
+        print(f\"✗ [{e['timestamp']}] {e['sender']} | {e['payload']['task']}: {e['payload']['error']}\")
+"
+    ;;
   open)
     YEAR=${2:-$(date +%Y)}
     MONTH=${3:-$(date +%m)}
@@ -40,12 +84,18 @@ case "$1" in
     echo "Astro Assistant"
     echo ""
     echo "Використання:"
-    echo "  astro month [рік] [місяць]   — HTML звіт на місяць"
+    echo "  astro month [рік] [місяць]   — HTML звіт на місяць з цілями"
+    echo "  astro yearly [рік]           — річний огляд по цілях"
+    echo "  astro goals                  — показати активні цілі"
+    echo "  astro goals add              — додати нову ціль"
+    echo "  astro goals done [id]        — позначити як виконану"
+    echo "  astro goals pause [id]       — відкласти ціль"
     echo "  astro today                  — прогноз на сьогодні + Telegram"
     echo "  astro week                   — тижневий звіт"
-    echo "  astro best [активність]      — найкращі дні (фінанси за замовчуванням)"
+    echo "  astro best [активність]      — найкращі дні"
     echo "  astro setup                  — ввести натальні дані"
     echo "  astro send [тип]             — відправити в Telegram"
-    echo "  astro open [рік] [місяць]    — відкрити HTML звіт"
+    echo "  astro interpret [рік] [місяць] — підготувати дані для Claude Code"
+  echo "  astro open [рік] [місяць]    — відкрити HTML звіт"
     ;;
 esac

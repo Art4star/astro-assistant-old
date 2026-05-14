@@ -1,0 +1,70 @@
+{
+  "_meta": {
+    "description": "Distilled behavioral patterns — how identity manifests in situations",
+    "last_updated": "2026-05-10"
+  },
+
+  "patterns": [
+    {
+      "id": "career_reinvention",
+      "theme": "career restructuring under external pressure",
+      "behavioral_signature": "crisis triggers complete redesign, not minor adjustment",
+      "when_activated": "Saturn or Pluto transiting MC, ASC, or Sun",
+      "source": ["MC Scorpio", "Pluto H11", "Saturn ASC ruler", "Sun H1"],
+      "confidence": 0.87,
+      "validated_by_user": false,
+      "last_validated": null
+    },
+    {
+      "id": "decision_under_saturn",
+      "theme": "slows down decisions during Saturn transits",
+      "behavioral_signature": "analysis paralysis phase → sudden decisive action",
+      "when_activated": "Saturn transiting personal planets or angles",
+      "source": ["Mercury conjunct Saturn natal", "Mercury retrograde natal"],
+      "confidence": 0.82,
+      "validated_by_user": false,
+      "last_validated": null
+    },
+    {
+      "id": "overextension_jupiter",
+      "theme": "overcommits during Jupiter expansion windows",
+      "behavioral_signature": "takes on too much, burns capacity reserve",
+      "when_activated": "Jupiter conjunct or trine Sun/ASC",
+      "source": ["Saturn H1 energy reserve", "Jupiter H7 retrograde — external pressure dynamic"],
+      "confidence": 0.78,
+      "validated_by_user": false,
+      "last_validated": null
+    },
+    {
+      "id": "neptune_boundary_loss",
+      "theme": "loses clarity on priorities during Neptune transits",
+      "behavioral_signature": "direction feels unclear, energy disperses across too many tracks",
+      "when_activated": "Neptune squaring personal planets or ASC",
+      "source": ["Neptune H1 natal — already present", "ASC Capricorn needs clear structure"],
+      "confidence": 0.76,
+      "validated_by_user": false,
+      "last_validated": null
+    },
+    {
+      "id": "uranus_breakthrough",
+      "theme": "sudden insight or external disruption triggers fast pivot",
+      "behavioral_signature": "what looked stable breaks — and pivot feels liberating",
+      "when_activated": "Uranus conjunct ASC or trine Sun",
+      "source": ["Uranus conjunct ASC natal 0.25°", "Uranus H1"],
+      "confidence": 0.80,
+      "validated_by_user": false,
+      "last_validated": null
+    }
+  ],
+
+  "contradictions_pending": [
+    {
+      "id": "c001",
+      "pattern_a": "needs full autonomy",
+      "pattern_b": "performs best within clear external structure",
+      "hypothesis": "autonomy within structure — self-imposed rules, not external control",
+      "status": "unresolved",
+      "created": "2026-05-10"
+    }
+  ]
+}

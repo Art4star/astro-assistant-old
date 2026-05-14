@@ -1,0 +1,84 @@
+{
+  "_meta": {
+    "description": "Astrological Identity Layer — core of the person, rarely changes",
+    "last_updated": "2026-05-10",
+    "based_on": "natal chart SE/Moshier, ASC Capricorn 5.99°"
+  },
+
+  "motivation_core": {
+    "pattern": "achievement through mastery and structure",
+    "description": "Driven by building something lasting. Not urgency — precision and depth. Needs to be the expert in the room, not the loudest.",
+    "source": ["Sun conjunct Saturn H1", "Capricorn stellium H1", "Saturn ASC ruler"],
+    "confidence": 0.92,
+    "validated_by_user": false
+  },
+
+  "energy_style": {
+    "pattern": "high capacity, slow recovery, thrives under sustained pressure",
+    "description": "Can carry enormous load for long periods. But recovery is private and non-negotiable. Social energy drains fast — needs solitude to recharge.",
+    "manifestation": [
+      "productive under deadline",
+      "collapses if recovery time is cut",
+      "underestimates recovery need"
+    ],
+    "source": ["Saturn H1", "Mars H12 Sagittarius", "Uranus conjunct ASC"],
+    "confidence": 0.88,
+    "validated_by_user": false
+  },
+
+  "emotional_regulation": {
+    "pattern": "delayed processing, routes emotion through analysis",
+    "description": "Does not experience emotions in real time. Processes days or weeks later, often through thinking or work. Appears composed under pressure — not because calm, but because processing is deferred.",
+    "manifestation": [
+      "high internal pressure with calm exterior",
+      "retrospective emotional clarity",
+      "difficulty naming feelings in the moment"
+    ],
+    "source": ["Moon Gemini H6", "Moon detached from Capricorn cluster", "Saturn H1"],
+    "confidence": 0.84,
+    "validated_by_user": false
+  },
+
+  "ambition_structure": {
+    "pattern": "long-arc builder with reinvention cycles",
+    "description": "Thinks in years, not quarters. Career moves look sudden from outside but are long-incubated internally. Each major transition is a complete identity rebuild, not an adjustment.",
+    "manifestation": [
+      "slow to commit to direction",
+      "once committed — total focus",
+      "needs to see the 5-year picture before acting"
+    ],
+    "source": ["Pluto H11 Scorpio", "Saturn as chart ruler", "MC Scorpio"],
+    "confidence": 0.85,
+    "validated_by_user": false
+  },
+
+  "decision_style": {
+    "pattern": "overthinks then acts with precision",
+    "description": "Extended analysis phase followed by decisive, often irreversible action. Looks indecisive until suddenly it is not. Mercury retrograde natal reinforces loop tendency.",
+    "manifestation": [
+      "long delay before major decisions",
+      "once decision made — executes fast and completely",
+      "revisits decisions during Mercury retrograde transits"
+    ],
+    "source": ["Mercury retrograde natal", "Mercury conjunct Sun conjunct Saturn", "Capricorn H1"],
+    "confidence": 0.87,
+    "validated_by_user": false
+  },
+
+  "relationship_model": {
+    "pattern": "needs full autonomy within committed structures",
+    "description": "Deep loyalty but strong resistance to emotional dependency. Partnership must be functional and growth-oriented, not comfort-based. Takes long time to trust.",
+    "source": ["Venus H2 retrograde Aquarius", "Jupiter H7 retrograde Cancer", "Saturn H1"],
+    "confidence": 0.74,
+    "validated_by_user": false
+  },
+
+  "coping_mechanisms": {
+    "primary": "converts stress into structured action",
+    "secondary": "intellectual analysis as emotional distance",
+    "failure_mode": "overworks until system breakdown",
+    "source": ["Saturn H1", "Mars H12", "Moon H6"],
+    "confidence": 0.82,
+    "validated_by_user": false
+  }
+}

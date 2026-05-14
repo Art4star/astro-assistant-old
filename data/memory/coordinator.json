@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "description": "Coordinator Agent state — orchestration, cache status, contradiction log",
+    "last_updated": "2026-05-10"
+  },
+  "natal_chart_cached": true,
+  "natal_chart_path": "output/data/natal_chart.json",
+  "natal_chart_computed_at": "2026-05-10",
+  "sessions": {
+    "2026-05": {
+      "forecast_ready": true,
+      "interpretation_ready": false,
+      "context_path": "data/memory/sessions/2026-05/context.json",
+      "package_ready": true
+    }
+  },
+  "contradictions_log": [],
+  "memory_health": {
+    "identity_validated": false,
+    "patterns_validated": 0,
+    "patterns_total": 5,
+    "last_prediction_validated": null
+  }
+}
