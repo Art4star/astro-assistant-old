@@ -24,6 +24,7 @@ from engine.lunar import (
     get_month_lunar_events
 )
 from engine.synthesizer import build_report_sections
+from engine.goal_matcher import get_yearly_goal_calendar, MONTH_NAMES_UA as GM_MONTHS
 
 MONTH_NAMES_UA = {
     1: "Січень", 2: "Лютий", 3: "Березень", 4: "Квітень",
@@ -88,12 +89,51 @@ def build_day_context(daily_data: dict, today: date) -> dict:
     }
 
 
+def load_goals() -> list:
+    goals_file = os.path.join(BASE_DIR, "data", "goals.json")
+    if os.path.exists(goals_file):
+        with open(goals_file, encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("active", [])
+    return []
+
+
+def generate_yearly_goals_report(year: int) -> str:
+    print(f"Генерую річний огляд цілей: {year}...")
+    birth_data = load_birth_data()
+    goals = load_goals()
+    if not goals:
+        print("Немає активних цілей. Додайте: python manage_goals.py add")
+        return ""
+
+    calendar_data = get_yearly_goal_calendar(goals, year, birth_data)
+
+    env = Environment(loader=FileSystemLoader(os.path.join(BASE_DIR, "templates")))
+    template = env.get_template("yearly_goals.html")
+
+    html = template.render(
+        year=year,
+        goals=goals,
+        calendar=calendar_data,
+        name=birth_data.get("name", ""),
+        generated_at=datetime.now().strftime("%d.%m.%Y %H:%M"),
+    )
+
+    os.makedirs(REPORTS_DIR, exist_ok=True)
+    filepath = os.path.join(REPORTS_DIR, f"{year}-yearly-goals.html")
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Збережено: {filepath}")
+    return filepath
+
+
 def generate_month_report_v2(year: int, month: int) -> str:
     print(f"Генерую місячний звіт v2: {MONTH_NAMES_UA[month]} {year}...")
     birth_data = load_birth_data()
+    goals = load_goals()
 
     month_data = get_month_data(year, month, birth_data)
-    report = build_report_sections(month_data, birth_data)
+    report = build_report_sections(month_data, birth_data, goals=goals)
 
     env = Environment(loader=FileSystemLoader(os.path.join(BASE_DIR, "templates")))
     template = env.get_template("report.html")
@@ -272,7 +312,7 @@ def find_best_days(activity: str, days: int) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description="Астро-асистент")
-    parser.add_argument("--type", choices=["month", "week", "today", "best"], default="today")
+    parser.add_argument("--type", choices=["month", "week", "today", "best", "yearly_goals"], default="today")
     parser.add_argument("--year", type=int, default=datetime.now().year)
     parser.add_argument("--month", type=int, default=datetime.now().month)
     parser.add_argument("--activity", default="finance")
@@ -282,6 +322,10 @@ def main():
     if args.type == "month":
         path = generate_month_report_v2(args.year, args.month)
         print(f"\nВідкрити: open '{path}'")
+    elif args.type == "yearly_goals":
+        path = generate_yearly_goals_report(args.year)
+        if path:
+            print(f"\nВідкрити: open '{path}'")
     elif args.type == "today":
         report = generate_today_report()
         print(report)

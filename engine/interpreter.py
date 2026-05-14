@@ -4,12 +4,15 @@ ACTIVITY_RULES = {
             ("moon_phase", ["waxing_gibbous", "full"], +3),
             ("jupiter_aspect", ["trine", "sextile"], +3),
             ("moon_sign", ["taurus", "capricorn", "virgo"], +2),
+            ("tr_jupiter_natal_sun", ["trine", "sextile", "conjunction"], +3),
+            ("tr_venus_natal_sun", ["trine", "sextile"], +2),
         ],
         "unfavorable": [
             ("mercury_retrograde", True, -4),
             ("saturn_aspect", ["square", "opposition"], -3),
             ("moon_voc", True, -3),
             ("moon_phase", ["balsamic", "new"], -2),
+            ("tr_saturn_natal_sun", ["square", "opposition"], -3),
         ]
     },
     "work_technical": {
@@ -17,11 +20,14 @@ ACTIVITY_RULES = {
             ("moon_sign", ["virgo", "capricorn", "gemini"], +3),
             ("mercury_aspect", ["trine", "sextile"], +2),
             ("moon_phase", ["waxing_crescent", "first_quarter"], +2),
+            ("tr_jupiter_natal_mercury", ["trine", "sextile", "conjunction"], +3),
+            ("tr_jupiter_natal_sun", ["trine", "sextile"], +2),
         ],
         "unfavorable": [
             ("mercury_retrograde", True, -3),
             ("moon_voc", True, -2),
             ("moon_sign", ["pisces", "cancer"], -2),
+            ("tr_saturn_natal_mercury", ["square", "opposition"], -2),
         ]
     },
     "negotiations": {
@@ -29,23 +35,31 @@ ACTIVITY_RULES = {
             ("mercury_direct", True, +3),
             ("venus_aspect", ["trine", "sextile"], +2),
             ("moon_sign", ["gemini", "libra", "aquarius"], +2),
+            ("jupiter_aspect", ["trine", "sextile"], +2),
+            ("tr_jupiter_natal_sun", ["trine", "sextile", "conjunction"], +3),
+            ("tr_venus_natal_sun", ["trine", "sextile"], +2),
         ],
         "unfavorable": [
             ("mercury_retrograde", True, -5),
             ("moon_voc", True, -3),
             ("mars_aspect", ["square", "opposition"], -2),
+            ("tr_saturn_natal_sun", ["square", "opposition"], -3),
+            ("tr_mars_natal_sun", ["square", "opposition"], -2),
         ]
     },
     "content_publishing": {
         "favorable": [
             ("sun_aspect", ["trine", "sextile"], +2),
-            ("mercury_direct", True, +2),
             ("moon_phase", ["waxing_gibbous", "full"], +3),
+            ("venus_aspect", ["trine", "sextile"], +2),
+            ("tr_jupiter_natal_mercury", ["trine", "sextile"], +2),
+            ("tr_venus_natal_venus", ["conjunction", "trine", "sextile"], +2),
         ],
         "unfavorable": [
             ("mercury_retrograde", True, -3),
             ("moon_phase", ["balsamic"], -3),
             ("saturn_aspect", ["square"], -2),
+            ("tr_saturn_natal_mercury", ["square", "opposition"], -2),
         ]
     },
     "rest_reflection": {
@@ -53,31 +67,39 @@ ACTIVITY_RULES = {
             ("moon_phase", ["balsamic", "last_quarter"], +4),
             ("moon_sign", ["pisces", "cancer", "scorpio"], +2),
             ("saturn_aspect", ["trine"], +1),
+            ("tr_saturn_natal_moon", ["trine", "sextile"], +1),
         ],
         "unfavorable": [
             ("moon_phase", ["full", "waxing_gibbous"], -2),
             ("mars_aspect", ["conjunction"], -1),
+            ("tr_mars_natal_moon", ["square", "opposition"], -2),
         ]
     },
     "new_beginnings": {
         "favorable": [
             ("moon_phase", ["new", "waxing_crescent"], +4),
             ("jupiter_aspect", ["conjunction", "trine"], +3),
+            ("tr_jupiter_natal_sun", ["conjunction", "trine", "sextile"], +4),
+            ("tr_jupiter_natal_moon", ["trine", "sextile"], +2),
         ],
         "unfavorable": [
             ("mercury_retrograde", True, -3),
             ("moon_phase", ["balsamic", "last_quarter"], -4),
             ("saturn_aspect", ["square", "opposition"], -3),
+            ("tr_saturn_natal_sun", ["square", "opposition"], -3),
         ]
     },
     "health_body": {
         "favorable": [
             ("moon_sign", ["virgo", "taurus"], +3),
             ("moon_phase", ["waxing_crescent"], +2),
+            ("tr_jupiter_natal_moon", ["trine", "sextile", "conjunction"], +2),
         ],
         "unfavorable": [
             ("moon_voc", True, -2),
             ("mars_aspect", ["square", "opposition"], -2),
+            ("tr_mars_natal_mars", ["square", "opposition"], -2),
+            ("tr_saturn_natal_moon", ["square", "opposition"], -2),
         ]
     }
 }

@@ -1,14 +1,6 @@
 from datetime import datetime, timedelta
-from typing import Optional, List
-import pytz
-
-try:
-    from kerykeion import AstrologicalSubject
-    KERYKEION_AVAILABLE = True
-except ImportError:
-    KERYKEION_AVAILABLE = False
-
-import ephem
+from typing import Optional
+import swisseph as swe
 
 PLANET_SIGNS = [
     "aries", "taurus", "gemini", "cancer", "leo", "virgo",
@@ -25,31 +17,44 @@ ASPECT_NAMES = {
 
 ORB = 3.0
 
+# Moshier ephemeris — no .se1 files required, accuracy sufficient for transits
+_SE_FLAGS = swe.FLG_MOSEPH | swe.FLG_SPEED
 
-def _ephem_planet(name: str):
-    planets = {
-        "sun": ephem.Sun,
-        "moon": ephem.Moon,
-        "mercury": ephem.Mercury,
-        "venus": ephem.Venus,
-        "mars": ephem.Mars,
-        "jupiter": ephem.Jupiter,
-        "saturn": ephem.Saturn,
-    }
-    return planets.get(name.lower())
+PLANET_IDS = {
+    "sun": swe.SUN,
+    "moon": swe.MOON,
+    "mercury": swe.MERCURY,
+    "venus": swe.VENUS,
+    "mars": swe.MARS,
+    "jupiter": swe.JUPITER,
+    "saturn": swe.SATURN,
+    "uranus": swe.URANUS,
+    "neptune": swe.NEPTUNE,
+    "pluto": swe.PLUTO,
+    "true_node": swe.TRUE_NODE,
+}
+
+
+def _to_jd(dt: datetime) -> float:
+    return swe.julday(dt.year, dt.month, dt.day,
+                      dt.hour + dt.minute / 60.0 + dt.second / 3600.0)
+
+
+def _calc_ut(planet_id: int, jd: float):
+    result, _ = swe.calc_ut(jd, planet_id, _SE_FLAGS)
+    return result
+
+
+def _get_longitude(planet_id: int, jd: float) -> float:
+    return _calc_ut(planet_id, jd)[0] % 360
+
+
+def _get_speed(planet_id: int, jd: float) -> float:
+    return _calc_ut(planet_id, jd)[3]
 
 
 def _get_sign(longitude: float) -> str:
-    idx = int(longitude / 30) % 12
-    return PLANET_SIGNS[idx]
-
-
-def _get_longitude(planet_cls, date: datetime) -> float:
-    obs = ephem.Observer()
-    obs.date = date.strftime("%Y/%m/%d %H:%M:%S")
-    p = planet_cls()
-    p.compute(obs)
-    return float(p.hlong) * 180.0 / ephem.pi
+    return PLANET_SIGNS[int(longitude / 30) % 12]
 
 
 def _aspect_between(lon1: float, lon2: float) -> Optional[str]:
@@ -62,16 +67,10 @@ def _aspect_between(lon1: float, lon2: float) -> Optional[str]:
     return None
 
 
-def _is_retrograde(planet_cls, date: datetime) -> bool:
-    lon1 = _get_longitude(planet_cls, date)
-    lon2 = _get_longitude(planet_cls, date + timedelta(days=1))
-    delta = (lon2 - lon1 + 360) % 360
-    return delta > 180
-
-
 def get_moon_phase(date: datetime) -> str:
-    sun_lon = _get_longitude(ephem.Sun, date)
-    moon_lon = _get_longitude(ephem.Moon, date)
+    jd = _to_jd(date)
+    sun_lon = _get_longitude(swe.SUN, jd)
+    moon_lon = _get_longitude(swe.MOON, jd)
     angle = (moon_lon - sun_lon) % 360
 
     if angle < 22.5 or angle >= 337.5:
@@ -93,19 +92,19 @@ def get_moon_phase(date: datetime) -> str:
 
 
 def is_void_of_course(date: datetime) -> bool:
-    moon_lon = _get_longitude(ephem.Moon, date)
+    jd = _to_jd(date)
+    moon_lon = _get_longitude(swe.MOON, jd)
     current_sign_end = (int(moon_lon / 30) + 1) * 30.0
 
     check = date
     while True:
         check += timedelta(hours=1)
-        next_lon = _get_longitude(ephem.Moon, check)
+        check_jd = _to_jd(check)
+        next_lon = _get_longitude(swe.MOON, check_jd)
         if next_lon >= current_sign_end or (current_sign_end >= 360 and next_lon < 30):
             break
-        for planet_name in ["sun", "mercury", "venus", "mars", "jupiter", "saturn"]:
-            pcls = _ephem_planet(planet_name)
-            p_lon = _get_longitude(pcls, check)
-            if _aspect_between(next_lon, p_lon):
+        for pid in [swe.SUN, swe.MERCURY, swe.VENUS, swe.MARS, swe.JUPITER, swe.SATURN]:
+            if _aspect_between(next_lon, _get_longitude(pid, check_jd)):
                 return False
         if check > date + timedelta(hours=72):
             break
@@ -113,34 +112,30 @@ def is_void_of_course(date: datetime) -> bool:
 
 
 def is_mercury_retrograde(date: datetime) -> bool:
-    return _is_retrograde(ephem.Mercury, date)
+    return _get_speed(swe.MERCURY, _to_jd(date)) < 0
 
 
 def _get_planet_data(date: datetime) -> dict:
+    jd = _to_jd(date)
     planets = {}
-    for name in ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn"]:
-        pcls = _ephem_planet(name)
-        lon = _get_longitude(pcls, date)
+    for name, pid in PLANET_IDS.items():
+        result = _calc_ut(pid, jd)
+        lon = result[0] % 360
         planets[name] = {
             "longitude": lon,
             "sign": _get_sign(lon),
+            "retrograde": result[3] < 0,
         }
-
-    for name in ["mercury", "venus", "mars", "jupiter", "saturn"]:
-        pcls = _ephem_planet(name)
-        planets[name]["retrograde"] = _is_retrograde(pcls, date)
-
     return planets
 
 
 def _get_transits(date: datetime, birth_data: dict) -> list:
-    transits = []
-    if not birth_data:
-        return transits
-
     natal_planets = birth_data.get("natal_planets", {})
-    current_planets = _get_planet_data(date)
+    if not natal_planets:
+        return []
 
+    current_planets = _get_planet_data(date)
+    transits = []
     for transit_planet, tdata in current_planets.items():
         for natal_planet, nlon in natal_planets.items():
             aspect = _aspect_between(tdata["longitude"], nlon)
@@ -153,8 +148,20 @@ def _get_transits(date: datetime, birth_data: dict) -> list:
     return transits
 
 
+def _natal_transit_aspect(transit_planet: str, natal_planet: str, transits: list) -> Optional[str]:
+    for t in transits:
+        if t["transit"] == transit_planet and t["natal"] == natal_planet:
+            return t["aspect"]
+    return None
+
+
+def _find_moon_aspect_to(planets: dict, target: str) -> Optional[str]:
+    return _aspect_between(planets["moon"]["longitude"], planets[target]["longitude"])
+
+
 def get_daily_data(date: datetime, birth_data: dict) -> dict:
     planets = _get_planet_data(date)
+    transits = _get_transits(date, birth_data)
 
     return {
         "date": date.strftime("%Y-%m-%d"),
@@ -176,14 +183,22 @@ def get_daily_data(date: datetime, birth_data: dict) -> dict:
         "mars_aspect": _find_moon_aspect_to(planets, "mars"),
         "jupiter_aspect": _find_moon_aspect_to(planets, "jupiter"),
         "saturn_aspect": _find_moon_aspect_to(planets, "saturn"),
-        "transits": _get_transits(date, birth_data),
+        "tr_jupiter_natal_sun": _natal_transit_aspect("jupiter", "sun", transits),
+        "tr_saturn_natal_sun": _natal_transit_aspect("saturn", "sun", transits),
+        "tr_mars_natal_sun": _natal_transit_aspect("mars", "sun", transits),
+        "tr_venus_natal_sun": _natal_transit_aspect("venus", "sun", transits),
+        "tr_jupiter_natal_moon": _natal_transit_aspect("jupiter", "moon", transits),
+        "tr_saturn_natal_moon": _natal_transit_aspect("saturn", "moon", transits),
+        "tr_mars_natal_moon": _natal_transit_aspect("mars", "moon", transits),
+        "tr_jupiter_natal_mercury": _natal_transit_aspect("jupiter", "mercury", transits),
+        "tr_saturn_natal_mercury": _natal_transit_aspect("saturn", "mercury", transits),
+        "tr_mars_natal_mercury": _natal_transit_aspect("mars", "mercury", transits),
+        "tr_jupiter_natal_venus": _natal_transit_aspect("jupiter", "venus", transits),
+        "tr_venus_natal_venus": _natal_transit_aspect("venus", "venus", transits),
+        "tr_mars_natal_mars": _natal_transit_aspect("mars", "mars", transits),
+        "tr_saturn_natal_mars": _natal_transit_aspect("saturn", "mars", transits),
+        "transits": transits,
     }
-
-
-def _find_moon_aspect_to(planets: dict, target: str) -> Optional[str]:
-    moon_lon = planets["moon"]["longitude"]
-    target_lon = planets[target]["longitude"]
-    return _aspect_between(moon_lon, target_lon)
 
 
 def get_month_data(year: int, month: int, birth_data: dict) -> list:
