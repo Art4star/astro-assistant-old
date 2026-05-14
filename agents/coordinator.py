@@ -308,7 +308,7 @@ def _load_goals() -> list:
         return []
     with open(path, encoding="utf-8") as f:
         data = json.load(f)
-    return [g for g in data.get("goals", []) if g.get("status") == "active"]
+    return data.get("active", [])
 
 
 def _load_session_context(period: str) -> dict:
@@ -357,7 +357,8 @@ def _detect_contradictions(transits: list) -> list:
     EXPANSION_PLANETS = {"jupiter", "sun", "venus"}
     RESTRICTION_PLANETS = {"saturn", "pluto", "neptune"}
     EXPANSION_ASPECTS = {"trine", "sextile", "conjunction"}
-    RESTRICTION_ASPECTS = {"square", "opposition"}
+    # Pluto/Saturn/Neptune conjunction counts as restriction (forced transformation/pressure)
+    RESTRICTION_ASPECTS = {"square", "opposition", "conjunction"}
 
     natal_expand: dict = {}   # natal_planet → [transit]
     natal_restrict: dict = {} # natal_planet → [transit]
@@ -397,18 +398,26 @@ def _score_goal_alignment(
     Returns goals with support level and best action.
     """
     CATEGORY_TRANSIT_MAP = {
-        "career":       {"expand": [("jupiter","trine"), ("jupiter","conjunction"), ("saturn","trine")],
-                         "block":  [("saturn","square"), ("saturn","opposition"), ("neptune","square")]},
-        "finance":      {"expand": [("jupiter","trine"), ("venus","trine"), ("jupiter","sextile")],
-                         "block":  [("saturn","square"), ("pluto","square")]},
-        "health":       {"expand": [("sun","trine"), ("mars","trine"), ("jupiter","trine")],
-                         "block":  [("saturn","square"), ("mars","square")]},
-        "relationships":{"expand": [("venus","trine"), ("jupiter","trine"), ("venus","sextile")],
-                         "block":  [("saturn","square"), ("pluto","square"), ("mars","opposition")]},
-        "creativity":   {"expand": [("venus","trine"), ("sun","trine"), ("jupiter","sextile")],
-                         "block":  [("saturn","square")]},
-        "learning":     {"expand": [("mercury","trine"), ("jupiter","trine"), ("mercury","sextile")],
-                         "block":  [("mercury","square"), ("saturn","opposition")]},
+        "career":        {"expand": [("jupiter","trine"), ("jupiter","conjunction"), ("saturn","trine")],
+                          "block":  [("saturn","square"), ("saturn","opposition"), ("neptune","square")]},
+        "finance":       {"expand": [("jupiter","trine"), ("venus","trine"), ("jupiter","sextile")],
+                          "block":  [("saturn","square"), ("pluto","square"), ("pluto","conjunction")]},
+        "health":        {"expand": [("sun","trine"), ("mars","trine"), ("jupiter","trine")],
+                          "block":  [("saturn","square"), ("mars","square")]},
+        "relationships": {"expand": [("venus","trine"), ("jupiter","trine"), ("venus","sextile")],
+                          "block":  [("saturn","square"), ("pluto","square"), ("pluto","conjunction"), ("mars","opposition")]},
+        "creativity":    {"expand": [("venus","trine"), ("sun","trine"), ("jupiter","sextile")],
+                          "block":  [("saturn","square")]},
+        "learning":      {"expand": [("mercury","trine"), ("jupiter","trine"), ("mercury","sextile")],
+                          "block":  [("mercury","square"), ("saturn","opposition")]},
+        "negotiations":  {"expand": [("jupiter","trine"), ("venus","trine"), ("mercury","trine"), ("jupiter","sextile")],
+                          "block":  [("saturn","square"), ("saturn","opposition"), ("neptune","square"), ("jupiter","opposition")]},
+        "purchase":      {"expand": [("jupiter","trine"), ("venus","trine"), ("venus","sextile"), ("jupiter","sextile")],
+                          "block":  [("saturn","square"), ("pluto","conjunction"), ("mercury","square")]},
+        "documents":     {"expand": [("mercury","trine"), ("mercury","sextile"), ("jupiter","trine")],
+                          "block":  [("mercury","square"), ("saturn","square"), ("neptune","square")]},
+        "personal":      {"expand": [("venus","trine"), ("venus","sextile"), ("venus","conjunction"), ("jupiter","trine")],
+                          "block":  [("saturn","square"), ("pluto","conjunction"), ("mars","opposition")]},
     }
 
     transit_set = {(t["transit_planet"], t["aspect"]) for t in transits if t.get("intensity", 0) >= 15}
