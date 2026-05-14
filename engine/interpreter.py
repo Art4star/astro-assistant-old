@@ -6,6 +6,7 @@ ACTIVITY_RULES = {
             ("moon_sign", ["taurus", "capricorn", "virgo"], +2),
             ("tr_jupiter_natal_sun", ["trine", "sextile", "conjunction"], +3),
             ("tr_venus_natal_sun", ["trine", "sextile"], +2),
+            ("tr_venus_natal_moon", ["conjunction", "trine", "sextile"], +1),
         ],
         "unfavorable": [
             ("mercury_retrograde", True, -4),
@@ -13,6 +14,9 @@ ACTIVITY_RULES = {
             ("moon_voc", True, -3),
             ("moon_phase", ["balsamic", "new"], -2),
             ("tr_saturn_natal_sun", ["square", "opposition"], -3),
+            ("tr_jupiter_natal_sun", ["opposition", "square"], -2),
+            ("tr_pluto_natal_venus", ["conjunction", "square", "opposition"], -2),
+            ("tr_neptune_natal_sun", ["square", "opposition"], -2),
         ]
     },
     "work_technical": {
@@ -22,12 +26,15 @@ ACTIVITY_RULES = {
             ("moon_phase", ["waxing_crescent", "first_quarter"], +2),
             ("tr_jupiter_natal_mercury", ["trine", "sextile", "conjunction"], +3),
             ("tr_jupiter_natal_sun", ["trine", "sextile"], +2),
+            ("tr_uranus_natal_venus", ["trine", "sextile"], +1),
         ],
         "unfavorable": [
             ("mercury_retrograde", True, -3),
             ("moon_voc", True, -2),
             ("moon_sign", ["pisces", "cancer"], -2),
             ("tr_saturn_natal_mercury", ["square", "opposition"], -2),
+            ("tr_jupiter_natal_mercury", ["opposition", "square"], -2),
+            ("tr_neptune_natal_ascendant", ["square", "opposition"], -2),
         ]
     },
     "negotiations": {
@@ -38,6 +45,7 @@ ACTIVITY_RULES = {
             ("jupiter_aspect", ["trine", "sextile"], +2),
             ("tr_jupiter_natal_sun", ["trine", "sextile", "conjunction"], +3),
             ("tr_venus_natal_sun", ["trine", "sextile"], +2),
+            ("tr_venus_natal_moon", ["conjunction", "trine", "sextile"], +2),
         ],
         "unfavorable": [
             ("mercury_retrograde", True, -5),
@@ -45,6 +53,9 @@ ACTIVITY_RULES = {
             ("mars_aspect", ["square", "opposition"], -2),
             ("tr_saturn_natal_sun", ["square", "opposition"], -3),
             ("tr_mars_natal_sun", ["square", "opposition"], -2),
+            ("tr_jupiter_natal_sun", ["opposition", "square"], -2),
+            ("tr_jupiter_natal_mercury", ["opposition", "square"], -3),
+            ("tr_neptune_natal_ascendant", ["square", "opposition"], -2),
         ]
     },
     "content_publishing": {
@@ -54,12 +65,14 @@ ACTIVITY_RULES = {
             ("venus_aspect", ["trine", "sextile"], +2),
             ("tr_jupiter_natal_mercury", ["trine", "sextile"], +2),
             ("tr_venus_natal_venus", ["conjunction", "trine", "sextile"], +2),
+            ("tr_uranus_natal_venus", ["trine", "sextile"], +2),
         ],
         "unfavorable": [
             ("mercury_retrograde", True, -3),
             ("moon_phase", ["balsamic"], -3),
             ("saturn_aspect", ["square"], -2),
             ("tr_saturn_natal_mercury", ["square", "opposition"], -2),
+            ("tr_jupiter_natal_mercury", ["opposition", "square"], -1),
         ]
     },
     "rest_reflection": {
@@ -68,6 +81,7 @@ ACTIVITY_RULES = {
             ("moon_sign", ["pisces", "cancer", "scorpio"], +2),
             ("saturn_aspect", ["trine"], +1),
             ("tr_saturn_natal_moon", ["trine", "sextile"], +1),
+            ("tr_venus_natal_moon", ["conjunction", "trine", "sextile"], +2),
         ],
         "unfavorable": [
             ("moon_phase", ["full", "waxing_gibbous"], -2),
@@ -81,12 +95,15 @@ ACTIVITY_RULES = {
             ("jupiter_aspect", ["conjunction", "trine"], +3),
             ("tr_jupiter_natal_sun", ["conjunction", "trine", "sextile"], +4),
             ("tr_jupiter_natal_moon", ["trine", "sextile"], +2),
+            ("tr_uranus_natal_venus", ["trine", "sextile"], +1),
         ],
         "unfavorable": [
             ("mercury_retrograde", True, -3),
             ("moon_phase", ["balsamic", "last_quarter"], -4),
             ("saturn_aspect", ["square", "opposition"], -3),
             ("tr_saturn_natal_sun", ["square", "opposition"], -3),
+            ("tr_jupiter_natal_sun", ["opposition", "square"], -2),
+            ("tr_neptune_natal_sun", ["square", "opposition"], -2),
         ]
     },
     "health_body": {
@@ -94,12 +111,14 @@ ACTIVITY_RULES = {
             ("moon_sign", ["virgo", "taurus"], +3),
             ("moon_phase", ["waxing_crescent"], +2),
             ("tr_jupiter_natal_moon", ["trine", "sextile", "conjunction"], +2),
+            ("tr_venus_natal_moon", ["conjunction", "trine"], +1),
         ],
         "unfavorable": [
             ("moon_voc", True, -2),
             ("mars_aspect", ["square", "opposition"], -2),
             ("tr_mars_natal_mars", ["square", "opposition"], -2),
             ("tr_saturn_natal_moon", ["square", "opposition"], -2),
+            ("tr_neptune_natal_ascendant", ["square", "opposition"], -2),
         ]
     }
 }
@@ -157,18 +176,41 @@ def get_day_label(overall_score: int) -> str:
 
 def get_warnings(daily_data: dict) -> list:
     warnings = []
+
+    # Retrograde planets
     if daily_data.get("mercury_retrograde"):
-        warnings.append("☿ Меркурій ретроградний")
+        warnings.append("☿ Меркурій ретроградний — уникайте підписів і нових домовленостей")
     if daily_data.get("venus_retrograde"):
-        warnings.append("♀ Венера ретроградна")
+        warnings.append("♀ Венера ретроградна — обережно з фінансовими рішеннями")
     if daily_data.get("mars_retrograde"):
-        warnings.append("♂ Марс ретроградний")
+        warnings.append("♂ Марс ретроградний — уникайте конфронтацій і різких дій")
     if daily_data.get("jupiter_retrograde"):
         warnings.append("♃ Юпітер ретроградний")
     if daily_data.get("saturn_retrograde"):
         warnings.append("♄ Сатурн ретроградний")
+
+    # VOC
     if daily_data.get("moon_voc"):
-        warnings.append("🌀 Місяць без курсу (VOC)")
+        warnings.append("🌀 Місяць без курсу (VOC) — не починайте важливого")
+
+    # Moon–planet aspects (immediate daily tension)
+    if daily_data.get("mars_aspect") == "conjunction":
+        warnings.append("♂ Місяць кон'юнкція Марс — імпульсивність, підвищена напруга")
+    if daily_data.get("saturn_aspect") in ("square", "opposition"):
+        warnings.append("♄ Місяць у напрузі з Сатурном — емоційна важкість, затримки")
+    if daily_data.get("mars_aspect") in ("square", "opposition"):
+        warnings.append("♂ Місяць у напрузі з Марсом — конфліктний фон")
+
+    # Active transit tensions to natal chart
+    if daily_data.get("tr_jupiter_natal_sun") in ("opposition", "square"):
+        warnings.append("♃ Юпітер у напрузі до натального Сонця — ризик переоцінки сил")
+    if daily_data.get("tr_jupiter_natal_mercury") in ("opposition", "square"):
+        warnings.append("♃ Юпітер у напрузі до натального Меркурія — обережно з домовленостями")
+    if daily_data.get("tr_neptune_natal_ascendant") in ("square", "opposition"):
+        warnings.append("♆ Нептун квадрат ASC — розмитість меж, перевіряйте деталі")
+    if daily_data.get("tr_pluto_natal_venus") in ("conjunction", "square", "opposition"):
+        warnings.append("♇ Плутон кон'юнкція натальній Венері — трансформація фінансів/відносин")
+
     return warnings
 
 

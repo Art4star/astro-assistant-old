@@ -148,13 +148,6 @@ def _get_transits(date: datetime, birth_data: dict) -> list:
     return transits
 
 
-def _natal_transit_aspect(transit_planet: str, natal_planet: str, transits: list) -> Optional[str]:
-    for t in transits:
-        if t["transit"] == transit_planet and t["natal"] == natal_planet:
-            return t["aspect"]
-    return None
-
-
 def _find_moon_aspect_to(planets: dict, target: str) -> Optional[str]:
     return _aspect_between(planets["moon"]["longitude"], planets[target]["longitude"])
 
@@ -163,7 +156,7 @@ def get_daily_data(date: datetime, birth_data: dict) -> dict:
     planets = _get_planet_data(date)
     transits = _get_transits(date, birth_data)
 
-    return {
+    daily = {
         "date": date.strftime("%Y-%m-%d"),
         "moon_sign": planets["moon"]["sign"],
         "moon_phase": get_moon_phase(date),
@@ -183,22 +176,17 @@ def get_daily_data(date: datetime, birth_data: dict) -> dict:
         "mars_aspect": _find_moon_aspect_to(planets, "mars"),
         "jupiter_aspect": _find_moon_aspect_to(planets, "jupiter"),
         "saturn_aspect": _find_moon_aspect_to(planets, "saturn"),
-        "tr_jupiter_natal_sun": _natal_transit_aspect("jupiter", "sun", transits),
-        "tr_saturn_natal_sun": _natal_transit_aspect("saturn", "sun", transits),
-        "tr_mars_natal_sun": _natal_transit_aspect("mars", "sun", transits),
-        "tr_venus_natal_sun": _natal_transit_aspect("venus", "sun", transits),
-        "tr_jupiter_natal_moon": _natal_transit_aspect("jupiter", "moon", transits),
-        "tr_saturn_natal_moon": _natal_transit_aspect("saturn", "moon", transits),
-        "tr_mars_natal_moon": _natal_transit_aspect("mars", "moon", transits),
-        "tr_jupiter_natal_mercury": _natal_transit_aspect("jupiter", "mercury", transits),
-        "tr_saturn_natal_mercury": _natal_transit_aspect("saturn", "mercury", transits),
-        "tr_mars_natal_mercury": _natal_transit_aspect("mars", "mercury", transits),
-        "tr_jupiter_natal_venus": _natal_transit_aspect("jupiter", "venus", transits),
-        "tr_venus_natal_venus": _natal_transit_aspect("venus", "venus", transits),
-        "tr_mars_natal_mars": _natal_transit_aspect("mars", "mars", transits),
-        "tr_saturn_natal_mars": _natal_transit_aspect("saturn", "mars", transits),
         "transits": transits,
     }
+
+    # Expose every found transit as tr_<transit>_natal_<natal>.
+    # First occurrence wins (transits list is unordered so no priority implied).
+    for t in transits:
+        key = f"tr_{t['transit']}_natal_{t['natal']}"
+        if key not in daily:
+            daily[key] = t["aspect"]
+
+    return daily
 
 
 def get_month_data(year: int, month: int, birth_data: dict) -> list:

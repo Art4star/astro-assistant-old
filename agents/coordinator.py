@@ -236,6 +236,19 @@ def build_interpretation_package(year: int, month: int, force: bool = False) -> 
     _save(package_path, package)
     _update_coordinator_session(period, "package_ready", True)
 
+    bus_send(task_complete(
+        AgentID.COORDINATOR, AgentID.COORDINATOR,
+        task="build_interpretation_package",
+        result_path=package_path,
+        summary={
+            "period": period,
+            "top_transits": len(package["forecast"]["top_transits"]),
+            "contradictions": len(package["contradictions"]),
+            "activated_patterns": len(package["activated_patterns"]),
+        },
+        parent_msg=handoff_req,
+    ))
+
     bus_send(handoff(
         AgentID.COORDINATOR, AgentID.INTERPRETATION,
         data_path=package_path,
