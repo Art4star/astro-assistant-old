@@ -49,7 +49,7 @@ def load_birth_data() -> dict:
 def build_day_context(daily_data: dict, today: date) -> dict:
     scores = score_day(daily_data)
     overall = get_overall_score(scores)
-    label = get_day_label(overall)
+    label = get_day_label(overall, scores)
     warnings = get_warnings(daily_data)
     recs = get_recommendations(daily_data, scores)
     color = get_day_color(overall)
@@ -239,7 +239,7 @@ def generate_today_report() -> str:
     daily_data = get_daily_data(today, birth_data)
     scores = score_day(daily_data)
     overall = get_overall_score(scores)
-    label = get_day_label(overall)
+    label = get_day_label(overall, scores)
     warnings = get_warnings(daily_data)
     recs = get_recommendations(daily_data, scores)
 
@@ -278,7 +278,7 @@ def generate_week_report() -> str:
         daily = get_daily_data(day, birth_data)
         scores = score_day(daily)
         overall = get_overall_score(scores)
-        label = get_day_label(overall)
+        label = get_day_label(overall, scores)
         phase_emoji = get_phase_emoji(daily["moon_phase"])
         weekday = WEEKDAY_UA[day.weekday()]
         lines.append(f"{phase_emoji} {weekday} {day.strftime('%d.%m')} — {label} ({'+' if overall > 0 else ''}{overall})")

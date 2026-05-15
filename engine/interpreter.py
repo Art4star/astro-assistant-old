@@ -77,7 +77,7 @@ ACTIVITY_RULES = {
     },
     "rest_reflection": {
         "favorable": [
-            ("moon_phase", ["balsamic", "last_quarter"], +4),
+            ("moon_phase", ["balsamic", "last_quarter", "new"], +4),
             ("moon_sign", ["pisces", "cancer", "scorpio"], +2),
             ("saturn_aspect", ["trine"], +1),
             ("tr_saturn_natal_moon", ["trine", "sextile"], +1),
@@ -104,6 +104,8 @@ ACTIVITY_RULES = {
             ("tr_saturn_natal_sun", ["square", "opposition"], -3),
             ("tr_jupiter_natal_sun", ["opposition", "square"], -2),
             ("tr_neptune_natal_sun", ["square", "opposition"], -2),
+            # Neptune sq ASC = розмитість ідентичності та напрямку — ризик для нових починань
+            ("tr_neptune_natal_ascendant", ["square", "opposition"], -2),
         ]
     },
     "health_body": {
@@ -161,7 +163,17 @@ def get_overall_score(scores: dict) -> int:
     return round(sum(scores.values()) / len(scores))
 
 
-def get_day_label(overall_score: int) -> str:
+def is_polarized_day(scores: dict) -> bool:
+    """True if day has both high positive and low negative activities (spread >= 6)."""
+    if not scores:
+        return False
+    vals = list(scores.values())
+    return max(vals) - min(vals) >= 6
+
+
+def get_day_label(overall_score: int, scores=None) -> str:
+    if scores and is_polarized_day(scores):
+        return "Поляризований"
     if overall_score > 5:
         return "Відмінний день"
     elif overall_score >= 2:
@@ -232,7 +244,11 @@ def get_recommendations(daily_data: dict, scores: dict) -> dict:
     if daily_data.get("moon_phase") == "full":
         tips.append("Повний місяць підсилює емоції та інтуїцію")
     if daily_data.get("moon_phase") == "new":
-        tips.append("Новий місяць — час для нових намірів та починань")
+        new_beginnings_score = scores.get("new_beginnings", 0)
+        if new_beginnings_score >= 2:
+            tips.append("Новий місяць — час для нових намірів та починань")
+        else:
+            tips.append("Новий місяць — зосередьтесь на внутрішніх намірах, зовнішні дії краще відкласти")
 
     return {
         "best_for": best_for,
