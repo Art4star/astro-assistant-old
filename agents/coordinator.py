@@ -409,7 +409,7 @@ def _score_goal_alignment(
         "creativity":    {"expand": [("venus","trine"), ("sun","trine"), ("jupiter","sextile")],
                           "block":  [("saturn","square")]},
         "learning":      {"expand": [("mercury","trine"), ("jupiter","trine"), ("mercury","sextile")],
-                          "block":  [("mercury","square"), ("saturn","opposition")]},
+                          "block":  [("mercury","square"), ("saturn","opposition"), ("neptune","square"), ("jupiter","opposition")]},
         "negotiations":  {"expand": [("jupiter","trine"), ("venus","trine"), ("mercury","trine"), ("jupiter","sextile")],
                           "block":  [("saturn","square"), ("saturn","opposition"), ("neptune","square"), ("jupiter","opposition")]},
         "purchase":      {"expand": [("jupiter","trine"), ("venus","trine"), ("venus","sextile"), ("jupiter","sextile")],
