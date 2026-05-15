@@ -293,7 +293,7 @@ def find_solar_return(birth_data: dict, year: int) -> dict:
 def get_critical_windows(transits: list, year: int, month: int) -> list:
     """High-importance periods: outer planets to angles/luminaries, by intensity."""
     OUTER = {"pluto", "neptune", "uranus", "saturn", "jupiter"}
-    KEY_NATAL = {"sun", "moon", "mercury", "venus", "mars", "ascendant", "midheaven", "true_node"}
+    KEY_NATAL = {"sun", "moon", "mercury", "venus", "mars", "jupiter", "ascendant", "midheaven", "true_node"}
 
     TYPE_MAP = {
         ("saturn", "square"):      ("restructuring",  "тиск, дисципліна, усунення зайвого"),

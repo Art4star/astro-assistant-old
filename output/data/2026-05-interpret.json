@@ -1,0 +1,1330 @@
+{
+  "generated_at": "2026-05-15 23:01",
+  "period": "2026-05",
+  "user": {
+    "birth_data": {
+      "name": "Artur",
+      "date": "1990-01-09",
+      "time": "07:17",
+      "place": "Legnica, Poland",
+      "timezone": "Europe/Warsaw",
+      "latitude": 51.21,
+      "longitude": 16.16
+    },
+    "core_preferences": {
+      "language": "uk",
+      "astro_style": "practical",
+      "avoid_generic": true,
+      "focus": "timing and decision support, not prediction"
+    },
+    "life_focus": [
+      "career direction",
+      "energy optimization",
+      "timing key decisions",
+      "relocation planning"
+    ],
+    "current_location": {
+      "city": "Worms, Germany",
+      "postal_code": "67549",
+      "latitude": 49.6317,
+      "longitude": 8.3697
+    }
+  },
+  "identity": {
+    "motivation_core": {
+      "pattern": "achievement through mastery and structure",
+      "description": "Driven by building something lasting. Not urgency — precision and depth. Needs to be the expert in the room, not the loudest.",
+      "source": [
+        "Sun conjunct Saturn H1",
+        "Capricorn stellium H1",
+        "Saturn ASC ruler"
+      ],
+      "confidence": 0.92,
+      "validated_by_user": false
+    },
+    "energy_style": {
+      "pattern": "high capacity, slow recovery, thrives under sustained pressure",
+      "description": "Can carry enormous load for long periods. But recovery is private and non-negotiable. Social energy drains fast — needs solitude to recharge.",
+      "manifestation": [
+        "productive under deadline",
+        "collapses if recovery time is cut",
+        "underestimates recovery need"
+      ],
+      "source": [
+        "Saturn H1",
+        "Mars H12 Sagittarius",
+        "Uranus conjunct ASC"
+      ],
+      "confidence": 0.88,
+      "validated_by_user": false
+    },
+    "emotional_regulation": {
+      "pattern": "delayed processing, routes emotion through analysis",
+      "description": "Does not experience emotions in real time. Processes days or weeks later, often through thinking or work. Appears composed under pressure — not because calm, but because processing is deferred.",
+      "manifestation": [
+        "high internal pressure with calm exterior",
+        "retrospective emotional clarity",
+        "difficulty naming feelings in the moment"
+      ],
+      "source": [
+        "Moon Gemini H6",
+        "Moon detached from Capricorn cluster",
+        "Saturn H1"
+      ],
+      "confidence": 0.84,
+      "validated_by_user": false
+    },
+    "ambition_structure": {
+      "pattern": "long-arc builder with reinvention cycles",
+      "description": "Thinks in years, not quarters. Career moves look sudden from outside but are long-incubated internally. Each major transition is a complete identity rebuild, not an adjustment.",
+      "manifestation": [
+        "slow to commit to direction",
+        "once committed — total focus",
+        "needs to see the 5-year picture before acting"
+      ],
+      "source": [
+        "Pluto H11 Scorpio",
+        "Saturn as chart ruler",
+        "MC Scorpio"
+      ],
+      "confidence": 0.85,
+      "validated_by_user": false
+    },
+    "decision_style": {
+      "pattern": "overthinks then acts with precision",
+      "description": "Extended analysis phase followed by decisive, often irreversible action. Looks indecisive until suddenly it is not. Mercury retrograde natal reinforces loop tendency.",
+      "manifestation": [
+        "long delay before major decisions",
+        "once decision made — executes fast and completely",
+        "revisits decisions during Mercury retrograde transits"
+      ],
+      "source": [
+        "Mercury retrograde natal",
+        "Mercury conjunct Sun conjunct Saturn",
+        "Capricorn H1"
+      ],
+      "confidence": 0.87,
+      "validated_by_user": false
+    },
+    "relationship_model": {
+      "pattern": "needs full autonomy within committed structures",
+      "description": "Deep loyalty but strong resistance to emotional dependency. Partnership must be functional and growth-oriented, not comfort-based. Takes long time to trust.",
+      "source": [
+        "Venus H2 retrograde Aquarius",
+        "Jupiter H7 retrograde Cancer",
+        "Saturn H1"
+      ],
+      "confidence": 0.74,
+      "validated_by_user": false
+    },
+    "coping_mechanisms": {
+      "primary": "converts stress into structured action",
+      "secondary": "intellectual analysis as emotional distance",
+      "failure_mode": "overworks until system breakdown",
+      "source": [
+        "Saturn H1",
+        "Mars H12",
+        "Moon H6"
+      ],
+      "confidence": 0.82,
+      "validated_by_user": false
+    }
+  },
+  "activated_patterns": [
+    {
+      "id": "career_reinvention",
+      "theme": "career restructuring under external pressure",
+      "behavioral_signature": "crisis triggers complete redesign, not minor adjustment",
+      "confidence": 0.87
+    }
+  ],
+  "active_cycles": [
+    {
+      "period": "2026-01 → 2026-12",
+      "theme": "identity pressure and restructuring",
+      "cause": [
+        "Saturn square ASC (ongoing)",
+        "Neptune square ASC (ongoing)",
+        "Jupiter opposition Sun (spring)"
+      ],
+      "risk_level": "high",
+      "opportunity_level": "medium",
+      "identity_patterns_activated": [
+        "career_reinvention",
+        "decision_under_saturn",
+        "neptune_boundary_loss"
+      ],
+      "coordinator_note": "Two outer planets simultaneously squaring ASC — rare. External world challenging self-image. Not the year to start new things, the year to consolidate and clarify identity."
+    },
+    {
+      "period": "2026-03 → 2026-09",
+      "theme": "career pivot window",
+      "cause": [
+        "Jupiter opposition natal Sun",
+        "Saturn square natal Saturn (Saturn square natal Saturn = Saturn half-return)",
+        "Pluto square natal MC"
+      ],
+      "risk_level": "high",
+      "opportunity_level": "high",
+      "identity_patterns_activated": [
+        "career_reinvention",
+        "decision_under_saturn"
+      ],
+      "coordinator_note": "High-tension period. Pluto squaring MC = external career disruption or transformation. Saturn squaring natal Saturn = mid-life authority test. Dual signal: things are breaking AND building simultaneously."
+    }
+  ],
+  "session_context": {
+    "recent_topics": [],
+    "active_question": null
+  },
+  "natal_chart": {
+    "user": {
+      "name": "Artur",
+      "birth_date": "1990-01-09",
+      "birth_time": "07:17",
+      "birth_city": "Legnica, Poland"
+    },
+    "angles": {
+      "ascendant": {
+        "longitude": 275.9932,
+        "sign": "capricorn",
+        "degree": 5.99
+      },
+      "midheaven": {
+        "longitude": 221.3719,
+        "sign": "scorpio",
+        "degree": 11.37
+      }
+    },
+    "houses": {
+      "1": "capricorn",
+      "2": "aquarius",
+      "3": "pisces",
+      "4": "aries",
+      "5": "taurus",
+      "6": "gemini",
+      "7": "cancer",
+      "8": "leo",
+      "9": "virgo",
+      "10": "libra",
+      "11": "scorpio",
+      "12": "sagittarius"
+    },
+    "ascendant_ruler": "saturn",
+    "stelliums": [
+      {
+        "sign": "capricorn",
+        "planets": [
+          "sun",
+          "mercury",
+          "saturn",
+          "uranus",
+          "neptune"
+        ]
+      }
+    ],
+    "angular_planets": [
+      "sun",
+      "mercury",
+      "jupiter",
+      "saturn",
+      "uranus",
+      "neptune"
+    ],
+    "dominants": {
+      "element": "earth",
+      "element_counts": {
+        "earth": 3,
+        "air": 2,
+        "fire": 1,
+        "water": 1
+      },
+      "modality": "cardinal",
+      "modality_counts": {
+        "cardinal": 4,
+        "mutable": 2,
+        "fixed": 1
+      },
+      "sign": "capricorn",
+      "sign_counts": {
+        "capricorn": 3,
+        "gemini": 1,
+        "aquarius": 1,
+        "sagittarius": 1,
+        "cancer": 1
+      }
+    },
+    "aspects": [
+      {
+        "p1": "uranus",
+        "p2": "ascendant",
+        "type": "conjunction",
+        "orb": 0.25,
+        "harmony": true
+      },
+      {
+        "p1": "sun",
+        "p2": "mercury",
+        "type": "conjunction",
+        "orb": 0.42,
+        "harmony": true
+      },
+      {
+        "p1": "pluto",
+        "p2": "true_node",
+        "type": "square",
+        "orb": 0.6,
+        "harmony": false
+      },
+      {
+        "p1": "saturn",
+        "p2": "pluto",
+        "type": "sextile",
+        "orb": 0.71,
+        "harmony": true
+      },
+      {
+        "p1": "neptune",
+        "p2": "midheaven",
+        "type": "sextile",
+        "orb": 0.96,
+        "harmony": true
+      },
+      {
+        "p1": "mercury",
+        "p2": "pluto",
+        "type": "sextile",
+        "orb": 1.02,
+        "harmony": true
+      },
+      {
+        "p1": "uranus",
+        "p2": "lilith",
+        "type": "sextile",
+        "orb": 1.09,
+        "harmony": true
+      },
+      {
+        "p1": "mars",
+        "p2": "true_node",
+        "type": "sextile",
+        "orb": 1.21,
+        "harmony": true
+      },
+      {
+        "p1": "lilith",
+        "p2": "ascendant",
+        "type": "sextile",
+        "orb": 1.34,
+        "harmony": true
+      },
+      {
+        "p1": "sun",
+        "p2": "pluto",
+        "type": "sextile",
+        "orb": 1.43,
+        "harmony": true
+      },
+      {
+        "p1": "mercury",
+        "p2": "saturn",
+        "type": "conjunction",
+        "orb": 1.73,
+        "harmony": true
+      },
+      {
+        "p1": "jupiter",
+        "p2": "ascendant",
+        "type": "opposition",
+        "orb": 1.86,
+        "harmony": false
+      },
+      {
+        "p1": "jupiter",
+        "p2": "uranus",
+        "type": "opposition",
+        "orb": 2.12,
+        "harmony": false
+      },
+      {
+        "p1": "sun",
+        "p2": "saturn",
+        "type": "conjunction",
+        "orb": 2.15,
+        "harmony": true
+      },
+      {
+        "p1": "jupiter",
+        "p2": "lilith",
+        "type": "trine",
+        "orb": 3.2,
+        "harmony": true
+      }
+    ],
+    "planets": {
+      "sun": {
+        "longitude": 288.7247,
+        "sign": "capricorn",
+        "degree": 18.72,
+        "retrograde": false,
+        "house": 1
+      },
+      "moon": {
+        "longitude": 83.0662,
+        "sign": "gemini",
+        "degree": 23.07,
+        "retrograde": false,
+        "house": 6
+      },
+      "mercury": {
+        "longitude": 288.3094,
+        "sign": "capricorn",
+        "degree": 18.31,
+        "retrograde": true,
+        "house": 1
+      },
+      "venus": {
+        "longitude": 303.9749,
+        "sign": "aquarius",
+        "degree": 3.97,
+        "retrograde": true,
+        "house": 2
+      },
+      "mars": {
+        "longitude": 255.4795,
+        "sign": "sagittarius",
+        "degree": 15.48,
+        "retrograde": false,
+        "house": 12
+      },
+      "jupiter": {
+        "longitude": 94.1298,
+        "sign": "cancer",
+        "degree": 4.13,
+        "retrograde": true,
+        "house": 7
+      },
+      "saturn": {
+        "longitude": 286.577,
+        "sign": "capricorn",
+        "degree": 16.58,
+        "retrograde": false,
+        "house": 1
+      },
+      "uranus": {
+        "longitude": 276.2482,
+        "sign": "capricorn",
+        "degree": 6.25,
+        "retrograde": false,
+        "house": 1
+      },
+      "neptune": {
+        "longitude": 282.3319,
+        "sign": "capricorn",
+        "degree": 12.33,
+        "retrograde": false,
+        "house": 1
+      },
+      "pluto": {
+        "longitude": 227.291,
+        "sign": "scorpio",
+        "degree": 17.29,
+        "retrograde": false,
+        "house": 11
+      },
+      "true_node": {
+        "longitude": 316.6944,
+        "sign": "aquarius",
+        "degree": 16.69,
+        "retrograde": true,
+        "house": 2
+      },
+      "lilith": {
+        "longitude": 217.3335,
+        "sign": "scorpio",
+        "degree": 7.33,
+        "retrograde": false,
+        "house": 11
+      }
+    }
+  },
+  "forecast": {
+    "period": "2026-05",
+    "top_transits": [
+      {
+        "transit_planet": "neptune",
+        "natal_planet": "ascendant",
+        "aspect": "square",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-31",
+        "min_orb": 1.94,
+        "status": "applying",
+        "applying_at_start": true,
+        "retrograde": false,
+        "intensity": 48.7,
+        "priority": 2
+      },
+      {
+        "transit_planet": "jupiter",
+        "natal_planet": "sun",
+        "aspect": "opposition",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-01",
+        "min_orb": 0.26,
+        "status": "separating",
+        "applying_at_start": false,
+        "retrograde": false,
+        "intensity": 47.0,
+        "priority": 5
+      },
+      {
+        "transit_planet": "pluto",
+        "natal_planet": "venus",
+        "aspect": "conjunction",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-31",
+        "min_orb": 1.39,
+        "status": "applying",
+        "applying_at_start": false,
+        "retrograde": true,
+        "intensity": 41.3,
+        "priority": 1
+      },
+      {
+        "transit_planet": "neptune",
+        "natal_planet": "jupiter",
+        "aspect": "square",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-31",
+        "min_orb": 0.08,
+        "status": "applying",
+        "applying_at_start": true,
+        "retrograde": false,
+        "intensity": 28.4,
+        "priority": 2
+      },
+      {
+        "transit_planet": "neptune",
+        "natal_planet": "venus",
+        "aspect": "sextile",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-27",
+        "min_orb": 0.01,
+        "status": "exact_within_month",
+        "applying_at_start": true,
+        "retrograde": false,
+        "intensity": 26.9,
+        "priority": 2
+      },
+      {
+        "transit_planet": "mars",
+        "natal_planet": "ascendant",
+        "aspect": "trine",
+        "first_date": "2026-05-19",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-26",
+        "min_orb": 0.32,
+        "status": "exact_within_month",
+        "applying_at_start": true,
+        "retrograde": false,
+        "intensity": 25.6,
+        "priority": 6
+      },
+      {
+        "transit_planet": "mars",
+        "natal_planet": "sun",
+        "aspect": "square",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-11",
+        "peak_date": "2026-05-04",
+        "min_orb": 0.33,
+        "status": "exact_within_month",
+        "applying_at_start": true,
+        "retrograde": false,
+        "intensity": 25.4,
+        "priority": 6
+      },
+      {
+        "transit_planet": "saturn",
+        "natal_planet": "ascendant",
+        "aspect": "square",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-28",
+        "peak_date": "2026-05-01",
+        "min_orb": 3.21,
+        "status": "separating",
+        "applying_at_start": false,
+        "retrograde": false,
+        "intensity": 25.3,
+        "priority": 4
+      },
+      {
+        "transit_planet": "jupiter",
+        "natal_planet": "mercury",
+        "aspect": "opposition",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-01",
+        "min_orb": 0.68,
+        "status": "separating",
+        "applying_at_start": false,
+        "retrograde": false,
+        "intensity": 24.7,
+        "priority": 5
+      },
+      {
+        "transit_planet": "venus",
+        "natal_planet": "ascendant",
+        "aspect": "opposition",
+        "first_date": "2026-05-17",
+        "last_date": "2026-05-30",
+        "peak_date": "2026-05-24",
+        "min_orb": 0.51,
+        "status": "exact_within_month",
+        "applying_at_start": true,
+        "retrograde": false,
+        "intensity": 19.9,
+        "priority": 8
+      }
+    ],
+    "critical_windows": [
+      {
+        "type": "confusion",
+        "transit_planet": "neptune",
+        "natal_planet": "ascendant",
+        "aspect": "square",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-31",
+        "status": "applying",
+        "orb": 1.94,
+        "intensity": 48.7,
+        "retrograde": false,
+        "description": "Neptune square natal ascendant — невизначеність, ризик самообману."
+      },
+      {
+        "type": "overreach_risk",
+        "transit_planet": "jupiter",
+        "natal_planet": "sun",
+        "aspect": "opposition",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-01",
+        "status": "separating",
+        "orb": 0.26,
+        "intensity": 47.0,
+        "retrograde": false,
+        "description": "Jupiter opposition natal sun — ризик переоцінки, потрібен реалізм."
+      },
+      {
+        "type": "transformation",
+        "transit_planet": "pluto",
+        "natal_planet": "venus",
+        "aspect": "conjunction",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-31",
+        "status": "applying",
+        "orb": 1.39,
+        "intensity": 41.3,
+        "retrograde": true,
+        "description": "Pluto conjunction natal venus — глибока трансформація, незворотні зміни."
+      },
+      {
+        "type": "confusion",
+        "transit_planet": "neptune",
+        "natal_planet": "jupiter",
+        "aspect": "square",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-31",
+        "status": "applying",
+        "orb": 0.08,
+        "intensity": 28.4,
+        "retrograde": false,
+        "description": "Neptune square natal jupiter — невизначеність, ризик самообману."
+      },
+      {
+        "type": "restructuring",
+        "transit_planet": "saturn",
+        "natal_planet": "ascendant",
+        "aspect": "square",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-28",
+        "peak_date": "2026-05-01",
+        "status": "separating",
+        "orb": 3.21,
+        "intensity": 25.3,
+        "retrograde": false,
+        "description": "Saturn square natal ascendant — тиск, дисципліна, усунення зайвого."
+      },
+      {
+        "type": "overreach_risk",
+        "transit_planet": "jupiter",
+        "natal_planet": "mercury",
+        "aspect": "opposition",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-01",
+        "status": "separating",
+        "orb": 0.68,
+        "intensity": 24.7,
+        "retrograde": false,
+        "description": "Jupiter opposition natal mercury — ризик переоцінки, потрібен реалізм."
+      },
+      {
+        "type": "liberation",
+        "transit_planet": "uranus",
+        "natal_planet": "venus",
+        "aspect": "trine",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-31",
+        "status": "applying",
+        "orb": 1.94,
+        "intensity": 18.9,
+        "retrograde": false,
+        "description": "Uranus trine natal venus — свобода, інновації, позитивні зміни."
+      },
+      {
+        "type": "consolidation",
+        "transit_planet": "saturn",
+        "natal_planet": "mars",
+        "aspect": "trine",
+        "first_date": "2026-05-04",
+        "last_date": "2026-05-31",
+        "peak_date": "2026-05-31",
+        "status": "applying",
+        "orb": 3.28,
+        "intensity": 10.8,
+        "retrograde": false,
+        "description": "Saturn trine natal mars — закріпити досягнення, будувати довгострокове."
+      },
+      {
+        "type": "power_struggle",
+        "transit_planet": "pluto",
+        "natal_planet": "midheaven",
+        "aspect": "square",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-30",
+        "peak_date": "2026-05-03",
+        "status": "exact_within_month",
+        "orb": 5.86,
+        "intensity": 5.6,
+        "retrograde": false,
+        "description": "Pluto square natal midheaven — кризова точка, боротьба за контроль."
+      },
+      {
+        "type": "restructuring",
+        "transit_planet": "saturn",
+        "natal_planet": "jupiter",
+        "aspect": "square",
+        "first_date": "2026-05-01",
+        "last_date": "2026-05-09",
+        "peak_date": "2026-05-01",
+        "status": "separating",
+        "orb": 5.07,
+        "intensity": 2.5,
+        "retrograde": false,
+        "description": "Saturn square natal jupiter — тиск, дисципліна, усунення зайвого."
+      }
+    ],
+    "solar_return": {
+      "moment": "2026-01-09 00:07 UTC",
+      "location_used": "49.6317N, 8.3697E",
+      "planets": {
+        "sun": {
+          "longitude": 288.7248,
+          "sign": "capricorn",
+          "degree": 18.72,
+          "retrograde": false
+        },
+        "moon": {
+          "longitude": 180.0148,
+          "sign": "libra",
+          "degree": 0.01,
+          "retrograde": false
+        },
+        "mercury": {
+          "longitude": 281.0567,
+          "sign": "capricorn",
+          "degree": 11.06,
+          "retrograde": false
+        },
+        "venus": {
+          "longitude": 289.2779,
+          "sign": "capricorn",
+          "degree": 19.28,
+          "retrograde": false
+        },
+        "mars": {
+          "longitude": 288.8439,
+          "sign": "capricorn",
+          "degree": 18.84,
+          "retrograde": false
+        },
+        "jupiter": {
+          "longitude": 110.2911,
+          "sign": "cancer",
+          "degree": 20.29,
+          "retrograde": true
+        },
+        "saturn": {
+          "longitude": 356.6822,
+          "sign": "pisces",
+          "degree": 26.68,
+          "retrograde": false
+        },
+        "uranus": {
+          "longitude": 57.7516,
+          "sign": "taurus",
+          "degree": 27.75,
+          "retrograde": true
+        },
+        "neptune": {
+          "longitude": 359.6237,
+          "sign": "pisces",
+          "degree": 29.62,
+          "retrograde": false
+        },
+        "pluto": {
+          "longitude": 302.9644,
+          "sign": "aquarius",
+          "degree": 2.96,
+          "retrograde": false
+        },
+        "true_node": {
+          "longitude": 340.304,
+          "sign": "pisces",
+          "degree": 10.3,
+          "retrograde": false
+        }
+      },
+      "ascendant": {
+        "longitude": 200.7431,
+        "sign": "libra",
+        "degree": 20.74
+      },
+      "midheaven": {
+        "longitude": 116.7634,
+        "sign": "cancer",
+        "degree": 26.76
+      },
+      "sr_planets_in_natal_houses": {
+        "sun": 1,
+        "moon": 10,
+        "mercury": 1,
+        "venus": 1,
+        "mars": 1,
+        "jupiter": 7,
+        "saturn": 3,
+        "uranus": 5,
+        "neptune": 3,
+        "pluto": 2,
+        "true_node": 3
+      },
+      "natal_planets_in_sr_houses": {
+        "sun": 4,
+        "moon": 9,
+        "mercury": 4,
+        "venus": 5,
+        "mars": 3,
+        "jupiter": 10,
+        "saturn": 4,
+        "uranus": 4,
+        "neptune": 4,
+        "pluto": 2,
+        "true_node": 5,
+        "ascendant": 4,
+        "midheaven": 2
+      }
+    },
+    "all_transits_count": 140
+  },
+  "lunar_calendar": {
+    "period": "2026-05",
+    "day_by_day": [
+      {
+        "date": "2026-05-01",
+        "moon_sign": "scorpio",
+        "moon_degree": 8.6,
+        "phase_name": "full_moon",
+        "phase_emoji": "🌕",
+        "phase_angle": 177.5
+      },
+      {
+        "date": "2026-05-02",
+        "moon_sign": "scorpio",
+        "moon_degree": 20.7,
+        "phase_name": "full_moon",
+        "phase_emoji": "🌕",
+        "phase_angle": 188.6
+      },
+      {
+        "date": "2026-05-03",
+        "moon_sign": "sagittarius",
+        "moon_degree": 2.7,
+        "phase_name": "full_moon",
+        "phase_emoji": "🌕",
+        "phase_angle": 199.6
+      },
+      {
+        "date": "2026-05-04",
+        "moon_sign": "sagittarius",
+        "moon_degree": 14.6,
+        "phase_name": "waning_gibbous",
+        "phase_emoji": "🌖",
+        "phase_angle": 210.6
+      },
+      {
+        "date": "2026-05-05",
+        "moon_sign": "sagittarius",
+        "moon_degree": 26.5,
+        "phase_name": "waning_gibbous",
+        "phase_emoji": "🌖",
+        "phase_angle": 221.5
+      },
+      {
+        "date": "2026-05-06",
+        "moon_sign": "capricorn",
+        "moon_degree": 8.4,
+        "phase_name": "waning_gibbous",
+        "phase_emoji": "🌖",
+        "phase_angle": 232.4
+      },
+      {
+        "date": "2026-05-07",
+        "moon_sign": "capricorn",
+        "moon_degree": 20.3,
+        "phase_name": "waning_gibbous",
+        "phase_emoji": "🌖",
+        "phase_angle": 243.3
+      },
+      {
+        "date": "2026-05-08",
+        "moon_sign": "aquarius",
+        "moon_degree": 2.3,
+        "phase_name": "last_quarter",
+        "phase_emoji": "🌗",
+        "phase_angle": 254.4
+      },
+      {
+        "date": "2026-05-09",
+        "moon_sign": "aquarius",
+        "moon_degree": 14.5,
+        "phase_name": "last_quarter",
+        "phase_emoji": "🌗",
+        "phase_angle": 265.6
+      },
+      {
+        "date": "2026-05-10",
+        "moon_sign": "aquarius",
+        "moon_degree": 27.0,
+        "phase_name": "last_quarter",
+        "phase_emoji": "🌗",
+        "phase_angle": 277.2
+      },
+      {
+        "date": "2026-05-11",
+        "moon_sign": "pisces",
+        "moon_degree": 9.9,
+        "phase_name": "last_quarter",
+        "phase_emoji": "🌗",
+        "phase_angle": 289.0
+      },
+      {
+        "date": "2026-05-12",
+        "moon_sign": "pisces",
+        "moon_degree": 23.1,
+        "phase_name": "balsamic",
+        "phase_emoji": "🌘",
+        "phase_angle": 301.4
+      },
+      {
+        "date": "2026-05-13",
+        "moon_sign": "aries",
+        "moon_degree": 6.9,
+        "phase_name": "balsamic",
+        "phase_emoji": "🌘",
+        "phase_angle": 314.2
+      },
+      {
+        "date": "2026-05-14",
+        "moon_sign": "aries",
+        "moon_degree": 21.2,
+        "phase_name": "balsamic",
+        "phase_emoji": "🌘",
+        "phase_angle": 327.4
+      },
+      {
+        "date": "2026-05-15",
+        "moon_sign": "taurus",
+        "moon_degree": 5.9,
+        "phase_name": "new_moon",
+        "phase_emoji": "🌑",
+        "phase_angle": 341.2
+      },
+      {
+        "date": "2026-05-16",
+        "moon_sign": "taurus",
+        "moon_degree": 20.9,
+        "phase_name": "new_moon",
+        "phase_emoji": "🌑",
+        "phase_angle": 355.2
+      },
+      {
+        "date": "2026-05-17",
+        "moon_sign": "gemini",
+        "moon_degree": 6.1,
+        "phase_name": "new_moon",
+        "phase_emoji": "🌑",
+        "phase_angle": 9.5
+      },
+      {
+        "date": "2026-05-18",
+        "moon_sign": "gemini",
+        "moon_degree": 21.3,
+        "phase_name": "waxing_crescent",
+        "phase_emoji": "🌒",
+        "phase_angle": 23.8
+      },
+      {
+        "date": "2026-05-19",
+        "moon_sign": "cancer",
+        "moon_degree": 6.4,
+        "phase_name": "waxing_crescent",
+        "phase_emoji": "🌒",
+        "phase_angle": 37.9
+      },
+      {
+        "date": "2026-05-20",
+        "moon_sign": "cancer",
+        "moon_degree": 21.1,
+        "phase_name": "waxing_crescent",
+        "phase_emoji": "🌒",
+        "phase_angle": 51.6
+      },
+      {
+        "date": "2026-05-21",
+        "moon_sign": "leo",
+        "moon_degree": 5.4,
+        "phase_name": "waxing_crescent",
+        "phase_emoji": "🌒",
+        "phase_angle": 65.0
+      },
+      {
+        "date": "2026-05-22",
+        "moon_sign": "leo",
+        "moon_degree": 19.3,
+        "phase_name": "first_quarter",
+        "phase_emoji": "🌓",
+        "phase_angle": 77.9
+      },
+      {
+        "date": "2026-05-23",
+        "moon_sign": "virgo",
+        "moon_degree": 2.8,
+        "phase_name": "first_quarter",
+        "phase_emoji": "🌓",
+        "phase_angle": 90.4
+      },
+      {
+        "date": "2026-05-24",
+        "moon_sign": "virgo",
+        "moon_degree": 15.9,
+        "phase_name": "first_quarter",
+        "phase_emoji": "🌓",
+        "phase_angle": 102.5
+      },
+      {
+        "date": "2026-05-25",
+        "moon_sign": "virgo",
+        "moon_degree": 28.6,
+        "phase_name": "waxing_gibbous",
+        "phase_emoji": "🌔",
+        "phase_angle": 114.3
+      },
+      {
+        "date": "2026-05-26",
+        "moon_sign": "libra",
+        "moon_degree": 11.2,
+        "phase_name": "waxing_gibbous",
+        "phase_emoji": "🌔",
+        "phase_angle": 125.9
+      },
+      {
+        "date": "2026-05-27",
+        "moon_sign": "libra",
+        "moon_degree": 23.5,
+        "phase_name": "waxing_gibbous",
+        "phase_emoji": "🌔",
+        "phase_angle": 137.2
+      },
+      {
+        "date": "2026-05-28",
+        "moon_sign": "scorpio",
+        "moon_degree": 5.6,
+        "phase_name": "waxing_gibbous",
+        "phase_emoji": "🌔",
+        "phase_angle": 148.4
+      },
+      {
+        "date": "2026-05-29",
+        "moon_sign": "scorpio",
+        "moon_degree": 17.7,
+        "phase_name": "full_moon",
+        "phase_emoji": "🌕",
+        "phase_angle": 159.5
+      },
+      {
+        "date": "2026-05-30",
+        "moon_sign": "scorpio",
+        "moon_degree": 29.6,
+        "phase_name": "full_moon",
+        "phase_emoji": "🌕",
+        "phase_angle": 170.5
+      },
+      {
+        "date": "2026-05-31",
+        "moon_sign": "sagittarius",
+        "moon_degree": 11.5,
+        "phase_name": "full_moon",
+        "phase_emoji": "🌕",
+        "phase_angle": 181.5
+      }
+    ],
+    "new_moon": "2026-05-16 20:01 UTC",
+    "full_moon": "2026-05-01 17:23 UTC",
+    "voc_windows": [
+      {
+        "start": "2026-05-03 06:03 UTC",
+        "end": "2026-05-03 06:33 UTC",
+        "entering_sign": "sagittarius",
+        "duration_hours": 0.5
+      },
+      {
+        "start": "2026-05-04 23:36 UTC",
+        "end": "2026-05-05 19:06 UTC",
+        "entering_sign": "capricorn",
+        "duration_hours": 19.5
+      },
+      {
+        "start": "2026-05-08 06:57 UTC",
+        "end": "2026-05-08 07:27 UTC",
+        "entering_sign": "aquarius",
+        "duration_hours": 0.5
+      },
+      {
+        "start": "2026-05-10 07:09 UTC",
+        "end": "2026-05-10 17:39 UTC",
+        "entering_sign": "pisces",
+        "duration_hours": 10.5
+      },
+      {
+        "start": "2026-05-12 11:33 UTC",
+        "end": "2026-05-13 00:03 UTC",
+        "entering_sign": "aries",
+        "duration_hours": 12.5
+      },
+      {
+        "start": "2026-05-14 23:01 UTC",
+        "end": "2026-05-15 02:31 UTC",
+        "entering_sign": "taurus",
+        "duration_hours": 3.5
+      },
+      {
+        "start": "2026-05-17 01:53 UTC",
+        "end": "2026-05-17 02:23 UTC",
+        "entering_sign": "gemini",
+        "duration_hours": 0.5
+      },
+      {
+        "start": "2026-05-19 01:16 UTC",
+        "end": "2026-05-19 01:46 UTC",
+        "entering_sign": "cancer",
+        "duration_hours": 0.5
+      },
+      {
+        "start": "2026-05-21 02:17 UTC",
+        "end": "2026-05-21 02:47 UTC",
+        "entering_sign": "leo",
+        "duration_hours": 0.5
+      },
+      {
+        "start": "2026-05-21 23:27 UTC",
+        "end": "2026-05-23 06:57 UTC",
+        "entering_sign": "virgo",
+        "duration_hours": 31.5
+      },
+      {
+        "start": "2026-05-25 02:34 UTC",
+        "end": "2026-05-25 14:34 UTC",
+        "entering_sign": "libra",
+        "duration_hours": 12.0
+      },
+      {
+        "start": "2026-05-27 13:22 UTC",
+        "end": "2026-05-28 00:52 UTC",
+        "entering_sign": "scorpio",
+        "duration_hours": 11.5
+      },
+      {
+        "start": "2026-05-30 01:44 UTC",
+        "end": "2026-05-30 12:44 UTC",
+        "entering_sign": "sagittarius",
+        "duration_hours": 11.0
+      }
+    ]
+  },
+  "contradictions": [],
+  "goal_alignment": [
+    {
+      "goal_title": "Blue Card — підтвердити статус",
+      "category": "documents",
+      "monthly_support": "blocked",
+      "score": -6,
+      "supporting_transit": null,
+      "blocking_transit": "saturn square"
+    },
+    {
+      "goal_title": "Фінансова подушка — 3 місяці витрат",
+      "category": "finance",
+      "monthly_support": "blocked",
+      "score": -6,
+      "supporting_transit": null,
+      "blocking_transit": "saturn square"
+    },
+    {
+      "goal_title": "Product Owner — перший конкретний крок",
+      "category": "career",
+      "monthly_support": "blocked",
+      "score": -6,
+      "supporting_transit": null,
+      "blocking_transit": "saturn square"
+    },
+    {
+      "goal_title": "Deutsch B1 → B2",
+      "category": "learning",
+      "monthly_support": "blocked",
+      "score": -6,
+      "supporting_transit": null,
+      "blocking_transit": "neptune square"
+    },
+    {
+      "goal_title": "Німецькі права",
+      "category": "documents",
+      "monthly_support": "blocked",
+      "score": -6,
+      "supporting_transit": null,
+      "blocking_transit": "saturn square"
+    },
+    {
+      "goal_title": "Купити авто",
+      "category": "purchase",
+      "monthly_support": "blocked",
+      "score": -6,
+      "supporting_transit": null,
+      "blocking_transit": "saturn square"
+    },
+    {
+      "goal_title": "Переїзд — нове місто",
+      "category": "personal",
+      "monthly_support": "blocked",
+      "score": -7,
+      "supporting_transit": "venus conjunction",
+      "blocking_transit": "saturn square"
+    },
+    {
+      "goal_title": "Vereine + нове соціальне коло",
+      "category": "personal",
+      "monthly_support": "blocked",
+      "score": -7,
+      "supporting_transit": "venus conjunction",
+      "blocking_transit": "saturn square"
+    },
+    {
+      "goal_title": "Особисте — нові емоції, відкритість",
+      "category": "personal",
+      "monthly_support": "blocked",
+      "score": -7,
+      "supporting_transit": "venus conjunction",
+      "blocking_transit": "saturn square"
+    },
+    {
+      "goal_title": "Переговори з начальником — PO шлях",
+      "category": "negotiations",
+      "monthly_support": "blocked",
+      "score": -9,
+      "supporting_transit": null,
+      "blocking_transit": "saturn square"
+    }
+  ],
+  "goals": [
+    {
+      "title": "Blue Card — підтвердити статус",
+      "category": "documents",
+      "priority": 1,
+      "deadline": "2026-05-31"
+    },
+    {
+      "title": "Переїзд — нове місто",
+      "category": "personal",
+      "priority": 1,
+      "deadline": "2026-07-31"
+    },
+    {
+      "title": "Фінансова подушка — 3 місяці витрат",
+      "category": "finance",
+      "priority": 1,
+      "deadline": "2026-12-31"
+    },
+    {
+      "title": "Переговори з начальником — PO шлях",
+      "category": "negotiations",
+      "priority": 2,
+      "deadline": "2026-06-30"
+    },
+    {
+      "title": "Product Owner — перший конкретний крок",
+      "category": "career",
+      "priority": 2,
+      "deadline": "2026-10-31"
+    },
+    {
+      "title": "Deutsch B1 → B2",
+      "category": "learning",
+      "priority": 2,
+      "deadline": "2026-12-31"
+    },
+    {
+      "title": "Німецькі права",
+      "category": "documents",
+      "priority": 3,
+      "deadline": "2026-09-30"
+    },
+    {
+      "title": "Купити авто",
+      "category": "purchase",
+      "priority": 3,
+      "deadline": "2026-10-31"
+    },
+    {
+      "title": "Vereine + нове соціальне коло",
+      "category": "personal",
+      "priority": 3,
+      "deadline": "2026-08-31"
+    },
+    {
+      "title": "Особисте — нові емоції, відкритість",
+      "category": "personal",
+      "priority": 4,
+      "deadline": null
+    }
+  ],
+  "prompt_instructions": "Use ASTRO_PROMPT.md as system prompt. Respond in Ukrainian. Prioritize identity patterns over raw aspects. Only reference top_transits — do not invent transits. Use peak_date for timing. Cite intensity scores."
+}
