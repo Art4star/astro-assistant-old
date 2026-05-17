@@ -15,10 +15,7 @@ log() { echo "[$(date '+%H:%M:%S')] $*"; }
 # ── Поточний місяць ──────────────────────────────────────────────────────────
 log "Поточний місяць: $YEAR-$(printf '%02d' $MONTH)"
 
-log "  1/2 Будую інтерпретаційний пакет..."
-/usr/bin/python3 agents/coordinator.py --year "$YEAR" --month "$MONTH"
-
-log "  2/2 Генерую HTML звіт..."
+log "  Генерую звіт (Router → ForecastAgent → ... → OutputAgent)..."
 /usr/bin/python3 generate_report.py --type month --year "$YEAR" --month "$MONTH"
 
 REPORT_PATH="$PROJ/output/reports/${YEAR}-$(printf '%02d' $MONTH)-report.html"
@@ -37,7 +34,7 @@ if [ "$DAY" -ge 25 ]; then
     NEXT_PKG="$PROJ/output/data/${NEXT_YEAR}-$(printf '%02d' $NEXT_MONTH)-interpret.json"
     if [ ! -f "$NEXT_PKG" ]; then
         log "День >= 25 — готую пакет наступного місяця ($NEXT_YEAR-$(printf '%02d' $NEXT_MONTH))..."
-        /usr/bin/python3 agents/coordinator.py --year "$NEXT_YEAR" --month "$NEXT_MONTH"
+        /usr/bin/python3 generate_report.py --type month --year "$NEXT_YEAR" --month "$NEXT_MONTH"
         log "  Пакет наступного місяця готовий."
     else
         log "Пакет наступного місяця вже існує, пропускаю."

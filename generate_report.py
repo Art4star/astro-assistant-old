@@ -382,7 +382,7 @@ def find_best_days(activity: str, days: int) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description="Астро-асистент")
-    parser.add_argument("--type", choices=["month", "week", "today", "best", "yearly_goals", "log"], default="today")
+    parser.add_argument("--type", choices=["month", "week", "today", "best", "yearly_goals", "log", "empower"], default="today")
     parser.add_argument("--year", type=int, default=datetime.now().year)
     parser.add_argument("--month", type=int, default=datetime.now().month)
     parser.add_argument("--activity", default="finance")
@@ -390,27 +390,27 @@ def main():
     parser.add_argument("--note", default="", help="Нотатка для трекера рішень (з --type log)")
     args = parser.parse_args()
 
-    if args.type == "month":
-        path = generate_month_report_v2(args.year, args.month)
-        print(f"\nВідкрити: open '{path}'")
-    elif args.type == "yearly_goals":
-        path = generate_yearly_goals_report(args.year)
-        if path:
-            print(f"\nВідкрити: open '{path}'")
-    elif args.type == "today":
-        report = generate_today_report()
-        print(report)
-    elif args.type == "week":
-        report = generate_week_report()
-        print(report)
-    elif args.type == "best":
-        report = find_best_days(args.activity, args.days)
-        print(report)
-    elif args.type == "log":
-        if not args.note:
-            print("Вкажи нотатку: python3 generate_report.py --type log --note 'текст'")
-        else:
-            log_decision(args.note)
+    from agents.router import RouterAgent
+    from agents.executor import Executor
+
+    request = {
+        "type": args.type,
+        "year": args.year,
+        "month": args.month,
+        "activity": args.activity,
+        "days": args.days,
+        "note": args.note,
+    }
+
+    router = RouterAgent()
+    context = router.build_context(request)
+    plan = router.route(request)
+    context = Executor().run(plan, context)
+
+    if context.output_text:
+        print(context.output_text)
+    if context.output_path:
+        print(f"\nВідкрити: open '{context.output_path}'")
 
 
 if __name__ == "__main__":
