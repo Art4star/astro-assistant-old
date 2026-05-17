@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сатурн і Юпітер · Уроки та Бонуси · 09.01.1990</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:      #07080E;
+  --bg2:     #0E1020;
+  --panel:   #131628;
+  --deep:    #0A0C18;
+  --line:    #1A1E35;
+  --sat:     #6A80C0;
+  --sat2:    #9AB0E8;
+  --sat3:    rgba(106,128,192,0.12);
+  --jup:     #D4902A;
+  --jup2:    #F0B84A;
+  --jup3:    rgba(212,144,42,0.12);
+  --white:   #EBE8F5;
+  --silver:  #8890B0;
+  --muted:   #454868;
+  --border:  #1A1E35;
+  --now:     #E8CC60;
+  --green:   #4AB08A;
+  --red:     #B04848;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Lora',serif;
+  font-size:15px;
+  line-height:1.8;
+  overflow-x:hidden;
+}
+
+/* ══ HERO ══ */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-left{
+  padding:80px 48px;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  position:relative;z-index:2;
+  border-right:1px solid var(--border);
+}
+
+.hero-right{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+
+/* Orbit visual */
+.orbit-visual{
+  position:relative;
+  width:320px;height:320px;
+}
+
+.orbit-ring{
+  position:absolute;border-radius:50%;border:1px solid;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+
+.or1{width:120px;height:120px;border-color:rgba(106,128,192,0.4);animation:spin1 20s linear infinite}
+.or2{width:200px;height:200px;border-color:rgba(212,144,42,0.25);animation:spin2 35s linear infinite reverse}
+.or3{width:300px;height:300px;border-color:rgba(106,128,192,0.12);animation:spin1 60s linear infinite}
+
+@keyframes spin1{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes spin2{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+.planet-dot{
+  position:absolute;border-radius:50%;
+  top:50%;left:50%;
+}
+
+.pd-sat{
+  width:16px;height:16px;margin:-8px;
+  background:radial-gradient(circle, var(--sat2), var(--sat));
+  box-shadow:0 0 12px var(--sat);
+  transform:translateX(60px) translateY(0);
+  animation:orbit-sat 20s linear infinite;
+}
+
+.pd-jup{
+  width:22px;height:22px;margin:-11px;
+  background:radial-gradient(circle, var(--jup2), var(--jup));
+  box-shadow:0 0 16px var(--jup);
+  transform:translateX(100px) translateY(0);
+  animation:orbit-jup 35s linear infinite reverse;
+}
+
+.center-dot{
+  position:absolute;top:50%;left:50%;
+  width:12px;height:12px;margin:-6px;
+  background:var(--white);border-radius:50%;
+  box-shadow:0 0 20px rgba(235,232,245,0.5);
+}
+
+@keyframes orbit-sat{
+  from{transform:translateX(60px) rotate(0deg) translateX(0)}
+  to{transform:translateX(60px) rotate(-360deg) translateX(0)}
+}
+@keyframes orbit-jup{
+  from{transform:translateX(100px) rotate(0deg) translateX(0)}
+  to{transform:translateX(100px) rotate(360deg) translateX(0)}
+}
+
+.planet-label{
+  position:absolute;
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:2px;
+}
+
+.hero-tag{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--sat2);margin-bottom:24px;
+}
+
+.hero-h{
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(28px,4vw,52px);
+  font-weight:700;line-height:1;
+  letter-spacing:-1px;color:var(--white);
+  margin-bottom:16px;
+}
+
+.hero-h .sat-c{color:var(--sat2)}
+.hero-h .jup-c{color:var(--jup2)}
+
+.hero-sub{
+  font-size:15px;font-style:italic;
+  color:var(--silver);line-height:1.75;
+  max-width:440px;margin-bottom:40px;
+}
+
+.dual-badge{
+  display:flex;gap:2px;
+}
+
+.db-item{
+  flex:1;padding:14px 16px;
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:2px;
+}
+
+.db-sat{background:var(--sat3);border:1px solid rgba(106,128,192,0.3);color:var(--sat2)}
+.db-jup{background:var(--jup3);border:1px solid rgba(212,144,42,0.3);color:var(--jup2)}
+
+.db-name{font-size:16px;font-weight:700;margin-bottom:4px;letter-spacing:0}
+.db-role{font-size:9px;letter-spacing:3px;opacity:.7}
+
+/* ══ NAV ══ */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(7,8,14,0.97);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;overflow-x:auto;scrollbar-width:none;
+}
+.nav::-webkit-scrollbar{display:none}
+
+.nb{
+  padding:14px 18px;
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(235,232,245,0.3);
+  cursor:pointer;border:none;background:none;
+  border-bottom:2px solid transparent;
+  white-space:nowrap;flex-shrink:0;transition:all .2s;
+}
+.nb:hover{color:var(--jup2)}
+.nb.on{color:var(--jup2);border-bottom-color:var(--jup2)}
+
+/* ══ PANELS ══ */
+.pnl{display:none}.pnl.on{display:block}
+
+/* ══ LAYOUT ══ */
+.wrap{max-width:960px;margin:0 auto;padding:72px 28px 100px}
+
+/* ══ TYPE ══ */
+.tag{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--jup);margin-bottom:8px;
+  display:flex;align-items:center;gap:16px;
+}
+.tag::after{content:'';flex:1;height:1px;background:var(--border)}
+.tag.sat-tag{color:var(--sat)}
+
+.h1{
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(26px,4vw,46px);
+  font-weight:600;line-height:1.05;
+  letter-spacing:-1px;color:var(--white);
+  margin-bottom:28px;
+}
+.h1 em{color:var(--jup2);font-style:normal}
+.h1 em.s{color:var(--sat2)}
+
+.lead{
+  font-size:17px;font-style:italic;
+  color:var(--silver);line-height:1.8;
+  margin-bottom:48px;padding-left:20px;
+  border-left:2px solid var(--border);max-width:680px;
+}
+
+/* ══ INSIGHT BOX ══ */
+.box{
+  padding:28px 32px;margin-bottom:24px;
+  position:relative;
+}
+.box::before{
+  content:attr(data-l);
+  position:absolute;top:-10px;left:20px;
+  background:var(--bg);padding:0 10px;
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:4px;text-transform:uppercase;
+}
+
+.box-sat{background:var(--sat3);border:1px solid rgba(106,128,192,0.25)}
+.box-sat::before{color:var(--sat2)}
+.box-jup{background:var(--jup3);border:1px solid rgba(212,144,42,0.25)}
+.box-jup::before{color:var(--jup2)}
+.box-now{background:rgba(232,204,96,0.08);border:1px solid rgba(232,204,96,0.3)}
+.box-now::before{color:var(--now)}
+.box-warn{background:rgba(176,72,72,0.08);border:1px solid rgba(176,72,72,0.25)}
+.box-warn::before{color:#D08080}
+
+.box p{font-size:15px;color:var(--silver);line-height:1.85}
+.box p strong{color:var(--white)}
+.box p em.j{color:var(--jup2);font-style:italic}
+.box p em.s{color:var(--sat2);font-style:italic}
+.box p em.n{color:var(--now);font-style:italic}
+
+/* ══ PLANET CARDS ══ */
+.planet-card{
+  padding:32px 28px;
+  margin-bottom:2px;
+  position:relative;overflow:hidden;
+}
+
+.pc-sat{
+  background:linear-gradient(135deg,rgba(106,128,192,0.1),var(--panel));
+  border:1px solid var(--border);
+  border-left:3px solid var(--sat);
+}
+.pc-jup{
+  background:linear-gradient(135deg,rgba(212,144,42,0.1),var(--panel));
+  border:1px solid var(--border);
+  border-left:3px solid var(--jup);
+}
+
+.pc-glyph{
+  font-size:48px;position:absolute;
+  top:16px;right:20px;
+  opacity:.08;
+}
+
+.pc-tag{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.pc-sat .pc-tag{color:var(--sat2)}
+.pc-jup .pc-tag{color:var(--jup2)}
+
+.pc-title{
+  font-family:'Unbounded',sans-serif;
+  font-size:20px;font-weight:600;
+  color:var(--white);margin-bottom:12px;line-height:1.1;
+}
+
+.pc-body{font-size:14px;color:var(--silver);line-height:1.7}
+.pc-body strong{color:var(--white)}
+
+/* ══ TRANSIT BLOCKS ══ */
+.transit-block{
+  margin-bottom:48px;
+}
+
+.tb-header{
+  display:flex;align-items:center;gap:20px;
+  padding:20px 0;
+  border-bottom:1px solid var(--border);
+  margin-bottom:20px;
+}
+
+.tb-planet{
+  font-size:32px;flex-shrink:0;
+}
+
+.tb-meta{flex:1}
+
+.tb-period{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:4px;
+}
+.tb-sat .tb-period{color:var(--sat2)}
+.tb-jup .tb-period{color:var(--jup2)}
+
+.tb-title{
+  font-family:'Unbounded',sans-serif;
+  font-size:19px;font-weight:600;
+  color:var(--white);line-height:1.1;
+}
+
+.tb-badge{
+  padding:5px 12px;
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  border:1px solid;flex-shrink:0;
+}
+
+.badge-lesson{border-color:var(--sat);color:var(--sat2)}
+.badge-bonus{border-color:var(--jup);color:var(--jup2)}
+.badge-major{border-color:var(--now);color:var(--now)}
+.badge-now{border-color:var(--now);color:var(--now);animation:blink .8s ease-in-out infinite alternate}
+@keyframes blink{from{opacity:.6}to{opacity:1}}
+
+.tb-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+}
+
+.tb-col{
+  padding:20px;border:1px solid var(--border);
+  background:var(--panel);
+}
+
+.tc-label{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:12px;padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.tb-sat .tc-label.pos{color:var(--sat2)}
+.tb-sat .tc-label.neg{color:#D08080}
+.tb-jup .tc-label.pos{color:var(--jup2)}
+.tb-jup .tc-label.neg{color:#D08080}
+
+.tc-list{list-style:none}
+.tc-list li{
+  padding:5px 0;font-size:13px;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  display:flex;gap:10px;color:var(--silver);line-height:1.5;
+}
+
+.tb-sat .tc-list.pos li::before{content:'♄';color:var(--sat);flex-shrink:0;font-size:11px}
+.tb-jup .tc-list.pos li::before{content:'♃';color:var(--jup);flex-shrink:0;font-size:11px}
+.tc-list.neg li::before{content:'⚠';color:var(--red);flex-shrink:0;font-size:11px}
+
+.tb-note{
+  margin-top:16px;padding:14px 18px;
+  font-style:italic;font-size:13px;
+  color:var(--muted);
+}
+.tb-sat .tb-note{border-left:2px solid var(--sat);background:var(--sat3)}
+.tb-jup .tb-note{border-left:2px solid var(--jup);background:var(--jup3)}
+
+/* ══ NATAL ASPECTS TABLE ══ */
+.aspect-table{
+  width:100%;border-collapse:collapse;
+  margin-bottom:40px;
+}
+
+.aspect-table th{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);padding:10px 16px;
+  border-bottom:2px solid var(--border);
+  text-align:left;
+}
+
+.aspect-table td{
+  padding:12px 16px;
+  border-bottom:1px solid var(--border);
+  font-size:13px;vertical-align:top;
+}
+
+.aspect-table tr:hover td{background:rgba(255,255,255,.02)}
+
+.asp-planet{color:var(--white);font-weight:400}
+.asp-aspect{
+  font-family:'Space Mono',monospace;font-size:11px;
+  text-align:center;
+}
+
+.asp-conj{color:#E8CC60}
+.asp-trine{color:var(--green)}
+.asp-sextile{color:var(--sat2)}
+.asp-square{color:var(--red)}
+.asp-opp{color:#D08080}
+
+.asp-meaning{color:var(--silver);font-style:italic}
+.asp-power{
+  font-family:'Space Mono',monospace;font-size:11px;
+  text-align:center;
+}
+
+/* Power dots */
+.dots{color:var(--jup2);letter-spacing:1px}
+
+/* ══ YEAR GRID ══ */
+.year-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:2px;background:var(--border);
+  margin-bottom:40px;
+}
+
+.yg-cell{
+  background:var(--panel);
+  padding:20px 16px;position:relative;
+  transition:background .2s;
+}
+.yg-cell:hover{background:var(--bg2)}
+
+.yg-year{
+  font-family:'Unbounded',sans-serif;
+  font-size:22px;font-weight:600;
+  color:var(--white);margin-bottom:4px;line-height:1;
+}
+.yg-age{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:2px;
+  color:var(--muted);margin-bottom:10px;
+}
+
+.yg-planets{
+  display:flex;flex-direction:column;gap:4px;
+  margin-bottom:8px;
+}
+
+.yg-planet{
+  font-size:11px;padding:2px 8px;
+  font-family:'Space Mono',monospace;
+  letter-spacing:1px;
+}
+.yg-sat{background:var(--sat3);color:var(--sat2);border:1px solid rgba(106,128,192,0.2)}
+.yg-jup{background:var(--jup3);color:var(--jup2);border:1px solid rgba(212,144,42,0.2)}
+
+.yg-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+.yg-cell.now-cell{
+  background:rgba(232,204,96,0.06);
+  border:1px solid rgba(232,204,96,0.2);
+}
+.yg-cell.now-cell .yg-year{color:var(--now)}
+
+.yg-cell.peak-cell{
+  border-top:2px solid var(--jup);
+}
+.yg-cell.lesson-cell{
+  border-top:2px solid var(--sat);
+}
+
+/* ══ RETURN CARDS ══ */
+.return-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:16px;margin-bottom:40px;
+}
+
+.ret-card{
+  padding:28px 24px;
+  border:1px solid var(--border);
+  background:var(--panel);
+}
+
+.ret-card-sat{border-top:3px solid var(--sat)}
+.ret-card-jup{border-top:3px solid var(--jup)}
+
+.rc-tag{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.ret-card-sat .rc-tag{color:var(--sat2)}
+.ret-card-jup .rc-tag{color:var(--jup2)}
+
+.rc-title{
+  font-family:'Unbounded',sans-serif;
+  font-size:17px;font-weight:600;
+  color:var(--white);margin-bottom:12px;line-height:1.2;
+}
+
+.rc-list{list-style:none}
+.rc-list li{
+  padding:5px 0;font-size:13px;color:var(--silver);
+  border-bottom:1px solid rgba(255,255,255,.04);
+  display:flex;gap:10px;line-height:1.5;
+}
+.ret-card-sat .rc-list li::before{content:'—';color:var(--sat);flex-shrink:0}
+.ret-card-jup .rc-list li::before{content:'—';color:var(--jup);flex-shrink:0}
+
+/* ══ SCORE STRIP ══ */
+.score-strip{
+  display:flex;gap:2px;background:var(--border);
+  margin-bottom:40px;overflow-x:auto;
+}
+
+.ss-item{
+  flex:1;min-width:80px;
+  padding:14px 10px;text-align:center;
+  background:var(--panel);
+}
+
+.ss-year{
+  font-family:'Space Mono',monospace;
+  font-size:10px;color:var(--muted);margin-bottom:6px;
+}
+
+.ss-score{
+  font-family:'Unbounded',sans-serif;
+  font-size:18px;font-weight:600;
+  margin-bottom:4px;line-height:1;
+}
+
+.score-5{color:var(--jup2)}
+.score-4{color:var(--green)}
+.score-3{color:var(--sat2)}
+.score-2{color:var(--silver)}
+.score-1{color:var(--red)}
+
+.ss-type{font-size:10px;color:var(--muted)}
+
+.ss-item.now-s{background:rgba(232,204,96,0.06);border:1px solid rgba(232,204,96,0.15)}
+.ss-item.now-s .ss-year{color:var(--now)}
+
+/* ══ DIVIDER ══ */
+.div{
+  display:flex;align-items:center;gap:20px;margin:56px 0;
+}
+.div::before,.div::after{content:'';flex:1;height:1px;background:var(--border)}
+.div-g{font-size:12px;color:var(--muted)}
+
+/* ══ CLOSING ══ */
+.closing{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-top:1px solid rgba(212,144,42,0.2);
+  padding:56px 40px;text-align:center;
+}
+
+.cq{
+  font-family:'Lora',serif;
+  font-size:clamp(18px,3vw,26px);
+  font-style:italic;color:var(--white);
+  line-height:1.5;max-width:560px;margin:0 auto 20px;
+}
+.ca{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;
+}
+
+@media(max-width:700px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:60px 24px}
+  .tb-grid{grid-template-columns:1fr}
+  .return-grid{grid-template-columns:1fr}
+  .year-grid{grid-template-columns:1fr 1fr}
+  .dual-badge{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Планетарні Транзити · Натальна Карта 09.01.1990</p>
+    <h1 class="hero-h">
+      <span class="sat-c">♄ Сатурн</span><br>
+      <span style="color:var(--muted);font-size:.5em;font-weight:200">та</span><br>
+      <span class="jup-c">♃ Юпітер</span>
+    </h1>
+    <p class="hero-sub">
+      Сатурн дає уроки, Юпітер відчиняє двері.
+      Разом вони формують ритм твого розвитку —
+      де наполегливо вчитись і де сміливо діяти.
+    </p>
+    <div class="dual-badge">
+      <div class="db-item db-sat">
+        <div class="db-name">САТУРН</div>
+        <div class="db-role">Учитель · Межі · Зрілість · 29.5 р/цикл</div>
+      </div>
+      <div class="db-item db-jup">
+        <div class="db-name">ЮПІТЕР</div>
+        <div class="db-role">Розширення · Удача · Можливості · 12 р/цикл</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="orbit-visual">
+      <div class="orbit-ring or1"></div>
+      <div class="orbit-ring or2"></div>
+      <div class="orbit-ring or3"></div>
+      <div class="center-dot"></div>
+      <div class="planet-dot pd-sat"></div>
+      <div class="planet-dot pd-jup"></div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="nb on" onclick="sw('nature')">Природа Планет</button>
+  <button class="nb" onclick="sw('natal')">Натальні Аспекти</button>
+  <button class="nb" onclick="sw('current')">Зараз 2025–2027</button>
+  <button class="nb" onclick="sw('history')">Ключові Роки</button>
+  <button class="nb" onclick="sw('cycles')">Цикли до 2045</button>
+  <button class="nb" onclick="sw('formula')">Формула Успіху</button>
+</nav>
+
+
+<!-- ════ PANEL: NATURE ════ -->
+<div id="p-nature" class="pnl on">
+<div class="wrap">
+
+  <p class="tag sat-tag">Дві Великі Планети</p>
+  <h2 class="h1">Чим Відрізняються <em class="s">Сатурн</em> і <em>Юпітер</em></h2>
+  <p class="lead">
+    Обидві — «соціальні» планети з довгими циклами. Але їхній метод діаметрально протилежний.
+    Сатурн стискає і перевіряє. Юпітер розширює і відкриває.
+    Для Козерога обидві є ключовими — але з різних причин.
+  </p>
+
+  <div class="pc-sat planet-card">
+    <div class="pc-glyph">♄</div>
+    <div class="pc-tag">♄ Сатурн · Правитель Козерога · Цикл 29.5 р.</div>
+    <div class="pc-title">Великий Учитель — через Опір і Обмеження</div>
+    <div class="pc-body">
+      <p>Сатурн є <strong>правителем твого знаку</strong> — це означає, що він є «рідним» для твоєї карти. Де Сатурн транзитує — там він вимагає: <strong>відповідальності, зусиль, дисципліни і прийняття меж</strong>. Його уроки болісні, але після них залишається щось реальне і міцне.</p>
+      <br>
+      <p><strong>Для Козерога:</strong> Сатурн — найважливіша планета. Ти природно краще переносиш Сатурнові транзити ніж більшість — але і не замічаєш їх, бо звик до тиску. Небезпека: ігнорувати сигнали до точки зриву.</p>
+      <br>
+      <p>Де Сатурн стоїть у твоїй карті — там твоя <strong>зона найбільшого довгострокового росту і найбільшої відповідальності</strong>. У тебе він стоїть у власному знаку — це виняткова сила і важкий тягар одночасно.</p>
+    </div>
+  </div>
+
+  <div class="pc-jup planet-card">
+    <div class="pc-glyph">♃</div>
+    <div class="pc-tag">♃ Юпітер · В екзальтації у Раку · Цикл 12 р.</div>
+    <div class="pc-title">Великий Розширювач — через Можливості і Достаток</div>
+    <div class="pc-body">
+      <p>Юпітер перебуває натально у Раку — знаку своєї <strong>екзальтації</strong>. Це сильна позиція: мудрість через емоційний інтелект і інтуїцію. Де Юпітер транзитує — там він відчиняє двері, приносить удачу, контакти і розширення. Правитель Козерожного Асцендента — <strong>Сатурн</strong>.</p>
+      <br>
+      <p><strong>Для тебе:</strong> Юпітер в екзальтації дає природний доступ до мудрості і росту через внутрішній резонанс. <em>Але козерожня обережність може блокувати довіру до цієї інтуїції.</em> Юпітерові вікна треба активно використовувати, але твоя інтуїція часто вже знає правильний момент — треба їй довіряти.</p>
+      <br>
+      <p>Юпітер проходить кожен знак за рік. <strong>Коли він у сприятливому аспекті до твоїх натальних планет — це твоє зелене світло для великих кроків.</strong></p>
+    </div>
+  </div>
+
+  <div class="box box-now" data-l="Ключова Формула Для Тебе">
+    <p>
+      <strong>Сатурн квадратурить Козеріг (Овен) + Юпітер опонує Козеріг (Рак) одночасно у 2026.</strong>
+      Це унікальне поєднання: <em class="s">тиск з одного боку</em> і <em class="j">відчинені двері з іншого</em>.
+      Рік, коли <strong>важко і можливо одночасно</strong>.
+      Саме такі роки або ламають людей — або виводять на новий рівень назавжди.
+    </p>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════ PANEL: NATAL ════ -->
+<div id="p-natal" class="pnl">
+<div class="wrap">
+
+  <p class="tag sat-tag">Натальні Позиції</p>
+  <h2 class="h1"><em class="s">Сатурн</em> і <em>Юпітер</em> у Твоїй Карті</h2>
+  <p class="lead">
+    Перш ніж транзити — важливо розуміти, де ці планети стоять натально.
+    Це фундамент, по якому транзити «ходять».
+  </p>
+
+  <div class="pc-sat planet-card" style="margin-bottom:16px">
+    <div class="pc-glyph">♄</div>
+    <div class="pc-tag">Натальний Сатурн · 16°35' Козеріг · Домагосподар</div>
+    <div class="pc-title">Сатурн у власному знаку — найсильніша позиція</div>
+    <div class="pc-body">
+      <p>Це виняткова натальна сила. Сатурн у Козерогу — <strong>як директор у власному кабінеті</strong>: максимальна влада, максимальна відповідальність. Ти прийшов у цей світ з природженими якостями Сатурна: дисципліна, терпіння, стратегія, довгострокове мислення.</p>
+      <br>
+      <p><strong>Зворотний бік:</strong> Завищені вимоги до себе, важкий внутрішній суддя, схильність до надмірного самоконтролю. Ти рідко даєш собі «просто бути» — Сатурн завжди ставить нову планку.</p>
+      <br>
+      <p><strong>Для транзитів:</strong> Коли інші планети контактують з натальним Сатурном 16°35' Козерога — це активує тему авторитету, відповідальності, структур і кар'єрного становища.</p>
+    </div>
+  </div>
+
+  <div class="pc-jup planet-card" style="margin-bottom:40px">
+    <div class="pc-glyph">♃</div>
+    <div class="pc-tag">Натальний Юпітер · 4°08' Рак Rx · Екзальтація</div>
+    <div class="pc-title">Юпітер в екзальтації — мудрість через емоційний інтелект</div>
+    <div class="pc-body">
+      <p>Юпітер у Раку знаходиться в екзальтації — найсильнішій зовнішній позиції. Мудрість, ріст і можливості приходять через <strong>емоційний інтелект, інтуїцію, турботу і внутрішній резонанс</strong>. Ти здатний відчувати, де є потенціал, раніше ніж він стає очевидним для оточуючих.</p>
+      <br>
+      <p><strong>Ретроградний:</strong> Юпітер Rx посилює внутрішній вимір: ріст іде через рефлексію і переосмислення, не через зовнішню активність. <em>Відповіді часто приходять з середини, а не ззовні.</em></p>
+      <br>
+      <p><strong>Для транзитів:</strong> Юпітерові вікна активуються через <strong>довіру до внутрішнього відчуття</strong> і готовність діяти, коли інтуїція каже «зараз». Козерог схильний ігнорувати цей сигнал — це помилка.</p>
+    </div>
+  </div>
+
+  <p class="tag">Ключові Натальні Аспекти між Юпітером і Сатурном</p>
+
+  <table class="aspect-table">
+    <tr>
+      <th>Планета 1</th>
+      <th>Аспект</th>
+      <th>Планета 2</th>
+      <th>Значення</th>
+      <th>Сила</th>
+    </tr>
+    <tr>
+      <td class="asp-planet">♄ Сатурн 16°35'♑</td>
+      <td class="asp-aspect asp-conj">☌ кон'юнкція</td>
+      <td class="asp-planet">☿ Меркурій 18°19'♑</td>
+      <td class="asp-meaning">Майже точна кон'юнкція (2°). Стратегічний, дисциплінований розум. Думки структуровані і спрямовані на результат.</td>
+      <td class="asp-power"><span class="dots">●●●●●</span></td>
+    </tr>
+    <tr>
+      <td class="asp-planet">♄ Сатурн 16°35'♑</td>
+      <td class="asp-aspect asp-conj">☌ кон'юнкція</td>
+      <td class="asp-planet">♆ Нептун 12°20'♑</td>
+      <td class="asp-meaning">Кон'юнкція (4°). Здатність втілювати мрії через дисципліну. Практичний ідеалізм.</td>
+      <td class="asp-power"><span class="dots">●●●●○</span></td>
+    </tr>
+    <tr>
+      <td class="asp-planet">♄ Сатурн 16°35'♑</td>
+      <td class="asp-aspect asp-conj">☌ кон'юнкція</td>
+      <td class="asp-planet">♅ Уран 6°15'♑</td>
+      <td class="asp-meaning">Кон'юнкція (10°). Революція у традиційних структурах. Здатність бачити де системи потребують трансформації.</td>
+      <td class="asp-power"><span class="dots">●●●●○</span></td>
+    </tr>
+    <tr>
+      <td class="asp-planet">♄ Сатурн 16°35'♑</td>
+      <td class="asp-aspect asp-sextile">⚹ секстиль</td>
+      <td class="asp-planet">♇ Плутон 17°18'♏</td>
+      <td class="asp-meaning">Секстиль (1°). Здатність до глибинної трансформації структур. Потужний доступ до невидимих рушіїв систем.</td>
+      <td class="asp-power"><span class="dots">●●●●●</span></td>
+    </tr>
+    <tr>
+      <td class="asp-planet">♃ Юпітер 4°08'♋</td>
+      <td class="asp-aspect asp-opp">☍ опозиція</td>
+      <td class="asp-planet">♅ Уран 6°15'♑</td>
+      <td class="asp-meaning">Опозиція (2°). Напруга між розширенням (Юпітер) і революцією (Уран). Схильність до раптових, несподіваних проривів.</td>
+      <td class="asp-power"><span class="dots">●●●●●</span></td>
+    </tr>
+    <tr>
+      <td class="asp-planet">♃ Юпітер 4°08'♋</td>
+      <td class="asp-aspect asp-conj">☌ кон'юнкція</td>
+      <td class="asp-planet">☽ Місяць 23°04'♊</td>
+      <td class="asp-meaning">Широка кон'юнкція (11°). Емоційний оптимізм і інтуїція; потреба у різноманітті та зростанні через спілкування.</td>
+      <td class="asp-power"><span class="dots">●●●○○</span></td>
+    </tr>
+  </table>
+
+  <div class="box box-sat" data-l="Підсумок Натальної Конфігурації">
+    <p>
+      <strong>Сатурн у власному знаку + Юпітер в екзальтації</strong> — це натальна конфігурація людини,
+      яка <em class="s">природно поєднує структуру і мудрість</em>.
+      Ти чудово тримаєш структуру, але <strong>Юпітер у Раку додає інтуїцію і щедрість —
+      природний розширювач за правильних умов</strong>.
+      Юпітерові транзити — це саме той стимул.
+      <em class="j">Сатурн вже в тебе всередині. Юпітер приходить ззовні — відчини двері.</em>
+    </p>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════ PANEL: CURRENT ════ -->
+<div id="p-current" class="pnl">
+<div class="wrap">
+
+  <p class="tag">Активні Транзити</p>
+  <h2 class="h1">Зараз · <em>2025 — 2027</em></h2>
+  <p class="lead">
+    Унікальне астрологічне поєднання: два «важкі» транзити
+    і один потужний «бонус» відбуваються майже одночасно.
+    Це найважливіший відрізок твого десятиліття.
+  </p>
+
+  <!-- JUPITER in Cancer — current -->
+  <div class="transit-block tb-jup">
+    <div class="tb-header">
+      <div class="tb-planet">♃</div>
+      <div class="tb-meta">
+        <div class="tb-period">Червень 2025 — Червень 2026 · Пік: Травень 2026</div>
+        <div class="tb-title">Юпітер у Раку — Опозиція Козерожного Стеліуму</div>
+      </div>
+      <div class="tb-badge badge-now">★ АКТИВНО ЗАРАЗ</div>
+    </div>
+
+    <div class="box box-jup" data-l="Що відбувається" style="margin-bottom:16px">
+      <p>
+        Юпітер у Раку знаходиться <strong>навпроти (опозиція 180°) твоїх планет у Козерогу</strong>.
+        Це найпотужніший зовнішній активатор — <em class="j">двері відчинені максимально широко</em>.
+        Опозиція = напруга між «тут є можливість» (Юпітер Рак) і «моя звична структура» (Козеріг).
+        <strong>Хто ризикує і виходить назустріч — отримує. Хто чекає — пропускає.</strong>
+      </p>
+    </div>
+
+    <div class="tb-grid">
+      <div class="tb-col">
+        <div class="tc-label pos">♃ Бонуси та Можливості</div>
+        <ul class="tc-list pos">
+          <li>Великі фінансові можливості і угоди — особливо у травні 2026</li>
+          <li>Зустрічі з впливовими людьми, що відчиняють нові двері</li>
+          <li>Міжнародні контакти і партнерства стають доступними</li>
+          <li>Публічне визнання і видимість у своїй ніші</li>
+          <li>Можливість залучити інвесторів або великих клієнтів</li>
+          <li>Розширення кола впливу поза звичне середовище</li>
+          <li>Кар'єрні пропозиції, що перевищують очікуваний рівень</li>
+        </ul>
+      </div>
+      <div class="tb-col">
+        <div class="tc-label neg">⚠ Ризики і Виклики</div>
+        <ul class="tc-list neg">
+          <li>Перебільшена оцінка своїх можливостей — взяти забагато</li>
+          <li>Надмірні витрати або фінансові ризики під впливом оптимізму</li>
+          <li>Ігнорування реалістичних обмежень (Козеріг нагадує: перевіряй)</li>
+          <li>Тиск у сімейних або особистих стосунках (Рак = дім і сім'я)</li>
+          <li>Розпорошення на занадто багато можливостей одночасно</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tb-note">
+      Пікові дати Юпітера по натальних планетах у Козерогу: <strong>Меркурій (~8°) — лютий 2026</strong>,
+      <strong>Сонце (~18°) і Марс (~20°) — квітень–травень 2026</strong>,
+      <strong>Сатурн (~25°) — червень 2026</strong>.
+      Найпотужніше вікно: <strong>квітень–червень 2026</strong>.
+    </div>
+  </div>
+
+  <!-- SATURN in Aries — current -->
+  <div class="transit-block tb-sat">
+    <div class="tb-header">
+      <div class="tb-planet">♄</div>
+      <div class="tb-meta">
+        <div class="tb-period">Березень 2025 — лютий 2028 · Пік напруги: Серпень–Жовтень 2026</div>
+        <div class="tb-title">Сатурн в Овні — Квадратура Козерожного Стеліуму</div>
+      </div>
+      <div class="tb-badge badge-lesson">УРОК</div>
+    </div>
+
+    <div class="box box-sat" data-l="Що відбувається" style="margin-bottom:16px">
+      <p>
+        Сатурн в Овні утворює <strong>квадратуру (90°) до твоїх планет у Козерогу</strong> —
+        найважчий з можливих аспектів. Квадратура = тертя, опір, необхідність зміни.
+        <em class="s">Сатурн перевіряє: наскільки ти справді впевнений у своїй структурі?</em>
+        Те, що не є справжнім — він зруйнує. Те, що міцне — підсилить.
+        <strong>Це не покарання — це якісна перевірка.</strong>
+      </p>
+    </div>
+
+    <div class="tb-grid">
+      <div class="tb-col">
+        <div class="tc-label pos">♄ Чому це Корисно</div>
+        <ul class="tc-list pos">
+          <li>Кристалізація справжніх пріоритетів — зайве відпадає саме</li>
+          <li>Перебудова структур, що вже не служать твоєму рівню</li>
+          <li>Набуття справжнього авторитету через випробування</li>
+          <li>Розвиток нових навичок під тиском реальної відповідальності</li>
+          <li>Після квадратури — вихід на значно міцніший фундамент</li>
+          <li>Усунення людей і партнерств, що не відповідають твоєму рівню</li>
+        </ul>
+      </div>
+      <div class="tb-col">
+        <div class="tc-label neg">⚠ Де Чекати Труднощів</div>
+        <ul class="tc-list neg">
+          <li>Перевтома і відчуття що «стіни навколо» — особливо серпень 2026</li>
+          <li>Затримки і перешкоди у проектах, що раніше йшли легко</li>
+          <li>Конфлікти з авторитетами або системами (держава, партнери)</li>
+          <li>Тиск на здоров'я якщо ігноруєш відпочинок</li>
+          <li>Необхідність відмовитись від чогось важливого заради фокусу</li>
+          <li>Самотність у рішеннях — Сатурн вимагає особистої відповідальності</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tb-note">
+      Найважчі точки квадратури по натальних планетах: <strong>Меркурій (~8°) — листопад 2025, вересень 2026</strong>,
+      <strong>Уран (~8°) — грудень 2025</strong>,
+      <strong>Сонце (~18°) і Марс (~20°) — серпень 2026</strong>.
+      <strong>Серпень 2026 — максимальна напруга: захистити час і уникати великих рішень.</strong>
+    </div>
+  </div>
+
+  <!-- JUPITER in Leo — upcoming -->
+  <div class="transit-block tb-jup">
+    <div class="tb-header">
+      <div class="tb-planet">♃</div>
+      <div class="tb-meta">
+        <div class="tb-period">Червень 2026 — Червень 2027</div>
+        <div class="tb-title">Юпітер у Леві — Трин до Марса у Стрільці</div>
+      </div>
+      <div class="tb-badge badge-bonus">БОНУС</div>
+    </div>
+
+    <div class="tb-grid">
+      <div class="tb-col">
+        <div class="tc-label pos">♃ Що відкривається</div>
+        <ul class="tc-list pos">
+          <li>Трин (120°) до натального Марса у Стрільці — природний потік дії та енергії</li>
+          <li>Публічна видимість і впізнаваність зростають органічно</li>
+          <li>Творчі та освітні проекти знаходять свою аудиторію</li>
+          <li>Секстиль до Місяця Близнята — ідеї знаходять втілення</li>
+          <li>Нові контакти і стосунки, що тривають роками</li>
+          <li>Найкращий час для публічних виступів і thought leadership</li>
+        </ul>
+      </div>
+      <div class="tb-col">
+        <div class="tc-label pos">→ Фокус</div>
+        <ul class="tc-list pos">
+          <li>Запускати освітні або менторські проекти</li>
+          <li>Виходити на публічну сцену — виступи, подкасти, статті</li>
+          <li>Розширювати особистий бренд і мережу</li>
+          <li>Залучати нових партнерів через публічність</li>
+          <li>Захисти плоди посіяного у першій половині 2026</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tb-note">
+      Юпітер у Леві формує гармонійний трин до твого натального Марса у Стрільці (15°29') та
+      секстиль до Місяця у Близнюках — найсприятливіший транзит для дій, енергії та публічності за останні 12 років.
+      <strong>Друге півріччя 2026 — час виходити у світ і представляти себе.</strong>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════ PANEL: HISTORY ════ -->
+<div id="p-history" class="pnl">
+<div class="wrap">
+
+  <p class="tag">Минулі Цикли</p>
+  <h2 class="h1">Ключові <em>Роки Сатурна і Юпітера</em></h2>
+  <p class="lead">
+    Оглянемо найважливіші транзитні роки — вони пояснюють, чому певні відрізки
+    були особливо тяжкими або особливо успішними.
+  </p>
+
+  <div class="year-grid">
+
+    <div class="yg-cell lesson-cell">
+      <div class="yg-year">1996–98</div>
+      <div class="yg-age">6–8 років</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-sat">♄ Арієс/Тілець</span>
+      </div>
+      <div class="yg-desc">Сатурн квадратурить Козеріг. Перші відчутні «рамки» і обмеження. Встановлення ранньої дисципліни і усвідомлення відповідальності.</div>
+    </div>
+
+    <div class="yg-cell peak-cell">
+      <div class="yg-year">2000–01</div>
+      <div class="yg-age">10–11 р.</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-jup">♃ Близнята</span>
+      </div>
+      <div class="yg-desc">Юпітер кон'юнктує натальний Місяць у Близнятах. Розширення інтелектуальних інтересів. Роки великої цікавості і навчання.</div>
+    </div>
+
+    <div class="yg-cell lesson-cell">
+      <div class="yg-year">2003–04</div>
+      <div class="yg-age">13–14 р.</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-sat">♄ Рак/Близнята</span>
+      </div>
+      <div class="yg-desc">Сатурн кон'юнктує натальний Місяць. Ускладнення у стосунках і емоційне дорослішання. Перший серйозний іспит зрілості почуттів.</div>
+    </div>
+
+    <div class="yg-cell peak-cell">
+      <div class="yg-year">2006</div>
+      <div class="yg-age">16 р.</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-jup">♃ Стрілець</span>
+      </div>
+      <div class="yg-desc">Юпітер кон'юнктує натальний Марс у Стрільці. Сильний рік для дії і нових горизонтів. Відчуття, що можливо більше.</div>
+    </div>
+
+    <div class="yg-cell lesson-cell">
+      <div class="yg-year">2008–10</div>
+      <div class="yg-age">18–20 р.</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-sat">♄ Діва/Терези</span>
+        <span class="yg-planet yg-jup">♃ Козеріг</span>
+      </div>
+      <div class="yg-desc">Юпітер кон'юнктує натальний Стеліум — перше велике вікно можливостей. Одночасно Сатурн опонує — перевірка. Зміна сфер і перших серйозних рішень.</div>
+    </div>
+
+    <div class="yg-cell lesson-cell">
+      <div class="yg-year">2012–13</div>
+      <div class="yg-age">22–23 р.</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-sat">♄ Скорпіон</span>
+      </div>
+      <div class="yg-desc">Сатурн кон'юнктує натальний Плутон у Скорпіоні. Важкий відрізок глибинних змін. Трансформація ідентичності і руйнування старих структур.</div>
+    </div>
+
+    <div class="yg-cell peak-cell">
+      <div class="yg-year">2013</div>
+      <div class="yg-age">23 р.</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-jup">♃ Близнята–Рак</span>
+      </div>
+      <div class="yg-desc">Юпітер по Близнятах — активний Місяць. Нові ідеї і інтелектуальний прорив. Можливо: нова сфера або навчання.</div>
+    </div>
+
+    <div class="yg-cell lesson-cell">
+      <div class="yg-year">2014–15</div>
+      <div class="yg-age">24–25 р.</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-sat">♄ Стрілець</span>
+      </div>
+      <div class="yg-desc">Сатурн у Стрільці кон'юнктує натальний Марс. Перегляд і перебудова стратегії та дій. Важливі рішення про напрямок.</div>
+    </div>
+
+    <div class="yg-cell peak-cell">
+      <div class="yg-year">2014</div>
+      <div class="yg-age">24 р.</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-jup">♃ Лев</span>
+      </div>
+      <div class="yg-desc">Юпітер у Леві трин до натального Марса у Стрільці. Публічність і нові можливості. Бонус-рік для енергії і зростання.</div>
+    </div>
+
+    <div class="yg-cell lesson-cell">
+      <div class="yg-cell-inner">
+      <div class="yg-year">2017–20</div>
+      <div class="yg-age">27–30 р.</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-sat">♄ Козеріг</span>
+      </div>
+      <div class="yg-desc">Перше Повернення Сатурна. Найважливіший урок першої дорослості. Зміна структур, кар'єрна перебудова, глибинна переоцінка.</div>
+      </div>
+    </div>
+
+    <div class="yg-cell peak-cell">
+      <div class="yg-year">2019</div>
+      <div class="yg-age">29 р.</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-jup">♃ Стрілець</span>
+      </div>
+      <div class="yg-desc">Юпітер у Стрільці кон'юнктує натальний Марс. Відкриття можливостей попри складний рік Сатурна. Ті хто діяли — отримали прорив.</div>
+    </div>
+
+    <div class="yg-cell peak-cell">
+      <div class="yg-year">2020–21</div>
+      <div class="yg-age">30–31 р.</div>
+      <div class="yg-planets">
+        <span class="yg-planet yg-jup">♃ Козеріг</span>
+        <span class="yg-planet yg-sat">♄ Козеріг</span>
+      </div>
+      <div class="yg-desc">Найрідкісніша конфігурація: обидві планети кон'юнктують Стеліум. Великий Скуп 21 грудня 2020. Зміна епохи — і особиста, і глобальна.</div>
+    </div>
+
+  </div>
+
+  <div class="box box-jup" data-l="Висновок з Минулого">
+    <p>
+      Твоя особиста «ритмологія»: <strong>роки Сатурнових уроків (2012–13, 2014–15, 2017–20)</strong>
+      завжди закінчувались <em class="j">виходом на новий рівень</em> —
+      якщо ти проходив їх, а не уникав.
+      Юпітерові бонуси (2006, 2014, 2019) давали можливості,
+      <strong>але тільки тоді, коли ти вже мав внутрішній фундамент</strong>.
+      Це твоя формула: Сатурн будує, Юпітер відчиняє.
+    </p>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════ PANEL: CYCLES ════ -->
+<div id="p-cycles" class="pnl">
+<div class="wrap">
+
+  <p class="tag">Довгостроковий Погляд</p>
+  <h2 class="h1">Цикли <em>2026 — 2045</em></h2>
+  <p class="lead">
+    Майбутні ключові транзити по роках — де вчитись, де діяти,
+    де відпочивати і де будувати.
+  </p>
+
+  <!-- Score strip -->
+  <div class="score-strip">
+    <div class="ss-item">
+      <div class="ss-year">2025</div>
+      <div class="ss-score score-3">▲</div>
+      <div class="ss-type">Розгін</div>
+    </div>
+    <div class="ss-item now-s">
+      <div class="ss-year">2026 ★</div>
+      <div class="ss-score score-5">★</div>
+      <div class="ss-type">Пік/Урок</div>
+    </div>
+    <div class="ss-item now-s">
+      <div class="ss-year">2027 ★</div>
+      <div class="ss-score score-4">▲▲</div>
+      <div class="ss-type">Бонус</div>
+    </div>
+    <div class="ss-item">
+      <div class="ss-year">2028</div>
+      <div class="ss-score score-3">▲</div>
+      <div class="ss-type">Стаб.</div>
+    </div>
+    <div class="ss-item">
+      <div class="ss-year">2029</div>
+      <div class="ss-score score-4">▲▲</div>
+      <div class="ss-type">Юпітер</div>
+    </div>
+    <div class="ss-item">
+      <div class="ss-year">2030</div>
+      <div class="ss-score score-3">▲</div>
+      <div class="ss-type">Буд-во</div>
+    </div>
+    <div class="ss-item">
+      <div class="ss-year">2031–32</div>
+      <div class="ss-score score-2">▼</div>
+      <div class="ss-type">Урок</div>
+    </div>
+    <div class="ss-item">
+      <div class="ss-year">2033</div>
+      <div class="ss-score score-4">▲▲</div>
+      <div class="ss-type">Бонус</div>
+    </div>
+    <div class="ss-item">
+      <div class="ss-year">2035–36</div>
+      <div class="ss-score score-3">▲</div>
+      <div class="ss-type">Зрілість</div>
+    </div>
+    <div class="ss-item">
+      <div class="ss-year">2038–40</div>
+      <div class="ss-score score-1">▼▼</div>
+      <div class="ss-type">2й ♄</div>
+    </div>
+    <div class="ss-item">
+      <div class="ss-year">2041</div>
+      <div class="ss-score score-5">★</div>
+      <div class="ss-type">Пік</div>
+    </div>
+    <div class="ss-item">
+      <div class="ss-year">2044–45</div>
+      <div class="ss-score score-4">▲▲</div>
+      <div class="ss-type">Спадщина</div>
+    </div>
+  </div>
+
+  <div class="return-grid">
+
+    <div class="ret-card ret-card-jup">
+      <div class="rc-tag">♃ Юпітер · 2026–2038 · Ключові Вікна</div>
+      <div class="rc-title">Юпітерові Бонуси по Знаках</div>
+      <ul class="rc-list">
+        <li><strong>Рак (до черв. 2026)</strong> — опозиція Стеліуму. Найбільші угоди і можливості. Діяти до червня.</li>
+        <li><strong>Лев (черв.2026 – черв.2027)</strong> — трин Асцендента. Публічність, визнання, особистий бренд.</li>
+        <li><strong>Діва (2027–28)</strong> — секстиль Місяця Близнята. Нові ідеї і інтелектуальні проекти.</li>
+        <li><strong>Козеріг (2032–33)</strong> — кон'юнкція Стеліуму. Наступне велике вікно бізнес-можливостей.</li>
+        <li><strong>Стрілець (2031)</strong> — кон'юнкція натального Марса. Другий великий особистісний прорив.</li>
+        <li><strong>Козеріг (2044–45)</strong> — третій цикл. Кульмінація і передача спадщини.</li>
+      </ul>
+    </div>
+
+    <div class="ret-card ret-card-sat">
+      <div class="rc-tag">♄ Сатурн · 2026–2050 · Ключові Уроки</div>
+      <div class="rc-title">Сатурнові Цикли по Роках</div>
+      <ul class="rc-list">
+        <li><strong>Овен (2025–28)</strong> — квадратура Козерога. Зараз. Реструктуризація і перевірка.</li>
+        <li><strong>Телець (2028–30)</strong> — секстиль Козерога. М'якша підтримка для будівництва. Стабільний ріст.</li>
+        <li><strong>Близнята (2030–32)</strong> — квадратура Місяця. Перегляд комунікаційних і ментальних структур.</li>
+        <li><strong>Рак (2032–34)</strong> — опозиція Козерога. Другий великий урок. Баланс між особистим і публічним.</li>
+        <li><strong>Стрілець (2041–44)</strong> — кон'юнкція натального Марса. Пікова зрілість і переосмислення місії.</li>
+        <li><strong>Козеріг (2047–50)</strong> — Друге Повернення Сатурна. Останній великий цикл. Спадщина і підсумки.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="transit-block tb-jup">
+    <div class="tb-header">
+      <div class="tb-planet">♃</div>
+      <div class="tb-meta">
+        <div class="tb-period">2032–2033 · Вік 42–43 роки</div>
+        <div class="tb-title">Другий Великий Юпітерів Цикл — Козеріг</div>
+      </div>
+      <div class="tb-badge badge-major">НАСТУПНИЙ ВЕЛИКИЙ БОНУС</div>
+    </div>
+    <div class="box box-jup" data-l="Що буде" style="margin-bottom:0">
+      <p>
+        Юпітер знову увійде у Козеріг — <em class="j">друга велика хвиля можливостей</em>
+        після 2026. До цього часу ти матимеш 6+ років побудованої репутації і системи.
+        <strong>Якщо 2026 — це закласти фундамент, то 2032–33 — це перший поверх, який видно всім.</strong>
+        Масштабування того, що було побудовано.
+      </p>
+    </div>
+  </div>
+
+  <div class="transit-block tb-sat">
+    <div class="tb-header">
+      <div class="tb-planet">♄</div>
+      <div class="tb-meta">
+        <div class="tb-period">2047–2050 · Вік 57–60 років</div>
+        <div class="tb-title">Друге Повернення Сатурна — Козеріг</div>
+      </div>
+      <div class="tb-badge badge-lesson">КУЛЬМІНАЦІЯ ЗРІЛОСТІ</div>
+    </div>
+    <div class="box box-sat" data-l="Що буде" style="margin-bottom:0">
+      <p>
+        Сатурн повертається у Козеріг другий раз.
+        <em class="s">Це підсумок всього побудованого.</em>
+        Козеріг у 57–60 — природна точка максимальної влади і впливу.
+        <strong>Що ти будуєш зараз у 36 — це те, з чим ти прийдеш до 57.</strong>
+        Лінія між сьогодні і тоді пряма.
+      </p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ════ PANEL: FORMULA ════ -->
+<div id="p-formula" class="pnl">
+<div class="wrap">
+
+  <p class="tag">Практичне Застосування</p>
+  <h2 class="h1">Формула <em>Сатурн + Юпітер</em><br>для Козерога</h2>
+  <p class="lead">
+    Розуміти транзити — добре. Знати як на них реагувати — краще.
+    Ось практична система дій під кожен тип планетарного впливу.
+  </p>
+
+  <div class="box box-sat" data-l="Коли Сатурн Транзитує Твої Планети">
+    <p>
+      <strong>Сатурн кон'юнкція, квадратура, опозиція до натальних планет — це «режим уроку»:</strong><br><br>
+      <em class="s">Зменш швидкість. Збільш якість.</em> Сатурн не дозволяє халтурити.
+      Якщо ти рухаєшся поспіхом або поверхово — він підніме руку і скаже стоп.
+      <strong>Краще завершити одне ідеально, ніж п'ять прийнятно.</strong><br><br>
+      Ніколи не уникай Сатурнові уроки — вони завжди повертаються у важчій формі.
+      Зустрінь їх свідомо: <em class="s">«що мені треба навчитись/перебудувати тут?»</em>
+    </p>
+  </div>
+
+  <div class="box box-jup" data-l="Коли Юпітер Транзитує Твої Планети">
+    <p>
+      <strong>Юпітер трин, секстиль, кон'юнкція — це «режим дії»:</strong><br><br>
+      <em class="j">Відчини двері. Йди назустріч.</em> Юпітер не стукає двічі з однаковою силою.
+      Для Козерога особливо важливо: <strong>не перестраховуватись і не чекати «ідеального моменту»</strong>
+      — цей і є ідеальний.<br><br>
+      Юпітер підсилює те, що вже є. <em class="j">Немає нічого — він нічого не підсилить.</em>
+      Тому Сатурнові роки (будувати) + Юпітерові вікна (розширювати) = твоя формула зростання.
+    </p>
+  </div>
+
+  <div class="box box-now" data-l="Твоя Особиста Формула · 2026">
+    <p>
+      <strong>Зараз одночасно:</strong><br>
+      <em class="s">Сатурн в Овні</em> — квадратура Козерога = уроки і реструктуризація<br>
+      <em class="j">Юпітер у Раку</em> — опозиція Козерога = максимальні зовнішні можливості<br><br>
+      <strong>Формула 2026:</strong>
+      Вранці — Сатурнова дисципліна (будувати, планувати, вирішувати складне).
+      Вдень — Юпітерова сміливість (зустрічі, переговори, пропозиції).
+      Серпень — відпочинок (Сатурн пік + Меркурій ретро).
+      Листопад — фінальний спурт.<br><br>
+      <em class="n">Козеріг, що використовує обидва ритми одночасно, стає непереможним.</em>
+    </p>
+  </div>
+
+  <!-- Practical cheatsheet -->
+  <p class="tag">Шпаргалка по Знаках</p>
+  <h3 style="font-family:'Unbounded',sans-serif;font-size:22px;font-weight:600;color:var(--white);margin-bottom:20px">Як Реагувати Коли Сатурн/Юпітер у Кожному Знаку</h3>
+
+  <table class="aspect-table">
+    <tr>
+      <th>Планета у знаку</th>
+      <th>Аспект до тебе</th>
+      <th>Режим</th>
+      <th>Практична дія</th>
+    </tr>
+    <tr>
+      <td class="asp-planet">♄/♃ Козеріг</td>
+      <td class="asp-aspect asp-conj">Кон'юнкція</td>
+      <td><span style="color:var(--now)">Пік активації</span></td>
+      <td class="asp-meaning">Максимальна дія або максимальний урок. Все посилюється. Не ховатись.</td>
+    </tr>
+    <tr>
+      <td class="asp-planet">♄/♃ Рак</td>
+      <td class="asp-aspect asp-opp">Опозиція</td>
+      <td><span style="color:var(--jup2)">Зовнішній тиск</span></td>
+      <td class="asp-meaning">Можливості приходять ззовні. Бути відкритим. Юпітер — діяти. Сатурн — переговори.</td>
+    </tr>
+    <tr>
+      <td class="asp-planet">♄/♃ Овен/Терези</td>
+      <td class="asp-aspect asp-square">Квадратура</td>
+      <td><span style="color:var(--red)">Тертя і зміни</span></td>
+      <td class="asp-meaning">Сатурн — реструктурувати. Юпітер — ризикувати у нових напрямках.</td>
+    </tr>
+    <tr>
+      <td class="asp-planet">♄/♃ Телець/Діва</td>
+      <td class="asp-aspect asp-trine">Трин</td>
+      <td><span style="color:var(--green)">Легкий потік</span></td>
+      <td class="asp-meaning">Природний ріст без зайвих зусиль. Будувати, вчитись, масштабувати.</td>
+    </tr>
+    <tr>
+      <td class="asp-planet">♄/♃ Стрілець/Близнята</td>
+      <td class="asp-aspect asp-conj" style="color:var(--sat2)">Асц./Місяць</td>
+      <td><span style="color:var(--sat2)">Особистісна зона</span></td>
+      <td class="asp-meaning">Сатурн — переосмислення ідентичності. Юпітер — публічність і нові стосунки.</td>
+    </tr>
+    <tr>
+      <td class="asp-planet">♄/♃ Скорпіон</td>
+      <td class="asp-aspect asp-trine">Трин Плутона</td>
+      <td><span style="color:var(--green)">Глибинна підтримка</span></td>
+      <td class="asp-meaning">Трансформаційна робота йде легше. Час для психологічної або стратегічної глибини.</td>
+    </tr>
+  </table>
+
+  <div class="closing">
+    <p class="cq">
+      «Сатурн навчає тебе чекати правильно.<br>
+      Юпітер навчає тебе діяти сміливо.<br>
+      Козеріг — єдиний знак, що вміє обидва.»
+    </p>
+    <p style="font-family:'Unbounded',sans-serif;font-size:13px;color:var(--jup2);margin-bottom:16px;font-weight:300">
+      ♄ ~25° Козеріг · ♃ ~5° Козеріг · 09.01.1990 · 07:17 · Легніца
+    </p>
+    <p class="ca">Транзитний Аналіз · Козеріг · Уроки та Бонуси</p>
+  </div>
+
+</div>
+</div>
+
+<script>
+function sw(id){
+  document.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('p-'+id).classList.add('on');
+  event.target.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

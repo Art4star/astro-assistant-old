@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Стратегічний профіль 2026 · Артур</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f2ede3;
+  --paper2: #e8e2d6;
+  --ink: #12100e;
+  --ink2: #2a2520;
+  --ink3: #4a4540;
+  --gold: #b8892a;
+  --gold2: rgba(184,137,42,0.12);
+  --gold3: rgba(184,137,42,0.25);
+  --rust: #8b3a2a;
+  --sage: #2d5a4a;
+  --slate: #2a3f5c;
+  --dim: rgba(18,16,14,0.45);
+  --faint: rgba(18,16,14,0.15);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* === GRID SYSTEM === */
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 32px 100px;
+}
+
+/* === MASTHEAD === */
+.masthead {
+  border-bottom: 2px solid var(--ink);
+  padding: 48px 0 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 32px;
+}
+.masthead-left {}
+.masthead-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.masthead-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.masthead-title span { color: var(--gold); font-style: italic; }
+.masthead-right {
+  text-align: right;
+}
+.masthead-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 0.1em;
+}
+.masthead-chart {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--gold);
+  margin-top: 6px;
+}
+
+/* === NAV TABS === */
+.nav-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--faint);
+  margin-top: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-tabs::-webkit-scrollbar { display: none; }
+.nav-tab {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  cursor: pointer;
+  color: var(--dim);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+  user-select: none;
+  flex-shrink: 0;
+}
+.nav-tab:hover { color: var(--ink); }
+.nav-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* === SECTIONS === */
+.section { display: none; padding: 40px 0; }
+.section.active { display: block; }
+
+/* === SECTION HEADERS === */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.section-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--faint);
+  line-height: 1;
+  font-style: italic;
+  flex-shrink: 0;
+}
+.section-title-group {}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.section-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 4px;
+}
+
+/* === REFRAME BOX === */
+.reframe {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 36px 40px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.reframe::before {
+  content: '"';
+  position: absolute;
+  top: -20px; left: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 200px;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  pointer-events: none;
+}
+.reframe-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.55;
+  color: #f2ede3;
+  position: relative; z-index:1;
+}
+.reframe-text strong {
+  font-style: normal;
+  color: #d4a84b;
+}
+
+/* === TIMELINE === */
+.timeline {
+  position: relative;
+  margin-bottom: 40px;
+}
+.timeline::before {
+  content:'';
+  position: absolute;
+  left: 80px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--faint);
+}
+.tl-item {
+  display: grid;
+  grid-template-columns: 80px 16px 1fr;
+  gap: 0 20px;
+  margin-bottom: 24px;
+  align-items: start;
+}
+.tl-year {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--dim);
+  text-align: right;
+  padding-top: 2px;
+}
+.tl-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--gold);
+  margin-top: 4px;
+  position: relative; z-index:1;
+  flex-shrink:0;
+}
+.tl-dot.major {
+  background: var(--gold);
+  width: 12px; height: 12px;
+}
+.tl-content {}
+.tl-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.tl-note {
+  font-size: 12px;
+  color: var(--dim);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+.tl-skill {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold3);
+  padding: 2px 8px;
+  margin-top: 6px;
+  margin-right: 4px;
+}
+
+/* === SKILLS GRID === */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+@media(max-width:600px){
+  .skills-grid { grid-template-columns: 1fr; }
+  .month-grid { grid-template-columns: 1fr !important; }
+  .masthead { grid-template-columns: 1fr; }
+  .masthead-right { text-align: left; }
+}
+.skill-card {
+  border: 1px solid var(--faint);
+  padding: 20px 24px;
+  border-left: 3px solid var(--gold);
+  background: white;
+}
+.skill-card.strong { border-left-color: var(--sage); }
+.skill-card.medium { border-left-color: var(--slate); }
+.skill-card.growing { border-left-color: var(--rust); }
+.skill-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.skill-desc {
+  font-size: 12px;
+  color: var(--ink3);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.skill-proof {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--dim);
+  font-style: italic;
+}
+.skill-level {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.skill-card.strong .skill-level { color: var(--sage); }
+.skill-card.medium .skill-level { color: var(--slate); }
+.skill-card.growing .skill-level { color: var(--rust); }
+
+/* === NICHE CARDS === */
+.niche-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+@media(max-width:700px){ .niche-cards { grid-template-columns: 1fr; } }
+.niche-card {
+  padding: 24px;
+  border: 1px solid var(--faint);
+  position: relative;
+  background: white;
+}
+.niche-card.now { border-color: var(--sage); background: rgba(45,90,74,0.04); }
+.niche-card.later { border-color: var(--faint); }
+.niche-card.avoid { border-color: var(--rust); background: rgba(139,58,42,0.04); }
+.niche-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding: 3px 10px;
+  display: inline-block;
+  border: 1px solid;
+}
+.niche-card.now .niche-badge { color: var(--sage); border-color: var(--sage); }
+.niche-card.later .niche-badge { color: var(--slate); border-color: var(--slate); }
+.niche-card.avoid .niche-badge { color: var(--rust); border-color: var(--rust); }
+.niche-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.niche-who {
+  font-size: 12px;
+  color: var(--ink3);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+.niche-why {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--dim);
+  line-height: 1.5;
+  border-top: 1px solid var(--faint);
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+/* === IMPOSTOR BOX === */
+.impostor-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--faint);
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+.imp-col {
+  padding: 28px 32px;
+}
+.imp-col.left {
+  background: rgba(139,58,42,0.06);
+  border-right: 1px solid var(--faint);
+}
+.imp-col.right {
+  background: rgba(45,90,74,0.06);
+}
+.imp-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.imp-col.left .imp-label { color: var(--rust); }
+.imp-col.right .imp-label { color: var(--sage); }
+.imp-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  align-items: flex-start;
+}
+.imp-icon { flex-shrink: 0; margin-top: 1px; }
+
+/* === VIDEO BLOG === */
+.vlog-topics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+@media(max-width:600px){ .vlog-topics { grid-template-columns: 1fr; } }
+.vlog-topic {
+  background: white;
+  border: 1px solid var(--faint);
+  padding: 20px;
+  cursor: default;
+  transition: border-color 0.2s;
+}
+.vlog-topic:hover { border-color: var(--gold); }
+.vt-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 24px;
+  color: var(--faint);
+  line-height: 1;
+  margin-bottom: 8px;
+  font-weight: 300;
+}
+.vt-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.vt-hook {
+  font-size: 11px;
+  color: var(--dim);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* === MONTH PLAN === */
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.month-block {
+  border: 1px solid var(--faint);
+  background: white;
+  overflow: hidden;
+}
+.mb-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--faint);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s;
+}
+.mb-header:hover { background: var(--gold2); }
+.mb-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-style: italic;
+  color: var(--faint);
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink:0;
+}
+.mb-title-group { flex:1; }
+.mb-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.mb-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 2px;
+}
+.mb-phase {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid;
+  flex-shrink:0;
+}
+.phase-forge-tag { color: #8b4513; border-color: #8b4513; }
+.phase-launch-tag { color: var(--sage); border-color: var(--sage); }
+.phase-peak-tag { color: var(--gold); border-color: var(--gold); }
+.phase-still-tag { color: var(--slate); border-color: var(--slate); }
+.phase-integrate-tag { color: #5c4a6e; border-color: #5c4a6e; }
+
+.mb-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.month-block.open .mb-body { max-height: 600px; }
+.mb-content {
+  padding: 20px;
+}
+.mb-focus {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.mb-actions {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mb-actions li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 12px;
+  color: var(--ink3);
+  line-height: 1.4;
+}
+.mb-actions li::before {
+  content: '—';
+  color: var(--gold);
+  flex-shrink:0;
+}
+.mb-toggle {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  color: var(--faint);
+  flex-shrink:0;
+  transition: transform 0.3s;
+}
+.month-block.open .mb-toggle { transform: rotate(45deg); color: var(--gold); }
+
+/* === LANGUAGE BOX === */
+.lang-reframe {
+  border: 1px solid var(--gold3);
+  padding: 28px 32px;
+  background: var(--gold2);
+  margin-bottom: 32px;
+}
+.lr-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.lr-text {
+  font-size: 13px;
+  color: var(--ink3);
+  line-height: 1.7;
+}
+.lr-text strong { color: var(--gold); }
+
+/* === ASTRO SIDEBAR === */
+.astro-note {
+  border-left: 3px solid var(--gold);
+  padding: 12px 20px;
+  margin: 20px 0;
+  background: var(--gold2);
+}
+.astro-note p {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--ink3);
+  line-height: 1.5;
+}
+.astro-note strong { font-style: normal; color: var(--gold); }
+
+/* === DIVIDERS === */
+.col-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+@media(max-width:600px){ .col-2 { grid-template-columns: 1fr; } }
+
+.mini-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--faint);
+}
+
+.text-body {
+  font-size: 13px;
+  color: var(--ink3);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.text-body strong { color: var(--ink); }
+
+/* === FOOTER === */
+footer {
+  margin-top: 64px;
+  border-top: 2px solid var(--ink);
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--dim);
+}
+.footer-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.1em;
+  text-align: right;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="masthead-left">
+      <div class="masthead-tag">Стратегічний профіль · Скоригована навігація</div>
+      <div class="masthead-title">Хто ти<br>насправді <span>є.</span></div>
+    </div>
+    <div class="masthead-right">
+      <div class="masthead-date">Артур · 2026</div>
+      <div class="masthead-chart">♑ · ☽ II · ASC ♐ · ♏ ♇</div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showSection('profile')">Профіль</div>
+    <div class="nav-tab" onclick="showSection('skills')">Компетенції</div>
+    <div class="nav-tab" onclick="showSection('niche')">Ніша</div>
+    <div class="nav-tab" onclick="showSection('impostor')">Самозванець</div>
+    <div class="nav-tab" onclick="showSection('vlog')">Відеоблог</div>
+    <div class="nav-tab" onclick="showSection('plan')">Місячний план</div>
+  </div>
+
+  <!-- ===== PROFILE ===== -->
+  <div class="section active" id="profile">
+
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title-group">
+        <div class="section-title">Твій справжній профіль</div>
+        <div class="section-sub">Переосмислення ідентичності</div>
+      </div>
+    </div>
+
+    <div class="reframe">
+      <div class="reframe-text">
+        Ти не "фотограф, який перекваліфікувався в PM". Ти — <strong>людина, яка системно будує міст між творчим і цифровим світами</strong>, накопичуючи міжкультурний досвід на кожному етапі. Кожен "поворот" у твоїй кар'єрі — це не втеча від провалу. Це <strong>Козеріг, що підіймається на наступний виступ гори</strong>.
+      </div>
+    </div>
+
+    <div class="mini-title">Дуга кар'єри</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">2008–11</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-role">Кухар</div>
+          <div class="tl-note">Перший урок: дисципліна, стандарти, системна робота під тиском. Впорався зі стіною і зробив усвідомлений вихід.</div>
+          <span class="tl-skill">Execution</span>
+          <span class="tl-skill">Standards</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2011–20</div>
+        <div class="tl-dot major"></div>
+        <div class="tl-content">
+          <div class="tl-role">Фотограф · International Brands · Dubai</div>
+          <div class="tl-note">Робота з міжнар. клієнтами, рекламою, івентами. Дубай 2015–19. Навчився продавати себе, вести клієнтів, управляти хаосом зйомок. Помітив, що хочеш ширшу роль — і перейшов до продюсування.</div>
+          <span class="tl-skill">Client Management</span>
+          <span class="tl-skill">Visual Thinking</span>
+          <span class="tl-skill">Creative Direction</span>
+          <span class="tl-skill">Cross-cultural</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2018</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-role">Продюсування зйомок · Адмін-роль</div>
+          <div class="tl-note">Почав бачити систему ззовні — координація людей, бюджети, логістика. Перший PM-досвід, ще без назви.</div>
+          <span class="tl-skill">Coordination</span>
+          <span class="tl-skill">Stakeholders</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2019–22</div>
+        <div class="tl-dot"></div>
+        <div class="tl-content">
+          <div class="tl-role">Курси PM · Маркетинговий PM</div>
+          <div class="tl-note">Усвідомлений перехід в IT. Без "зв'язків" і без готових дверей — самотужки. Маркетинговий PM: управляв проєктами між бізнесом і технічною командою.</div>
+          <span class="tl-skill">Agile/Scrum</span>
+          <span class="tl-skill">Digital Marketing PM</span>
+          <span class="tl-skill">Briefs & Roadmaps</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025</div>
+        <div class="tl-dot major"></div>
+        <div class="tl-content">
+          <div class="tl-role">IT PM · Веб-студія (Доступ заради досвіду)</div>
+          <div class="tl-note">Свідомий крок: взяв менш оплачувану роль заради технічного досвіду. Це не "провал" — це стратегія накопичення. Козеріг так і будує.</div>
+          <span class="tl-skill">IT PM</span>
+          <span class="tl-skill">Web Projects</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2026 →</div>
+        <div class="tl-dot major"></div>
+        <div class="tl-content">
+          <div class="tl-role">Product Owner · AMT für Digitalisierung · Німеччина</div>
+          <div class="tl-note">Державна цифрова трансформація. Ти вже стоїш там. Це не мрія — це факт горизонту.</div>
+          <span class="tl-skill">GovTech PO</span>
+          <span class="tl-skill">Digital Transformation</span>
+          <span class="tl-skill">Public Sector</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="astro-note">
+      <p><strong>Сатурн у Козерозі (natal) кон'юнкт Сонця:</strong> ти буквально зроблений для того, щоб повільно, методично й невідворотно підніматись. Кожна зміна кар'єри — не хаос. Це Сатурн, що вимагає наступного рівня складності.</p>
+    </div>
+
+  </div>
+
+  <!-- ===== SKILLS ===== -->
+  <div class="section" id="skills">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title-group">
+        <div class="section-title">Що ти можеш продати</div>
+        <div class="section-sub">Реальні компетенції · Прямо зараз</div>
+      </div>
+    </div>
+
+    <div class="text-body">Ти питаєш "яких компетенцій мені не вистачає для консалтингу". Але питання неправильне. <strong>Ти вже маєш те, за що платять.</strong> Проблема не в компетенціях — в упаковці.</div>
+
+    <div class="skills-grid">
+      <div class="skill-card strong">
+        <div class="skill-level">Сильна · Продавати вже зараз</div>
+        <div class="skill-name">Digital Transformation для креативних бізнесів</div>
+        <div class="skill-desc">Фотоагенції, creative studios, event-компанії, рекламні агенції — всі вони зараз переходять на digital tools, автоматизацію, нові workflow. Ти жив всередині цього 10 років і пройшов трансформацію особисто.</div>
+        <div class="skill-proof">Доказ: власний перехід із creative у digital, Dubai-досвід, міжнар. клієнти</div>
+      </div>
+      <div class="skill-card strong">
+        <div class="skill-level">Сильна · Продавати вже зараз</div>
+        <div class="skill-name">PM / PO Coaching для кар'єрних змінщиків</div>
+        <div class="skill-desc">Тисячі людей зараз намагаються перейти в IT — без зв'язків, без профільної освіти. Ти це зробив. Ти знаєш, що реально працює, а що — маркетинг курсів. Це унікальна і болісна ніша з великим попитом.</div>
+        <div class="skill-proof">Доказ: ти сам пройшов цей шлях 2019–2025, є маркетинговий PM і IT PM</div>
+      </div>
+      <div class="skill-card medium">
+        <div class="skill-level">Середня · Будувати через рік</div>
+        <div class="skill-name">Project Management для малого digital бізнесу</div>
+        <div class="skill-desc">Малі веб-студії, digital-агенції, фрілансери, які переросли себе і потребують структури. Налаштування процесів, вибір інструментів, побудова команди.</div>
+        <div class="skill-proof">Доказ: PM в маркетингу + веб-студія 2025</div>
+      </div>
+      <div class="skill-card medium">
+        <div class="skill-level">Середня · Розвивати під час роботи в AMT</div>
+        <div class="skill-name">GovTech / Public Sector Digitalization</div>
+        <div class="skill-desc">Після 1–2 років у AMT für Digitalisierung ти матимеш інсайдерський досвід державної цифрової трансформації в Німеччині. <em>Це золото.</em> Але не зараз — після накопичення кейсів.</div>
+        <div class="skill-proof">Доказ: буде після 2026–27</div>
+      </div>
+      <div class="skill-card growing">
+        <div class="skill-level">Зростаюча · Інструмент видимості</div>
+        <div class="skill-name">Особистий бренд (відеоблог / LinkedIn)</div>
+        <div class="skill-desc">Ти маєш унікальну точку зору: фотограф → Dubai → Польща → Німеччина → GovTech. Ця траєкторія сама по собі є контентом для тих, хто хоче змінити кар'єру або вийти на міжнародний ринок.</div>
+        <div class="skill-proof">Унікальний кут: insider journey, не "експерт зверху"</div>
+      </div>
+      <div class="skill-card growing">
+        <div class="skill-level">Зростаюча · Перевага, а не слабкість</div>
+        <div class="skill-name">Cross-cultural Facilitation</div>
+        <div class="skill-desc">Польща → ОАЕ → Україна/Польща → Німеччина. Ти розумієш, як різні культури приймають рішення, що означають ієрархія і довіра в різних контекстах. Рідко хто має це.</div>
+        <div class="skill-proof">Dubai + міжнар. бренди + Німеччина = тріо, яке цінують</div>
+      </div>
+    </div>
+
+    <div class="astro-note">
+      <p><strong>Близнята-Місяць:</strong> твій мозок природно синтезує різні домени. Це не "поверховість" — це рідкісна здатність бачити зв'язки між речами, які для інших здаються несумісними. Консультанти, які перекладають між世界ами — найцінніші.</p>
+    </div>
+  </div>
+
+  <!-- ===== NICHE ===== -->
+  <div class="section" id="niche">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title-group">
+        <div class="section-title">Кому продавати</div>
+        <div class="section-sub">Три ніші · Часова стратегія</div>
+      </div>
+    </div>
+
+    <div class="niche-cards">
+      <div class="niche-card now">
+        <div class="niche-badge">Зараз · 2026</div>
+        <div class="niche-title">Кар'єрні змінщики в IT</div>
+        <div class="niche-who">Люди 25–40 років, які хочуть вийти з творчих або нетехнічних галузей в IT PM / PO. Польща, Україна, Німеччина.</div>
+        <div class="niche-why">
+          Ти це вже зробив. Болі знаєш зсередини. Мова НЕ бар'єр — вони шукають досвід, а не статус. Перші клієнти: Linkedin + українська спільнота в Польщі/Німеччині.
+        </div>
+      </div>
+      <div class="niche-card now">
+        <div class="niche-badge">Зараз · 2026</div>
+        <div class="niche-title">Creative studios → digital</div>
+        <div class="niche-who">Фотоагенції, event-компанії, рекламні агенції, які зростають і губляться в процесах. Потребують PM-структури.</div>
+        <div class="niche-why">
+          Ти говориш їхньою мовою — буквально. Ніхто з "чистих IT" не розуміє, як влаштований творчий хаос фотозйомки. Це твоє.
+        </div>
+      </div>
+      <div class="niche-card later">
+        <div class="niche-badge">Пізніше · 2027–28</div>
+        <div class="niche-title">GovTech / Public Sector</div>
+        <div class="niche-who">Муніципалітети, держ. агенції Польщі / Німеччини, що проходять цифрову трансформацію.</div>
+        <div class="niche-why">
+          Після 1,5 року в AMT ти матимеш інсайдерський кейс. До 2028 — реальні кейси = реальний консалтинг. Зараз — не час, але готуйся: документуй все в AMT.
+        </div>
+      </div>
+    </div>
+
+    <div class="lang-reframe">
+      <div class="lr-title">Про мову: чому це не проблема (якщо ти правильно її фреймуєш)</div>
+      <div class="lr-text">
+        Більшість клієнтів у нішах вище спілкуються <strong>англійською або українською</strong>. Для PM/PO коучингу кар'єрних змінщиків — мова взагалі не бар'єр: вони самі іноземці в Польщі й Німеччині.<br><br>
+        Для creative studios — ти в першу чергу говориш фотографічною мовою, а не Deutsch.<br><br>
+        GovTech Nimmeччина: так, тут потрібна B2/C1 мова. Але у тебе є <strong>рік-два, щоб дійти до цього рівня паралельно</strong> з роботою в AMT — де ти й занурюєшся в контекст щодня.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== IMPOSTOR ===== -->
+  <div class="section" id="impostor">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title-group">
+        <div class="section-title">Самозванець</div>
+        <div class="section-sub">Діагноз і ліки</div>
+      </div>
+    </div>
+
+    <div class="impostor-box">
+      <div class="imp-col left">
+        <div class="imp-label">Що каже самозванець</div>
+        <div class="imp-item"><div class="imp-icon">✗</div><div>"У мене недостатньо досвіду в GovTech для консалтингу"</div></div>
+        <div class="imp-item"><div class="imp-icon">✗</div><div>"Хто мене слухатиме, якщо я не носій мови?"</div></div>
+        <div class="imp-item"><div class="imp-icon">✗</div><div>"Мій шлях занадто непрямолінійний — це виглядає хаотично"</div></div>
+        <div class="imp-item"><div class="imp-icon">✗</div><div>"Не знаю, про що знімати відео"</div></div>
+        <div class="imp-item"><div class="imp-icon">✗</div><div>"Потрібно ще навчитися X, перш ніж починати"</div></div>
+      </div>
+      <div class="imp-col right">
+        <div class="imp-label">Що є насправді</div>
+        <div class="imp-item"><div class="imp-icon">→</div><div>Консалтинг в GovTech — після 2027. Зараз є дві ніші, де твого досвіду більш ніж достатньо.</div></div>
+        <div class="imp-item"><div class="imp-icon">→</div><div>Твоя аудиторія говорить англійською і українською. German — для майбутнього.</div></div>
+        <div class="imp-item"><div class="imp-icon">→</div><div>"Непрямолінійний" шлях — це і є позиціонування. Ти унікальний саме тому.</div></div>
+        <div class="imp-item"><div class="imp-icon">→</div><div>Контент — це твоя траєкторія. Кожен поворот кар'єри — окремий відеосерій.</div></div>
+        <div class="imp-item"><div class="imp-icon">→</div><div>"Ще вчитися" — нескінченний відтерміновувач. Перший клієнт вчить більше за 10 курсів.</div></div>
+      </div>
+    </div>
+
+    <div class="astro-note">
+      <p><strong>Плутон у Скорпіоні (натальний):</strong> синдром самозванця у тебе має глибоке коріння — Скорпіон не дає права на "достатньо добре". Але 2026 рік Плутон у Водолії активує трансформацію ідентичності через дію, а не через досягнення внутрішнього ідеалу. <strong>Діяти зі страхом — це і є шлях.</strong></p>
+    </div>
+
+    <div class="text-body">
+      <strong>Практичний рецепт від самозванця:</strong> почни з ніші "PM/PO coaching for career changers". Там ти — мандрівник, що щойно пройшов той же шлях і розповідає про маршрут. Не гуру з вершини. Провідник у процесі. Це набагато чесніший і більш резонуючий формат.
+    </div>
+
+  </div>
+
+  <!-- ===== VLOG ===== -->
+  <div class="section" id="vlog">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div class="section-title-group">
+        <div class="section-title">Відеоблог</div>
+        <div class="section-sub">Що знімати · Твій кут</div>
+      </div>
+    </div>
+
+    <div class="reframe">
+      <div class="reframe-text">
+        Ти питаєш "про що говорити". Але твоя кар'єра — вже 15 серій контенту. Ти не "не знаєш тему". Ти просто <strong>не усвідомив, що твоя траєкторія і є темою</strong>.
+      </div>
+    </div>
+
+    <div class="mini-title">Готові теми · Перші 12 відео</div>
+    <div class="vlog-topics">
+      <div class="vlog-topic">
+        <div class="vt-num">01</div>
+        <div class="vt-title">Як я пішов з фотографії після 10 років і не пошкодував</div>
+        <div class="vt-hook">Гак для тисяч людей, що "застрягли" у творчій кар'єрі</div>
+      </div>
+      <div class="vlog-topic">
+        <div class="vt-num">02</div>
+        <div class="vt-title">Dubai vs Україна vs Польща: де важче будувати кар'єру</div>
+        <div class="vt-hook">Cross-cultural перспектива — унікальний кут</div>
+      </div>
+      <div class="vlog-topic">
+        <div class="vt-num">03</div>
+        <div class="vt-title">Як пройти курс PM і не знайти роботу — і що я зробив потім</div>
+        <div class="vt-hook">Чесна відповідь на питання, яке всі хочуть знати</div>
+      </div>
+      <div class="vlog-topic">
+        <div class="vt-num">04</div>
+        <div class="vt-title">Що я взяв із фотографії у Product Management</div>
+        <div class="vt-hook">Soft skills transfer — тема, яка цікавить рекрутерів і змінщиків</div>
+      </div>
+      <div class="vlog-topic">
+        <div class="vt-num">05</div>
+        <div class="vt-title">Я взяв роботу нижче рівня — навмисно. Ось чому</div>
+        <div class="vt-hook">Контрінтуїтивна кар'єрна стратегія, яка реально працює</div>
+      </div>
+      <div class="vlog-topic">
+        <div class="vt-num">06</div>
+        <div class="vt-title">Що таке GovTech і навіщо туди йти (погляд зсередини)</div>
+        <div class="vt-hook">Перший документальний серіал з AMT — ніхто такого не знімає</div>
+      </div>
+      <div class="vlog-topic">
+        <div class="vt-num">07</div>
+        <div class="vt-title">Мій метод: як я знахожу роботу в новій країні без зв'язків</div>
+        <div class="vt-hook">Практичний гайд — мега-попит серед EU-мігрантів</div>
+      </div>
+      <div class="vlog-topic">
+        <div class="vt-num">08</div>
+        <div class="vt-title">Синдром самозванця: чому я не почав відеоблог 3 роки тому</div>
+        <div class="vt-hook">Найвідчесніше відео каналу — завжди перформить</div>
+      </div>
+      <div class="vlog-topic">
+        <div class="vt-num">09</div>
+        <div class="vt-title">Scrum vs реальний проєктний хаос — що я думаю після 3 ролей PM</div>
+        <div class="vt-hook">Для практиків, яких набридли теоретичні гайди</div>
+      </div>
+      <div class="vlog-topic">
+        <div class="vt-num">10</div>
+        <div class="vt-title">Як я навчався IT у вільний час без вигорання</div>
+        <div class="vt-hook">Тема, яка актуальна для мільйонів людей у транзиції</div>
+      </div>
+      <div class="vlog-topic">
+        <div class="vt-num">11</div>
+        <div class="vt-title">Що мені дала реклама і фото для роботи з клієнтами в IT</div>
+        <div class="vt-hook">Нестандартний погляд на soft skills — для рекрутерів і лідерів</div>
+      </div>
+      <div class="vlog-topic">
+        <div class="vt-num">12</div>
+        <div class="vt-title">Моя чесна оцінка курсів PM на ринку після їх проходження</div>
+        <div class="vt-hook">Люди люблять чесні огляди — особливо дорогих курсів</div>
+      </div>
+    </div>
+
+    <div class="astro-note">
+      <p><strong>Близнята-Місяць + Уран кон'юнкт у 2026:</strong> ти природній комунікатор, який довго стримував голос. Уран у травні буквально розблокує те, що заважало говорити відкрито. <strong>Перше відео варто зняти до травня — щоб до травня мати вже досвід і впевненість.</strong></p>
+    </div>
+
+  </div>
+
+  <!-- ===== PLAN ===== -->
+  <div class="section" id="plan">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <div class="section-title-group">
+        <div class="section-title">Місячний план</div>
+        <div class="section-sub">Скоригований · З урахуванням контексту</div>
+      </div>
+    </div>
+
+    <div class="text-body">Головне завдання 2026: <strong>з хаотичного руху перейти в навмисний</strong>. Три паралельні треки: AMT (основне), консалтинг-ніша (розвиток), відеоблог (голос).</div>
+
+    <div class="month-grid">
+
+      <div class="month-block" data-i="0">
+        <div class="mb-header" onclick="toggleM(0)">
+          <div class="mb-num">01</div>
+          <div class="mb-title-group">
+            <div class="mb-name">Січень · Ревізія</div>
+            <div class="mb-tag">Контейнер і вектор</div>
+          </div>
+          <div class="mb-phase phase-forge-tag">Кування</div>
+          <div class="mb-toggle">+</div>
+        </div>
+        <div class="mb-body">
+          <div class="mb-content">
+            <div class="mb-focus">"Визначити 1 нішу і 1 формат. Не десять."</div>
+            <ul class="mb-actions">
+              <li>Написати одне речення: "Я допомагаю [хто] зробити [що] через [як]" — вибрати нішу з двох запропонованих</li>
+              <li>LinkedIn-аудит: профіль відображає нову ідентичність чи стару?</li>
+              <li>Перший запис у відеощоденник — приватно, для себе. Просто говорити на камеру 5 хв</li>
+              <li>Скласти список 20 потенційних клієнтів / аудиторії для cold outreach</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="month-block" data-i="1">
+        <div class="mb-header" onclick="toggleM(1)">
+          <div class="mb-num">02</div>
+          <div class="mb-title-group">
+            <div class="mb-name">Лютий · Структура</div>
+            <div class="mb-tag">Оффер і перший клієнт</div>
+          </div>
+          <div class="mb-phase phase-forge-tag">Кування</div>
+          <div class="mb-toggle">+</div>
+        </div>
+        <div class="mb-body">
+          <div class="mb-content">
+            <div class="mb-focus">"Перша розмова з реальною людиною — не продаж, а дослідження."</div>
+            <ul class="mb-actions">
+              <li>5 discovery calls з потенційними клієнтами (безкоштовно) — дізнатись їхній біль</li>
+              <li>Оновити LinkedIn: під нову роль і нову ідентичність</li>
+              <li>Зняти перший "публічний" відос — тема №8 зі списку (синдром самозванця)</li>
+              <li>Встановити щотижневу рефлексію: п'ятниця, 15 хв, що відбулось і що навчило</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="month-block" data-i="2">
+        <div class="mb-header" onclick="toggleM(2)">
+          <div class="mb-num">03</div>
+          <div class="mb-title-group">
+            <div class="mb-name">Березень · Тиша</div>
+            <div class="mb-tag">Меркурій ретроград</div>
+          </div>
+          <div class="mb-phase phase-still-tag">Тиша</div>
+          <div class="mb-toggle">+</div>
+        </div>
+        <div class="mb-body">
+          <div class="mb-content">
+            <div class="mb-focus">"Не запускати нічого нового. Перечитати, переосмислити, відпочити."</div>
+            <ul class="mb-actions">
+              <li>Переглянути 2–3 відео: що резонує в підходах інших PM-консультантів?</li>
+              <li>Написати свій "origin story" — коротку біографію для майбутнього сайту або LinkedIn</li>
+              <li>Продовжувати знімати відео — 1 на тиждень, без тиску на перфекцію</li>
+              <li>Внутрішнє питання: яку стару версію себе я залишаю в цьому місяці?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="month-block" data-i="3">
+        <div class="mb-header" onclick="toggleM(3)">
+          <div class="mb-num">04</div>
+          <div class="mb-title-group">
+            <div class="mb-name">Квітень · Валідація</div>
+            <div class="mb-tag">Перший платний проєкт</div>
+          </div>
+          <div class="mb-phase phase-forge-tag">Кування</div>
+          <div class="mb-toggle">+</div>
+        </div>
+        <div class="mb-body">
+          <div class="mb-content">
+            <div class="mb-focus">"Перший клієнт — будь-який. Символ, що ти відкритий для бізнесу."</div>
+            <ul class="mb-actions">
+              <li>Перший платний consulting session або менторинг — навіть за €50</li>
+              <li>Зафіксувати кейс: що зробив, який результат, що навчило</li>
+              <li>Канал YouTube або TikTok: перший публічний профіль, 4 відео завантажено</li>
+              <li>Оновити маніфест на основі реальних розмов із людьми</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="month-block" data-i="4">
+        <div class="mb-header" onclick="toggleM(4)">
+          <div class="mb-num">05</div>
+          <div class="mb-title-group">
+            <div class="mb-name">Травень · Прорив</div>
+            <div class="mb-tag">Уран conjunct Місяць</div>
+          </div>
+          <div class="mb-phase phase-peak-tag">Пік ⚡</div>
+          <div class="mb-toggle">+</div>
+        </div>
+        <div class="mb-body">
+          <div class="mb-content">
+            <div class="mb-focus">"Несподівана ясність прийде. Бути відкритим і записувати все."</div>
+            <ul class="mb-actions">
+              <li>Бути максимально у потоці: нові знайомства, нові ідеї, довіряти процесу</li>
+              <li>Можливий різкий поворот у позиціонуванні — не опиратися, досліджувати</li>
+              <li>Перший гучний відос: тема №1 або №3 (про зміну кар'єри) — завантажити з наміром</li>
+              <li>Зробити перший крок, який лякає найбільше — виступ, виклик, публікація</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="month-block" data-i="5">
+        <div class="mb-header" onclick="toggleM(5)">
+          <div class="mb-num">06</div>
+          <div class="mb-title-group">
+            <div class="mb-name">Червень · Публічність</div>
+            <div class="mb-tag">Офіційний запуск</div>
+          </div>
+          <div class="mb-phase phase-launch-tag">Запуск</div>
+          <div class="mb-toggle">+</div>
+        </div>
+        <div class="mb-body">
+          <div class="mb-content">
+            <div class="mb-focus">"Ти вже є консультантом. Скажи це публічно."</div>
+            <ul class="mb-actions">
+              <li>Оголосити консалтинг у LinkedIn: пост про те, кому і як допомагаєш</li>
+              <li>Підписати 2–3 реальні угоди (навіть мікро) — для психологічного підтвердження</li>
+              <li>Паралельно: почати адаптацію в AMT, документувати перший досвід GovTech</li>
+              <li>Відеоблог: 8–10 відео вже є — час просувати</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="month-block" data-i="6">
+        <div class="mb-header" onclick="toggleM(6)">
+          <div class="mb-num">07–08</div>
+          <div class="mb-title-group">
+            <div class="mb-name">Липень–Серпень · Пік</div>
+            <div class="mb-tag">Юпітер у Лева</div>
+          </div>
+          <div class="mb-phase phase-peak-tag">Пік ⚡</div>
+          <div class="mb-toggle">+</div>
+        </div>
+        <div class="mb-body">
+          <div class="mb-content">
+            <div class="mb-focus">"Серпень — найсильніший місяць для видимості. Не сиди вдома."</div>
+            <ul class="mb-actions">
+              <li>Виступ / гостьовий подкаст / велика публікація — щось, що виходить за твій звичний масштаб</li>
+              <li>Підняти ціни на консалтинг або запустити групову програму</li>
+              <li>Нетворкінг: IT/PM конференції, GovTech-події у Польщі або Німеччині</li>
+              <li>Липень: ретроград → відпустка або рефлексія. Серпень → дія</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="month-block" data-i="7">
+        <div class="mb-header" onclick="toggleM(7)">
+          <div class="mb-num">09–10</div>
+          <div class="mb-title-group">
+            <div class="mb-name">Вересень–Жовтень · Глибина</div>
+            <div class="mb-tag">Аудит і трансформація</div>
+          </div>
+          <div class="mb-phase phase-integrate-tag">Інтеграція</div>
+          <div class="mb-toggle">+</div>
+        </div>
+        <div class="mb-body">
+          <div class="mb-content">
+            <div class="mb-focus">"Що працює? Подвоїти. Що не резонує? Відпустити."</div>
+            <ul class="mb-actions">
+              <li>Аудит практики: які клієнти дають енергію, які — забирають</li>
+              <li>Перша чітка ідентичність консультанта: хто ти тепер одним реченням?</li>
+              <li>Жовтень: Плутон прямий — підняти ціни або переосмислити нішу</li>
+              <li>Документувати перші GovTech-інсайти з AMT (для майбутнього контенту)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="month-block" data-i="8">
+        <div class="mb-header" onclick="toggleM(8)">
+          <div class="mb-num">11–12</div>
+          <div class="mb-title-group">
+            <div class="mb-name">Листопад–Грудень · Синтез</div>
+            <div class="mb-tag">Нова ідентичність · 2027</div>
+          </div>
+          <div class="mb-phase phase-still-tag">Тиша</div>
+          <div class="mb-toggle">+</div>
+        </div>
+        <div class="mb-body">
+          <div class="mb-content">
+            <div class="mb-focus">"Хто ти в грудні — і хто ти хочеш стати в 2027?"</div>
+            <ul class="mb-actions">
+              <li>Написати "Звіт трансформації 2026" — 1 сторінка для себе</li>
+              <li>Листопад: ретроград → не підписувати нових контрактів, завершити поточне</li>
+              <li>Грудень: повна стратегія 2027 — GovTech consulting pipeline</li>
+              <li>Перший pipeline клієнтів на 2027 — порожній pipeline = порожній рік</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-quote">"Кожен поворот був підйомом, навіть якщо здавався боковим."</div>
+    <div class="footer-meta">Артур · ♑ 09.01.1990 · Legnica<br>Стратегічний профіль 2026</div>
+  </footer>
+
+</div>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function toggleM(i) {
+    const blocks = document.querySelectorAll('.month-block');
+    const b = blocks[i];
+    b.classList.toggle('open');
+  }
+
+  // Open first month by default
+  document.querySelectorAll('.month-block')[0].classList.add('open');
+</script>
+</body>
+</html>

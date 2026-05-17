@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кар'єрний Аналіз · Козеріг 09.01.1990 [ВИПРАВЛЕНО]</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Newsreader:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #0C0D0F;
+  --bg2:    #141618;
+  --bg3:    #1C1E22;
+  --line:   #252830;
+  --gold:   #C8962A;
+  --gold2:  #E8B84A;
+  --gold3:  rgba(200,150,42,0.12);
+  --green:  #2A9E6A;
+  --green2: #1A6A48;
+  --red:    #B83838;
+  --white:  #EDEAE2;
+  --muted:  #6A6E7A;
+  --silver: #9AA0B0;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body {
+  background:var(--bg);
+  color:var(--white);
+  font-family:'Newsreader',serif;
+  font-size:17px;
+  line-height:1.8;
+  overflow-x:hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:0 0 80px;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+
+.hero-grid {
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:60px 60px;
+  opacity:.4;
+  mask-image:linear-gradient(to bottom, transparent 0%, black 40%, black 70%, transparent 100%);
+}
+
+.hero-orb {
+  position:absolute;
+  top:-100px;right:-100px;
+  width:500px;height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(200,150,42,0.15) 0%, transparent 70%);
+  pointer-events:none;
+}
+
+.hero-inner {
+  max-width:1000px;
+  margin:0 auto;
+  padding:0 40px;
+  position:relative;
+}
+
+.hero-tag {
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--gold);
+  margin-bottom:32px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.hero-tag::before {
+  content:'';width:40px;height:1px;background:var(--gold);
+}
+
+.hero-h1 {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(44px,8vw,96px);
+  font-weight:800;
+  line-height:.95;
+  letter-spacing:-2px;
+  color:var(--white);
+  margin-bottom:24px;
+}
+
+.hero-h1 em {
+  display:block;
+  color:var(--gold);
+  font-style:normal;
+}
+
+.hero-sub {
+  font-size:18px;
+  font-style:italic;
+  color:var(--muted);
+  max-width:560px;
+  line-height:1.65;
+  margin-bottom:48px;
+}
+
+.hero-insight {
+  display:inline-block;
+  border:1px solid var(--gold);
+  padding:16px 24px;
+  background:var(--gold3);
+  max-width:680px;
+}
+
+.hero-insight p {
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  color:var(--gold2);
+  line-height:1.7;
+}
+
+.hero-insight p strong { color:var(--white); }
+
+/* ── NAV ── */
+.nav {
+  position:sticky;top:0;z-index:100;
+  background:rgba(12,13,15,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  display:flex;overflow-x:auto;
+  scrollbar-width:none;
+}
+.nav::-webkit-scrollbar{display:none}
+
+.nav-btn {
+  padding:14px 20px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--muted);
+  cursor:pointer;border:none;background:none;
+  border-bottom:2px solid transparent;
+  white-space:nowrap;flex-shrink:0;
+  transition:all .2s;
+}
+
+.nav-btn:hover{color:var(--gold)}
+.nav-btn.on{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── PANELS ── */
+.pnl{display:none}
+.pnl.on{display:block}
+
+/* ── WRAP ── */
+.wrap {
+  max-width:960px;margin:0 auto;
+  padding:72px 32px 100px;
+}
+
+/* ── TYPE ── */
+.sect-tag {
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:4px;color:var(--gold);
+  margin-bottom:8px;
+  display:flex;align-items:center;gap:16px;
+}
+.sect-tag::after{content:'';flex:1;height:1px;background:var(--line)}
+
+.sect-h {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(28px,5vw,52px);
+  font-weight:800;letter-spacing:-1px;
+  line-height:1;
+  margin-bottom:32px;
+  color:var(--white);
+}
+
+.sect-h em{color:var(--gold);font-style:normal}
+
+.lead {
+  font-size:19px;font-style:italic;
+  color:var(--silver);line-height:1.75;
+  margin-bottom:56px;
+  padding-left:24px;
+  border-left:2px solid var(--gold);
+  max-width:680px;
+}
+
+/* ── SYNTHESIS BOX ── */
+.synthesis {
+  background:var(--bg2);
+  border:1px solid var(--gold);
+  padding:40px;
+  margin-bottom:56px;
+  position:relative;
+}
+
+.synthesis::before {
+  content:'★ КЛЮЧОВИЙ ІНСАЙТ';
+  position:absolute;top:-11px;left:24px;
+  background:var(--bg);padding:0 12px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;letter-spacing:4px;color:var(--gold);
+}
+
+.synthesis p {
+  font-size:18px;line-height:1.85;color:var(--silver);
+}
+
+.synthesis p strong{color:var(--white)}
+.synthesis p em{color:var(--gold);font-style:italic}
+
+/* ── CAREER CARDS ── */
+.career-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;background:var(--line);
+  margin-bottom:2px;
+}
+
+.c-card {
+  background:var(--bg2);
+  padding:32px 28px;
+  transition:background .2s;
+  position:relative;
+  overflow:hidden;
+}
+
+.c-card:hover{background:var(--bg3)}
+
+.c-card::after {
+  content:attr(data-n);
+  position:absolute;bottom:-16px;right:8px;
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:80px;color:rgba(255,255,255,.03);
+  line-height:1;pointer-events:none;
+}
+
+.c-card-tag {
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;letter-spacing:3px;
+  color:var(--gold);margin-bottom:12px;
+}
+
+.c-card-title {
+  font-family:'Syne',sans-serif;
+  font-weight:700;font-size:22px;
+  color:var(--white);margin-bottom:8px;
+  line-height:1.2;
+}
+
+.c-card-why {
+  font-size:14px;color:var(--muted);
+  line-height:1.6;margin-bottom:16px;
+}
+
+.c-card-planet {
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:16px;
+}
+
+.planet-tag {
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;padding:3px 8px;
+  border:1px solid var(--line);color:var(--muted);
+}
+
+.c-card-details {
+  border-top:1px solid var(--line);
+  padding-top:16px;
+}
+
+.c-card-details ul{list-style:none}
+
+.c-card-details ul li {
+  font-size:13px;color:var(--silver);
+  padding:4px 0;display:flex;gap:8px;
+  border-bottom:1px solid rgba(255,255,255,.03);
+  line-height:1.5;
+}
+
+.c-card-details ul li::before{
+  content:'→';color:var(--gold);flex-shrink:0;font-family:monospace;
+}
+
+.potential-bar {
+  margin-top:12px;
+  display:flex;align-items:center;gap:10px;
+}
+
+.pb-label {
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;letter-spacing:2px;color:var(--muted);
+  flex-shrink:0;
+}
+
+.pb-track {
+  flex:1;height:2px;background:var(--line);
+}
+
+.pb-fill {
+  height:100%;background:linear-gradient(to right, var(--gold), var(--gold2));
+}
+
+/* ── NOT YOURS ── */
+.not-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:2px;background:var(--line);
+  margin-bottom:2px;
+}
+
+.not-card {
+  background:var(--bg2);
+  padding:24px 20px;
+  transition:background .2s;
+  border-top:2px solid var(--red);
+}
+
+.not-card:hover{background:var(--bg3)}
+
+.not-icon{font-size:24px;margin-bottom:10px}
+
+.not-title {
+  font-family:'Syne',sans-serif;
+  font-weight:700;font-size:17px;
+  color:var(--white);margin-bottom:6px;
+}
+
+.not-why {
+  font-size:13px;color:var(--muted);line-height:1.6;
+}
+
+/* ── PATH TIMELINE ── */
+.timeline {
+  position:relative;
+  padding-left:32px;
+  margin-bottom:56px;
+}
+
+.timeline::before {
+  content:'';
+  position:absolute;left:0;top:8px;bottom:8px;
+  width:1px;background:linear-gradient(to bottom, var(--gold), var(--line));
+}
+
+.tl-item {
+  position:relative;
+  margin-bottom:40px;
+}
+
+.tl-item::before {
+  content:'';
+  position:absolute;
+  left:-36px;top:8px;
+  width:9px;height:9px;
+  border-radius:50%;
+  background:var(--bg);
+  border:1px solid var(--gold);
+}
+
+.tl-year {
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:3px;
+  color:var(--gold);margin-bottom:4px;
+}
+
+.tl-title {
+  font-family:'Syne',sans-serif;
+  font-weight:700;font-size:20px;
+  color:var(--white);margin-bottom:8px;
+}
+
+.tl-body {
+  font-size:15px;color:var(--silver);
+  line-height:1.7;
+}
+
+.tl-body strong{color:var(--white)}
+
+/* ── SUPERPOWER BOX ── */
+.superpower {
+  background:linear-gradient(135deg,rgba(200,150,42,0.1),rgba(200,150,42,0.03));
+  border:1px solid var(--gold);
+  padding:48px;
+  margin:56px 0;
+  text-align:center;
+}
+
+.sp-title {
+  font-family:'Syne',sans-serif;
+  font-size:clamp(24px,4vw,40px);
+  font-weight:800;letter-spacing:-1px;
+  color:var(--gold2);margin-bottom:20px;
+}
+
+.sp-text {
+  font-size:18px;font-style:italic;
+  color:var(--silver);max-width:640px;
+  margin:0 auto 24px;line-height:1.8;
+}
+
+.sp-text strong{color:var(--white);font-style:normal}
+
+.sp-list {
+  display:flex;flex-wrap:wrap;gap:8px;
+  justify-content:center;margin-top:20px;
+}
+
+.sp-chip {
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;padding:6px 14px;
+  border:1px solid var(--gold);
+  color:var(--gold2);
+  background:rgba(200,150,42,0.08);
+}
+
+/* ── ACTION PLAN ── */
+.action-phases {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;background:var(--line);
+  margin-bottom:48px;
+}
+
+.ap-phase {
+  background:var(--bg2);
+  padding:28px 24px;
+}
+
+.ap-num {
+  font-family:'Syne',sans-serif;
+  font-weight:800;font-size:48px;
+  color:rgba(200,150,42,0.2);
+  line-height:1;margin-bottom:8px;
+}
+
+.ap-period {
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;letter-spacing:3px;
+  color:var(--gold);margin-bottom:8px;
+}
+
+.ap-title {
+  font-family:'Syne',sans-serif;
+  font-weight:700;font-size:18px;
+  color:var(--white);margin-bottom:12px;
+}
+
+.ap-body {
+  font-size:14px;color:var(--muted);
+  line-height:1.65;
+}
+
+.ap-body strong{color:var(--silver)}
+
+/* ── QUESTIONS ── */
+.q-list {
+  display:flex;flex-direction:column;gap:2px;
+  margin-bottom:48px;
+}
+
+.q-row {
+  background:var(--bg2);
+  padding:20px 28px;
+  display:flex;gap:20px;align-items:flex-start;
+  border:1px solid var(--line);
+  transition:border-color .2s;
+  cursor:default;
+}
+
+.q-row:hover{border-color:var(--gold)}
+
+.q-n {
+  font-family:'Syne',sans-serif;
+  font-weight:800;font-size:28px;
+  color:rgba(200,150,42,0.25);
+  line-height:1;flex-shrink:0;width:36px;
+}
+
+.q-text {
+  font-size:17px;color:var(--silver);
+  line-height:1.65;
+  font-style:italic;
+}
+
+.q-text strong{color:var(--white);font-style:normal}
+
+/* ── FINAL ── */
+.final-block {
+  background:var(--bg2);
+  border-top:2px solid var(--gold);
+  padding:48px;
+  text-align:center;
+}
+
+.fb-quote {
+  font-family:'Newsreader',serif;
+  font-size:clamp(20px,3vw,28px);
+  font-style:italic;
+  color:var(--white);
+  line-height:1.5;
+  max-width:640px;margin:0 auto 24px;
+}
+
+.fb-attr {
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;letter-spacing:3px;
+  color:var(--muted);
+}
+
+/* responsive */
+@media(max-width:640px){
+  .career-grid{grid-template-columns:1fr}
+  .not-grid{grid-template-columns:1fr 1fr}
+  .action-phases{grid-template-columns:1fr}
+  .hero-inner{padding:0 20px}
+  .wrap{padding:48px 20px 80px}
+  .synthesis{padding:24px}
+  .superpower{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">Кар'єрний Астроаналіз · 09.01.1990 · Козеріг</div>
+    <h1 class="hero-h1">
+      КУДИ ВЕДЕ
+      <em>ТВІЙ ШЛЯХ</em>
+    </h1>
+    <p class="hero-sub">Три сфери, три трансформації — не помилки, а архітектура. Твій рух не хаотичний. Він спіральний.</p>
+    <div class="hero-insight">
+      <p>
+        <strong>Місяць у Близнюках + Козерожний Асцендент + Козерожний Стеліум</strong> —
+        класична карта людини, що збирає різні домени знань і потім
+        стає <strong>рідкісним синтезатором</strong>, якого неможливо замінити.
+        Три сфери — це не блукання. Це твоя унікальна конкурентна перевага, що ще не розкрита повністю.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="nav-btn on" onclick="sw('pattern')">Патерн</button>
+  <button class="nav-btn" onclick="sw('open')">Відкриті Напрямки</button>
+  <button class="nav-btn" onclick="sw('notyours')">Не твоє</button>
+  <button class="nav-btn" onclick="sw('super')">Суперсила</button>
+  <button class="nav-btn" onclick="sw('action')">План Дій</button>
+</nav>
+
+
+<!-- ══ PANEL: PATTERN ══ -->
+<div id="p-pattern" class="pnl on">
+<div class="wrap">
+
+  <p class="sect-tag">Розшифровка Минулого</p>
+  <h2 class="sect-h">Три Сфери — <em>Один Сенс</em></h2>
+  <p class="lead">
+    Зміна трьох професій у трьох різних сферах — це не нестабільність.
+    Це рідкісна астрологічна програма Місяця у Близнюках
+    та Козерожного Асцендента: <em>систематизуй набутий досвід і будуй своє.</em>
+  </p>
+
+  <div class="synthesis">
+    <p>
+      Твій Козеріг будує <strong>повільно і вічно</strong>. Але перш ніж будувати,
+      він збирає ресурси. Три різні сфери — це три пласти фундаменту.
+      Більшість людей мають один. Ти маєш три —
+      і <em>саме це зробить те, що ти побудуєш далі, неповторним</em>.
+      Питання не «навіщо я стільки міняв», а
+      <strong>«що спільне між усіма трьома сферами і що саме я хочу будувати?»</strong>
+    </p>
+  </div>
+
+  <p class="sect-tag">Астрологічне Пояснення Патерну</p>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-year">ФАЗА І · ЮПІТЕР У КОЗЕРОГУ</div>
+      <div class="tl-title">Перша сфера — Захоплення і Вхід</div>
+      <div class="tl-body">
+        Місяць у Близнюках кидається у нову сферу з ентузіазмом і широтою.
+        Ти швидко схоплюєш суть, виходиш на середній рівень.
+        <strong>Але Козеріг відчуває: тут немає достатньо глибини або масштабу</strong>,
+        щоб будувати те, чого ти реально хочеш. І виходиш.
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">ФАЗА ІІ · САТУРН У КОЗЕРОГУ</div>
+      <div class="tl-title">Друга сфера — Глибина і Розчарування</div>
+      <div class="tl-body">
+        Ти заходиш глибше. Місяць у Близнятах знаходить нові зв'язки
+        між сферами. Ти починаєш бачити <strong>те, чого не бачать «чисті» фахівці</strong>.
+        Але знову — або стеля занадто низька, або система занадто закрита для твого рівня амбіцій.
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">ФАЗА ІІІ · УРАН У КОЗЕРОГУ</div>
+      <div class="tl-title">Третя сфера — Синтез і Пошук Форми</div>
+      <div class="tl-body">
+        Тут ти вже несеш у собі знання двох попередніх світів.
+        <strong>Уран у Козерогу — революціонер у системах</strong>: ти вже бачиш,
+        як можна поєднати те, що здавалося непоєднуваним.
+        Питання тільки одне: в якій формі зробити це твоїм бізнесом або призначенням?
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-year">ФАЗА IV · ПЛУТОН ТРАНЗИТУЄ · 2026–2030</div>
+      <div class="tl-title">Четверта фаза — Будівництво Власної Системи</div>
+      <div class="tl-body">
+        Це не нова сфера. Це <strong>власна платформа або позиція</strong>,
+        що поєднує все попереднє.
+        Козеріг будує один раз — але назавжди.
+        Ця фаза вже починається. Юпітер 2026 відчиняє двері.
+        <strong>Час зупинити збирання і почати будувати.</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="synthesis" style="border-color:var(--green);background:rgba(42,158,106,0.06)">
+    <p style="border-left-color:var(--green)">
+      <strong>Астрологічна правда про зміну сфер:</strong>
+      Місяць у Близнюках <em>фізично потребує</em> різноманіття і нових зв'язків.
+      Марс у Стрільці шукає сенс і велику мету через дії.
+      Козеріг будує довго. <strong>Поки Козеріг не знайде «свою гору» —
+      він підіймається на різні, щоб зрозуміти, яка його.</strong>
+      Три сфери — це не проблема твоєї карти. Це її програма.
+    </p>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══ PANEL: OPEN DIRECTIONS ══ -->
+<div id="p-open" class="pnl">
+<div class="wrap">
+
+  <p class="sect-tag">Напрямки Відкриті Для Тебе</p>
+  <h2 class="sect-h">Де Є <em>Потенціал</em></h2>
+  <p class="lead">
+    Відібрано під твою точну карту: Козеріг Стеліум + Місяць Близнюки + Марс Стрілець + Плутон Скорпіон.
+    Не «підходить для всіх» — підходить для тебе.
+  </p>
+
+  <div class="career-grid">
+
+    <div class="c-card" data-n="01">
+      <div class="c-card-tag">★ НАЙВИЩИЙ ПОТЕНЦІАЛ</div>
+      <div class="c-card-title">Стратегічний Консалтинг і Advisory</div>
+      <div class="c-card-why">Козеріг + три сфери = рідкісний міждисциплінарний стратег. Люди платять найбільше за тих, хто бачить те, що вузький спеціаліст не може побачити.</div>
+      <div class="c-card-planet">
+        <span class="planet-tag">♄ Сатурн — авторитет</span>
+        <span class="planet-tag">☿ Меркурій — стратегія</span>
+        <span class="planet-tag">♃ Юпітер Рак — мудрість та інтуїція</span>
+      </div>
+      <div class="c-card-details">
+        <ul>
+          <li>Консультант для C-level — ти говориш їхньою мовою</li>
+          <li>Незалежний advisor у своїй синтетичній ніші</li>
+          <li>Фракційний директор (fractional CxO) у кількох компаніях</li>
+          <li>Побудова власної консалтингової практики</li>
+        </ul>
+      </div>
+      <div class="potential-bar">
+        <span class="pb-label">ПОТЕНЦІАЛ</span>
+        <div class="pb-track"><div class="pb-fill" style="width:97%"></div></div>
+      </div>
+    </div>
+
+    <div class="c-card" data-n="02">
+      <div class="c-card-tag">★ НАЙВИЩИЙ ПОТЕНЦІАЛ</div>
+      <div class="c-card-title">Підприємництво — Власна Система або Продукт</div>
+      <div class="c-card-why">Марс у Стрільці + Сатурн у Козерогу = народжений будувати бізнес з ентузіазмом і широтою задуму. Три сфери дають унікальне позиціонування продукту чи послуги.</div>
+      <div class="c-card-planet">
+        <span class="planet-tag">♂ Марс — виконання</span>
+        <span class="planet-tag">♄ Сатурн — система</span>
+        <span class="planet-tag">♅ Уран — інновація</span>
+      </div>
+      <div class="c-card-details">
+        <ul>
+          <li>Власна компанія або сервіс на перетині твоїх трьох сфер</li>
+          <li>Продукт, що вирішує проблему, яку ти бачиш зсередини</li>
+          <li>Партнерський бізнес (ти — стратег, партнер — оператор)</li>
+          <li>Купівля/реструктуризація малого бізнесу (Козеріг обожнює це)</li>
+        </ul>
+      </div>
+      <div class="potential-bar">
+        <span class="pb-label">ПОТЕНЦІАЛ</span>
+        <div class="pb-track"><div class="pb-fill" style="width:95%"></div></div>
+      </div>
+    </div>
+
+    <div class="c-card" data-n="03">
+      <div class="c-card-tag">СИЛЬНИЙ НАПРЯМОК</div>
+      <div class="c-card-title">Навчання, Коучинг і Thought Leadership</div>
+      <div class="c-card-why">Місяць у Близнюках + Юпітер у Раку в екзальтації = природний вчитель і комунікатор з емоційним інтелектом. Козеріг дає глибину. Люди платять за досвід того, хто пройшов їхній шлях.</div>
+      <div class="c-card-planet">
+        <span class="planet-tag">☽ Місяць — комунікація</span>
+        <span class="planet-tag">♃ Юпітер Рак — мудрість</span>
+        <span class="planet-tag">♄ Сатурн — глибина і структура</span>
+      </div>
+      <div class="c-card-details">
+        <ul>
+          <li>Онлайн-курси або програми у своїй синтетичній ніші</li>
+          <li>Менторство для людей, що хочуть змінити кар'єру</li>
+          <li>Публічний спікер або фасилітатор для бізнесу</li>
+          <li>Канал, блог, подкаст — «будівництво аудиторії» як актив</li>
+        </ul>
+      </div>
+      <div class="potential-bar">
+        <span class="pb-label">ПОТЕНЦІАЛ</span>
+        <div class="pb-track"><div class="pb-fill" style="width:88%"></div></div>
+      </div>
+    </div>
+
+    <div class="c-card" data-n="04">
+      <div class="c-card-tag">СИЛЬНИЙ НАПРЯМОК</div>
+      <div class="c-card-title">Міжнародний Бізнес-Розвиток</div>
+      <div class="c-card-why">Марс у Стрільці + Уран у Козерогу + Венера у Водолії = природня тяга до нових ідей, ринків і різних культур. Ти добре читаєш людей з різних середовищ і знаходиш спільну мову.</div>
+      <div class="c-card-planet">
+        <span class="planet-tag">♂ Марс Стрілець — широта</span>
+        <span class="planet-tag">♅ Уран — нові ринки</span>
+        <span class="planet-tag">♀ Венера Водолій — нестандартне мислення</span>
+      </div>
+      <div class="c-card-details">
+        <ul>
+          <li>Business development у компанії з міжнародною присутністю</li>
+          <li>Партнерства і дистрибуція на нових ринках</li>
+          <li>Побудова ком'юніті або мережі у конкретній ніші</li>
+          <li>Власний бізнес з іноземним партнером або ринком</li>
+        </ul>
+      </div>
+      <div class="potential-bar">
+        <span class="pb-label">ПОТЕНЦІАЛ</span>
+        <div class="pb-track"><div class="pb-fill" style="width:85%"></div></div>
+      </div>
+    </div>
+
+    <div class="c-card" data-n="05">
+      <div class="c-card-tag">РОЗКРИТТЯ ЧЕРЕЗ УРАН-ТРАНЗИТ</div>
+      <div class="c-card-title">Технологія + Традиційна Галузь</div>
+      <div class="c-card-why">Уран у Козерогу — архетип того, хто бачить, як технологія трансформує старі індустрії раніше, ніж це стає очевидним. Це рідкісний і дуже цінний тип мислення.</div>
+      <div class="c-card-planet">
+        <span class="planet-tag">♅ Уран — технологія</span>
+        <span class="planet-tag">♄ Козеріг — традиція</span>
+        <span class="planet-tag">♇ Плутон — трансформація</span>
+      </div>
+      <div class="c-card-details">
+        <ul>
+          <li>Впровадження AI/автоматизації у класичну галузь</li>
+          <li>Productization традиційного сервісу через технологію</li>
+          <li>Консалтинг для компаній, що проходять цифрову трансформацію</li>
+          <li>Інвестиції або advisory у tech-стартапи у знайомих нішах</li>
+        </ul>
+      </div>
+      <div class="potential-bar">
+        <span class="pb-label">ПОТЕНЦІАЛ</span>
+        <div class="pb-track"><div class="pb-fill" style="width:90%"></div></div>
+      </div>
+    </div>
+
+    <div class="c-card" data-n="06">
+      <div class="c-card-tag">ДОВГОСТРОКОВИЙ АКТИВ</div>
+      <div class="c-card-title">Управління та Операційне Лідерство</div>
+      <div class="c-card-why">Козеріг — природний архітектор організацій. Твій пік як СEO, COO або MD настає після 38 років. 2026–2030 — твій час виходити на рівень реального управлінського впливу.</div>
+      <div class="c-card-planet">
+        <span class="planet-tag">♄ Сатурн — зрілість</span>
+        <span class="planet-tag">♂ Марс — виконання</span>
+        <span class="planet-tag">☀ Сонце — лідерство</span>
+      </div>
+      <div class="c-card-details">
+        <ul>
+          <li>CEO або Managing Director у компанії своєї ніші</li>
+          <li>Scaling officer — виводити бізнес на новий рівень</li>
+          <li>Портфельне управління кількома проектами одночасно</li>
+          <li>Рада директорів або advisory board у кількох компаніях</li>
+        </ul>
+      </div>
+      <div class="potential-bar">
+        <span class="pb-label">ПОТЕНЦІАЛ</span>
+        <div class="pb-track"><div class="pb-fill" style="width:92%"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══ PANEL: NOT YOURS ══ -->
+<div id="p-notyours" class="pnl">
+<div class="wrap">
+
+  <p class="sect-tag">Чесна Астрологічна Оцінка</p>
+  <h2 class="sect-h">Що <em>Відкинути</em></h2>
+  <p class="lead">
+    Козеріг витрачає жахливу кількість енергії на невідповідні ролі.
+    Ось що точно не твоє — і чому продовжувати це коштує занадто дорого.
+  </p>
+
+  <div class="synthesis" style="border-color:var(--red);background:rgba(184,56,56,0.06)">
+    <p>
+      Головний критерій «не твого»: якщо через 6 місяців у ролі відчуваєш
+      <strong>стелю, відсутність впливу або неможливість будувати щось своє</strong> —
+      це сигнал карти. <em>Козеріг задихається у коробках, де йому не дають будувати.</em>
+    </p>
+  </div>
+
+  <div class="not-grid">
+    <div class="not-card">
+      <div class="not-icon">🔩</div>
+      <div class="not-title">Чиста виконавська роль</div>
+      <div class="not-why">Без стратегії, без впливу на рішення, без можливості будувати. Козеріг у такій ролі деградує за 3–6 місяців. Можеш зробити — але ціна надто висока.</div>
+    </div>
+    <div class="not-card">
+      <div class="not-icon">📞</div>
+      <div class="not-title">Холодні продажі без стратегії</div>
+      <div class="not-why">Меркурій у Козерогу — стратег, не продавець. Ти хороший у продажах через авторитет і довіру, не через кількість дзвінків. Mass sales — не твій метод.</div>
+    </div>
+    <div class="not-card">
+      <div class="not-icon">🎨</div>
+      <div class="not-title">Чисто творчі ролі</div>
+      <div class="not-why">Дизайн, мистецтво, творчість як основна діяльність — Місяць Близнята цікавиться, але Козеріг потребує структури і результату. Творчість — твій інструмент, не кінцева мета.</div>
+    </div>
+    <div class="not-card">
+      <div class="not-icon">🏥</div>
+      <div class="not-title">Емпатійні сервісні ролі</div>
+      <div class="not-why">Соціальна робота, психологія клієнтів, турбота — ти можеш, але це виснажує без відповідної віддачі. Козеріг допомагає через системи, а не через постійну особисту присутність.</div>
+    </div>
+    <div class="not-card">
+      <div class="not-icon">🗳️</div>
+      <div class="not-title">Публічна політика</div>
+      <div class="not-why">Залежність від популярності, голосувань, публічного схвалення — антитеза Козерога. Ти будуєш, а не граєш у ігри схвалення. Вплив через результат, не через образ.</div>
+    </div>
+    <div class="not-card">
+      <div class="not-icon">⏱️</div>
+      <div class="not-title">Робота з жорстким мікроконтролем</div>
+      <div class="not-why">Будь-яка роль, де начальник контролює кожний крок — Сатурн у Козерогу потребує автономії. Без автономії падає продуктивність і з'являється хронічний стрес.</div>
+    </div>
+    <div class="not-card">
+      <div class="not-icon">🎰</div>
+      <div class="not-title">Спекулятивні швидкі схеми</div>
+      <div class="not-why">Крипто-трейдинг, MLM, швидкі гроші — суперечить натурі Козерога. Ти будуєш повільно і вічно. Спекуляція без системи руйнує твою концентрацію.</div>
+    </div>
+    <div class="not-card">
+      <div class="not-icon">📋</div>
+      <div class="not-title">Рутинна адміністративна робота</div>
+      <div class="not-why">Паперова робота, обробка даних, адміністрування без стратегічного компонента — це для Козерога буквально як в'язниця. Автоматизуй або делегуй повністю.</div>
+    </div>
+    <div class="not-card">
+      <div class="not-icon">👥</div>
+      <div class="not-title">Великі корпоративні ієрархії</div>
+      <div class="not-why">Де результати не видно, де просування залежить від політики, а не від якості — Уран у Козерогу ненавидить штучні обмеження. Краще менша компанія, але з реальним впливом.</div>
+    </div>
+  </div>
+
+  <div class="synthesis">
+    <p>
+      <strong>Лакмусовий тест для будь-якої можливості:</strong>
+      запитай себе — <em>«Через 5 років у цій ролі я буду будувати щось своє
+      або виконувати чуже?»</em> Якщо відповідь «виконувати чуже» —
+      <strong>це не твій шлях, навіть якщо добре платять.</strong>
+      Козеріг задихається без власної гори.
+    </p>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══ PANEL: SUPERPOWER ══ -->
+<div id="p-super" class="pnl">
+<div class="wrap">
+
+  <p class="sect-tag">Твоя Унікальна Перевага</p>
+  <h2 class="sect-h">Суперсила <em>Синтезатора</em></h2>
+  <p class="lead">
+    Ринок переповнений вузькими спеціалістами. Рідкість — людина,
+    що глибоко знає три різних домени і вміє з'єднати їх у нову цінність.
+    Саме це твоя карта і робить.
+  </p>
+
+  <div class="superpower">
+    <div class="sp-title">Ти не Спеціаліст.<br>Ти Архітектор Мостів.</div>
+    <p class="sp-text">
+      Спеціаліст знає одну річ глибоко. Генераліст знає багато речей поверхово.
+      <strong>Синтезатор знає кілька речей глибоко і бачить між ними зв'язки,
+      невидимі нікому іншому.</strong>
+      Це найрідкісніший і найцінніший тип на ринку —
+      і саме тут твоя карта розкривається повністю.
+    </p>
+    <div class="sp-list">
+      <span class="sp-chip">Міждисциплінарне мислення</span>
+      <span class="sp-chip">Стратегічний синтез</span>
+      <span class="sp-chip">Бачення систем</span>
+      <span class="sp-chip">Невидимі зв'язки між доменами</span>
+      <span class="sp-chip">Авторитет через глибину</span>
+      <span class="sp-chip">Рідкісне позиціонування</span>
+    </div>
+  </div>
+
+  <p class="sect-tag">Що Говорить Карта</p>
+
+  <div class="career-grid">
+    <div class="c-card" data-n="A">
+      <div class="c-card-tag">☀ СОНЦЕ У КОЗЕРОГУ</div>
+      <div class="c-card-title">Авторитет через Доведений Результат</div>
+      <div class="c-card-why">Твоє слово важить, коли за ним стоїть реальний досвід. Не теорія — практика. Три сфери дають тобі цей досвід у рідкісному обсязі.</div>
+      <div class="c-card-details">
+        <ul>
+          <li>Люди довіряють тобі, бо ти «там був»</li>
+          <li>Твоя рекомендація вагоміша за думку теоретика</li>
+          <li>Авторитет накопичується роками — Козеріг грає довгу гру</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="c-card" data-n="B">
+      <div class="c-card-tag">☽ МІСЯЦЬ У БЛИЗНЯТАХ</div>
+      <div class="c-card-title">Здатність Пояснювати Складне Просто</div>
+      <div class="c-card-why">Ти можеш взяти складну ідею зі своєї ніші і пояснити її так, щоб зрозуміли люди з іншого домену. Це рідкісна навичка, що коштує дорого.</div>
+      <div class="c-card-details">
+        <ul>
+          <li>Міст між технарями і бізнесом</li>
+          <li>Переговорник між різними культурами думання</li>
+          <li>Автор або спікер, що робить складне доступним</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="c-card" data-n="C">
+      <div class="c-card-tag">♅ УРАН У КОЗЕРОГУ</div>
+      <div class="c-card-title">Бачення Майбутнього Систем</div>
+      <div class="c-card-why">Ти бачиш, як старі структури трансформуються, раніше більшості. Це дає тобі перевагу у позиціонуванні і стратегії — і для себе, і для клієнтів.</div>
+      <div class="c-card-details">
+        <ul>
+          <li>Ранній adopter правильних ідей у потрібний момент</li>
+          <li>Стратег, що думає на 5–10 років наперед</li>
+          <li>Провідник для тих, хто боїться змін</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="c-card" data-n="D">
+      <div class="c-card-tag">♇ ПЛУТОН У СКОРПІОНІ</div>
+      <div class="c-card-title">Доступ до Прихованих Рушіїв</div>
+      <div class="c-card-why">Ти бачиш справжні мотивації людей і систем — за фасадом. Це дає надзвичайну перевагу у переговорах, побудові стратегій і людських стосунках.</div>
+      <div class="c-card-details">
+        <ul>
+          <li>Відчуваєш, що реально рухає ситуацію</li>
+          <li>Бачиш «де гроші» і «де влада» у будь-якій системі</li>
+          <li>Природний дослідник і стратег глибинних процесів</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key questions -->
+  <p class="sect-tag" style="margin-top:56px">Питання для Пошуку Своєї Форми</p>
+  <h3 style="font-family:'Syne',sans-serif;font-size:26px;font-weight:700;color:var(--white);margin-bottom:24px">Де Перетинаються Твої Три Сфери?</h3>
+
+  <div class="q-list">
+    <div class="q-row">
+      <div class="q-n">1</div>
+      <div class="q-text">Що є <strong>спільного між усіма трьома сферами</strong>, в яких ти працював? Яка ниткова тема проходить крізь усі три?</div>
+    </div>
+    <div class="q-row">
+      <div class="q-n">2</div>
+      <div class="q-text">У яких моментах у кожній із сфер ти відчував, що <strong>робиш те, що інші зробити не можуть</strong>? Що це було?</div>
+    </div>
+    <div class="q-row">
+      <div class="q-n">3</div>
+      <div class="q-text">Якби ти міг <strong>побудувати ідеальну роль або бізнес</strong>, що поєднує знання з усіх трьох сфер — як вона виглядає? Хто твій клієнт?</div>
+    </div>
+    <div class="q-row">
+      <div class="q-n">4</div>
+      <div class="q-text">Які <strong>проблеми у своїй нині поточній сфері</strong> ти бачиш, які інші не бачать — бо не мають твого досвіду з попередніх двох?</div>
+    </div>
+    <div class="q-row">
+      <div class="q-n">5</div>
+      <div class="q-text">Якою людиною ти хочеш бути у <strong>58 років</strong> — і що треба будувати починаючи з сьогодні, щоб опинитися там?</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ══ PANEL: ACTION ══ -->
+<div id="p-action" class="pnl">
+<div class="wrap">
+
+  <p class="sect-tag">Конкретні Кроки</p>
+  <h2 class="sect-h">Plan <em>Дій</em></h2>
+  <p class="lead">
+    Козеріг не любить абстракцій. Ось конкретна дорожня карта —
+    від «де я зараз» до «де маю бути».
+  </p>
+
+  <div class="action-phases">
+    <div class="ap-phase">
+      <div class="ap-num">01</div>
+      <div class="ap-period">ЗАРАЗ — 3 МІСЯЦІ</div>
+      <div class="ap-title">Картографування і Формулювання</div>
+      <div class="ap-body">
+        <strong>Завдання: знайти нитку.</strong><br><br>
+        Напиши 1–2 сторінки про кожну із трьох сфер: що ти там робив, що давалось легко, що давалось важко, що тебе драйвило.
+        <br><br>
+        Потім знайди <strong>спільне між усіма трьома</strong>. Це і є твоя унікальна ніша.
+        <br><br>
+        Мета: сформулювати одним реченням — <em>«Я допомагаю [кому] досягати [чого] через [як]».</em>
+      </div>
+    </div>
+    <div class="ap-phase">
+      <div class="ap-num">02</div>
+      <div class="ap-period">3 — 9 МІСЯЦІВ</div>
+      <div class="ap-title">Тестування і Перші Клієнти</div>
+      <div class="ap-body">
+        <strong>Завдання: перевірити формулу реальністю.</strong><br><br>
+        Знайди 3–5 людей або компаній, яким цікава твоя синтетична перевага.
+        Попрацюй із ними — за гроші або pro bono для відгуку.
+        <br><br>
+        Спостерігай: <strong>де ти даєш найбільшу цінність</strong> і за що платять найбільше.
+        <br><br>
+        Юпітер у квітні–червні 2026 відчиняє двері — будь готовий із готовим позиціонуванням.
+      </div>
+    </div>
+    <div class="ap-phase">
+      <div class="ap-num">03</div>
+      <div class="ap-period">9 МІСЯЦІВ — 3 РОКИ</div>
+      <div class="ap-title">Будівництво Власної Платформи</div>
+      <div class="ap-body">
+        <strong>Завдання: стати «тим самим» у своїй ніші.</strong><br><br>
+        Консалтинг, продукт, навчання, або гібрид — у тому форматі, що резонує.
+        <br><br>
+        Ключовий KPI Козерога: <strong>чи можеш ти через 3 роки сказати «я побудував щось своє»?</strong>
+        <br><br>
+        Листопад 2026 і 2027–2028 — астрологічні вікна для масштабування.
+      </div>
+    </div>
+  </div>
+
+  <p class="sect-tag">Практичні Дії Вже Зараз</p>
+
+  <div class="career-grid">
+    <div class="c-card" data-n="→">
+      <div class="c-card-tag">ЦЬОГО ТИЖНЯ</div>
+      <div class="c-card-title">Картографуй Свій Досвід</div>
+      <div class="c-card-details">
+        <ul>
+          <li>Виписати всі ролі, проекти, навички з трьох сфер</li>
+          <li>Знайти 5–7 речей, які є лише у тебе (не у більшості)</li>
+          <li>Сформулювати попередню нішу — навіть якщо «неточно»</li>
+          <li>Поговорити з 3 людьми, яким довіряєш — як вони тебе бачать?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="c-card" data-n="→">
+      <div class="c-card-tag">ЦЬОГО МІСЯЦЯ</div>
+      <div class="c-card-title">Побудуй Свою Видимість</div>
+      <div class="c-card-details">
+        <ul>
+          <li>LinkedIn: переписати профіль під синтетичну нішу</li>
+          <li>Написати 3–5 постів про перетин своїх трьох сфер</li>
+          <li>Зв'язатися з 10 людьми, яким може бути цікавий твій досвід</li>
+          <li>Знайти 2–3 спільноти у потенційній ніші і стати активним</li>
+        </ul>
+      </div>
+    </div>
+    <div class="c-card" data-n="→">
+      <div class="c-card-tag">ЦЬОГО КВАРТАЛУ</div>
+      <div class="c-card-title">Перші Реальні Кроки</div>
+      <div class="c-card-details">
+        <ul>
+          <li>Перша консультація або проект у новій формі позиціонування</li>
+          <li>Визначити формат: консалтинг / продукт / навчання / гібрид</li>
+          <li>Зрозуміти хто твій ідеальний клієнт і де він шукає таких як ти</li>
+          <li>Підготувати пропозицію до квітневого старту (Меркурій прямий)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="c-card" data-n="→">
+      <div class="c-card-tag">НА РІК ВПЕРЕД</div>
+      <div class="c-card-title">Стратегічна Позиція</div>
+      <div class="c-card-details">
+        <ul>
+          <li>Побудувати репутацію у ніші: кейси, відгуки, результати</li>
+          <li>Перший системний дохід із власної платформи або консалтингу</li>
+          <li>Вирішити: масштабувати сервіс чи будувати продукт</li>
+          <li>До листопада 2026 бути готовим до великих угод і партнерств</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="final-block">
+    <p class="fb-quote">
+      «Три сфери — не твої помилки.<br>
+      Це три шари фундаменту<br>
+      для будівлі, яку ніхто інший не може побудувати.»
+    </p>
+    <p class="fb-attr">Кар'єрний Аналіз · Козеріг 09.01.1990 · Легніца</p>
+  </div>
+
+</div>
+</div>
+
+<script>
+function sw(id){
+  document.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('p-'+id).classList.add('on');
+  event.target.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

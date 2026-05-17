@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Саммарі сесії · Артур · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f9f6f0;
+  --surface: #ffffff;
+  --surface2: #f2ede6;
+  --ink: #1a1714;
+  --ink2: #3d3930;
+  --ink3: #7a756e;
+  --gold: #9a7b3a;
+  --gold-light: rgba(154,123,58,0.1);
+  --green: #2d5e3f;
+  --green-light: rgba(45,94,63,0.08);
+  --blue: #2a4a7a;
+  --blue-light: rgba(42,74,122,0.08);
+  --red: #8b2e2e;
+  --red-light: rgba(139,46,46,0.07);
+  --border: rgba(26,23,20,0.1);
+  --border-mid: rgba(26,23,20,0.18);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.page { max-width: 820px; margin: 0 auto; padding: 0 28px 100px; }
+
+/* HEADER */
+header {
+  padding: 52px 0 32px;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 0;
+}
+.h-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.h-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.h-title em { font-style: italic; color: var(--gold); }
+.h-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+.h-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 4px 12px;
+  border: 0.5px solid var(--border-mid);
+  color: var(--ink3);
+  background: var(--surface);
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 10;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-item {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  color: var(--ink3);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+.nav-item:hover { color: var(--ink); }
+.nav-item.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* SECTION */
+.section { display: none; }
+.section.active { display: block; }
+
+/* SECTION TITLE */
+.sec-title {
+  font-family: 'Lora', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.sec-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+/* BLOCK TYPES */
+.block {
+  margin-bottom: 14px;
+  border-left: 2px solid;
+  padding: 14px 18px;
+}
+.block.gold { border-color: var(--gold); background: var(--gold-light); }
+.block.green { border-color: var(--green); background: var(--green-light); }
+.block.blue { border-color: var(--blue); background: var(--blue-light); }
+.block.red { border-color: var(--red); background: var(--red-light); }
+.block.neutral { border-color: var(--border-mid); background: var(--surface); }
+
+.block-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.block.gold .block-tag { color: var(--gold); }
+.block.green .block-tag { color: var(--green); }
+.block.blue .block-tag { color: var(--blue); }
+.block.red .block-tag { color: var(--red); }
+.block.neutral .block-tag { color: var(--ink3); }
+
+.block-text {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink2);
+}
+.block-text strong { color: var(--ink); font-weight: 500; }
+.block-text em { font-style: italic; color: var(--ink3); }
+
+/* LIST */
+.item-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
+.item-list li {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 13px; color: var(--ink2); line-height: 1.5;
+}
+.item-list li::before { flex-shrink: 0; margin-top: 1px; }
+.il-gold li::before { content: '◆'; color: var(--gold); font-size: 8px; margin-top: 4px; }
+.il-green li::before { content: '→'; color: var(--green); }
+.il-red li::before { content: '✕'; color: var(--red); }
+.il-blue li::before { content: '·'; color: var(--blue); font-size: 16px; margin-top: -2px; }
+.item-list li strong { color: var(--ink); font-weight: 500; }
+
+/* TABLE */
+.data-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+.data-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink3); padding: 8px 12px;
+  border-bottom: 1px solid var(--border-mid); text-align: left;
+}
+.data-table td {
+  padding: 10px 12px; border-bottom: 0.5px solid var(--border);
+  font-size: 13px; color: var(--ink2); vertical-align: top; line-height: 1.5;
+}
+.data-table td:first-child { font-weight: 500; color: var(--ink); width: 30%; }
+.data-table tr:last-child td { border-bottom: none; }
+
+/* GRID */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+@media(max-width:580px) { .grid2,.grid3 { grid-template-columns: 1fr; } }
+
+.mini-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border-mid);
+  padding: 14px 16px;
+}
+.mc-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink3); margin-bottom: 6px;
+}
+.mc-val { font-size: 13px; color: var(--ink); line-height: 1.5; }
+.mc-val strong { font-weight: 500; }
+
+/* TIMELINE */
+.timeline { position: relative; margin-bottom: 20px; }
+.timeline::before {
+  content:''; position: absolute; left: 72px; top: 0; bottom: 0;
+  width: 0.5px; background: var(--border-mid);
+}
+.tl-item {
+  display: grid; grid-template-columns: 72px 14px 1fr;
+  gap: 0 16px; margin-bottom: 18px; align-items: start;
+}
+.tl-yr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--ink3); text-align: right; padding-top: 2px;
+}
+.tl-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--bg); border: 1.5px solid var(--gold);
+  margin-top: 3px; position: relative; z-index: 1;
+}
+.tl-dot.filled { background: var(--gold); }
+.tl-body {}
+.tl-role { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.3; margin-bottom: 3px; }
+.tl-note { font-size: 12px; color: var(--ink3); line-height: 1.4; }
+.tl-skill {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold); border: 0.5px solid rgba(154,123,58,0.3);
+  padding: 2px 7px; margin-top: 5px; margin-right: 4px;
+}
+
+/* DIVIDER */
+.divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 28px 0 22px;
+}
+.divider::before, .divider::after { content:''; flex:1; height:0.5px; background: var(--border); }
+.divider span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink3);
+  white-space: nowrap;
+}
+
+/* QUOTE */
+.quote {
+  font-family: 'Lora', serif;
+  font-size: 17px; font-style: italic;
+  color: var(--ink2); line-height: 1.6;
+  padding: 20px 24px;
+  border-left: 3px solid var(--gold);
+  background: var(--gold-light);
+  margin-bottom: 16px;
+}
+.quote strong { font-style: normal; color: var(--gold); font-weight: 600; }
+
+/* SCRIPT BLOCK */
+.script-text {
+  font-family: 'Lora', serif;
+  font-size: 15px; line-height: 1.8; color: var(--ink);
+  padding: 18px 22px;
+  background: var(--surface);
+  border: 0.5px solid var(--border-mid);
+  margin-bottom: 10px;
+}
+.script-text em { color: var(--ink3); }
+
+/* FOOTER */
+footer {
+  margin-top: 60px;
+  border-top: 1px solid var(--border-mid);
+  padding-top: 24px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.footer-note { font-family: 'Lora', serif; font-size: 13px; font-style: italic; color: var(--ink3); }
+.footer-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink3); letter-spacing: 0.08em; text-align: right; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="h-eyebrow">Саммарі сесії · Claude · Квітень 2026</div>
+  <div class="h-title">Артур —<br><em>Навігація 2026</em></div>
+  <div class="h-meta">
+    <div class="h-badge">♑ 09.01.1990</div>
+    <div class="h-badge">Wiesbaden / Frankfurt</div>
+    <div class="h-badge">Product Owner · AMT für Digitalisierung</div>
+    <div class="h-badge">Ціль: GovTech Consulting 2027–28</div>
+  </div>
+</header>
+
+<div class="nav">
+  <div class="nav-item active" onclick="show('context')">Контекст</div>
+  <div class="nav-item" onclick="show('career')">Кар'єра</div>
+  <div class="nav-item" onclick="show('strategy')">Стратегія</div>
+  <div class="nav-item" onclick="show('calendar')">Календар</div>
+  <div class="nav-item" onclick="show('channel')">Канал</div>
+  <div class="nav-item" onclick="show('script')">Скрипти</div>
+  <div class="nav-item" onclick="show('insights')">Інсайти</div>
+</div>
+
+<!-- ===== CONTEXT ===== -->
+<div class="section active" id="context">
+  <div class="sec-title">Особистий контекст</div>
+  <div class="sec-sub">Вихідні дані · Стан на квітень 2026</div>
+
+  <div class="grid2">
+    <div class="mini-card">
+      <div class="mc-label">Поточний стан</div>
+      <div class="mc-val">Рухаюсь, але <strong>хаотично</strong>. Є база, але без чіткого вектора.</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-label">Головна ціль 2026</div>
+      <div class="mc-val"><strong>Внутрішня ясність</strong> + перші кроки в консалтинг і відеоблог.</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-label">Головний страх</div>
+      <div class="mc-val">Синдром самозванця: <strong>"ще не достатньо досвіду"</strong> для консалтингу і публічності.</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-label">Мова як фактор</div>
+      <div class="mc-val">Нерідна німецька — <strong>не бар'єр зараз</strong>. Перші ніші англо/україномовні.</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>астрологічний профіль</span></div>
+
+  <div class="grid3">
+    <div class="mini-card">
+      <div class="mc-label">☀ Сонце</div>
+      <div class="mc-val">Козеріг 18° — <strong>пізній розквіт</strong>, авторитет через результат</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-label">☽ Місяць</div>
+      <div class="mc-val">Близнюки 23°04' — синтез ідей, природний комунікатор</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-label">↑ ASC</div>
+      <div class="mc-val">Козеріг 5°59' — стриманість назовні, живий розум всередині</div>
+    </div>
+  </div>
+
+  <div class="block gold">
+    <div class="block-tag">Ключовий астро-інсайт 2026</div>
+    <div class="block-text">Уран кон'юнкціонує Місяць у Близнятах (<strong>травень 2026</strong>) — "оновлення операційної системи". Старі обмежуючі переконання розламуються. Ясність приходить через дію, а не через підготовку. Юпітер у Лева (<strong>серпень 2026</strong>) — пік видимості й авторитету.</div>
+  </div>
+</div>
+
+<!-- ===== CAREER ===== -->
+<div class="section" id="career">
+  <div class="sec-title">Кар'єрна дуга</div>
+  <div class="sec-sub">Повна хронологія · Ключові навички</div>
+
+  <div class="quote">Не "фотограф, що перекваліфікувався в PM". А — <strong>людина, яка системно будує міст між творчим і цифровим світами</strong>, накопичуючи міжкультурний досвід на кожному етапі.</div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-yr">2008–11</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-role">Кухар</div>
+        <div class="tl-note">Дисципліна, стандарти, системна робота під тиском. Усвідомлений вихід через стіну зарплати і зміну інтересів.</div>
+        <span class="tl-skill">Execution</span><span class="tl-skill">Standards</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-yr">2011–20</div>
+      <div class="tl-dot filled"></div>
+      <div class="tl-body">
+        <div class="tl-role">Фотограф · Міжнародні бренди · Dubai 2015–19</div>
+        <div class="tl-note">Реклама, івенти. Гроші хаотичні, але досвід — унікальний. Міжнародні клієнти, міжкультурна комунікація. 2018 — перехід до продюсування: перший PM-досвід без назви.</div>
+        <span class="tl-skill">Client Management</span><span class="tl-skill">Visual Thinking</span><span class="tl-skill">Cross-cultural</span><span class="tl-skill">Coordination</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-yr">2019–22</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-role">Курси PM → Маркетинговий PM</div>
+        <div class="tl-note">Усвідомлений перехід в IT без зв'язків. Маркетинговий PM: управляв між бізнесом і технічною командою.</div>
+        <span class="tl-skill">Agile / Scrum</span><span class="tl-skill">Digital Marketing PM</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-yr">поч. 2025</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-role">IT PM · Веб-студія (навмисно нижче рівня)</div>
+        <div class="tl-note">Взяв менш оплачувану роль заради технічного досвіду. Стратегія Козерога: повільно, але правильно.</div>
+        <span class="tl-skill">IT PM</span><span class="tl-skill">Web Projects</span>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-yr">кін. 2025 →</div>
+      <div class="tl-dot filled"></div>
+      <div class="tl-body">
+        <div class="tl-role">Product Owner · AMT für Digitalisierung · Німеччина</div>
+        <div class="tl-note">Державна цифрова трансформація. ~6 місяців на момент сесії. Фундамент для GovTech consulting 2027–28.</div>
+        <span class="tl-skill">GovTech PO</span><span class="tl-skill">Digital Transformation</span><span class="tl-skill">Public Sector</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>компетенції — що продавати вже зараз</span></div>
+
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>Компетенція</th><th>Коли продавати</th><th>Доказ</th></tr>
+      <tr>
+        <td>PM/PO Coaching для кар'єрних змінщиків</td>
+        <td style="color:var(--green);font-weight:500">Зараз</td>
+        <td>Сам пройшов шлях 2019–2025</td>
+      </tr>
+      <tr>
+        <td>Digital transformation для creative studios</td>
+        <td style="color:var(--green);font-weight:500">Зараз</td>
+        <td>10 р. у творчій галузі + IT-перехід</td>
+      </tr>
+      <tr>
+        <td>PM для малого digital бізнесу</td>
+        <td style="color:var(--gold);font-weight:500">Через 6–12 міс</td>
+        <td>Marketing PM + веб-студія</td>
+      </tr>
+      <tr>
+        <td>GovTech / Public Sector Consulting</td>
+        <td style="color:var(--red);font-weight:500">2027–28</td>
+        <td>Після накопичення кейсів в AMT</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="block red">
+    <div class="block-tag">Самозванець — розбір</div>
+    <div class="block-text">
+      Головне спотворення: <strong>"у мене недостатньо досвіду в GovTech для консалтингу"</strong> — але GovTech не є першою ціллю. Перші ніші (кар'єрні змінщики, creative studios) вже закриті наявним досвідом.<br><br>
+      Формула виходу: <strong>почати як "провідник у процесі" (щойно пройшов той же шлях), а не "гуру з вершини".</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ===== STRATEGY ===== -->
+<div class="section" id="strategy">
+  <div class="sec-title">Стратегія</div>
+  <div class="sec-sub">Ніші · Таймлайн · Формула</div>
+
+  <div class="block gold">
+    <div class="block-tag">Архетип</div>
+    <div class="block-text"><strong>Синтезатор</strong> — рідкісний тип. Знає кілька доменів глибоко і бачить між ними зв'язки, невидимі нікому іншому. Не шукає свій шлях — <em>і є своїм шляхом</em>.</div>
+  </div>
+
+  <div class="divider"><span>три ніші</span></div>
+
+  <div class="grid3">
+    <div class="mini-card">
+      <div class="mc-label" style="color:var(--green)">Зараз · 2026</div>
+      <div class="mc-val"><strong>PM/PO coaching</strong> для кар'єрних змінщиків. Укр/Польща/Нім. Англійська мова.</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-label" style="color:var(--green)">Зараз · 2026</div>
+      <div class="mc-val"><strong>Creative studios → digital.</strong> Фотоагенції, event-компанії. Говориш їхньою мовою.</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-label" style="color:var(--gold)">Пізніше · 2027–28</div>
+      <div class="mc-val"><strong>GovTech consulting.</strong> Після 1.5 р. в AMT + реальні кейси = інсайдерська перевага.</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>таймлайн до 2032</span></div>
+
+  <table class="data-table">
+    <tr><th>Рік</th><th>Фаза</th><th>Ключова дія</th></tr>
+    <tr><td>2026</td><td>Старт коучингу</td><td>Перші 10–20 клієнтів, ніша кар'єрних змінщиків, відеоблог</td></tr>
+    <tr><td>2027</td><td>Масштаб</td><td>Групові програми або курс, Юпітер дає публічність</td></tr>
+    <tr><td>2028–29</td><td>Перехід</td><td>Перші консалтингові проекти GovTech з кейсами з AMT</td></tr>
+    <tr><td>2030–32</td><td>Платформа</td><td>Повноцінна consulting practice + coaching як окремий напрямок</td></tr>
+    <tr><td>2035–38</td><td>Пік</td><td>Природний пік Козерога — максимальний вплив і авторитет</td></tr>
+  </table>
+</div>
+
+<!-- ===== CALENDAR ===== -->
+<div class="section" id="calendar">
+  <div class="sec-title">Календар 2026</div>
+  <div class="sec-sub">Місяць по місяцю · Астро + практика</div>
+
+  <div class="block gold">
+    <div class="block-tag">Формула року</div>
+    <div class="block-text"><strong>Q1 Підготовка → Q2 Дія → Q3 Пік видимості → Q4 Синтез.</strong> Три паралельні треки: AMT (основне), консалтинг-ніша (розвиток), відеоблог (голос).</div>
+  </div>
+
+  <table class="data-table">
+    <tr><th>Місяць</th><th>Фаза</th><th>Астро</th><th>Головна дія</th></tr>
+    <tr><td>Січень</td><td>Кування</td><td>Юпітер опозиція стелліум</td><td>Маніфест, вибір 1 ніші, список 20 клієнтів</td></tr>
+    <tr><td>Лютий</td><td>Кування</td><td>Меркурій прямий</td><td>5 discovery calls, оффер в 1 речення, 1-й відос приватно</td></tr>
+    <tr><td>Березень</td><td>Тиша ⚠</td><td>☿ Ретроград 15.03</td><td>Нічого нового. Ревізія, читання, "origin story"</td></tr>
+    <tr><td>Квітень</td><td>Кування</td><td>☿ Прямий 7.04</td><td>Перший платний session, 4 відео на канал</td></tr>
+    <tr><td>Травень</td><td>Прорив ⚡</td><td>Уран conjunct Місяць</td><td>Бути відкритим до повороту. Перший гучний відос.</td></tr>
+    <tr><td>Червень</td><td>Запуск</td><td>Юпітер → Лев</td><td>Публічний LinkedIn-анонс консалтингу, 2–3 контракти</td></tr>
+    <tr><td>Липень</td><td>Тиша ⚠</td><td>☿ Ретроград 18.07</td><td>Відпустка або рефлексія. Переглянути наратив.</td></tr>
+    <tr><td>Серпень</td><td>Пік ⚡</td><td>Юпітер у Лева пік</td><td>Виступ / подкаст / велика стаття. Підняти ціни.</td></tr>
+    <tr><td>Вересень</td><td>Інтеграція</td><td>Плутон статіонарний</td><td>Аудит практики. Прибрати що не резонує.</td></tr>
+    <tr><td>Жовтень</td><td>Інтеграція</td><td>Плутон прямий</td><td>Переосмислити ціноутворення. "Senior identity".</td></tr>
+    <tr><td>Листопад</td><td>Тиша ⚠</td><td>☿ Ретроград 9.11</td><td>Нічого нового. Звіт року, стратегія 2027.</td></tr>
+    <tr><td>Грудень</td><td>Синтез</td><td>Сонячне повернення</td><td>Pipeline на 2027. Ритуал закриття. Святкувати.</td></tr>
+  </table>
+
+  <div class="block red">
+    <div class="block-tag">Стоп-дати — нічого не запускати</div>
+    <div class="block-text">15 березня – 7 квітня (☿ Ретро Овен) · 18 липня – 11 серпня (☿ Ретро Лев) · 9–29 листопада (☿ Ретро Стрілець)</div>
+  </div>
+</div>
+
+<!-- ===== CHANNEL ===== -->
+<div class="section" id="channel">
+  <div class="sec-title">Відеоканал</div>
+  <div class="sec-sub">Назва · Опис · Теми</div>
+
+  <div class="divider"><span>варіанти назв (топ-2)</span></div>
+
+  <div class="grid2">
+    <div class="block gold">
+      <div class="block-tag">★ Рекомендована</div>
+      <div class="block-text" style="font-size:20px; font-family:'Lora',serif; font-weight:600; margin-bottom:8px;">Long Exposure</div>
+      <div class="block-text">У фотографії довга витримка розкриває те, що швидкий погляд не бачить. Принцип мислення, не ніша — <strong>не застаріє при зміні компетенцій</strong>.<br><br>Handle: <code>@longexposure</code></div>
+    </div>
+    <div class="block blue">
+      <div class="block-tag">Сильний варіант 2</div>
+      <div class="block-text" style="font-size:20px; font-family:'Lora',serif; font-weight:600; margin-bottom:8px;">Reframed</div>
+      <div class="block-text">Рефреймінг — акт побудови нової рамки навколо старого факту. Кожен кар'єрний поворот — рефреймінг.<br><br>Handle: <code>@reframed</code></div>
+    </div>
+  </div>
+
+  <div class="divider"><span>опис каналу</span></div>
+
+  <div class="script-text">
+    <em>Англійська версія:</em><br>
+    From lens to leadership — documenting a non-linear career across photography, digital, and government tech. For people who take the slow road and make it count.<br><br>
+    <em>Українська версія:</em><br>
+    Кар'єра без прямої лінії: від фотографії до Product Ownership у державній цифровізації Німеччини. Для тих, хто йде довгим шляхом — навмисно.
+  </div>
+
+  <div class="divider"><span>перші 12 тем</span></div>
+
+  <table class="data-table">
+    <tr><th>#</th><th>Тема</th><th>Гак для аудиторії</th></tr>
+    <tr><td>01</td><td>Як я пішов з фотографії після 10 років і не пошкодував</td><td>Для тих, хто застряг у творчій кар'єрі</td></tr>
+    <tr><td>02</td><td>Dubai vs Україна vs Польща vs Нім: де важче будувати кар'єру</td><td>Cross-cultural перспектива</td></tr>
+    <tr><td>03</td><td>Як пройти курс PM і не знайти роботу — і що я зробив потім</td><td>Чесна відповідь на болюче питання</td></tr>
+    <tr><td>04</td><td>Що я взяв із фотографії у Product Management</td><td>Soft skills transfer</td></tr>
+    <tr><td>05</td><td>Я взяв роботу нижче рівня навмисно. Ось чому</td><td>Контрінтуїтивна стратегія</td></tr>
+    <tr><td>06</td><td>Що таке GovTech і навіщо туди йти (погляд зсередини)</td><td>Перший документальний серіал</td></tr>
+    <tr><td>07</td><td>Мій метод: як я знаходжу роботу в новій країні без зв'язків</td><td>Для EU-мігрантів</td></tr>
+    <tr><td>08 ★</td><td>Синдром самозванця: чому я не знімав 5 років</td><td>Перше відео — знято</td></tr>
+    <tr><td>09</td><td>Scrum vs реальний проєктний хаос — після 3 ролей PM</td><td>Для практиків</td></tr>
+    <tr><td>10</td><td>Як я навчався IT у вільний час без вигорання</td><td>Для людей у транзиції</td></tr>
+    <tr><td>11</td><td>Що мені дала реклама і фото для роботи з клієнтами в IT</td><td>Нестандартний погляд на soft skills</td></tr>
+    <tr><td>12</td><td>Моя чесна оцінка курсів PM після їх проходження</td><td>Люди люблять чесні огляди дорогих курсів</td></tr>
+  </table>
+</div>
+
+<!-- ===== SCRIPT ===== -->
+<div class="section" id="script">
+  <div class="sec-title">Скрипти і сторітелінг</div>
+  <div class="sec-sub">Структура · Правила · Вправи</div>
+
+  <div class="block gold">
+    <div class="block-tag">Головна різниця: список vs сцена</div>
+    <div class="block-text">Ти думав <strong>категоріями</strong> ("причини синдрому самозванця") — це лекція. Сильний скрипт думає <strong>досвідом</strong> ("що конкретно зі мною сталось") — це розповідь. Мозок не запам'ятовує інформацію. Він запам'ятовує сцени.</div>
+  </div>
+
+  <div class="divider"><span>структура скрипту відео #01</span></div>
+
+  <table class="data-table">
+    <tr><th>Блок</th><th>Час</th><th>Зміст</th></tr>
+    <tr><td>Хук</td><td>0:00–0:25</td><td>"Я мав зняти це відео п'ять років тому..." — без "привіт", без назви каналу</td></tr>
+    <tr><td>Сцена 1</td><td>0:25–1:00</td><td>Почав говорити тільки в 4 роки. Страх комунікації — коріння.</td></tr>
+    <tr><td>Сцена 2</td><td>1:00–1:40</td><td>Коледж, Шевченко, сцена, забув слова. "Всі виглядають маленькими."</td></tr>
+    <tr><td>Сцена 3</td><td>1:40–2:20</td><td>5 років не публікував. Внутрішній критик. Злість на себе.</td></tr>
+    <tr><td>Злам</td><td>2:20–3:10</td><td>Що змусило таки почати? (AMT / конкретний момент — заповнити)</td></tr>
+    <tr><td>Фінал</td><td>3:10–4:00</td><td>"Я тут." — пауза 3 сек. Без одразу "підпишіться".</td></tr>
+  </table>
+
+  <div class="divider"><span>три ключові вправи сторітелінгу</span></div>
+
+  <ul class="item-list il-gold">
+    <li><strong>"So what?" drill.</strong> Берешь твердження → питаєш "звідки це?" або "коли ти це відчув?" → поки не доберешся до конкретної сцени. Узагальнення — це фінал, не початок.</li>
+    <li><strong>"Покажи, не кажи."</strong> Не "мені було соромно" — а "я стояв і не знав куди дивитись, а всі чекали". Один конкретний образ сильніший за опис емоції.</li>
+    <li><strong>"Але / тому що" замість "і потім".</strong> Слабко: "хотів зняти і потім боявся і потім не знімав". Сильно: "хотів зняти, але боявся — тому що одного разу стояв на сцені і забув слова."</li>
+  </ul>
+
+  <div class="divider"><span>матеріали для розвитку</span></div>
+
+  <ul class="item-list il-blue">
+    <li><strong>Matthew Dicks — "Storyworthy"</strong> (книга). Знаходити справжню історію в буденному досвіді. Найпрактичніше для відео-формату.</li>
+    <li><strong>Struthless</strong> (YouTube). Творчість, страх, особистий бренд — той самий тон, що ти будуєш.</li>
+    <li><strong>Mike and Matty</strong> (YouTube). Технічна структура YouTube-скриптів.</li>
+  </ul>
+
+  <div class="divider"><span>сцена у роботі — приклад артура</span></div>
+
+  <div class="block blue">
+    <div class="block-tag">Сцена в роботі · Страх постояти за себе</div>
+    <div class="block-text">
+      Тема: страх конфлікту / постояти за себе.<br><br>
+      <strong>Сцена (перший варіант):</strong> "Одного разу, коли я був ще маленьким, ми з сестрою гуляли біля нашого будинку. Було літо. Сусідський хлопчик почав її ображати. Він говорив голосно, без вагань. А я завмер. Хотів підійти — і не міг. Ноги просто не рухались. Я так і не захистив сестру того дня."<br><br>
+      <strong>Наступний крок у роботі:</strong> місток "те відчуття залишилось" → конкретний дорослий приклад → тема відео. Тема ще уточнюється: фізичний страх vs ширший страх постояти за себе (в роботі, публічно).
+    </div>
+  </div>
+</div>
+
+<!-- ===== INSIGHTS ===== -->
+<div class="section" id="insights">
+  <div class="sec-title">Ключові інсайти сесії</div>
+  <div class="sec-sub">Те, що варто пам'ятати</div>
+
+  <ul class="item-list il-gold" style="margin-bottom:24px">
+    <li><strong>Кожен кар'єрний поворот — не хаос, а новий шар компетенцій.</strong> Козеріг підіймається на наступний виступ гори, а не блукає.</li>
+    <li><strong>Консалтинг в GovTech — не зараз, але документувати AMT з першого дня.</strong> Кожна зустріч — майбутній кейс і контент.</li>
+    <li><strong>Перші дві ніші закриті наявним досвідом.</strong> Питання не "чи достатньо досвіду" — а "чи правильна ніша".</li>
+    <li><strong>Мова не є бар'єром для перших ніш.</strong> Кар'єрні змінщики і creative studios — англо/україномовна аудиторія.</li>
+    <li><strong>Long Exposure — найсильніша назва каналу.</strong> Принцип, а не ніша — не застаріє.</li>
+    <li><strong>Перше відео знято.</strong> Головний бар'єр подолано. Наступні 5 — плата за вхід, не провали.</li>
+    <li><strong>Скрипт будується від сцени, а не від категорії.</strong> "So what?" drill → конкретний момент → емоція → тема.</li>
+    <li><strong>Травень і серпень 2026 — найважливіші місяці року.</strong> Травень: внутрішня ясність. Серпень: зовнішня видимість.</li>
+  </ul>
+
+  <div class="block green">
+    <div class="block-tag">Формула ідентичності</div>
+    <div class="block-text" style="font-size:15px; font-family:'Lora',serif; font-style:italic;">Кухар → Фотограф → Dubai → Продюсер → Marketing PM → IT PM → GovTech PO → Консультант.<br><br>Це не хаос. Це <strong>long exposure</strong>.</div>
+  </div>
+
+  <div class="block gold">
+    <div class="block-tag">Відкриті питання — повернутись у наступній сесії</div>
+    <div class="block-text">
+      1. Що конкретно стало "зламом" для першого відео — уточнити для скрипту.<br>
+      2. Тема сцени про сестру: страх фізичного конфлікту vs ширший страх постояти за себе — визначити вектор відео.<br>
+      3. LinkedIn: переписати під нову ідентичність.<br>
+      4. Перший discovery call — з ким і коли.
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-note">"Кожен поворот був підйомом, навіть якщо здавався боковим."</div>
+  <div class="footer-meta">Long Exposure · Артур · Квітень 2026<br>Саммарі сесії з Claude</div>
+</footer>
+
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

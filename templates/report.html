@@ -4,259 +4,707 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ name }} · {{ month_theme.month_name }} {{ month_theme.year }}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #f2ede3;
+  --bg2:      #ebe5d9;
+  --surface:  #ffffff;
+  --ink:      #12100e;
+  --ink2:     #2a2520;
+  --ink3:     #4a4540;
+  --muted:    #7a756e;
+  --gold:     #b8892a;
+  --gold-l:   rgba(184,137,42,0.10);
+  --gold-ll:  rgba(184,137,42,0.05);
+  --rust:     #8b3a2a;
+  --rust-l:   rgba(139,58,42,0.08);
+  --sage:     #2d5a4a;
+  --sage-l:   rgba(45,90,74,0.08);
+  --slate:    #2a3f5c;
+  --slate-l:  rgba(42,63,92,0.08);
+  --amber:    #c87a28;
+  --border:   rgba(18,16,14,0.12);
+  --border2:  rgba(18,16,14,0.22);
+  --faint:    rgba(18,16,14,0.05);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
 body {
-  background: #0d1117;
-  color: #e6edf3;
-  font-family: 'Inter', system-ui, sans-serif;
-  line-height: 1.6;
-  padding: 24px 16px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
   max-width: 820px;
   margin: 0 auto;
+  padding: 0 28px 100px;
 }
 
-/* ── Header ── */
-.header {
-  padding: 28px 32px;
-  background: linear-gradient(135deg, #161b22, #1a1f2e);
-  border-radius: 16px;
-  border: 1px solid #30363d;
-  margin-bottom: 20px;
-  text-align: center;
+/* ── MASTHEAD ── */
+.masthead {
+  border-bottom: 2px solid var(--ink);
+  padding: 52px 0 28px;
+  margin-bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 20px;
 }
-.header-name { font-size: 1rem; color: #8b949e; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-.header-month { font-size: 2rem; font-weight: 700; color: #f59e0b; }
-.header-year { font-size: 1.2rem; color: #8b949e; font-weight: 300; }
-.header-sun { font-size: 0.82rem; color: #6e7681; margin-top: 8px; }
-
-/* ── Section titles ── */
-.section-title {
-  font-size: 0.75rem;
-  font-weight: 600;
+.mh-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: #8b949e;
-  margin: 28px 0 12px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.mh-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 6vw, 54px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.mh-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.mh-right {
+  text-align: right;
+}
+.mh-year {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.mh-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--gold);
+  margin-top: 4px;
+}
+
+/* ── SECTION LABEL ── */
+.section-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 40px 0 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
 }
 .section-title::after {
   content: '';
   flex: 1;
   height: 1px;
-  background: #21262d;
+  background: linear-gradient(to right, var(--border2), transparent);
 }
 
-/* ── Theme block ── */
-.theme-block {
-  background: #161b22;
-  border-left: 4px solid #7c3aed;
-  border-radius: 0 12px 12px 0;
+/* ── WEEKLY FOCUS ── */
+.weekly-block {
+  background: var(--slate-l);
+  border: 1px solid rgba(42,63,92,0.2);
+  border-left: 3px solid var(--slate);
   padding: 24px 28px;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
+}
+.weekly-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.weekly-dates {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--slate);
+}
+.weekly-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--slate);
+  border: 1px solid rgba(42,63,92,0.3);
+  padding: 2px 8px;
+}
+.weekly-days {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.weekly-day {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: center;
+  min-width: 48px;
+}
+.weekly-day .wd {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.weekly-day .dn {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.weekly-day .sc {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+}
+.weekly-day.today-day {
+  border-color: var(--slate);
+  background: rgba(42,63,92,0.04);
+}
+.weekly-day.today-day .dn { color: var(--slate); }
+.weekly-day.best-day  { border-color: var(--sage); }
+.weekly-day.best-day .dn { color: var(--sage); }
+.weekly-day.bad-day   { border-color: var(--rust); }
+.weekly-day.bad-day .dn { color: var(--rust); }
+.weekly-actions { list-style: none; }
+.weekly-actions li {
+  font-size: 14px;
+  color: var(--ink2);
+  padding: 5px 0 5px 18px;
+  position: relative;
+  border-bottom: 1px solid var(--faint);
+  line-height: 1.55;
+}
+.weekly-actions li:last-child { border-bottom: none; }
+.weekly-actions li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--slate);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* ── THEME BLOCK ── */
+.theme-block {
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 0 32px;
+  margin-bottom: 4px;
 }
 .theme-title {
-  font-size: 1.4rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4vw, 34px);
   font-weight: 700;
-  margin-bottom: 4px;
-  color: #e6edf3;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 8px;
 }
 .theme-subtitle {
-  font-size: 0.9rem;
-  color: #8b949e;
-  margin-bottom: 16px;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
   font-style: italic;
+  color: var(--muted);
+  margin-bottom: 24px;
 }
-.theme-bullets { list-style: none; margin-bottom: 16px; }
+.theme-bullets {
+  list-style: none;
+  margin-bottom: 20px;
+}
 .theme-bullets li {
-  padding: 4px 0;
-  padding-left: 20px;
+  font-size: 14px;
+  color: var(--ink2);
+  padding: 5px 0 5px 20px;
   position: relative;
-  font-size: 0.9rem;
-  color: #c9d1d9;
+  border-bottom: 1px solid var(--faint);
 }
-.theme-bullets li::before { content: "•"; position: absolute; left: 0; color: #7c3aed; }
+.theme-bullets li:last-child { border-bottom: none; }
+.theme-bullets li::before {
+  content: '·';
+  position: absolute;
+  left: 6px;
+  color: var(--gold);
+  font-size: 18px;
+  line-height: 1.3;
+}
 .theme-topics {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .theme-topic {
-  background: #21262d;
-  border: 1px solid #30363d;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 0.78rem;
-  color: #8b949e;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 0.5px solid var(--border2);
+  padding: 4px 12px;
+  color: var(--ink3);
+  background: var(--surface);
 }
 .theme-mantra {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #f59e0b;
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
   font-style: italic;
+  font-weight: 600;
+  color: var(--gold);
+  padding-left: 20px;
+  border-left: 3px solid var(--gold);
 }
-.theme-mantra::before { content: "👉 "; }
 
-/* ── Period table ── */
-.period-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
-.period-table tr:nth-child(even) td { background: #161b22; }
-.period-table td { padding: 10px 14px; font-size: 0.88rem; border-bottom: 1px solid #21262d; }
-.period-table td:first-child { font-weight: 600; color: #e6edf3; white-space: nowrap; width: 140px; }
-.period-table td:last-child { color: #8b949e; }
-
-/* ── Goal cards ── */
-.goal-card {
-  background: #161b22;
-  border-radius: 12px;
-  border: 1px solid #21262d;
+/* ── TRANSIT NARRATIVES ── */
+.transit-cards { display: flex; flex-direction: column; gap: 2px; margin-bottom: 4px; }
+.transit-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  padding: 22px 26px;
+}
+.transit-card.fog   { border-left-color: var(--muted); }
+.transit-card.shock { border-left-color: var(--rust); }
+.transit-card.open  { border-left-color: var(--sage); }
+.transit-card.press { border-left-color: var(--amber); }
+.transit-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
   margin-bottom: 10px;
-  overflow: hidden;
+}
+.transit-icon { font-size: 1.1rem; }
+.transit-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  flex: 1;
+}
+.transit-peak {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+  letter-spacing: 0.08em;
+}
+.transit-impact {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+.transit-action {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gold);
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  line-height: 1.55;
+}
+.transit-action::before { content: '→ '; font-family: 'IBM Plex Mono', monospace; }
+
+/* ── CRITICAL WINDOWS ── */
+.cw-card {
+  display: flex;
+  gap: 16px;
+  background: var(--gold-ll);
+  border: 1px solid rgba(184,137,42,0.2);
+  border-left: 3px solid var(--gold);
+  padding: 18px 22px;
+  margin-bottom: 2px;
+  align-items: flex-start;
+}
+.cw-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+.cw-body { flex: 1; }
+.cw-label {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.cw-meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.cw-desc {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.6;
+}
+
+/* ── GOAL CARDS ── */
+.goal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  margin-bottom: 2px;
 }
 .goal-header {
-  padding: 14px 20px 10px;
-  border-bottom: 1px solid #21262d;
+  padding: 16px 22px 14px;
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: baseline;
   gap: 10px;
   flex-wrap: wrap;
 }
-.goal-priority { font-size: 1rem; }
-.goal-title { font-size: 1rem; font-weight: 700; flex: 1; }
+.goal-priority {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.goal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  flex: 1;
+}
 .goal-deadline {
-  font-size: 0.75rem;
-  color: #ef4444;
-  background: #2d0a0a;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--rust);
+  border: 0.5px solid rgba(139,58,42,0.3);
   padding: 2px 8px;
-  border-radius: 10px;
 }
-.goal-body { padding: 14px 20px; }
+.goal-body { padding: 16px 22px; }
 .goal-window {
-  background: #0d1117;
-  border-radius: 8px;
+  background: var(--faint);
+  border-left: 2px solid var(--border2);
   padding: 10px 14px;
-  margin-bottom: 8px;
-  border-left: 3px solid transparent;
+  margin-bottom: 6px;
 }
-.goal-window.hot  { border-left-color: #ef4444; }
-.goal-window.good { border-left-color: #22c55e; }
-.goal-window.mild { border-left-color: #eab308; }
-.goal-window.avoid { border-left-color: #7f1d1d; background: #1a0505; }
-.goal-window.avoid .goal-window-dates { color: #f87171; }
-.goal-window.avoid .goal-window-reasons { color: #6b7280; }
-.goal-window-dates { font-weight: 700; font-size: 0.92rem; margin-bottom: 4px; }
-.goal-window-reasons { font-size: 0.78rem; color: #8b949e; }
-.goal-window-warn { font-size: 0.78rem; color: #f59e0b; }
-.goal-warnings { margin-top: 8px; }
-.goal-warn-item { font-size: 0.8rem; color: #fbbf24; padding: 3px 0; }
+.goal-window.hot   { border-left-color: var(--rust); background: var(--rust-l); }
+.goal-window.good  { border-left-color: var(--sage); background: var(--sage-l); }
+.goal-window.mild  { border-left-color: var(--gold); background: var(--gold-ll); }
+.goal-window.avoid { border-left-color: var(--muted); background: var(--faint); }
+.goal-window-dates {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.goal-window.avoid .goal-window-dates { color: var(--muted); }
+.goal-window-reasons { font-size: 13px; color: var(--muted); }
+.goal-window-warn { font-size: 12px; color: var(--amber); margin-top: 2px; }
+.goal-warnings { margin-top: 10px; }
+.goal-warn-item {
+  font-size: 13px;
+  color: var(--amber);
+  padding: 2px 0;
+  font-family: 'IBM Plex Mono', monospace;
+}
 .goal-no-windows {
-  font-size: 0.85rem;
-  color: #6e7681;
+  font-size: 13px;
+  color: var(--muted);
   font-style: italic;
-  padding: 6px 0;
+  padding: 4px 0;
+}
+.goal-best-days {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.goal-best-days-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.goal-best-day {
+  background: var(--bg2);
+  border: 0.5px solid var(--border2);
+  padding: 5px 12px;
+  font-size: 13px;
+  color: var(--ink2);
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.gbd-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--sage);
+}
+.gbd-score { color: var(--muted); font-size: 11px; }
+.gbd-note {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--amber);
+  font-size: 10px;
 }
 
-/* ── Sphere cards ── */
-.cards-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+/* ── PERIOD TABLE ── */
+.period-table { width: 100%; border-collapse: collapse; margin-bottom: 4px; }
+.period-table tr { border-bottom: 1px solid var(--border); }
+.period-table tr:last-child { border-bottom: none; }
+.period-table td { padding: 12px 0; font-size: 14px; vertical-align: top; }
+.period-table td:first-child {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  width: 130px;
+  padding-right: 20px;
+  letter-spacing: 0.05em;
+  padding-top: 14px;
+}
+.period-table td:last-child { color: var(--ink2); line-height: 1.6; }
+
+/* ── SPHERE CARDS ── */
+.cards-grid { display: flex; flex-direction: column; gap: 2px; margin-bottom: 4px; }
 .card {
-  background: #161b22;
-  border-radius: 12px;
-  border: 1px solid #21262d;
-  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--card-color, var(--gold));
 }
-.card-header {
-  padding: 4px 0 0;
-  border-top: 3px solid var(--card-color, #7c3aed);
+.card-body { padding: 18px 22px; }
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 14px;
 }
-.card-body { padding: 16px 20px; }
-.card-title { font-size: 1rem; font-weight: 600; margin-bottom: 12px; }
 
-.window {
-  padding: 12px 16px;
-  background: #0d1117;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  border-left: 3px solid transparent;
-}
-.window.hot { border-left-color: #ef4444; }
-.window.good { border-left-color: #22c55e; }
-.window-dates { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
-.window-tip { font-size: 0.8rem; color: #8b949e; margin-top: 4px; font-style: italic; }
-
-.avoid-line { font-size: 0.82rem; color: #8b949e; margin-top: 8px; }
-.avoid-line span { color: #ef4444; }
-
-/* ── Danger zones ── */
+/* ── DANGER ZONES ── */
 .danger-card {
-  background: #1a0505;
-  border: 1px solid #7f1d1d;
-  border-radius: 12px;
-  padding: 16px 20px;
+  background: var(--rust-l);
+  border: 1px solid rgba(139,58,42,0.2);
+  border-left: 3px solid var(--rust);
+  padding: 18px 22px;
+  margin-bottom: 2px;
+}
+.danger-dates {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--rust);
+  margin-bottom: 10px;
+}
+.danger-list { list-style: none; margin-bottom: 10px; }
+.danger-list li {
+  font-size: 14px;
+  color: var(--ink2);
+  padding: 3px 0 3px 16px;
+  position: relative;
+}
+.danger-list li::before { content: '·'; position: absolute; left: 4px; color: var(--rust); font-size: 18px; line-height: 1.2; }
+.danger-avoid {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.danger-avoid span { color: var(--rust); }
+.danger-tip {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── STRONGEST DAY ── */
+.strongest-block {
+  background: var(--gold-l);
+  border: 1px solid rgba(184,137,42,0.25);
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 28px;
+  align-items: start;
+}
+.strongest-left { text-align: center; }
+.strongest-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.strongest-date {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--gold);
   margin-bottom: 8px;
 }
-.danger-dates { font-weight: 700; color: #ef4444; margin-bottom: 8px; font-size: 0.95rem; }
-.danger-list { list-style: none; margin-bottom: 8px; }
-.danger-list li { font-size: 0.85rem; color: #fca5a5; padding: 2px 0; padding-left: 18px; position: relative; }
-.danger-list li::before { content: "•"; position: absolute; left: 0; color: #ef4444; }
-.danger-avoid { font-size: 0.82rem; color: #8b949e; }
-.danger-avoid span { color: #ef4444; }
-.danger-tip { font-size: 0.82rem; color: #6b7280; margin-top: 6px; font-style: italic; }
-
-/* ── Psychological insight ── */
-.insight-block {
-  background: #161b22;
-  border-left: 4px solid #f59e0b;
-  border-radius: 0 10px 10px 0;
-  padding: 18px 24px;
-  font-style: italic;
-  font-size: 0.92rem;
-  color: #c9d1d9;
-  line-height: 1.7;
+.strongest-moon {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
 }
-
-/* ── Strongest day ── */
-.strongest-block {
-  background: linear-gradient(135deg, #1a1325, #161b22);
-  border: 1px solid #7c3aed;
-  border-radius: 16px;
-  padding: 24px 28px;
-  text-align: center;
+.strongest-right-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
 }
-.strongest-date { font-size: 1.4rem; font-weight: 700; color: #f59e0b; margin-bottom: 12px; }
-.strongest-label { font-size: 0.75rem; color: #8b949e; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
 .strongest-list { list-style: none; }
-.strongest-list li { font-size: 0.9rem; color: #c9d1d9; padding: 3px 0; }
-.strongest-list li::before { content: "• "; color: #7c3aed; }
-.strongest-moon { font-size: 0.82rem; color: #6e7681; margin-top: 10px; }
+.strongest-list li {
+  font-size: 14px;
+  color: var(--ink2);
+  padding: 4px 0 4px 16px;
+  position: relative;
+  border-bottom: 1px solid var(--faint);
+}
+.strongest-list li:last-child { border-bottom: none; }
+.strongest-list li::before { content: '·'; position: absolute; left: 4px; color: var(--gold); font-size: 18px; line-height: 1.2; }
 
-/* ── Summary table ── */
+/* ── SUMMARY TABLE ── */
 .summary-table { width: 100%; border-collapse: collapse; }
-.summary-table th { text-align: left; padding: 8px 14px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #6e7681; border-bottom: 1px solid #21262d; }
-.summary-table td { padding: 10px 14px; font-size: 0.87rem; border-bottom: 1px solid #161b22; }
-.summary-table tr:hover td { background: #161b22; }
-.summary-table td:first-child { color: #c9d1d9; }
-.summary-table td:last-child { color: #7c3aed; font-weight: 500; }
+.summary-table thead { border-bottom: 2px solid var(--ink); }
+.summary-table th {
+  text-align: left;
+  padding: 10px 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+}
+.summary-table th:last-child { text-align: right; }
+.summary-table td {
+  padding: 11px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink2);
+}
+.summary-table td:first-child { color: var(--ink); }
+.summary-table td:last-child {
+  text-align: right;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
 
-/* ── Footer ── */
-.footer { text-align: center; color: #484f58; font-size: 0.78rem; margin-top: 32px; padding: 16px; }
-.footer code { background: #161b22; padding: 2px 8px; border-radius: 4px; }
+/* ── DECISION LOG ── */
+.log-block {
+  margin-top: 28px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.log-block details summary {
+  cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  user-select: none;
+}
+.log-block details summary:hover { color: var(--gold); }
+.log-block code {
+  display: block;
+  background: var(--bg2);
+  border: 0.5px solid var(--border2);
+  padding: 10px 14px;
+  border-radius: 0;
+  margin-top: 12px;
+  color: var(--slate);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  word-break: break-all;
+  letter-spacing: 0.02em;
+}
+.log-block .log-note {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.footer code {
+  background: var(--bg2);
+  padding: 2px 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+}
 </style>
 </head>
 <body>
+<div class="page">
 
-<!-- HEADER -->
-<div class="header">
-  <div class="header-name">{{ name }}</div>
-  <div><span class="header-month">{{ month_theme.month_name }}</span> <span class="header-year">{{ month_theme.year }}</span></div>
-  <div class="header-sun">☀️ Астрологічний місячний звіт</div>
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="mh-left">
+    <div class="mh-eyebrow">{{ name }} · Астрологічний звіт</div>
+    <div class="mh-title">{{ month_theme.month_name }} <em>{{ month_theme.year }}</em></div>
+  </div>
+  <div class="mh-right">
+    <div class="mh-year">Згенеровано {{ generated_at }}</div>
+    <div class="mh-sub">☽ Місячний прогноз</div>
+  </div>
 </div>
 
+<!-- WEEKLY FOCUS -->
+{% if weekly_focus %}
+<div class="section-title">Актуальне — ця тижня</div>
+<div class="weekly-block">
+  <div class="weekly-header">
+    <span class="weekly-dates">{{ weekly_focus.week_str }}</span>
+    <span class="weekly-badge">поточна тижня</span>
+  </div>
+  <div class="weekly-days">
+    {% for ds in weekly_focus.day_summaries %}
+    {% set cls = "today-day" if ds.is_today else ("best-day" if ds.score >= 3 else ("bad-day" if ds.score <= -2 else "")) %}
+    <div class="weekly-day {{ cls }}">
+      <div class="wd">{{ ds.weekday }}</div>
+      <div class="dn">{{ ds.day }}</div>
+      <div class="sc">{{ "+" if ds.score > 0 else "" }}{{ ds.score }}{% if ds.voc %} ◯{% endif %}{% if ds.retro %} ☿{% endif %}</div>
+    </div>
+    {% endfor %}
+  </div>
+  <ul class="weekly-actions">
+    {% for action in weekly_focus.actions %}
+    <li>{{ action }}</li>
+    {% endfor %}
+    {% for n in weekly_focus.top_narratives %}
+    <li>{{ n.title }} — {{ n.action }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
 <!-- THEME -->
-<div class="section-title">🌟 Головна тема місяця</div>
+<div class="section-title">Головна тема місяця</div>
 <div class="theme-block">
   <div class="theme-title">"{{ month_theme.title }}"</div>
   <div class="theme-subtitle">{{ month_theme.subtitle }}</div>
@@ -271,22 +719,60 @@ body {
     {% endfor %}
     {% if month_theme.retro_planets %}
     {% for p in month_theme.retro_planets %}
-    <span class="theme-topic" style="color:#ef4444;border-color:#7f1d1d">☿ {{ p }} ретро</span>
+    <span class="theme-topic" style="color:var(--rust);border-color:rgba(139,58,42,0.3)">☿ {{ p }} ретро</span>
     {% endfor %}
     {% endif %}
   </div>
   <div class="theme-mantra">{{ month_theme.mantra }}</div>
 </div>
 
+<!-- TRANSIT NARRATIVES -->
+{% if transit_narratives %}
+<div class="section-title">Що відбувається цього місяця</div>
+<div class="transit-cards">
+{% for n in transit_narratives %}
+{% set card_class = "fog" if "🌫" in n.icon else ("shock" if "⚡" in n.icon else ("open" if "🟢" in n.icon else "press")) %}
+<div class="transit-card {{ card_class }}">
+  <div class="transit-header">
+    <span class="transit-icon">{{ n.icon }}</span>
+    <span class="transit-title">{{ n.title }}</span>
+    {% if n.peak %}<span class="transit-peak">{{ n.peak }}</span>{% endif %}
+  </div>
+  <div class="transit-impact">{{ n.impact }}</div>
+  <div class="transit-action">{{ n.action }}</div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+<!-- CRITICAL WINDOWS -->
+{% if critical_windows %}
+<div class="section-title">Ключові планетарні впливи</div>
+{% for cw in critical_windows %}
+<div class="cw-card">
+  <div class="cw-icon">{{ cw.icon }}</div>
+  <div class="cw-body">
+    <div class="cw-label">{{ cw.label }}</div>
+    <div class="cw-meta">
+      {% if cw.peak %}{{ cw.peak }}{% endif %}
+      {% if cw.status_ua %} · {{ cw.status_ua }}{% endif %}
+      {% if cw.retro %} · транзит ретроградний{% endif %}
+    </div>
+    <div class="cw-desc">{{ cw.desc }}</div>
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+
 <!-- GOALS -->
 {% if goal_cards %}
-<div class="section-title">🎯 Твої теми цього місяця</div>
+<div class="section-title">Твої теми цього місяця</div>
 {% for goal in goal_cards %}
 <div class="goal-card">
   <div class="goal-header">
-    <span class="goal-priority">{{ goal.priority_emoji }} ПРІОРИТЕТ #{{ goal.priority }}</span>
+    <span class="goal-priority">Пріоритет #{{ goal.priority }}</span>
     <span class="goal-title">{{ goal.title }}</span>
-    {% if goal.deadline %}<span class="goal-deadline">дедлайн: {{ goal.deadline }}</span>{% endif %}
+    {% if goal.deadline %}<span class="goal-deadline">дедлайн {{ goal.deadline }}</span>{% endif %}
   </div>
   <div class="goal-body">
     {% if goal.windows %}
@@ -300,6 +786,18 @@ body {
     {% else %}
       <div class="goal-no-windows">Активних вікон цього місяця немає — плануйте наперед</div>
     {% endif %}
+    {% if goal.best_days %}
+    <div class="goal-best-days">
+      <span class="goal-best-days-label">Топ дні:</span>
+      {% for bd in goal.best_days %}
+      <div class="goal-best-day">
+        <span class="gbd-num">{{ bd.day }}</span>
+        <span class="gbd-score">+{{ bd.score }}</span>
+        {% if bd.note %}<span class="gbd-note">{{ bd.note }}</span>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
     {% if goal.warnings %}
     <div class="goal-warnings">
       {% for w in goal.warnings %}<div class="goal-warn-item">{{ w }}</div>{% endfor %}
@@ -311,7 +809,7 @@ body {
 {% endif %}
 
 <!-- PERIOD OVERVIEW -->
-<div class="section-title">📅 Ключові фази місяця</div>
+<div class="section-title">Ключові фази місяця</div>
 <table class="period-table">
   {% for period in period_overview %}
   <tr>
@@ -322,12 +820,11 @@ body {
 </table>
 
 <!-- SPHERES -->
-<div class="section-title">🎯 Вікна дій по сферах</div>
+<div class="section-title">Вікна дій по сферах</div>
 <div class="cards-grid">
 {% for key, sec in sections.items() %}
 {% if sec.has_windows %}
 <div class="card" style="--card-color: {{ sec.color }}">
-  <div class="card-header"></div>
   <div class="card-body">
     <div class="card-title">{{ sec.emoji }} {{ sec.label }}</div>
     {% for w in sec.windows %}
@@ -344,40 +841,45 @@ body {
 
 <!-- DANGER ZONES -->
 {% if danger_zones %}
-<div class="section-title">🔴 Коли краще не форсувати</div>
+<div class="section-title">Коли краще не форсувати</div>
 {% for zone in danger_zones %}
 <div class="danger-card">
-  <div class="danger-dates">⚠ {{ zone.dates }}</div>
+  <div class="danger-dates">{{ zone.dates }}</div>
   <ul class="danger-list">
     {% for r in zone.reasons %}
     <li>{{ r }}</li>
     {% endfor %}
   </ul>
   {% if zone.avoid %}
-  <div class="danger-avoid">❌ Не: <span>{{ zone.avoid | join(", ") }}</span></div>
+  <div class="danger-avoid">Уникати: <span>{{ zone.avoid | join(", ") }}</span></div>
   {% endif %}
-  <div class="danger-tip">💡 {{ zone.tip }}</div>
+  <div class="danger-tip">{{ zone.tip }}</div>
 </div>
 {% endfor %}
 {% endif %}
 
 <!-- STRONGEST DAY -->
 {% if strongest_day %}
-<div class="section-title">🌟 Найсильніший день місяця</div>
+<div class="section-title">Найсильніший день місяця</div>
 <div class="strongest-block">
-  <div class="strongest-label">Пік енергії</div>
-  <div class="strongest-date">🔥 {{ strongest_day.date }}</div>
-  <ul class="strongest-list">
-    {% for item in strongest_day.best_for %}
-    <li>{{ item }}</li>
-    {% endfor %}
-  </ul>
-  <div class="strongest-moon">{{ strongest_day.moon }}</div>
+  <div class="strongest-left">
+    <div class="strongest-label">Пік енергії</div>
+    <div class="strongest-date">{{ strongest_day.date }}</div>
+    <div class="strongest-moon">{{ strongest_day.moon }}</div>
+  </div>
+  <div>
+    <div class="strongest-right-label">Найкраще для</div>
+    <ul class="strongest-list">
+      {% for item in strongest_day.best_for %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
 </div>
 {% endif %}
 
 <!-- SUMMARY TABLE -->
-<div class="section-title">📊 Підсумок</div>
+<div class="section-title">Підсумок місяця</div>
 <table class="summary-table">
   <thead>
     <tr><th>Сфера</th><th>Найкращий період</th></tr>
@@ -392,11 +894,22 @@ body {
   </tbody>
 </table>
 
+<!-- DECISION LOG -->
+<div class="log-block">
+  <details>
+    <summary>Записати рішення або подію в трекер</summary>
+    <code>python3 generate_report.py --type log --note "твій текст тут"</code>
+    <div class="log-note">Зберігається в data/history.json з астро-контекстом дня.</div>
+  </details>
+</div>
+
 <!-- FOOTER -->
 <div class="footer">
-  Згенеровано: {{ generated_at }} &nbsp;·&nbsp;
+  {{ name }} · {{ month_theme.month_name }} {{ month_theme.year }} · Згенеровано {{ generated_at }}
+  &nbsp;·&nbsp;
   Оновити: <code>python3 generate_report.py --type month</code>
 </div>
 
+</div>
 </body>
 </html>

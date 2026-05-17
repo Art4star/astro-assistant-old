@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Розвиток інтуїції · Козеріг</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1219;
+    --surface2: #111921;
+    --border: rgba(180,155,100,0.18);
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: rgba(201,168,76,0.12);
+    --text: #d4cfc7;
+    --text-dim: #7a7570;
+    --text-muted: #4a4845;
+    --accent: #4a7fa5;
+    --accent2: #6b4fa5;
+    --white: #f0ece4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    padding: 80px 40px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sigil {
+    font-size: 48px;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 24px;
+    letter-spacing: 12px;
+    opacity: 0.8;
+  }
+  .title-main {
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: 2px;
+    line-height: 1.1;
+  }
+  .title-sub {
+    font-size: 14px;
+    font-family: 'DM Mono', monospace;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+  .header-desc {
+    max-width: 640px;
+    margin: 32px auto 0;
+    font-size: 19px;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8,12,16,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 12px 20px;
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    color: var(--gold);
+    border-color: var(--border);
+    background: var(--gold-dim);
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .section {
+    padding: 72px 0;
+    border-bottom: 1px solid var(--border);
+    display: none;
+  }
+  .section.active { display: block; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 32px;
+  }
+
+  /* ── INTRO BLOCK ── */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+  .intro-cell {
+    background: var(--surface);
+    padding: 32px;
+  }
+  .intro-cell h3 {
+    font-size: 13px;
+    font-family: 'DM Mono', monospace;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .intro-cell p {
+    font-size: 17px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  @media(max-width:600px){ .intro-grid { grid-template-columns:1fr; } }
+
+  /* ── LEVELS ── */
+  .levels-timeline {
+    position: relative;
+    margin-top: 16px;
+  }
+  .levels-timeline::before {
+    content: '';
+    position: absolute;
+    left: 36px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold) 10%, var(--gold) 90%, transparent);
+    opacity: 0.3;
+  }
+
+  .level-card {
+    position: relative;
+    margin-left: 88px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 32px 36px;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: pointer;
+  }
+  .level-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    background: var(--surface2);
+  }
+  .level-card::before {
+    content: attr(data-num);
+    position: absolute;
+    left: -52px; top: 28px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* fix pseudo-element flex */
+  .level-card { }
+
+  .level-num-circle {
+    position: absolute;
+    left: -52px; top: 28px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .level-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .level-name {
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+  }
+  .level-meta {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .level-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    display: block;
+  }
+  .level-mastery {
+    font-size: 13px;
+    color: var(--text-dim);
+    display: block;
+    margin-top: 4px;
+  }
+
+  .level-desc {
+    font-size: 16px;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .level-signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .signal-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 2px;
+    letter-spacing: 1px;
+  }
+  .signal-tag.active-tag {
+    border-color: rgba(201,168,76,0.4);
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  .level-body {
+    display: none;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    animation: fadeIn 0.3s ease;
+  }
+  .level-card.open .level-body { display: block; }
+
+  .practices-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .practices-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .practices-list li::before {
+    content: '→';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .capricorn-note {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: rgba(201,168,76,0.06);
+    border-left: 2px solid var(--gold);
+    font-size: 15px;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+  .capricorn-note strong { color: var(--gold); font-style: normal; }
+
+  /* ── PRACTICES ── */
+  .practice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 8px;
+  }
+  @media(max-width:640px){ .practice-grid { grid-template-columns: 1fr; } }
+
+  .practice-card {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 28px;
+    transition: border-color 0.2s;
+  }
+  .practice-card:hover { border-color: rgba(201,168,76,0.35); }
+
+  .practice-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .practice-name {
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .practice-freq {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .practice-desc {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .practice-cap-note {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* ── MISTAKES ── */
+  .mistake-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .mistake-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .mistake-col {
+    background: var(--surface);
+    padding: 24px 28px;
+  }
+  .mistake-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .mistake-label.bad { color: #a05050; }
+  .mistake-label.good { color: #5a9070; }
+  .mistake-col p { font-size: 16px; color: var(--text); }
+  @media(max-width:600px){ .mistake-row { grid-template-columns:1fr; } }
+
+  /* ── MYTHS ── */
+  .myth-card {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+  }
+  .myth-q {
+    font-size: 19px;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .myth-q::before { content: '"'; color: var(--gold); font-size: 28px; }
+  .myth-a {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ── PROGRESS ── */
+  .progress-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+    text-align: center;
+  }
+  .progress-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .checkboxes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    text-align: left;
+    margin-bottom: 32px;
+  }
+  @media(max-width:580px){ .checkboxes-grid { grid-template-columns:1fr; } }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+    padding: 12px 16px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .check-item:hover { border-color: var(--border); background: var(--surface2); }
+  .check-item.checked { background: rgba(201,168,76,0.07); border-color: rgba(201,168,76,0.25); }
+
+  .check-box {
+    width: 20px; height: 20px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    position: relative;
+    margin-top: 2px;
+    transition: all 0.2s;
+  }
+  .check-item.checked .check-box {
+    border-color: var(--gold);
+    background: var(--gold-dim);
+  }
+  .check-item.checked .check-box::after {
+    content: '✓';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    color: var(--gold);
+    font-size: 12px;
+  }
+  .check-text { font-size: 15px; color: var(--text-dim); line-height: 1.5; }
+
+  .progress-bar-wrap {
+    width: 100%;
+    height: 2px;
+    background: var(--border);
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transition: width 0.4s ease;
+  }
+  .progress-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--gold);
+  }
+
+  /* ── UTILITIES ── */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .quote-block {
+    border-left: 2px solid var(--gold);
+    padding: 20px 28px;
+    margin: 36px 0;
+    background: var(--gold-dim);
+  }
+  .quote-block p {
+    font-size: 20px;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+  }
+  .quote-block span {
+    display: block;
+    margin-top: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+
+  .pill-row {
+    display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0;
+  }
+  .pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 6px 16px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 100px;
+  }
+
+  .toggle-hint {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: right;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  strong { color: var(--white); font-weight: 400; }
+  em { color: var(--gold-light); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="sigil">♑ ◈ ♄</span>
+  <h1 class="title-main">Мистецтво інтуїції</h1>
+  <div class="title-sub">Практичний гід · Козеріг · Козячий Шлях</div>
+  <p class="header-desc">Інтуїція — не містика. Це стиснений досвід, що діє швидше за свідомість. Козеріг будує її так само, як все інше — методично, через структуру і дисципліну.</p>
+</div>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="showSection('nature', this)">Природа</button>
+  <button class="nav-btn" onclick="showSection('levels', this)">Рівні</button>
+  <button class="nav-btn" onclick="showSection('practices', this)">Практики</button>
+  <button class="nav-btn" onclick="showSection('mistakes', this)">Пастки</button>
+  <button class="nav-btn" onclick="showSection('myths', this)">Міфи</button>
+  <button class="nav-btn" onclick="showSection('tracker', this)">Трекер</button>
+</nav>
+
+<!-- ════ ПРИРОДА ════ -->
+<section class="section active" id="section-nature">
+  <div class="container">
+    <div class="section-label">01 · Що це насправді</div>
+    <h2 class="section-title">Інтуїція — це<br><em>архів у режимі реального часу</em></h2>
+
+    <div class="intro-grid">
+      <div class="intro-cell">
+        <h3>Що це є</h3>
+        <p>Патерн-розпізнавання, яке відбувається поза свідомим мисленням. Мозок звіряє поточну ситуацію з тисячами збережених шаблонів і видає сигнал раніше, ніж ти встигаєш подумати.</p>
+      </div>
+      <div class="intro-cell">
+        <h3>Що це не є</h3>
+        <p>Не магія, не «шосте відчуття» з небес, не виключно Нептун у натальній карті. Це тренована здатність, яка підсилюється свідомою практикою.</p>
+      </div>
+      <div class="intro-cell">
+        <h3>Чому Козеріг від природи сильний</h3>
+        <p>Сатурн дає <strong>довготривалу пам'ять</strong> і вміння зчитувати структури та ієрархії. Козеріг накопичує досвід, як ніхто — інтуїція тут вже є, просто не осмислена.</p>
+      </div>
+      <div class="intro-cell">
+        <h3>Головна небезпека Козерога</h3>
+        <p>Надмірний аналіз душить сигнал. Козеріг часто <strong>перевіряє</strong> інтуїцію до смерті, замість того щоб дати їй говорити — і чує лише логіку.</p>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p>Інтуїція — це не протилежність аналізу. Це аналіз, що відбувся настільки багато разів, що став автоматичним.</p>
+      <span>— Gary Klein, дослідник прийняття рішень</span>
+    </div>
+
+    <p>Нейронаука підтверджує: так звані «gut feelings» — це <strong>соматичні маркери</strong> (Damasio). Тіло фіксує мікросигнали — тон голосу, мікровираз обличчя, невідповідність між словами й діями — і передає їх у форму фізичного відчуття. Козеріг з його земною природою має природний канал до цього.</p>
+
+    <div class="pill-row">
+      <span class="pill">Система 1 мислення</span>
+      <span class="pill">Соматичні маркери</span>
+      <span class="pill">Патерн-розпізнавання</span>
+      <span class="pill">Проприоцепція</span>
+      <span class="pill">Імпліцитна пам'ять</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════ РІВНІ ════ -->
+<section class="section" id="section-levels">
+  <div class="container">
+    <div class="section-label">02 · Карта зростання</div>
+    <h2 class="section-title">П'ять рівнів<br><em>від шуму до передбачення</em></h2>
+
+    <div class="toggle-hint">▼ натисни на рівень щоб розгорнути</div>
+
+    <div class="levels-timeline">
+
+      <!-- РІВЕНЬ 1 -->
+      <div class="level-card" onclick="toggleLevel(this)">
+        <div class="level-num-circle">1</div>
+        <div class="level-header">
+          <div>
+            <div class="level-name">Шум vs Сигнал</div>
+            <div class="level-desc">Навчитися розрізняти справжній сигнал від страху, бажання чи втоми</div>
+          </div>
+          <div class="level-meta">
+            <span class="level-time">2–6 місяців</span>
+            <span class="level-mastery">Фундамент</span>
+          </div>
+        </div>
+        <div class="level-signals">
+          <span class="signal-tag active-tag">Ти вже тут, якщо:</span>
+          <span class="signal-tag">Помічаєш «щось не те»</span>
+          <span class="signal-tag">Але не довіряєш цьому</span>
+        </div>
+        <div class="level-body">
+          <p style="margin-bottom:16px; font-size:16px; color:var(--text-dim);">На цьому рівні завдання одне: <strong>зібрати дані про власні сигнали</strong>. Не фільтрувати, не аналізувати — просто логувати.</p>
+          <ul class="practices-list">
+            <li>Після кожного рішення записуй: «Що я відчув до? Що сталося після?» — 1 речення.</li>
+            <li>Вивчи свій «так» vs «ні» у тілі. Закрий очі і скажи «так» — яке відчуття? Тепер «ні».</li>
+            <li>30-денний журнал мікропередчуттів: кожен раз, коли щось «кольнуло» — запиши.</li>
+            <li>Після 30 днів: знайди патерн. Де ти виявився правим? Де помилявся? Чому?</li>
+          </ul>
+          <div class="capricorn-note">
+            <strong>Козеріг-адаптація:</strong> Роби це як бізнес-аналіз, не як духовну практику. Spreadsheet, таблиця, метрики — так тобі буде зручніше і ти не кинеш на 3-й день.
+          </div>
+        </div>
+      </div>
+
+      <!-- РІВЕНЬ 2 -->
+      <div class="level-card" onclick="toggleLevel(this)">
+        <div class="level-num-circle">2</div>
+        <div class="level-header">
+          <div>
+            <div class="level-name">Тілесний радар</div>
+            <div class="level-desc">Тіло знає раніше за розум — навчити себе слухати його мову</div>
+          </div>
+          <div class="level-meta">
+            <span class="level-time">6–18 місяців</span>
+            <span class="level-mastery">Розвиток</span>
+          </div>
+        </div>
+        <div class="level-signals">
+          <span class="signal-tag active-tag">Ознаки рівня:</span>
+          <span class="signal-tag">Фізичні сигнали стабільні</span>
+          <span class="signal-tag">Точність 55–65%</span>
+        </div>
+        <div class="level-body">
+          <p style="margin-bottom:16px; font-size:16px; color:var(--text-dim);">Соматичні маркери — це <strong>перша мова інтуїції</strong>. Навчитися читати їх означає отримати прямий доступ до підсвідомих баз даних.</p>
+          <ul class="practices-list">
+            <li><strong>Body scan перед рішенням:</strong> 60 секунд з закритими очима — де напруга? Де відкритість? Відчуй, не інтерпретуй.</li>
+            <li><strong>«Стискається чи розширюється?»</strong> — єдине питання при будь-якій пропозиції. Практикуй з малими рішеннями щодня.</li>
+            <li>Медитація фокус-уваги 10 хв/день (не усвідомленість, а концентрація — Козерогу підходить більше).</li>
+            <li>Холотропне дихання 1–2 рази на місяць — різко підсилює тілесну чутливість.</li>
+            <li>Зменш інформаційний шум: 30 хв без телефону вранці — мозок починає «говорити» чистіше.</li>
+          </ul>
+          <div class="capricorn-note">
+            <strong>Козеріг-адаптація:</strong> Замість «медитації» думай про це як про «калібрування інструменту». Так само, як точний прилад потребує регулярного обнулення — твій внутрішній радар теж потребує тиші.
+          </div>
+        </div>
+      </div>
+
+      <!-- РІВЕНЬ 3 -->
+      <div class="level-card" onclick="toggleLevel(this)">
+        <div class="level-num-circle">3</div>
+        <div class="level-header">
+          <div>
+            <div class="level-name">Контекстна чуйка</div>
+            <div class="level-desc">Зчитування невербального, атмосфери, прихованих мотивів людей і систем</div>
+          </div>
+          <div class="level-meta">
+            <span class="level-time">2–4 роки</span>
+            <span class="level-mastery">Прогресивний</span>
+          </div>
+        </div>
+        <div class="level-signals">
+          <span class="signal-tag active-tag">Ознаки рівня:</span>
+          <span class="signal-tag">Читаєш «між рядків»</span>
+          <span class="signal-tag">Відчуваєш кімнату</span>
+          <span class="signal-tag">Точність 70–80%</span>
+        </div>
+        <div class="level-body">
+          <p style="margin-bottom:16px; font-size:16px; color:var(--text-dim);">Тут інтуїція виходить за межі тіла і охоплює <strong>системи, людей, динаміки</strong>. Козеріг тут природно сильний завдяки своїй орієнтованості на структури влади.</p>
+          <ul class="practices-list">
+            <li><strong>Активне спостереження:</strong> у розмові 40% уваги — слова, 60% — мікрожести, тон, пауза, темп. Практикуй в кафе, на зустрічах.</li>
+            <li>Вивчи базові мікровирази (книга Paul Ekman або Udemy курс). 3 місяці практики = суттєвий стрибок.</li>
+            <li><strong>«Перший образ»</strong>: зайшовши в нову ситуацію, запиши перше враження до будь-якого аналізу. Потім звірься.</li>
+            <li>Рольові перестановки: після кожної переговорної ситуації проживи її очима іншої сторони — що вони відчували?</li>
+            <li>Читай художню літературу (не бізнес-книги) — це тренує моделювання свідомості інших людей.</li>
+          </ul>
+          <div class="capricorn-note">
+            <strong>Козеріг-адаптація:</strong> Ти вже добре зчитуєш ієрархію і статус. Наступний крок — навчитися зчитувати <em>емоційний стан</em> людей незалежно від їхнього статусу. Це сліпа пляма Козерогів.
+          </div>
+        </div>
+      </div>
+
+      <!-- РІВЕНЬ 4 -->
+      <div class="level-card" onclick="toggleLevel(this)">
+        <div class="level-num-circle">4</div>
+        <div class="level-header">
+          <div>
+            <div class="level-name">Стратегічне передчуття</div>
+            <div class="level-desc">Відчувати куди рухається система, ринок, ситуація — до того як це стане очевидним</div>
+          </div>
+          <div class="level-meta">
+            <span class="level-time">4–8 років</span>
+            <span class="level-mastery">Майстер</span>
+          </div>
+        </div>
+        <div class="level-signals">
+          <span class="signal-tag active-tag">Ознаки рівня:</span>
+          <span class="signal-tag">Думаєш в трендах</span>
+          <span class="signal-tag">Бачиш слабкі сигнали</span>
+          <span class="signal-tag">Точність 80–90%</span>
+        </div>
+        <div class="level-body">
+          <p style="margin-bottom:16px; font-size:16px; color:var(--text-dim);">Рівень, де Сатурн-Козеріг розкривається повністю. <strong>Системне мислення + інтуїтивне зчитування слабких сигналів</strong> = вміння бачити на 3–5 кроків вперед.</p>
+          <ul class="practices-list">
+            <li><strong>Weak signal hunting:</strong> щотижня знаходь 3 «ніхто не помітив» факти у своїй сфері і міркуй, що вони означають через рік.</li>
+            <li>Веди «інтуїтивний прогноз-журнал»: записуй що, на твою думку, станеться. Перевіряй через 3–6 місяців. Точність росте від самого факту фіксації.</li>
+            <li>Вивчи теорію систем (Meadows «Мислення в системах») — дає мові для того, що ти вже відчуваєш.</li>
+            <li><strong>Сценарне планування:</strong> для кожного важливого рішення — 3 сценарії. Який резонує? Чому?</li>
+            <li>Регулярні «тихі» ретрити 1–2 рази на рік (2–3 дні без телефону, з нотатником).</li>
+          </ul>
+          <div class="capricorn-note">
+            <strong>Козеріг-адаптація:</strong> Це твій природний горизонт. Сатурн = час, довгострокове мислення. Цей рівень — де ти отримуєш конкурентну перевагу, яку інші знаки просто не можуть відтворити тим же шляхом.
+          </div>
+        </div>
+      </div>
+
+      <!-- РІВЕНЬ 5 -->
+      <div class="level-card" onclick="toggleLevel(this)">
+        <div class="level-num-circle">5</div>
+        <div class="level-header">
+          <div>
+            <div class="level-name">Інтеграція · Мудрець</div>
+            <div class="level-desc">Інтуїція і аналіз стають єдиним потоком. Рішення приходять цілісно.</div>
+          </div>
+          <div class="level-meta">
+            <span class="level-time">8–15+ років</span>
+            <span class="level-mastery">Інтеграція</span>
+          </div>
+        </div>
+        <div class="level-signals">
+          <span class="signal-tag active-tag">Ознаки рівня:</span>
+          <span class="signal-tag">«Просто знаєш»</span>
+          <span class="signal-tag">Інші питають поради</span>
+          <span class="signal-tag">Точність 90%+</span>
+        </div>
+        <div class="level-body">
+          <p style="margin-bottom:16px; font-size:16px; color:var(--text-dim);">Тут перестаєш думати про інтуїцію — вона просто є. Аналіз і відчуття більше не конкурують. <strong>Это рівень старих майстрів, гросмейстерів, мудрих підприємців.</strong></p>
+          <ul class="practices-list">
+            <li>Передача знань: навчання інших — найбільш потужний спосіб кристалізувати власне знання.</li>
+            <li>Медитативні практики глибшого рівня (Vipassana, 10-денні ретрити).</li>
+            <li>Регулярне «не-знання»: навмисно заходь у нові сфери де ти нічого не знаєш — перезавантажує сприйняття.</li>
+            <li>Ведення «книги інсайтів» — не планів, а прозрінь. Перечитування через роки відкриває твої власні паттерни.</li>
+          </ul>
+          <div class="capricorn-note">
+            <strong>Козеріг-адаптація:</strong> Козеріг розкривається після 40 (сатурніанські цикли). Якщо ти молодий — ти будуєш фундамент. Якщо вже з досвідом — можливо, ти вже на 4-му рівні без назви для цього.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ПРАКТИКИ ════ -->
+<section class="section" id="section-practices">
+  <div class="container">
+    <div class="section-label">03 · Щоденна система</div>
+    <h2 class="section-title">Практики<br><em>що реально працюють</em></h2>
+
+    <div class="practice-grid">
+
+      <div class="practice-card">
+        <span class="practice-icon">📓</span>
+        <div class="practice-name">Журнал передчуттів</div>
+        <div class="practice-freq">ЩОДНЯ · 5 хв</div>
+        <p class="practice-desc">Записуй інтуїтивні імпульси до ухвалення рішень. Через 30 днів — аналіз точності. Це збільшує точність сигналу на 20–40% за рахунок зворотного зв'язку.</p>
+        <p class="practice-cap-note">Козеріг: роби в нотатках або Notion — там де вже є звичка.</p>
+      </div>
+
+      <div class="practice-card">
+        <span class="practice-icon">🧘</span>
+        <div class="practice-name">Тиша вранці</div>
+        <div class="practice-freq">ЩОДНЯ · 10–20 хв</div>
+        <p class="practice-desc">30+ хв без телефону і контенту після пробудження. Мозок у стані Default Mode Network — саме звідти приходять інсайти. Не медитація, просто тиша.</p>
+        <p class="practice-cap-note">Козеріг: заміни перевірку новин на ранній «debriefing» дня.</p>
+      </div>
+
+      <div class="practice-card">
+        <span class="practice-icon">🎯</span>
+        <div class="practice-name">Швидкі мікро-рішення</div>
+        <div class="practice-freq">ЩОДНЯ · без часових меж</div>
+        <p class="practice-desc">У незначних ситуаціях (кафе, маршрут, відповідь) — довіряй першому імпульсу без аналізу. Так ти тренуєш «м'яз довіри» без ризиків.</p>
+        <p class="practice-cap-note">Козеріг: починай з нульоризикових ситуацій — не кидай свій стиль аналізу одразу.</p>
+      </div>
+
+      <div class="practice-card">
+        <span class="practice-icon">🔄</span>
+        <div class="practice-name">Pre-mortem аналіз</div>
+        <div class="practice-freq">ПЕРЕД КОЖНИМ РІШЕННЯМ</div>
+        <p class="practice-desc">Уяви: рішення вже провалилось. Що пішло не так? Твоя перша відповідь часто є інтуїтивним сигналом, який ти ігнорував. Зафіксуй його.</p>
+        <p class="practice-cap-note">Козеріг: це аналіз — тому він зручний. Але звертай увагу на емоцію відповіді, не лише логіку.</p>
+      </div>
+
+      <div class="practice-card">
+        <span class="practice-icon">👁</span>
+        <div class="practice-name">Спостереження без оцінки</div>
+        <div class="practice-freq">2–3 РАЗИ НА ТИЖДЕНЬ · 15 хв</div>
+        <p class="practice-desc">В публічному місці: спостерігай за людьми без формулювання суджень. Просто «що я помічаю?». Розвиває периферійне сприйняття і тонкі сигнали.</p>
+        <p class="practice-cap-note">Козеріг: це «field research» з нульовими витратами і прямою практичною користю.</p>
+      </div>
+
+      <div class="practice-card">
+        <span class="practice-icon">🛏</span>
+        <div class="practice-name">Hypnagogic стан</div>
+        <div class="practice-freq">ЩОНОЧІ</div>
+        <p class="practice-desc">Стан між сном і пробудженням — найбільш продуктивний для інтуїтивних відповідей. Ставай питання перед сном. Тримай нотатник поруч. Едісон використовував це навмисно.</p>
+        <p class="practice-cap-note">Козеріг: задавай конкретне бізнес-питання. Відповідь буде несподіваною, але часто точною.</p>
+      </div>
+
+      <div class="practice-card">
+        <span class="practice-icon">🎲</span>
+        <div class="practice-name">Монетний тест</div>
+        <div class="practice-freq">ПРИ ДИЛЕМАХ</div>
+        <p class="practice-desc">При важкому виборі між двома рівнозначними опціями — кинь монету. Зверни увагу на свою реакцію до того як вона впала. Розчарування або полегшення — і є відповідь.</p>
+        <p class="practice-cap-note">Козеріг: цей метод показує твоє підсвідоме без необхідності «відчувати» щось.</p>
+      </div>
+
+      <div class="practice-card">
+        <span class="practice-icon">📚</span>
+        <div class="practice-name">Художня література</div>
+        <div class="practice-freq">РЕГУЛЯРНО</div>
+        <p class="practice-desc">Читання художньої прози розвиває «Theory of Mind» — здатність моделювати внутрішній світ інших. Це прямий апгрейд соціальної інтуїції. 30 хв/день = видимий ефект за 6 місяців.</p>
+        <p class="practice-cap-note">Козеріг: обирай складних персонажів, не тільки героїв. Достоєвський, Толстой, Camus.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ ПАСТКИ ════ -->
+<section class="section" id="section-mistakes">
+  <div class="container">
+    <div class="section-label">04 · Типові помилки</div>
+    <h2 class="section-title">Що вбиває<br><em>інтуїцію Козерога</em></h2>
+
+    <div class="mistake-list">
+      <div class="mistake-row">
+        <div class="mistake-col">
+          <div class="mistake-label bad">⚠ Помилка</div>
+          <p>Аналізувати інтуїцію до повної певності — і тим самим знищити її</p>
+        </div>
+        <div class="mistake-col">
+          <div class="mistake-label good">✓ Замість цього</div>
+          <p>Зафіксуй сигнал <em>до</em> аналізу. Потім аналізуй окремо. Ніколи не зливай ці два процеси.</p>
+        </div>
+      </div>
+
+      <div class="mistake-row">
+        <div class="mistake-col">
+          <div class="mistake-label bad">⚠ Помилка</div>
+          <p>Приймати бажання за інтуїцію — плутати «хочу щоб так було» з «відчуваю що так є»</p>
+        </div>
+        <div class="mistake-col">
+          <div class="mistake-label good">✓ Замість цього</div>
+          <p>Запитай: «Якби я не хотів цього — що б відчував?» Справжній сигнал не залежить від бажання.</p>
+        </div>
+      </div>
+
+      <div class="mistake-row">
+        <div class="mistake-col">
+          <div class="mistake-label bad">⚠ Помилка</div>
+          <p>Довіряти інтуїції в зонах де немає досвіду — і приймати це за «вищу мудрість»</p>
+        </div>
+        <div class="mistake-col">
+          <div class="mistake-label good">✓ Замість цього</div>
+          <p>Інтуїція точна тільки там де є база досвіду. У нових сферах — збирай дані спочатку.</p>
+        </div>
+      </div>
+
+      <div class="mistake-row">
+        <div class="mistake-col">
+          <div class="mistake-label bad">⚠ Помилка</div>
+          <p>Повна тиша від тіла (хронічна втома, стрес, алкоголь, мало сну) — і спроби «відчути» щось</p>
+        </div>
+        <div class="mistake-col">
+          <div class="mistake-label good">✓ Замість цього</div>
+          <p>Сон, рух, відсутність хронічного стресу — це <em>інфраструктура</em> інтуїції. Без цього система не працює.</p>
+        </div>
+      </div>
+
+      <div class="mistake-row">
+        <div class="mistake-col">
+          <div class="mistake-label bad">⚠ Помилка</div>
+          <p>Ігнорувати «незручні» сигнали — ті, що суперечать твоєму плану чи логіці</p>
+        </div>
+        <div class="mistake-col">
+          <div class="mistake-label good">✓ Замість цього</div>
+          <p>Саме незручні сигнали найцінніші. Правило: якщо тобі некомфортно від сигналу — запиши його першим.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ МІФИ ════ -->
+<section class="section" id="section-myths">
+  <div class="container">
+    <div class="section-label">05 · Деміфологізація</div>
+    <h2 class="section-title">Що неправда<br><em>про інтуїцію</em></h2>
+
+    <div class="myth-card">
+      <div class="myth-q">Інтуїція або є від народження, або її нема</div>
+      <p class="myth-a">Неправда. Дослідження Kahneman, Klein, Hogarth показують: інтуїція — це навичка, яку розвивають через зворотний зв'язок і практику. Точність зростає пропорційно накопиченому досвіду <em>з правильними умовами навчання</em>.</p>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-q">Козерог — раціональний знак, йому інтуїція не дається</div>
+      <p class="myth-a">Навпаки. Козеріг з сатурнівською дисципліною здатний побудувати <strong>найбільш стабільну і перевірену інтуїцію</strong> — бо він не кидає практику через три тижні. Проблема не відсутність інтуїції, а надмірний внутрішній критик, що заглушує сигнал.</p>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-q">Треба медитувати годинами щодня щоб розвинути інтуїцію</div>
+      <p class="myth-a">Ні. Найбільш ефективні практики — це <strong>зворотний зв'язок + увага</strong>. 5 хвилин журналу передчуттів дають більше, ніж 30 хвилин медитації без рефлексії. Медитація корисна, але не обов'язкова умова.</p>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-q">Інтуїція завжди права</div>
+      <p class="myth-a">Ні. Інтуїція має сліпі плями — bias confirmation, availability heuristic, страх. Мета не замінити аналіз інтуїцією, а <strong>поєднати їх</strong>: інтуїція задає гіпотезу, аналіз перевіряє.</p>
+    </div>
+
+    <div class="myth-card">
+      <div class="myth-q">Емоційні знаки кращі в інтуїції — Скорпіон, Риби, Рак</div>
+      <p class="myth-a">Вони <em>гучніше</em> сигналять і частіше довіряють цьому. Але точність — інша справа. Козеріг, що системно тренував інтуїцію, <strong>перевершить</strong> «інтуїтивний» знак без практики, бо додає дисципліну перевірки.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ТРЕКЕР ════ -->
+<section class="section" id="section-tracker">
+  <div class="container">
+    <div class="section-label">06 · Особистий трекер</div>
+    <h2 class="section-title">Відмічай<br><em>свій прогрес</em></h2>
+
+    <div class="progress-container">
+      <div class="progress-label">Фундаментальні навички · Рівні 1–2</div>
+      <div class="checkboxes-grid" id="checkboxes">
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Веду журнал передчуттів хоча б 2 тижні поспіль</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Розрізняю своє «так» і «ні» у тілі фізично</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Маю ранкову рутину без телефону (10+ хв)</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Провів 30-денний аналіз своїх передчуттів</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Зробив body scan перед важливим рішенням</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Практикую швидкі мікро-рішення без аналізу</div>
+        </div>
+
+      </div>
+
+      <div class="progress-label" style="margin-top:32px">Просунуті навички · Рівні 3–4</div>
+      <div class="checkboxes-grid" id="checkboxes2">
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Вивчив основи мікровиразів (Ekman або аналог)</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Ведучи переговори, фіксую «перший образ» до аналізу</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Маю прогноз-журнал зі ставками на майбутнє</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Регулярно читаю художню літературу (30+ хв/тиждень)</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Пройшов хоча б один multi-day digital detox</div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">Маю спосіб фіксувати «незручні» сигнали, що суперечать плану</div>
+        </div>
+      </div>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="prog-bar" style="width:0%"></div>
+      </div>
+      <div class="progress-pct" id="prog-pct">0% · Починаєш шлях</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function showSection(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('section-' + id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleLevel(card) {
+    card.classList.toggle('open');
+  }
+
+  function toggleCheck(item) {
+    item.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.check-item');
+    const checked = document.querySelectorAll('.check-item.checked').length;
+    const pct = Math.round((checked / all.length) * 100);
+    document.getElementById('prog-bar').style.width = pct + '%';
+    let label = '0% · Починаєш шлях';
+    if (pct >= 100) label = '100% · Майстер інтуїції';
+    else if (pct >= 75) label = pct + '% · Просунутий рівень';
+    else if (pct >= 50) label = pct + '% · Стабільний прогрес';
+    else if (pct >= 25) label = pct + '% · Фундамент закладено';
+    else if (pct > 0) label = pct + '% · Перші кроки';
+    document.getElementById('prog-pct').textContent = label;
+  }
+</script>
+
+</body>
+</html>

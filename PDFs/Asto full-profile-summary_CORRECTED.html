@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Повний Профіль · Козеріг 09.01.1990 [ВИПРАВЛЕНО]</title>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:     #F9F7F3;
+  --bg2:    #F2EEE7;
+  --ink:    #18160F;
+  --warm:   #28240E;
+  --gold:   #9A7020;
+  --gold2:  #C89A3A;
+  --gold3:  #E8C870;
+  --goldbg: rgba(154,112,32,0.08);
+  --teal:   #1A4A42;
+  --teal2:  #2A7A6A;
+  --teal3:  rgba(26,74,66,0.08);
+  --red:    #6A2020;
+  --redbg:  rgba(106,32,32,0.07);
+  --indigo: #2A2860;
+  --muted:  #7A7060;
+  --border: #DDD8C8;
+  --line:   #EAE4D4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Albert Sans',sans-serif;
+  font-size:14px;line-height:1.75;
+}
+
+.topbar{
+  background:var(--ink);
+  padding:20px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;flex-wrap:wrap;
+  position:sticky;top:0;z-index:100;
+}
+.tb-name{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:400;
+  color:#F5F0E8;letter-spacing:.5px;
+}
+.tb-data{
+  font-size:11px;letter-spacing:2px;
+  color:rgba(245,240,232,0.4);text-transform:uppercase;
+}
+.tb-tabs{
+  display:flex;gap:0;overflow-x:auto;
+  scrollbar-width:none;flex-shrink:0;
+}
+.tb-tabs::-webkit-scrollbar{display:none}
+.tt{
+  padding:8px 14px;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;color:rgba(245,240,232,0.35);
+  border:none;background:none;cursor:pointer;
+  border-bottom:2px solid transparent;white-space:nowrap;
+  transition:all .2s;
+}
+.tt:hover{color:var(--gold3)}
+.tt.on{color:var(--gold3);border-bottom-color:var(--gold3)}
+
+.pnl{display:none}.pnl.on{display:block}
+
+.page{max-width:900px;margin:0 auto;padding:40px 24px 80px}
+
+.section{margin-bottom:48px}
+
+.sec-tag{
+  font-size:9px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:6px;
+  display:flex;align-items:center;gap:14px;
+}
+.sec-tag::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,3vw,32px);
+  font-weight:700;color:var(--ink);
+  margin-bottom:20px;line-height:1.1;
+}
+.sec-title em{color:var(--gold);font-style:italic}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.cards3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px}
+
+.card{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:20px;border-radius:2px;
+}
+.card-gold{background:var(--goldbg);border-color:rgba(154,112,32,0.2)}
+.card-teal{background:var(--teal3);border-color:rgba(26,74,66,0.2)}
+.card-red{background:var(--redbg);border-color:rgba(106,32,32,0.15)}
+.card-line{border-top:2px solid var(--gold2)}
+.card-line-teal{border-top:2px solid var(--teal)}
+.card-line-red{border-top:2px solid var(--red)}
+
+.card-label{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.card-label-teal{color:var(--teal2)}
+.card-label-red{color:var(--red)}
+
+.card h3{
+  font-family:'Playfair Display',serif;
+  font-size:17px;font-weight:700;
+  color:var(--ink);margin-bottom:8px;line-height:1.2;
+}
+
+.card p{font-size:13px;color:var(--muted);line-height:1.65}
+.card p strong{color:var(--ink)}
+
+.big3{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;background:var(--border);margin-bottom:24px;
+}
+.b3-cell{
+  background:var(--bg2);
+  padding:24px 16px;text-align:center;
+}
+.b3-glyph{font-size:32px;margin-bottom:8px}
+.b3-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.b3-sign{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink)}
+.b3-note{font-size:11px;color:var(--muted);margin-top:4px}
+
+.data-table{width:100%;border-collapse:collapse;margin-bottom:16px}
+.data-table th{
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);padding:8px 14px;
+  border-bottom:2px solid var(--border);text-align:left;
+}
+.data-table td{
+  padding:10px 14px;border-bottom:1px solid var(--line);
+  font-size:13px;vertical-align:top;
+}
+.data-table tr:hover td{background:rgba(0,0,0,.02)}
+.td-label{color:var(--gold);font-weight:500;width:30%}
+.td-val{color:var(--ink)}
+.td-note{color:var(--muted);font-size:12px;font-style:italic}
+
+.hbox{
+  padding:22px 26px;margin-bottom:16px;
+  position:relative;
+}
+.hbox::before{
+  content:attr(data-l);
+  position:absolute;top:-9px;left:18px;
+  background:var(--bg);padding:0 8px;
+  font-size:8px;letter-spacing:4px;text-transform:uppercase;
+}
+.hbox-gold{background:var(--goldbg);border:1px solid rgba(154,112,32,0.2)}
+.hbox-gold::before{color:var(--gold2)}
+.hbox-teal{background:var(--teal3);border:1px solid rgba(26,74,66,0.2)}
+.hbox-teal::before{color:var(--teal2)}
+.hbox-red{background:var(--redbg);border:1px solid rgba(106,32,32,0.2)}
+.hbox-red::before{color:var(--red)}
+
+.hbox p{font-size:14px;color:var(--warm);line-height:1.8}
+.hbox p strong{color:var(--ink)}
+.hbox p em{color:var(--gold);font-style:italic}
+
+.tl{display:flex;flex-direction:column;gap:2px;margin-bottom:16px}
+.tl-row{
+  display:grid;grid-template-columns:110px 1fr;
+  border:1px solid var(--border);
+  transition:border-color .2s;
+}
+.tl-row:hover{border-color:var(--gold2)}
+
+.tl-date{
+  padding:14px 14px;
+  background:var(--bg2);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.tl-year{
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:700;color:var(--ink);line-height:1;
+}
+.tl-age{font-size:10px;color:var(--muted);margin-top:2px;letter-spacing:1px}
+
+.tl-body{padding:14px 18px;background:var(--bg)}
+.tl-event{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px}
+.tl-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.tl-desc strong{color:var(--ink)}
+
+.tl-badge{
+  display:inline-block;font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;padding:2px 7px;margin-bottom:5px;
+}
+.b-gold{background:var(--goldbg);color:var(--gold2);border:1px solid rgba(154,112,32,0.2)}
+.b-blue{background:rgba(42,40,96,0.07);color:var(--indigo);border:1px solid rgba(42,40,96,0.15)}
+.b-teal{background:var(--teal3);color:var(--teal2);border:1px solid rgba(26,74,66,0.2)}
+.b-red{background:var(--redbg);color:var(--red);border:1px solid rgba(106,32,32,0.2)}
+.b-now{background:rgba(154,112,32,0.15);color:var(--gold);border:1px solid var(--gold2);animation:pulse .9s ease-in-out infinite alternate}
+@keyframes pulse{from{opacity:.8}to{opacity:1}}
+
+.tl-row.now-row .tl-date{background:var(--goldbg);border-left:3px solid var(--gold2)}
+.tl-row.now-row .tl-year{color:var(--gold)}
+
+.checklist{list-style:none;margin-bottom:12px}
+.checklist li{
+  padding:6px 0;display:flex;gap:10px;
+  border-bottom:1px solid var(--line);font-size:13px;
+  color:var(--muted);line-height:1.5;
+}
+.checklist li:last-child{border:none}
+.cl-gold li::before{content:'◆';color:var(--gold2);flex-shrink:0;font-size:9px;margin-top:4px}
+.cl-teal li::before{content:'→';color:var(--teal2);flex-shrink:0}
+.cl-red  li::before{content:'✗';color:var(--red);flex-shrink:0}
+.checklist li strong{color:var(--ink)}
+
+.planet-rows{display:flex;flex-direction:column;gap:1px;margin-bottom:16px}
+.pr{
+  display:grid;grid-template-columns:40px 130px 1fr;
+  background:var(--bg2);border:1px solid var(--border);
+  align-items:center;
+}
+.pr-g{font-size:20px;text-align:center;padding:10px 0}
+.pr-name{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;padding:10px 12px}
+.pr-val{font-size:13px;color:var(--ink);padding:10px 12px;border-left:1px solid var(--border)}
+.pr-note{font-size:11px;color:var(--muted)}
+
+.month-row{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:2px;background:var(--border);margin-bottom:20px;
+}
+.mc{background:var(--bg2);padding:12px 8px;text-align:center}
+.mc-m{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.mc-s{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;line-height:1;margin-bottom:3px;
+}
+.s5{color:var(--gold)}.s4{color:var(--teal2)}.s3{color:var(--muted)}.s2{color:var(--red)}
+.mc-l{font-size:10px;color:var(--muted)}
+.mc.now-mc{background:var(--goldbg);border:1px solid rgba(154,112,32,0.2)}
+
+.div{
+  display:flex;align-items:center;gap:16px;margin:32px 0;
+}
+.div::before,.div::after{content:'';flex:1;height:1px;background:var(--border)}
+.div-g{font-size:12px;color:var(--gold2)}
+
+.hero-section{
+  background:var(--ink);
+  padding:48px 40px;
+  margin-bottom:40px;
+  text-align:center;
+}
+.hs-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,4vw,42px);
+  font-weight:700;color:#F5F0E8;
+  line-height:1.1;margin-bottom:12px;
+}
+.hs-title em{color:var(--gold3);font-style:italic}
+.hs-sub{font-size:15px;color:rgba(245,240,232,0.5);line-height:1.7;max-width:560px;margin:0 auto 24px}
+
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hp{
+  padding:5px 14px;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;border:1px solid;
+}
+.hp-gold{border-color:rgba(200,154,58,0.4);color:var(--gold3)}
+.hp-teal{border-color:rgba(42,122,106,0.4);color:#6ACAB0}
+
+.conclusion{
+  background:linear-gradient(135deg,var(--goldbg),var(--teal3));
+  border:1px solid rgba(154,112,32,0.2);
+  padding:40px;text-align:center;
+  margin-top:40px;
+}
+.con-title{
+  font-family:'Playfair Display',serif;
+  font-size:24px;font-weight:700;
+  color:var(--ink);margin-bottom:16px;
+}
+.con-text{
+  font-size:15px;color:var(--warm);
+  line-height:1.85;max-width:600px;margin:0 auto 20px;
+}
+.con-text strong{color:var(--ink)}
+.con-mantra{
+  font-family:'Playfair Display',serif;
+  font-style:italic;font-size:18px;
+  color:var(--gold);border-top:1px solid var(--border);
+  padding-top:20px;
+}
+
+/* correction banner */
+.corr-banner{
+  background:#1a3a1a;border-bottom:2px solid #4a8a4a;
+  padding:10px 32px;font-size:11px;letter-spacing:1px;
+  color:#90c890;text-align:center;
+}
+
+@media(max-width:600px){
+  .topbar{flex-direction:column;align-items:flex-start;padding:14px 20px}
+  .big3{grid-template-columns:1fr}
+  .cards,.cards3{grid-template-columns:1fr}
+  .month-row{grid-template-columns:repeat(3,1fr)}
+  .tl-row{grid-template-columns:80px 1fr}
+  .tl-year{font-size:14px}
+  .pr{grid-template-columns:36px 110px 1fr}
+  .hero-section{padding:32px 20px}
+  .conclusion{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+
+<div class="corr-banner">✓ ВИПРАВЛЕНО OpenClaude 2026-05-16 — верифіковано через Swiss Ephemeris (pyswisseph) + astro.com · Placidus будинки</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div>
+    <div class="tb-name">Козеріг · 09.01.1990 · 07:17 · Легніца</div>
+    <div class="tb-data">Повний Астрологічний Профіль та Стратегічний План</div>
+  </div>
+  <div class="tb-tabs">
+    <button class="tt on" onclick="sw('natal')">Натальна Карта</button>
+    <button class="tt" onclick="sw('psych')">Психологія</button>
+    <button class="tt" onclick="sw('career')">Кар'єра</button>
+    <button class="tt" onclick="sw('transits')">Транзити 2026</button>
+    <button class="tt" onclick="sw('karma')">Карма</button>
+    <button class="tt" onclick="sw('plan')">План дій</button>
+  </div>
+</div>
+
+
+<!-- ═══════════ NATAL ═══════════ -->
+<div id="p-natal" class="pnl on">
+<div class="page">
+
+  <div class="hero-section">
+    <div class="hs-title">Великий Козерожний Стеліум<br><em>Унікальне Астрологічне Явище XX Ст.</em></div>
+    <p class="hs-sub">У момент народження у Козерогу одночасно перебували 5 планет. Подібне відбувається раз у покоління. Ця конфігурація формує людей, покликаних будувати нові системи та залишати тривалий слід.</p>
+    <div class="hero-pills">
+      <span class="hp hp-gold">☀ Сонце Козеріг</span>
+      <span class="hp hp-gold">☿ Меркурій Козеріг ℞</span>
+      <span class="hp hp-gold">♄ Сатурн Козеріг</span>
+      <span class="hp hp-gold">♅ Уран Козеріг</span>
+      <span class="hp hp-gold">♆ Нептун Козеріг</span>
+      <span class="hp hp-teal">♇ Плутон Скорпіон</span>
+    </div>
+  </div>
+
+  <!-- BIG THREE -->
+  <p class="sec-tag">Основа Особистості</p>
+  <h2 class="sec-title">«Велика Трійка»</h2>
+
+  <div class="big3">
+    <div class="b3-cell">
+      <div class="b3-glyph">☀️</div>
+      <div class="b3-label">Сонце · Ядро</div>
+      <div class="b3-sign">Козеріг 18°43'</div>
+      <div class="b3-note">Амбіція · Структура · Авторитет</div>
+    </div>
+    <div class="b3-cell">
+      <div class="b3-glyph">🌙</div>
+      <div class="b3-label">Місяць · Емоції</div>
+      <div class="b3-sign">Близнюки 23°04'</div>
+      <div class="b3-note">Інтелект · Адаптивність · Цікавість</div>
+    </div>
+    <div class="b3-cell">
+      <div class="b3-glyph">⬆️</div>
+      <div class="b3-label">Асцендент · Маска</div>
+      <div class="b3-sign">Козеріг 5°59'</div>
+      <div class="b3-note">Стриманість · Надійність · Зрілість</div>
+    </div>
+  </div>
+
+  <!-- ALL PLANETS -->
+  <p class="sec-tag">Повна Карта</p>
+  <h2 class="sec-title">Всі Планети</h2>
+
+  <div class="planet-rows">
+    <div class="pr"><div class="pr-g">☀</div><div class="pr-name">Сонце</div><div class="pr-val">18°43' Козеріг · Б1 <span class="pr-note">— Ядро особистості: дисципліна, довгострокове мислення, авторитет через результат</span></div></div>
+    <div class="pr"><div class="pr-g">☽</div><div class="pr-name">Місяць</div><div class="pr-val">23°04' Близнюки · Б6 <span class="pr-note">— Допитливий, живий розум; потреба виражати почуття через слова і спілкування</span></div></div>
+    <div class="pr"><div class="pr-g">☿</div><div class="pr-name">Меркурій</div><div class="pr-val">18°19' Козеріг ℞ · Б1 <span class="pr-note">— Практичне стратегічне мислення, аналіз з виходом на конкретний результат; ретроградний — глибший внутрішній аналіз</span></div></div>
+    <div class="pr"><div class="pr-g">♀</div><div class="pr-name">Венера</div><div class="pr-val">3°59' Водолій ℞ · Б1 <span class="pr-note">— Нестандартні цінності у стосунках, незалежність, гуманістичні ідеали; ретроградна — переосмислення того, що цінно</span></div></div>
+    <div class="pr"><div class="pr-g">♂</div><div class="pr-name">Марс</div><div class="pr-val">15°29' Стрілець · Б11 <span class="pr-note">— Дія через ідеї та ентузіазм; широка ідеалістична енергія, спрямована на велику мету і спільноту</span></div></div>
+    <div class="pr"><div class="pr-g">♃</div><div class="pr-name">Юпітер</div><div class="pr-val">4°08' Рак ℞ ★ · Б6 <span class="pr-note">— Екзальтація: мудрість через емоційний інтелект і інтуїцію; зростання через турботу і глибинний внутрішній світ</span></div></div>
+    <div class="pr"><div class="pr-g">♄</div><div class="pr-name">Сатурн</div><div class="pr-val">16°35' Козеріг ★ · Б1 <span class="pr-note">— Домагосподар: найсильніша позиція; природна зрілість, важкий внутрішній суддя</span></div></div>
+    <div class="pr"><div class="pr-g">♅</div><div class="pr-name">Уран</div><div class="pr-val">6°15' Козеріг · Б1 <span class="pr-note">— Революція у системах; бачить як технологія трансформує традиційні галузі</span></div></div>
+    <div class="pr"><div class="pr-g">♆</div><div class="pr-name">Нептун</div><div class="pr-val">12°20' Козеріг · Б1 <span class="pr-note">— Духовна дисципліна; втілення мрій через конкретні структури</span></div></div>
+    <div class="pr"><div class="pr-g">♇</div><div class="pr-name">Плутон</div><div class="pr-val">17°18' Скорпіон · Б10 <span class="pr-note">— Глибинна трансформація; бачить приховані мотивації систем і людей</span></div></div>
+  </div>
+
+  <!-- STRENGTHS / CHALLENGES -->
+  <div class="cards">
+    <div class="card card-line">
+      <div class="card-label">Сильні Сторони</div>
+      <ul class="checklist cl-gold">
+        <li>Залізна дисципліна і довгострокова витривалість</li>
+        <li>Стратегічне мислення на роки вперед</li>
+        <li>Природний авторитет через результат</li>
+        <li>Юпітер в екзальтації у Раку — природна мудрість та емоційний інтелект</li>
+        <li>Бачення зв'язків між доменами (Місяць Близнюки)</li>
+        <li>Здатність пояснювати складне просто</li>
+        <li>Бачить «де гроші і влада» у будь-якій системі (Плутон)</li>
+      </ul>
+    </div>
+    <div class="card card-line-red">
+      <div class="card-label card-label-red">Виклики</div>
+      <ul class="checklist cl-red">
+        <li>Надмірна самокритика і перфекціонізм</li>
+        <li>Страх втрати контролю → мікроменеджмент</li>
+        <li>Емоційна закритість (Козеріг ASC пригнічує вираз почуттів)</li>
+        <li>Розпорошеність — Місяць Близнюки, багато ідей</li>
+        <li>Трудоголізм, ігнорування тіла</li>
+        <li>Страх «запізнення» і хронічний поспіх</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="hbox hbox-gold" data-l="Ключовий Парадокс">
+    <p>Козерожній Асцендент підсилює стеліум: <strong>зовні — зрілий, серйозний, відповідальний; але Місяць у Близнюках всередині — живий, допитливий, гнучкий.</strong> Люди бачать надійного стратега — а за цим фасадом швидкий і грайливий розум. Це рідкісна комбінація глибини та адаптивності у лідерстві.</p>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ═══════════ PSYCH ═══════════ -->
+<div id="p-psych" class="pnl">
+<div class="page">
+
+  <p class="sec-tag">Внутрішній Ландшафт</p>
+  <h2 class="sec-title">Психологічний Профіль</h2>
+
+  <!-- 5 FEARS -->
+  <div class="section">
+    <p class="sec-tag">П'ять Ключових Тіней</p>
+    <h3 style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:16px">Внутрішні Обмеження</h3>
+    <div class="tl">
+      <div class="tl-row">
+        <div class="tl-date"><div class="tl-year" style="font-size:15px">№1</div><div class="tl-age">♄ Козеріг</div></div>
+        <div class="tl-body"><div class="tl-badge b-red">Найсильніший</div><div class="tl-event">Страх провалу та «недостатності»</div><div class="tl-desc">Внутрішній суддя каже: «ще не зробив достатньо, щоб зупинитись». Сатурн у власному знаку → перфекціонізм до виснаження. <strong>Проявляється як трудоголізм і синдром самозванця навіть на вершині.</strong></div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date"><div class="tl-year" style="font-size:15px">№2</div><div class="tl-age">♄♅ Козеріг</div></div>
+        <div class="tl-body"><div class="tl-event">Страх втрати контролю</div><div class="tl-desc">5 планет у знаку структури + Плутон у Скорпіоні = внутрішня війна між потребою контролювати і знанням що контроль ілюзія. <strong>Проявляється як мікроменеджмент і труднощі з делегуванням.</strong></div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date"><div class="tl-year" style="font-size:15px">№3</div><div class="tl-age">☽ Близнюки</div></div>
+        <div class="tl-body"><div class="tl-event">Страх емоційної вразливості</div><div class="tl-desc">Місяць прагне виражати почуття, але Козеріг перехоплює і раціоналізує. Почуття не виражаються — <strong>пояснюються</strong>. Близькі відчувають тебе недосяжним.</div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date"><div class="tl-year" style="font-size:15px">№4</div><div class="tl-age">☽ vs ↑</div></div>
+        <div class="tl-body"><div class="tl-event">Страх бути побаченим «неструктурованим»</div><div class="tl-desc">Козерожній Асцендент вимагає серйозного вигляду, але Місяць у Близнюках — допитливий і грайливий. <strong>Придушення легкості заради «зрілого» образу виснажує.</strong> Інтеграція: дозволити собі бути і серйозним, і живим.</div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date"><div class="tl-year" style="font-size:15px">№5</div><div class="tl-age">♄ Час</div></div>
+        <div class="tl-body"><div class="tl-event">Страх «запізнення»</div><div class="tl-desc">Сатурн = планета часу. Постійне відчуття що «вже мало бути більше». <strong>Астрологічна правда: Козеріг — знак пізнього розквіту. Пік кар'єри — 38–52 роки.</strong></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANSFORMATION -->
+  <div class="section">
+    <p class="sec-tag">Шлях Росту</p>
+    <h3 style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:16px">Як Трансформувати</h3>
+    <div class="cards">
+      <div class="card card-line-teal">
+        <div class="card-label card-label-teal">Практика 1</div>
+        <h3>Переписати Внутрішнього Критика</h3>
+        <p>Дати критику ім'я і образ — відокремити від себе. Правило 80%: зроблено на 80% = вже добре. <strong>Стоїцизм: Марк Аврелій «Роздуми» — настільна книга.</strong></p>
+      </div>
+      <div class="card card-line-teal">
+        <div class="card-label card-label-teal">Практика 2</div>
+        <h3>Дихотомія Контролю</h3>
+        <p>Щоранку: дві колонки «в моїх руках» і «поза контролем». Відпустити другу свідомо. <strong>Тілесна робота (йога, масаж) — обов'язково. Козеріг тримає стрес у тілі.</strong></p>
+      </div>
+      <div class="card card-line-teal">
+        <div class="card-label card-label-teal">Практика 3</div>
+        <h3>Школа Емоційної Мови</h3>
+        <p>Емоційний щоденник щовечора: тільки «я відчуваю…» без рішень і висновків. <strong>КПТ або наративна терапія — найефективніший формат для Місяця Близнюки.</strong></p>
+      </div>
+      <div class="card card-line-teal">
+        <div class="card-label card-label-teal">Духовний Архетип</div>
+        <h3>Мудрець-Будівничий</h3>
+        <p>Козеріг + Водолій ПН + Близнюки = духовно зростаєш через майстерність, мудрість і передачу знань спільноті. <strong>Твоя молитва — будувати те, що переживе тебе і служитиме іншим.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUNDING -->
+  <div class="section">
+    <p class="sec-tag">Базова Необхідність</p>
+    <h3 style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:16px">Заземлення — Умова Функціонування</h3>
+    <div class="hbox hbox-teal" data-l="Чому критично">
+      <p>Масивний дисбаланс стихій: 6 сильних Земних позицій (включаючи ASC), але Місяць і Венера у Повітрі постійно тягнуть до ментального. <strong>Без заземлення: думки по колу → контроль замість присутності → тіло сигналізує болем → Плутон «пробивається» неконтрольованими реакціями.</strong></p>
+    </div>
+    <div class="cards3">
+      <div class="card"><div class="card-label">Щодня</div><h3>🦶 Ходьба босоніж</h3><p>10–15 хв по траві або землі. Найпряміший контакт з Землею. Буквальний і найпотужніший ритуал.</p></div>
+      <div class="card"><div class="card-label">Щодня</div><h3>🪨 Техніка 5-4-3-2-1</h3><p>Перед важливими рішеннями. Повертає у теперішнє через 5 органів чуття. Зупиняє тривожне кружляння.</p></div>
+      <div class="card"><div class="card-label">3–5 р/тижд</div><h3>🏋️ Важкі ваги / йога</h3><p>Марс у Стрільці потребує виходу через рух. Фізичне «притискання» до Землі. Після — 10 хв шавасана.</p></div>
+    </div>
+    <div class="cards3">
+      <div class="card card-red"><div class="card-label card-label-red">Антипаттерн 1</div><h3>📱 Нескінченний скролінг</h3><p>Телефон першим і останнім. Місяць Близнюки у тривозі не може зупинитись. Руйнує концентрацію.</p></div>
+      <div class="card card-red"><div class="card-label card-label-red">Антипаттерн 2</div><h3>⚡ Каскад задач без пауз</h3><p>«Ще одна справа і зупинюсь» — роками. До примусової зупинки через тіло або зрив.</p></div>
+      <div class="card card-red"><div class="card-label card-label-red">Антипаттерн 3</div><h3>🔕 Ігнорування тіла</h3><p>Козеріг має найвищий поріг болю. Сигнали ігнорує до точки, коли зупинка примусова.</p></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ═══════════ CAREER ═══════════ -->
+<div id="p-career" class="pnl">
+<div class="page">
+
+  <p class="sec-tag">Архітектура Шляху</p>
+  <h2 class="sec-title">Кар'єра — <em>Синтезатор</em></h2>
+
+  <div class="hbox hbox-gold" data-l="Ключовий Інсайт">
+    <p><strong>Три сфери — не блукання. Це три шари фундаменту.</strong> Більшість людей мають один домен глибоко. У тебе їх три — і саме це зробить те, що ти побудуєш далі, неповторним. Місяць у Близнюках + Водолій ПН = збирати знання і ділитись ними. Козеріг = будувати з них систему. <em>Ти не шукаєш свій шлях — ти і є свій шлях.</em></p>
+  </div>
+
+  <!-- SUPERPOWER -->
+  <div class="section">
+    <p class="sec-tag">Унікальна Перевага</p>
+    <h3 style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:16px">Суперсила: Архітектор Мостів</h3>
+    <div class="cards">
+      <div class="card card-gold">
+        <div class="card-label">Що це означає</div>
+        <h3>Синтезатор — найрідкісніший тип</h3>
+        <p>Спеціаліст знає одне глибоко. Генераліст — багато поверхово. <strong>Синтезатор знає кілька доменів глибоко і бачить між ними зв'язки, невидимі нікому іншому.</strong> Це найрідкісніший і найцінніший тип на ринку.</p>
+      </div>
+      <div class="card card-gold">
+        <div class="card-label">Конкурентна Перевага</div>
+        <h3>Авторитет + Пояснення + Трансформація</h3>
+        <p>☀ Сонце: авторитет через доведений результат<br>☽ Місяць: пояснювати складне просто<br>♅ Уран: бачити майбутнє систем раніше<br>♇ Плутон: бачити приховані рушії</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPEN DIRECTIONS -->
+  <div class="section">
+    <p class="sec-tag">Відкриті Напрямки</p>
+    <h3 style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:16px">Де Є Потенціал</h3>
+    <table class="data-table">
+      <tr><th>Напрямок</th><th>Потенціал</th><th>Основа в Карті</th></tr>
+      <tr><td class="td-label">Стратегічний Консалтинг</td><td class="td-val">★★★★★</td><td class="td-note">♄+☿ Козеріг + три сфери = рідкісний міждисциплінарний стратег</td></tr>
+      <tr><td class="td-label">Власний Бізнес/Платформа</td><td class="td-val">★★★★★</td><td class="td-note">♄ власний знак + ♂ Стрілець Б11 = народжений будувати своє і вести за собою</td></tr>
+      <tr><td class="td-label">Коучинг / Навчання</td><td class="td-val">★★★★☆</td><td class="td-note">☽ Близнюки + ♃ Рак екзальтація = природний педагог з емоційним інтелектом</td></tr>
+      <tr><td class="td-label">Технологія + Традиційна Галузь</td><td class="td-val">★★★★★</td><td class="td-note">♅ Козеріг = бачить трансформацію систем раніше за всіх</td></tr>
+      <tr><td class="td-label">Міжнародний Бізнес</td><td class="td-val">★★★★☆</td><td class="td-note">♀ Водолій + ♂ Стрілець = гуманістичні цінності, широкий погляд на культури</td></tr>
+      <tr><td class="td-label">Управління / CEO / MD</td><td class="td-val">★★★★★</td><td class="td-note">Пік після 38 р. — природна точка лідерства для Козерога</td></tr>
+    </table>
+  </div>
+
+  <!-- NOT YOURS -->
+  <div class="section">
+    <p class="sec-tag">Чесна Оцінка</p>
+    <h3 style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:16px">Що Відкинути</h3>
+    <div class="cards3">
+      <div class="card card-red"><div class="card-label card-label-red">✗ Виконання без стратегії</div><p>Без впливу на рішення. Козеріг задихається у коробках де не дають будувати.</p></div>
+      <div class="card card-red"><div class="card-label card-label-red">✗ Мікроконтроль зверху</div><p>Сатурн у Козерогу потребує автономії. Без неї — хронічний стрес і деградація.</p></div>
+      <div class="card card-red"><div class="card-label card-label-red">✗ Великі корпоративні ієрархії</div><p>Де результати не видно. Уран ненавидить штучні обмеження росту.</p></div>
+      <div class="card card-red"><div class="card-label card-label-red">✗ Холодні масові продажі</div><p>Меркурій Козеріг — стратег, не продавець. Твій метод — авторитет і довіра.</p></div>
+      <div class="card card-red"><div class="card-label card-label-red">✗ Публічна політика</div><p>Залежність від голосувань і схвалення — антитеза Козерога. Вплив через результат.</p></div>
+      <div class="card card-red"><div class="card-label card-label-red">✗ Спекулятивні схеми</div><p>Козеріг будує повільно і вічно. Швидкі гроші без системи руйнують фокус.</p></div>
+    </div>
+    <div class="hbox hbox-red" data-l="Лакмусовий Тест">
+      <p>Питання до будь-якої можливості: <strong>«Через 5 років у цій ролі я буду будувати щось своє або виконувати чуже?»</strong> Якщо «виконувати чуже» — це не твій шлях, навіть якщо добре платять. Козеріг задихається без власної гори.</p>
+    </div>
+  </div>
+
+  <!-- COACHING BRIDGE -->
+  <div class="section">
+    <p class="sec-tag">Стратегічне Рішення 2026</p>
+    <h3 style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:16px">Коучинг → Консалтинг: Правильний Міст</h3>
+    <div class="hbox hbox-teal" data-l="Висновок">
+      <p>Коучинг кар'єрного розвитку у <strong>2026 — правильний хід для вузлового вікна</strong>. Дає реальних клієнтів, реальні кейси і перше позиціонування вже зараз, без очікування 2–3 роки. Це не «замість консалтингу» — це <strong>міст до нього через накопичення патернів і репутації.</strong></p>
+    </div>
+    <div class="cards">
+      <div class="card card-line-teal">
+        <div class="card-label card-label-teal">Чому це працює</div>
+        <ul class="checklist cl-teal">
+          <li>Ти живий доказ нелінійної кар'єри — найсильніший актив</li>
+          <li>Рідкісна ніша: коучинг для людей з кількома доменами</li>
+          <li>Юпітер екзальтація у Раку + Місяць Близнюки = природний педагог</li>
+          <li>Кожен клієнт = патерн для майбутнього бізнес-консалтингу</li>
+        </ul>
+      </div>
+      <div class="card card-line">
+        <div class="card-label">Таймлайн</div>
+        <ul class="checklist cl-gold">
+          <li><strong>2026:</strong> старт коучингу, перші 10–20 клієнтів, відпрацювання ніші</li>
+          <li><strong>2027:</strong> групові програми або курс, Юпітер дає публічність</li>
+          <li><strong>2028–29:</strong> перші консалтингові проекти для компаній</li>
+          <li><strong>2030–32:</strong> повноцінна консалтингова практика</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ═══════════ TRANSITS ═══════════ -->
+<div id="p-transits" class="pnl">
+<div class="page">
+
+  <p class="sec-tag">Астрологічна Карта Року</p>
+  <h2 class="sec-title">Транзити <em>2026</em></h2>
+
+  <!-- MONTH SCORES -->
+  <p class="sec-tag">Місяці по Силі</p>
+  <div class="month-row">
+    <div class="mc"><div class="mc-m">Cіч</div><div class="mc-s s3">▲</div><div class="mc-l">Підготовка</div></div>
+    <div class="mc"><div class="mc-m">Лют</div><div class="mc-s s3">▲</div><div class="mc-l">Розгін</div></div>
+    <div class="mc"><div class="mc-m">Бер</div><div class="mc-s s3">▲</div><div class="mc-l">☿ Ретро!</div></div>
+    <div class="mc now-mc"><div class="mc-m">Кві ★</div><div class="mc-s s4">▲▲</div><div class="mc-l">Старт</div></div>
+    <div class="mc now-mc"><div class="mc-m">Тра ★</div><div class="mc-s s5">★</div><div class="mc-l">Пік Юпітер</div></div>
+    <div class="mc now-mc"><div class="mc-m">Чер ★</div><div class="mc-s s4">▲▲</div><div class="mc-l">Активний</div></div>
+    <div class="mc"><div class="mc-m">Лип</div><div class="mc-s s2">▼</div><div class="mc-l">Стоп</div></div>
+    <div class="mc"><div class="mc-m">Сер</div><div class="mc-s s2">▼▼</div><div class="mc-l">Найважче</div></div>
+    <div class="mc"><div class="mc-m">Вер</div><div class="mc-s s3">▲</div><div class="mc-l">Відновлення</div></div>
+    <div class="mc now-mc"><div class="mc-m">Жов ★</div><div class="mc-s s4">▲▲</div><div class="mc-l">Шанси</div></div>
+    <div class="mc now-mc"><div class="mc-m">Лис ★</div><div class="mc-s s5">★</div><div class="mc-l">2й Пік</div></div>
+    <div class="mc"><div class="mc-m">Гру</div><div class="mc-s s4">▲▲</div><div class="mc-l">Завершення</div></div>
+  </div>
+
+  <!-- KEY TRANSITS -->
+  <div class="section">
+    <p class="sec-tag">Два Головних Транзити</p>
+    <div class="cards">
+      <div class="card card-gold card-line">
+        <div class="card-label">♃ Юпітер у Раку — Бонус</div>
+        <h3>Опозиція Козерожного Стеліуму + Юпітерове Повернення</h3>
+        <p>Найпотужніший зовнішній активатор. Двері відчинені максимально. <strong>Пік: квітень–травень 2026.</strong><br><br>
+        Що відкрито: великі угоди, впливові знайомства, міжнародні партнерства, публічне визнання, залучення інвесторів.<br><br>
+        <strong>Ключово: транзитний Юпітер повертається до своєї натальної позиції у Раку (Юпітерове Повернення в 36 р.) — потужне подвоєння зростання і мудрості. Треба активно діяти, а не чекати.</strong></p>
+      </div>
+      <div class="card card-red card-line-red">
+        <div class="card-label card-label-red">♄ Сатурн в Овні — Урок</div>
+        <h3>Квадратура Козерожного Стеліуму</h3>
+        <p>Найважчий аспект — тертя і необхідність зміни. <strong>Пік напруги: серпень 2026.</strong><br><br>
+        Що буде: реструктуризація, відпадання зайвого, перевірка фундаменту, вимога відповідальності.<br><br>
+        <strong>Серпень 2026 — взяти відпустку, жодних великих рішень і підписань.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY DATES -->
+  <div class="section">
+    <p class="sec-tag">Найважливіші Дати</p>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">15 Бер</div><div class="tl-age">–7 Квіт</div></div><div class="tl-body"><div class="tl-badge b-red">☿ Ретроград</div><div class="tl-event">Меркурій ретро в Овні</div><div class="tl-desc">Жодних нових контрактів, запусків, підписань. Час ревізії і виправлення.</div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">29 Бер</div></div><div class="tl-body"><div class="tl-badge b-gold">Молодик</div><div class="tl-event">Молодик в Овні — намір Q2</div><div class="tl-desc">Найкращий день для постановки намірів на активний сезон. Написати конкретні цілі рукою.</div></div></div>
+      <div class="tl-row now-row"><div class="tl-date"><div class="tl-year">7 Квіт</div></div><div class="tl-body"><div class="tl-badge b-now">★ СТАРТ</div><div class="tl-event">Меркурій прямий — Зелене Світло</div><div class="tl-desc"><strong>Офіційний старт активного сезону 2026.</strong> Підписувати, запускати, домовлятись.</div></div></div>
+      <div class="tl-row now-row"><div class="tl-date"><div class="tl-year">Тра–Чер</div></div><div class="tl-body"><div class="tl-badge b-now">♃ ПІК</div><div class="tl-event">Юпітер — Найбільші Можливості Року</div><div class="tl-desc"><strong>Найсильніше вікно для угод, партнерств і кар'єрних рішень.</strong> Закрити всі активні переговори до 20 червня.</div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">Сер</div></div><div class="tl-body"><div class="tl-badge b-red">♄ Пік</div><div class="tl-event">Сатурн квадратура — Максимальна Напруга</div><div class="tl-desc">Найважчий місяць. Відпустка, відновлення, переосмислення. <strong>Жодних великих рішень.</strong></div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">Жов</div></div><div class="tl-body"><div class="tl-badge b-gold">♅ Місяць</div><div class="tl-event">Уран кон'юнкція натального Місяця Близнюки</div><div class="tl-desc">Несподівані, нетипові можливості. Бути відкритим до всього нового і нестандартного.</div></div></div>
+      <div class="tl-row now-row"><div class="tl-date"><div class="tl-year">1–9 Лис</div></div><div class="tl-body"><div class="tl-badge b-now">♃ 2й Пік</div><div class="tl-event">Другий Пік Юпітера — Кульмінація</div><div class="tl-desc"><strong>Другий шанс сезону.</strong> Кульмінаційні угоди, публічні анонси, великі партнерства.</div></div></div>
+    </div>
+  </div>
+
+  <!-- MERCURY RETRO -->
+  <div class="section">
+    <p class="sec-tag">Меркурій Ретроградний 2026</p>
+    <div class="cards3">
+      <div class="card card-red"><div class="card-label card-label-red">15 Берез — 7 Квітня</div><h3>Овен</h3><p>Найважливіший — блокує квітневий старт на тиждень. Жодних угод. Ревізія документів.</p></div>
+      <div class="card card-red"><div class="card-label card-label-red">18 Липня — 11 Серпня</div><h3>Лев</h3><p>Поглиблює важкий Q3. Особливо небезпечний для партнерств і переговорів.</p></div>
+      <div class="card card-red"><div class="card-label card-label-red">9 — 29 Листопада</div><h3>Стрілець</h3><p>Меркурій ретро у Стрільці. Переосмислення ідей та позиціонування. Завершуй, не починай.</p></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ═══════════ KARMA ═══════════ -->
+<div id="p-karma" class="pnl">
+<div class="page">
+
+  <p class="sec-tag">Довгостроковий Напрямок</p>
+  <h2 class="sec-title">Кармічні Задачі — <em>Вузли</em></h2>
+
+  <!-- AXIS -->
+  <div class="cards" style="margin-bottom:24px">
+    <div class="card card-gold card-line">
+      <div class="card-label">☊ Північний Вузол · Напрямок</div>
+      <h3>Водолій 16°42' — Куди Прямує Душа</h3>
+      <p>Внесок у колектив, інновації, унікальність у служінні людству. Відкинути потребу у визнанні — і знайти силу у мережі однодумців. <strong>Козерожній стеліум дає будівельну силу; Водолій ПН задає напрямок — будувати для спільноти, не лише для себе.</strong></p>
+    </div>
+    <div class="card card-line">
+      <div class="card-label" style="color:var(--indigo)">☋ Південний Вузол · Минуле</div>
+      <h3>Лев 16°42' — Звідки Прийшла Душа</h3>
+      <p>Потреба бути центром уваги, творча самовираженість заради особистої слави, ставити себе у центр всього. <strong>Ці паттерни зручні, але відволікають від ширшого кармічного потоку.</strong></p>
+    </div>
+  </div>
+
+  <!-- 7 TASKS -->
+  <div class="section">
+    <p class="sec-tag">Сім Кармічних Задач</p>
+    <table class="data-table">
+      <tr><th>#</th><th>Задача</th><th>Кармічна Пастка</th></tr>
+      <tr><td class="td-label">I</td><td class="td-val"><strong>Від особистої слави до колективного внеску</strong></td><td class="td-note">Лев ПВ хоче бути зіркою → Водолій ПН вимагає ставити мережу і спільну мету вище особистого бренду</td></tr>
+      <tr><td class="td-label">II</td><td class="td-val"><strong>Ділитись сценою і довіряти іншим</strong></td><td class="td-note">Потреба контролювати і бути «кращим» — блокує природне лідерство через довіру</td></tr>
+      <tr><td class="td-label">III</td><td class="td-val"><strong>Знайти унікальний голос у служінні</strong></td><td class="td-note">Різниця між «я унікальний» (Лев ПВ) і «моя унікальність слугує людям» (Водолій ПН)</td></tr>
+      <tr><td class="td-label">IV</td><td class="td-val"><strong>Будувати мережі та спільноти</strong></td><td class="td-note">Козерожній стеліум будує ієрархії; Водолій ПН кличе будувати горизонтальні спільноти</td></tr>
+      <tr><td class="td-label">V</td><td class="td-val"><strong>Інноваційне мислення понад традицію</strong></td><td class="td-note">Козеріг любить перевірені системи; Водолій ПН кличе руйнувати застарілі</td></tr>
+      <tr><td class="td-label">VI</td><td class="td-val"><strong>Трансформація через виклики, не уникнення</strong></td><td class="td-note">Плутон у Скорпіоні Б10: найважче є ключем до найбільшої сили — обхід подовжує цикл</td></tr>
+      <tr><td class="td-label">VII</td><td class="td-val"><strong>Кармічне вчительство — натхнення через ідеї</strong></td><td class="td-note">Водолій ПН: передавати знання не як авторитет-зірка, а як рівний між рівними</td></tr>
+    </table>
+  </div>
+
+  <!-- CYCLES -->
+  <div class="section">
+    <p class="sec-tag">Вузлові Цикли по Роках</p>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">1990</div><div class="tl-age">Народж.</div></div><div class="tl-body"><div class="tl-badge b-gold">Старт Циклу</div><div class="tl-event">Народження під Козерожним Стеліумом</div><div class="tl-desc">Кармічна задача вбудована у особистість з першого дня. Народжений з компасом — ПН Водолій вказує на колективне служіння.</div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">2007–09</div><div class="tl-age">17–19 р.</div></div><div class="tl-body"><div class="tl-badge b-gold">1й Вузол</div><div class="tl-event">Перше Вузлове Повернення (Водолій/Лев)</div><div class="tl-desc">Перший великий вибір: залишитись у знайомому чи ризикнути. Перша зміна сфери.</div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">2017–20</div><div class="tl-age">27–30 р.</div></div><div class="tl-body"><div class="tl-badge b-blue">♄ Повернення</div><div class="tl-event">Перше Повернення Сатурна + Зворотне Вузлове</div><div class="tl-desc">Найбільший урок першої дорослості. Кризи ідентичності, зміна кар'єри, переоцінка всього.</div></div></div>
+      <div class="tl-row now-row"><div class="tl-date"><div class="tl-year">2026–27</div><div class="tl-age">36–37 р.</div></div><div class="tl-body"><div class="tl-badge b-now">★ ЗАРАЗ</div><div class="tl-event">ДРУГЕ ВУЗЛОВЕ ПОВЕРНЕННЯ — Найпотужніший Момент</div><div class="tl-desc"><strong>Збіг трьох кармічних потоків: Вузли повертаються у Водолій/Лев + Юпітерове Повернення у Раку + Уран активує натальний Місяць Близнюки. Таке вікно — раз у 36+ років.</strong></div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">2036</div><div class="tl-age">46 р.</div></div><div class="tl-body"><div class="tl-badge b-teal">Наставник</div><div class="tl-event">Третє Зворотне Вузлове — Передача Знань</div><div class="tl-desc">Перехід від будівника до наставника. Кармічне вчительство досягає зрілості.</div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">2044–45</div><div class="tl-age">54–55 р.</div></div><div class="tl-body"><div class="tl-badge b-gold">3й Вузол</div><div class="tl-event">Третє Вузлове Повернення — Спадщина</div><div class="tl-desc">Кармічне завершення. Огляд побудованого і передача спадщини далі.</div></div></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+<!-- ═══════════ PLAN ═══════════ -->
+<div id="p-plan" class="pnl">
+<div class="page">
+
+  <p class="sec-tag">Інтеграція Всього</p>
+  <h2 class="sec-title">Стратегічний <em>План Дій</em></h2>
+
+  <!-- THIS WEEK / MONTH -->
+  <div class="section">
+    <p class="sec-tag">Конкретні Наступні Кроки</p>
+    <div class="cards3">
+      <div class="card card-line">
+        <div class="card-label">Цього Тижня</div>
+        <ul class="checklist cl-gold">
+          <li>Виписати навички і досвід з трьох сфер</li>
+          <li>Знайти спільну нитку між ними</li>
+          <li>Сформулювати нішу коучингу для нелінійних кар'єр</li>
+          <li>Поговорити з 3 людьми — як вони тебе бачать?</li>
+        </ul>
+      </div>
+      <div class="card card-line">
+        <div class="card-label">Цього Місяця</div>
+        <ul class="checklist cl-gold">
+          <li>LinkedIn: переписати під нову нішу</li>
+          <li>3–5 постів про перетин своїх трьох сфер</li>
+          <li>Знайти 2–3 спільноти у ніші, стати активним</li>
+          <li>Визначити формат: 1:1, групи чи гібрид</li>
+        </ul>
+      </div>
+      <div class="card card-line">
+        <div class="card-label">До 7 Квітня</div>
+        <ul class="checklist cl-gold">
+          <li>Перша реальна консультація або коучингова сесія</li>
+          <li>Підготувати позиціонування до квітневого старту</li>
+          <li>Визначити хто твій ідеальний клієнт і де він є</li>
+          <li>Намір до Молодика 29 березня — письмово</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- LONG-TERM ROADMAP -->
+  <div class="section">
+    <p class="sec-tag">Довгострокова Карта</p>
+    <h3 style="font-size:18px;font-weight:600;color:var(--ink);margin-bottom:16px">Фазовий Розвиток до 2035</h3>
+    <div class="tl">
+      <div class="tl-row now-row"><div class="tl-date"><div class="tl-year">2026</div><div class="tl-age">36 р.</div></div><div class="tl-body"><div class="tl-badge b-now">★ СТАРТ</div><div class="tl-event">Коучинг кар'єрного розвитку — запуск і позиціонування</div><div class="tl-desc">Перші 10–20 клієнтів. Ніша: нелінійні кар'єри і перехід між доменами. <strong>Квітень–листопад — активне вікно Юпітера. Серпень — відпочинок.</strong></div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">2027</div><div class="tl-age">37 р.</div></div><div class="tl-body"><div class="tl-badge b-teal">Масштаб</div><div class="tl-event">Групові програми або онлайн-курс</div><div class="tl-desc">Юпітер у Леві дає публічність. Час виходити з контентом і власним брендом. Перші системні доходи.</div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">2028–29</div><div class="tl-age">38–39 р.</div></div><div class="tl-body"><div class="tl-badge b-gold">Перехід</div><div class="tl-event">Перші консалтингові проекти для бізнесу</div><div class="tl-desc">З накопиченими кейсами і розумінням системних патернів. Природний вхід, не стрибок. GovTech або суміжна ніша.</div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">2030–32</div><div class="tl-age">40–42 р.</div></div><div class="tl-body"><div class="tl-badge b-gold">Платформа</div><div class="tl-event">Повноцінна консалтингова практика</div><div class="tl-desc">Системна робота з організаціями + коучингова програма як окремий напрямок. Козерожній рівень — своя система.</div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">2032–33</div><div class="tl-age">42–43 р.</div></div><div class="tl-body"><div class="tl-badge b-teal">♃ 2й Цикл</div><div class="tl-event">Другий Великий Юпітерів Цикл — Масштабування</div><div class="tl-desc">Юпітер знову у Раку. Масштабування побудованого. Що закладено у 2026 — тут видно всім.</div></div></div>
+      <div class="tl-row"><div class="tl-date"><div class="tl-year">2035–38</div><div class="tl-age">45–48 р.</div></div><div class="tl-body"><div class="tl-badge b-gold">Вершина</div><div class="tl-event">Природний пік Козерога — максимальний вплив і авторитет</div><div class="tl-desc">Сатурн каже: пік кар'єри Козерога настає у 38–52 роки. Все що будується зараз — для цього моменту.</div></div></div>
+    </div>
+  </div>
+
+  <!-- PERSONAL FORMULA -->
+  <div class="section">
+    <p class="sec-tag">Особиста Формула</p>
+    <div class="cards">
+      <div class="card card-teal card-line-teal">
+        <div class="card-label card-label-teal">Коли Діяти</div>
+        <ul class="checklist cl-teal">
+          <li>Квітень–червень 2026 — <strong>максимальна активність</strong></li>
+          <li>Жовтень–листопад 2026 — <strong>другий спурт</strong></li>
+          <li>Коли Юпітер у трині або секстилі до Козерога</li>
+          <li>На Молодик — підписання і старти</li>
+          <li>Після 7 квітня (Меркурій прямий) — зелене світло</li>
+        </ul>
+      </div>
+      <div class="card card-red card-line-red">
+        <div class="card-label card-label-red">Коли Зупинитись</div>
+        <ul class="checklist cl-red">
+          <li>15 березня — 7 квітня (<strong>☿ Ретроград</strong>)</li>
+          <li>Серпень 2026 (<strong>♄ Квадратура пік</strong>)</li>
+          <li>9–29 листопада (<strong>☿ Ретроград Стрілець</strong>)</li>
+          <li>Коли Сатурн квадратурить або опонує натальне</li>
+          <li>Перші 2 тижні після важких Сатурнових транзитів</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="conclusion">
+    <div class="con-title">Формула Твого 2026 і Далі</div>
+    <p class="con-text">
+      <strong>Підготовка (Q1) → Дія (Q2) → Пауза (Q3) → Кульмінація (Q4).</strong><br><br>
+      Коучинг кар'єрного розвитку у вузькій ніші → накопичення патернів і репутації → консалтинг для бізнесу. Це не компроміс і не тимчасовий хід — це <strong>єдиний реалістичний міст, який можна побудувати прямо зараз, не чекаючи 2–3 роки.</strong><br><br>
+      Три сфери — не помилки. Козеріг — знак пізнього розквіту. Кармічне вікно 2026–27 — раз у 36 років. <strong>Якщо не зараз — то коли?</strong>
+    </p>
+    <div class="con-mantra">
+      «Дерево, що хоче дотягтись до неба, мусить пустити коріння у пекло.» — Юнг<br>
+      <span style="font-size:14px;color:var(--muted);font-style:normal">☀ Козеріг 18°43' · ↑ Козеріг 5°59' · ☽ Близнюки 23°04' · ☊ Водолій 16°42' · 09.01.1990</span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+function sw(id){
+  document.querySelectorAll('.pnl').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tt').forEach(t=>t.classList.remove('on'));
+  document.getElementById('p-'+id).classList.add('on');
+  event.target.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

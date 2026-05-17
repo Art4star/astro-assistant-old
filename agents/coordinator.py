@@ -17,6 +17,7 @@ from agents.protocol import (
 
 MEMORY_DIR = "data/memory"
 OUTPUT_DATA_DIR = "output/data"
+PDF_DIR = "PDFs"
 
 
 def _load(path: str) -> dict:
@@ -177,6 +178,11 @@ def build_interpretation_package(year: int, month: int, force: bool = False) -> 
     # Priority 7: goal alignment scoring
     goal_alignment = _score_goal_alignment(goals, forecast["transits"], forecast["critical_windows"])
 
+    # Priority 8: PDF knowledge base (natal profiles, career, karma, transits)
+    from engine.pdf_knowledge import get_compact_knowledge
+    print("  Knowledge: loading PDF interpretation base...")
+    knowledge_base = get_compact_knowledge(pdf_dir=PDF_DIR)
+
     # Coordinator logs the handoff to Agent 2
     handoff_req = bus_send(task_request(
         AgentID.COORDINATOR, AgentID.INTERPRETATION,
@@ -225,11 +231,17 @@ def build_interpretation_package(year: int, month: int, force: bool = False) -> 
             for g in goals
         ],
 
+        # Priority 8: natal profile knowledge base from PDFs
+        "knowledge_base": knowledge_base,
+
         "prompt_instructions": (
             "Use ASTRO_PROMPT.md as system prompt. Respond in Ukrainian. "
             "Prioritize identity patterns over raw aspects. "
             "Only reference top_transits — do not invent transits. "
-            "Use peak_date for timing. Cite intensity scores."
+            "Use peak_date for timing. Cite intensity scores. "
+            "knowledge_base contains verified natal interpretations — use them "
+            "to enrich psychological, career and karmic analysis. "
+            "Do not contradict knowledge_base facts."
         ),
     }
 

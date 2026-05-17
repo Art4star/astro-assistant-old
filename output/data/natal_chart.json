@@ -1,0 +1,371 @@
+{
+  "user": {
+    "name": "Artur",
+    "birth_date": "1990-01-09",
+    "birth_time": "07:17",
+    "birth_city": "Legnica, Poland"
+  },
+  "planets": {
+    "sun": {
+      "longitude": 288.7247,
+      "sign": "capricorn",
+      "degree": 18.72,
+      "retrograde": false,
+      "house": 1
+    },
+    "moon": {
+      "longitude": 83.0662,
+      "sign": "gemini",
+      "degree": 23.07,
+      "retrograde": false,
+      "house": 6
+    },
+    "mercury": {
+      "longitude": 288.3094,
+      "sign": "capricorn",
+      "degree": 18.31,
+      "retrograde": true,
+      "house": 1
+    },
+    "venus": {
+      "longitude": 303.9749,
+      "sign": "aquarius",
+      "degree": 3.97,
+      "retrograde": true,
+      "house": 1
+    },
+    "mars": {
+      "longitude": 255.4795,
+      "sign": "sagittarius",
+      "degree": 15.48,
+      "retrograde": false,
+      "house": 11
+    },
+    "jupiter": {
+      "longitude": 94.1298,
+      "sign": "cancer",
+      "degree": 4.13,
+      "retrograde": true,
+      "house": 6
+    },
+    "saturn": {
+      "longitude": 286.577,
+      "sign": "capricorn",
+      "degree": 16.58,
+      "retrograde": false,
+      "house": 1
+    },
+    "uranus": {
+      "longitude": 276.2482,
+      "sign": "capricorn",
+      "degree": 6.25,
+      "retrograde": false,
+      "house": 1
+    },
+    "neptune": {
+      "longitude": 282.3319,
+      "sign": "capricorn",
+      "degree": 12.33,
+      "retrograde": false,
+      "house": 1
+    },
+    "pluto": {
+      "longitude": 227.291,
+      "sign": "scorpio",
+      "degree": 17.29,
+      "retrograde": false,
+      "house": 10
+    },
+    "true_node": {
+      "longitude": 316.6944,
+      "sign": "aquarius",
+      "degree": 16.69,
+      "retrograde": true,
+      "house": 1
+    },
+    "lilith": {
+      "longitude": 217.3335,
+      "sign": "scorpio",
+      "degree": 7.33,
+      "retrograde": false,
+      "house": 9
+    }
+  },
+  "angles": {
+    "ascendant": {
+      "longitude": 275.9932,
+      "sign": "capricorn",
+      "degree": 5.99
+    },
+    "midheaven": {
+      "longitude": 221.3719,
+      "sign": "scorpio",
+      "degree": 11.37
+    }
+  },
+  "houses": {
+    "1": "capricorn",
+    "2": "aquarius",
+    "3": "aries",
+    "4": "taurus",
+    "5": "gemini",
+    "6": "gemini",
+    "7": "cancer",
+    "8": "leo",
+    "9": "libra",
+    "10": "scorpio",
+    "11": "sagittarius",
+    "12": "sagittarius"
+  },
+  "house_cusps": {
+    "1": 275.9932,
+    "2": 325.5371,
+    "3": 11.8431,
+    "4": 41.3719,
+    "5": 61.7911,
+    "6": 78.7156,
+    "7": 95.9932,
+    "8": 145.5371,
+    "9": 191.8431,
+    "10": 221.3719,
+    "11": 241.7911,
+    "12": 258.7156
+  },
+  "ascendant_ruler": "saturn",
+  "aspects": [
+    {
+      "p1": "uranus",
+      "p2": "ascendant",
+      "type": "conjunction",
+      "orb": 0.25,
+      "harmony": true
+    },
+    {
+      "p1": "sun",
+      "p2": "mercury",
+      "type": "conjunction",
+      "orb": 0.42,
+      "harmony": true
+    },
+    {
+      "p1": "pluto",
+      "p2": "true_node",
+      "type": "square",
+      "orb": 0.6,
+      "harmony": false
+    },
+    {
+      "p1": "saturn",
+      "p2": "pluto",
+      "type": "sextile",
+      "orb": 0.71,
+      "harmony": true
+    },
+    {
+      "p1": "neptune",
+      "p2": "midheaven",
+      "type": "sextile",
+      "orb": 0.96,
+      "harmony": true
+    },
+    {
+      "p1": "mercury",
+      "p2": "pluto",
+      "type": "sextile",
+      "orb": 1.02,
+      "harmony": true
+    },
+    {
+      "p1": "uranus",
+      "p2": "lilith",
+      "type": "sextile",
+      "orb": 1.09,
+      "harmony": true
+    },
+    {
+      "p1": "mars",
+      "p2": "true_node",
+      "type": "sextile",
+      "orb": 1.21,
+      "harmony": true
+    },
+    {
+      "p1": "lilith",
+      "p2": "ascendant",
+      "type": "sextile",
+      "orb": 1.34,
+      "harmony": true
+    },
+    {
+      "p1": "sun",
+      "p2": "pluto",
+      "type": "sextile",
+      "orb": 1.43,
+      "harmony": true
+    },
+    {
+      "p1": "mercury",
+      "p2": "saturn",
+      "type": "conjunction",
+      "orb": 1.73,
+      "harmony": true
+    },
+    {
+      "p1": "jupiter",
+      "p2": "ascendant",
+      "type": "opposition",
+      "orb": 1.86,
+      "harmony": false
+    },
+    {
+      "p1": "jupiter",
+      "p2": "uranus",
+      "type": "opposition",
+      "orb": 2.12,
+      "harmony": false
+    },
+    {
+      "p1": "sun",
+      "p2": "saturn",
+      "type": "conjunction",
+      "orb": 2.15,
+      "harmony": true
+    },
+    {
+      "p1": "jupiter",
+      "p2": "lilith",
+      "type": "trine",
+      "orb": 3.2,
+      "harmony": true
+    },
+    {
+      "p1": "venus",
+      "p2": "lilith",
+      "type": "square",
+      "orb": 3.36,
+      "harmony": false
+    },
+    {
+      "p1": "lilith",
+      "p2": "midheaven",
+      "type": "conjunction",
+      "orb": 4.04,
+      "harmony": true
+    },
+    {
+      "p1": "saturn",
+      "p2": "neptune",
+      "type": "conjunction",
+      "orb": 4.25,
+      "harmony": true
+    },
+    {
+      "p1": "true_node",
+      "p2": "midheaven",
+      "type": "square",
+      "orb": 5.32,
+      "harmony": false
+    },
+    {
+      "p1": "pluto",
+      "p2": "midheaven",
+      "type": "conjunction",
+      "orb": 5.92,
+      "harmony": true
+    },
+    {
+      "p1": "mercury",
+      "p2": "neptune",
+      "type": "conjunction",
+      "orb": 5.98,
+      "harmony": true
+    },
+    {
+      "p1": "uranus",
+      "p2": "neptune",
+      "type": "conjunction",
+      "orb": 6.08,
+      "harmony": true
+    },
+    {
+      "p1": "neptune",
+      "p2": "ascendant",
+      "type": "conjunction",
+      "orb": 6.34,
+      "harmony": true
+    },
+    {
+      "p1": "sun",
+      "p2": "neptune",
+      "type": "conjunction",
+      "orb": 6.39,
+      "harmony": true
+    },
+    {
+      "p1": "moon",
+      "p2": "mars",
+      "type": "opposition",
+      "orb": 7.59,
+      "harmony": false
+    }
+  ],
+  "dispositors": {
+    "sun": "saturn",
+    "moon": "mercury",
+    "mercury": "saturn",
+    "venus": "saturn",
+    "mars": "jupiter",
+    "jupiter": "moon",
+    "saturn": "saturn",
+    "uranus": "saturn",
+    "neptune": "saturn",
+    "pluto": "mars",
+    "true_node": "saturn",
+    "lilith": "mars"
+  },
+  "dominants": {
+    "element": "earth",
+    "element_counts": {
+      "earth": 3,
+      "air": 2,
+      "fire": 1,
+      "water": 1
+    },
+    "modality": "cardinal",
+    "modality_counts": {
+      "cardinal": 4,
+      "mutable": 2,
+      "fixed": 1
+    },
+    "sign": "capricorn",
+    "sign_counts": {
+      "capricorn": 3,
+      "gemini": 1,
+      "aquarius": 1,
+      "sagittarius": 1,
+      "cancer": 1
+    }
+  },
+  "stelliums": [
+    {
+      "sign": "capricorn",
+      "planets": [
+        "sun",
+        "mercury",
+        "saturn",
+        "uranus",
+        "neptune"
+      ]
+    }
+  ],
+  "angular_planets": [
+    "sun",
+    "mercury",
+    "venus",
+    "saturn",
+    "uranus",
+    "neptune",
+    "pluto",
+    "true_node"
+  ]
+}

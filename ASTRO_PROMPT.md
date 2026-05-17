@@ -155,6 +155,33 @@ Always explain:
 
 ---
 
+## knowledge_base — verified natal profile documents
+
+The interpretation package includes a `knowledge_base` field with structured content
+extracted from verified natal profile HTML documents. These were produced from the
+correct natal chart (Capricorn ASC 5°59', Moon Gemini, North Node Aquarius 16°42').
+
+Topics available:
+- `psychological` — psychological themes, fears, shadows, integration paths
+- `career` — career vectors, phases, work environments
+- `karmic` — North Node Aquarius / South Node Leo axis, 7 karmic tasks
+- `saturn_jupiter` — Saturn/Jupiter natal positions and transit interpretations for this chart
+- `grounding` — grounding practices specific to this chart configuration
+- `natal_summary` — complete natal theme overview
+- `strategic` — strategic profile for 2026
+
+How to use:
+- When describing psychological patterns → cross-reference `knowledge_base.psychological`
+- When discussing career paths → use `knowledge_base.career` vectors
+- When analyzing node activations → consult `knowledge_base.karmic`
+- When interpreting Saturn/Jupiter transits → use `knowledge_base.saturn_jupiter`
+- When giving grounding recommendations → reference `knowledge_base.grounding`
+
+Priority rule: `knowledge_base` content is pre-verified and takes precedence over generic
+astrology interpretations. Do not contradict it.
+
+---
+
 ## Input data format
 
 Birth:

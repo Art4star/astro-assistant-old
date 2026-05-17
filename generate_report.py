@@ -133,7 +133,17 @@ def generate_month_report_v2(year: int, month: int) -> str:
     goals = load_goals()
 
     month_data = get_month_data(year, month, birth_data)
-    report = build_report_sections(month_data, birth_data, goals=goals)
+
+    # Load cached interpretation package for transit narratives
+    package_path = os.path.join(BASE_DIR, f"output/data/{year}-{month:02d}-interpret.json")
+    forecast_data: dict = {}
+    if os.path.exists(package_path):
+        with open(package_path, encoding="utf-8") as f:
+            pkg = json.load(f)
+        forecast_data = pkg.get("forecast", {})
+        print(f"  Завантажено transit-пакет: {len(forecast_data.get('top_transits', []))} транзитів")
+
+    report = build_report_sections(month_data, birth_data, goals=goals, forecast_data=forecast_data)
 
     env = Environment(loader=FileSystemLoader(os.path.join(BASE_DIR, "templates")))
     template = env.get_template("report.html")
@@ -244,26 +254,86 @@ def generate_today_report() -> str:
     recs = get_recommendations(daily_data, scores)
 
     weekday_ua = WEEKDAY_UA[today.weekday()]
-    date_str = f"{weekday_ua}, {today.day}.{today.month:02d}.{today.year}"
+    date_str = f"{weekday_ua}, {today.day}.{today.month:02d}"
 
-    lines = [
-        f"🔮 Астро-прогноз на сьогодні — {date_str}",
-        "",
-        f"{get_phase_emoji(daily_data['moon_phase'])} {get_phase_name_ua(daily_data['moon_phase'])} у {get_sign_name_ua(daily_data['moon_sign'])}",
-        "",
-        f"📊 Оцінка дня: {label} ({'+' if overall > 0 else ''}{overall})",
-    ]
+    # Score emoji
+    if overall >= 5:
+        score_icon = "🟢"
+    elif overall >= 2:
+        score_icon = "🟡"
+    elif overall >= -1:
+        score_icon = "⚪"
+    elif overall >= -4:
+        score_icon = "🟠"
+    else:
+        score_icon = "🔴"
+
+    phase_emoji = get_phase_emoji(daily_data["moon_phase"])
+    sign_ua = get_sign_name_ua(daily_data["moon_sign"])
+
+    flags = []
+    if daily_data.get("mercury_retrograde"):
+        flags.append("☿ Меркурій ретро — перевіряй деталі")
+    if daily_data.get("moon_voc"):
+        flags.append("🌀 VOC — не починай нового")
+
+    lines = [f"{score_icon} {date_str} — {label}"]
+    lines.append(f"{phase_emoji} Місяць у {sign_ua}")
+
+    if flags:
+        lines.append("  " + " · ".join(flags))
 
     if recs["best_for"]:
-        lines += ["", "✅ Найкраще:"] + [f"  • {x}" for x in recs["best_for"]]
+        lines.append("✅ " + ", ".join(recs["best_for"][:3]))
     if recs["avoid"]:
-        lines += ["", "⚡ Уникати:"] + [f"  • {x}" for x in recs["avoid"]]
-    if warnings:
-        lines += ["", "⚠️ Попередження:"] + [f"  • {w}" for w in warnings]
+        lines.append("🚫 Уникай: " + ", ".join(recs["avoid"][:2]))
     if recs["tip"]:
-        lines += ["", f"💡 Порада: {recs['tip']}"]
+        lines.append(f"💡 {recs['tip']}")
 
     return "\n".join(lines)
+
+
+def log_decision(note: str) -> None:
+    """Log a decision/event to data/history.json with today's astro context."""
+    from engine.interpreter import score_day, get_overall_score, get_day_label
+    history_file = os.path.join(BASE_DIR, "data", "history.json")
+    today = datetime.now()
+    birth_data = load_birth_data()
+    daily_data = get_daily_data(today, birth_data)
+    scores = score_day(daily_data)
+    overall = get_overall_score(scores)
+    label = get_day_label(overall, scores)
+
+    entry = {
+        "date": today.strftime("%Y-%m-%d"),
+        "time": today.strftime("%H:%M"),
+        "note": note,
+        "context": {
+            "day_label": label,
+            "overall_score": overall,
+            "moon_phase": daily_data.get("moon_phase", ""),
+            "moon_sign": daily_data.get("moon_sign", ""),
+            "mercury_retrograde": daily_data.get("mercury_retrograde", False),
+            "moon_voc": daily_data.get("moon_voc", False),
+            "scores": scores,
+        }
+    }
+
+    history = []
+    if os.path.exists(history_file):
+        with open(history_file, encoding="utf-8") as f:
+            try:
+                history = json.load(f)
+            except Exception:
+                history = []
+
+    history.append(entry)
+    with open(history_file, "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=2)
+
+    weekday_ua = WEEKDAY_UA[today.weekday()]
+    print(f"✅ Записано: {weekday_ua}, {today.strftime('%d.%m.%Y')} — {label} ({'+' if overall > 0 else ''}{overall})")
+    print(f"   \"{note}\"")
 
 
 def generate_week_report() -> str:
@@ -312,11 +382,12 @@ def find_best_days(activity: str, days: int) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description="Астро-асистент")
-    parser.add_argument("--type", choices=["month", "week", "today", "best", "yearly_goals"], default="today")
+    parser.add_argument("--type", choices=["month", "week", "today", "best", "yearly_goals", "log"], default="today")
     parser.add_argument("--year", type=int, default=datetime.now().year)
     parser.add_argument("--month", type=int, default=datetime.now().month)
     parser.add_argument("--activity", default="finance")
     parser.add_argument("--days", type=int, default=30)
+    parser.add_argument("--note", default="", help="Нотатка для трекера рішень (з --type log)")
     args = parser.parse_args()
 
     if args.type == "month":
@@ -335,6 +406,11 @@ def main():
     elif args.type == "best":
         report = find_best_days(args.activity, args.days)
         print(report)
+    elif args.type == "log":
+        if not args.note:
+            print("Вкажи нотатку: python3 generate_report.py --type log --note 'текст'")
+        else:
+            log_decision(args.note)
 
 
 if __name__ == "__main__":
