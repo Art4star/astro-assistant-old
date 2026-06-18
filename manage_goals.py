@@ -4,9 +4,12 @@
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 
-GOALS_FILE = os.path.join(os.path.dirname(__file__), "data", "goals.json")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, BASE_DIR)
+
+GOALS_FILE = os.path.join(BASE_DIR, "data", "goals.json")
 
 PRIORITY_EMOJI = {1: "🔴", 2: "🟡", 3: "🟢"}
 CATEGORIES = {
@@ -28,6 +31,79 @@ MONTH_NAMES_UA = {
     5: "Травень", 6: "Червень", 7: "Липень", 8: "Серпень",
     9: "Вересень", 10: "Жовтень", 11: "Листопад", 12: "Грудень",
 }
+
+
+CATEGORY_TO_ACTIVITIES = {
+    "career":       ["work_technical", "new_beginnings"],
+    "negotiations": ["negotiations"],
+    "purchase":     ["finance", "negotiations"],
+    "housing":      ["new_beginnings", "finance"],
+    "documents":    ["negotiations", "new_beginnings"],
+    "education":    ["work_technical", "new_beginnings"],
+    "learning":     ["work_technical", "new_beginnings"],
+    "personal":     ["new_beginnings"],
+    "health":       ["health_body"],
+    "finance":      ["finance"],
+    "travel":       ["new_beginnings"],
+    "project":      ["work_technical", "new_beginnings", "content_publishing"],
+}
+
+
+def compute_best_windows(goal):
+    from engine.calculator import get_daily_data
+    from engine.interpreter import score_day
+
+    birth_data_file = os.path.join(BASE_DIR, "data", "birth_data.json")
+    if not os.path.exists(birth_data_file):
+        return []
+    with open(birth_data_file, encoding="utf-8") as f:
+        birth_data = json.load(f)
+
+    category = (goal.get("category") or "").lower()
+    activities = CATEGORY_TO_ACTIVITIES.get(category, ["new_beginnings"])
+
+    deadline = goal.get("deadline")
+    today = datetime.now()
+    start = today if today > datetime(today.year, today.month, today.day) else today
+
+    if deadline:
+        try:
+            end = datetime.strptime(deadline, "%Y-%m-%d")
+        except ValueError:
+            end = today + timedelta(days=90)
+    else:
+        end = today + timedelta(days=90)
+
+    if end <= start:
+        return []
+
+    results = []
+    d = start
+    while d <= end:
+        daily = get_daily_data(d, birth_data)
+        scores = score_day(daily)
+
+        combo = sum(scores.get(act, 0) for act in activities)
+
+        mercury_retro = daily.get("mercury_retrograde", False)
+        moon_voc = daily.get("moon_voc", False)
+
+        if not mercury_retro and not moon_voc and combo > 0:
+            from engine.lunar import get_phase_name_ua, get_sign_name_ua
+            phase = get_phase_name_ua(daily.get("moon_phase", ""))
+            sign = get_sign_name_ua(daily.get("moon_sign", ""))
+            reason = f"{phase}, Місяць у {sign}"
+
+            results.append({
+                "date": d.strftime("%Y-%m-%d"),
+                "score": combo,
+                "reason": reason,
+            })
+
+        d += timedelta(days=1)
+
+    results.sort(key=lambda x: x["score"], reverse=True)
+    return results[:10]
 
 
 def load_goals() -> dict:
@@ -119,9 +195,17 @@ def cmd_add(data: dict) -> None:
         "best_windows": [],
     }
 
+    print(f"\n⏳ Розраховую найкращі дати...")
+    windows = compute_best_windows(goal)
+    goal["best_windows"] = windows
+
     data["active"].append(goal)
     save_goals(data)
-    print(f"\n✅ Додано: {title}")
+    print(f"✅ Додано: {title}")
+    if windows:
+        print(f"📌 Найкращі дати ({len(windows)}):")
+        for w in windows[:5]:
+            print(f"   {w['date']}  (+{w['score']})  {w['reason']}")
 
 
 def cmd_done(data: dict, goal_id: str) -> None:
@@ -179,6 +263,22 @@ def cmd_priority(data: dict, goal_id: str, new_priority: int) -> None:
     print(f"Ціль '{goal_id}' не знайдена")
 
 
+def cmd_recalc(data: dict) -> None:
+    active = data.get("active", [])
+    if not active:
+        print("Немає активних цілей")
+        return
+    print(f"\n⏳ Перераховую best_windows для {len(active)} цілей...\n")
+    for goal in active:
+        windows = compute_best_windows(goal)
+        goal["best_windows"] = windows
+        count = len(windows)
+        top = f"  топ: {windows[0]['date']} (+{windows[0]['score']})" if windows else ""
+        print(f"  {goal['id']:<25} — {count} вікон{top}")
+    save_goals(data)
+    print(f"\n✅ Готово. Збережено.")
+
+
 def cmd_history(data: dict) -> None:
     completed = data.get("completed", [])
     if not completed:
@@ -224,6 +324,8 @@ def main():
             print("Вкажіть ID і пріоритет: manage_goals.py priority <id> <1-3>")
         else:
             cmd_priority(data, args[1], int(args[2]))
+    elif cmd == "recalc":
+        cmd_recalc(data)
     elif cmd == "history":
         cmd_history(data)
     else:

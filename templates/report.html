@@ -728,7 +728,7 @@ body {
 
 <!-- TRANSIT NARRATIVES -->
 {% if transit_narratives %}
-<div class="section-title">Що відбувається цього місяця</div>
+<div class="section-title">Планетарний фон</div>
 <div class="transit-cards">
 {% for n in transit_narratives %}
 {% set card_class = "fog" if "🌫" in n.icon else ("shock" if "⚡" in n.icon else ("open" if "🟢" in n.icon else "press")) %}
@@ -743,25 +743,6 @@ body {
 </div>
 {% endfor %}
 </div>
-{% endif %}
-
-<!-- CRITICAL WINDOWS -->
-{% if critical_windows %}
-<div class="section-title">Ключові планетарні впливи</div>
-{% for cw in critical_windows %}
-<div class="cw-card">
-  <div class="cw-icon">{{ cw.icon }}</div>
-  <div class="cw-body">
-    <div class="cw-label">{{ cw.label }}</div>
-    <div class="cw-meta">
-      {% if cw.peak %}{{ cw.peak }}{% endif %}
-      {% if cw.status_ua %} · {{ cw.status_ua }}{% endif %}
-      {% if cw.retro %} · транзит ретроградний{% endif %}
-    </div>
-    <div class="cw-desc">{{ cw.desc }}</div>
-  </div>
-</div>
-{% endfor %}
 {% endif %}
 
 <!-- GOALS -->
@@ -819,26 +800,6 @@ body {
   {% endfor %}
 </table>
 
-<!-- SPHERES -->
-<div class="section-title">Вікна дій по сферах</div>
-<div class="cards-grid">
-{% for key, sec in sections.items() %}
-{% if sec.has_windows %}
-<div class="card" style="--card-color: {{ sec.color }}">
-  <div class="card-body">
-    <div class="card-title">{{ sec.emoji }} {{ sec.label }}</div>
-    {% for w in sec.windows %}
-    <div class="goal-window {{ w.level }}">
-      <div class="goal-window-dates">{{ w.emoji }} {{ w.dates }}</div>
-      {% if w.reasons %}<div class="goal-window-reasons">{{ w.reasons | join(" · ") }}</div>{% endif %}
-    </div>
-    {% endfor %}
-  </div>
-</div>
-{% endif %}
-{% endfor %}
-</div>
-
 <!-- DANGER ZONES -->
 {% if danger_zones %}
 <div class="section-title">Коли краще не форсувати</div>
@@ -857,42 +818,6 @@ body {
 </div>
 {% endfor %}
 {% endif %}
-
-<!-- STRONGEST DAY -->
-{% if strongest_day %}
-<div class="section-title">Найсильніший день місяця</div>
-<div class="strongest-block">
-  <div class="strongest-left">
-    <div class="strongest-label">Пік енергії</div>
-    <div class="strongest-date">{{ strongest_day.date }}</div>
-    <div class="strongest-moon">{{ strongest_day.moon }}</div>
-  </div>
-  <div>
-    <div class="strongest-right-label">Найкраще для</div>
-    <ul class="strongest-list">
-      {% for item in strongest_day.best_for %}
-      <li>{{ item }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-</div>
-{% endif %}
-
-<!-- SUMMARY TABLE -->
-<div class="section-title">Підсумок місяця</div>
-<table class="summary-table">
-  <thead>
-    <tr><th>Сфера</th><th>Найкращий період</th></tr>
-  </thead>
-  <tbody>
-    {% for row in summary_table %}
-    <tr>
-      <td>{{ row.sphere }}</td>
-      <td>{{ row.best }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
 
 <!-- DECISION LOG -->
 <div class="log-block">

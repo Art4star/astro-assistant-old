@@ -2045,31 +2045,31 @@
     },
     "sr_planets_in_natal_houses": {
       "sun": 1,
-      "moon": 10,
+      "moon": 8,
       "mercury": 1,
       "venus": 1,
       "mars": 1,
       "jupiter": 7,
-      "saturn": 3,
-      "uranus": 5,
-      "neptune": 3,
-      "pluto": 2,
-      "true_node": 3
+      "saturn": 2,
+      "uranus": 4,
+      "neptune": 2,
+      "pluto": 1,
+      "true_node": 2
     },
     "natal_planets_in_sr_houses": {
-      "sun": 4,
+      "sun": 3,
       "moon": 9,
-      "mercury": 4,
-      "venus": 5,
-      "mars": 3,
-      "jupiter": 10,
-      "saturn": 4,
-      "uranus": 4,
-      "neptune": 4,
+      "mercury": 3,
+      "venus": 4,
+      "mars": 2,
+      "jupiter": 9,
+      "saturn": 3,
+      "uranus": 3,
+      "neptune": 3,
       "pluto": 2,
-      "true_node": 5,
-      "ascendant": 4,
-      "midheaven": 2
+      "true_node": 4,
+      "ascendant": 3,
+      "midheaven": 1
     }
   },
   "critical_windows": [

@@ -193,6 +193,20 @@ def generate_month_report(year: int, month: int) -> str:
             "label": ctx["label_js"],
         }
 
+    month_start = f"{year}-{month:02d}-01"
+    last_day = calendar.monthrange(year, month)[1]
+    month_end = f"{year}-{month:02d}-{last_day:02d}"
+    goal_windows = _get_goal_windows_for_range(month_start, month_end)
+    goal_dates = {gw["date"]: gw for gw in goal_windows}
+
+    for ctx in days:
+        if ctx.get("empty"):
+            continue
+        day_date = f"{year}-{month:02d}-{ctx['num']:02d}"
+        if day_date in goal_dates:
+            gw = goal_dates[day_date]
+            ctx["goal_marker"] = gw["goal"]
+
     lunar_events = get_month_lunar_events(year, month)
     month_warnings = []
 
@@ -220,6 +234,13 @@ def generate_month_report(year: int, month: int) -> str:
     env = Environment(loader=FileSystemLoader(os.path.join(BASE_DIR, "templates")))
     template = env.get_template("dashboard.html")
 
+    if goal_windows:
+        month_warnings.append("")
+        month_warnings.append("📌 Вікна для цілей:")
+        for gw in goal_windows:
+            d = int(gw["date"].split("-")[2])
+            month_warnings.append(f"  {d:02d} — {gw['goal']} (+{gw['score']})")
+
     user_name = birth_data.get("name", "Astro")
     html = template.render(
         year=year,
@@ -229,6 +250,7 @@ def generate_month_report(year: int, month: int) -> str:
         days=days,
         days_data_json=json.dumps(days_data_js, ensure_ascii=False),
         month_warnings=month_warnings,
+        goal_windows=goal_windows,
         generated_at=datetime.now().strftime("%d.%m.%Y %H:%M"),
     )
 
@@ -242,7 +264,124 @@ def generate_month_report(year: int, month: int) -> str:
     return filepath
 
 
-def generate_today_report() -> str:
+PLANET_UA = {
+    "sun": "Сонце", "moon": "Місяць", "mercury": "Меркурій",
+    "venus": "Венера", "mars": "Марс", "jupiter": "Юпітер",
+    "saturn": "Сатурн", "uranus": "Уран", "neptune": "Нептун",
+    "pluto": "Плутон", "true_node": "Вузол", "lilith": "Ліліт",
+    "ascendant": "Асцендент", "midheaven": "MC",
+}
+
+ASPECT_UA = {
+    "conjunction": "кон'юнкція", "opposition": "опозиція",
+    "square": "квадрат", "trine": "трін", "sextile": "секстиль",
+}
+
+WINDOW_TYPE_EMOJI = {
+    "confusion": "🌫", "transformation": "🔥", "liberation": "⚡",
+    "consolidation": "🧱", "overreach_risk": "⚠️", "restructuring": "🔧",
+    "expansion": "🚀", "tension": "💥",
+}
+
+
+def _load_interpret_package(year, month):
+    pkg_path = os.path.join(BASE_DIR, "output", "data", f"{year}-{month:02d}-interpret.json")
+    if not os.path.exists(pkg_path):
+        return None
+    with open(pkg_path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _get_today_transits(pkg, today_str):
+    transits = pkg.get("forecast", {}).get("top_transits", [])
+    active = []
+    for t in transits:
+        if t["first_date"] <= today_str <= t["last_date"]:
+            active.append(t)
+    active.sort(key=lambda t: t["intensity"], reverse=True)
+    return active
+
+
+def _get_today_windows(pkg, today_str):
+    windows = pkg.get("forecast", {}).get("critical_windows", [])
+    active = []
+    for w in windows:
+        if w["first_date"] <= today_str <= w["last_date"]:
+            active.append(w)
+    active.sort(key=lambda w: w["intensity"], reverse=True)
+    return active
+
+
+def _format_transit(t):
+    tp = PLANET_UA.get(t["transit_planet"], t["transit_planet"])
+    np_ = PLANET_UA.get(t["natal_planet"], t["natal_planet"])
+    asp = ASPECT_UA.get(t["aspect"], t["aspect"])
+    retro = " (R)" if t.get("retrograde") else ""
+    peak = t.get("peak_date", "")
+    peak_str = f", пік {peak[5:]}" if peak else ""
+    return f"{tp} {asp} {np_}{retro}{peak_str}"
+
+
+def _format_window_short(w):
+    emoji = WINDOW_TYPE_EMOJI.get(w["type"], "🔹")
+    tp = PLANET_UA.get(w["transit_planet"], w["transit_planet"])
+    np_ = PLANET_UA.get(w["natal_planet"], w["natal_planet"])
+    asp = ASPECT_UA.get(w["aspect"], w["aspect"])
+    return f"{emoji} {tp} {asp} {np_}"
+
+
+def _get_goal_windows_for_date(date_str):
+    goals = load_goals()
+    matches = []
+    for g in goals:
+        for w in g.get("best_windows", []):
+            if w.get("date") == date_str:
+                matches.append({"goal": g["title"], "score": w.get("score", 0), "reason": w.get("reason", "")})
+    return matches
+
+
+def _get_goal_windows_for_range(start_str, end_str):
+    goals = load_goals()
+    matches = []
+    for g in goals:
+        for w in g.get("best_windows", []):
+            d = w.get("date", "")
+            if start_str <= d <= end_str:
+                matches.append({"goal": g["title"], "date": d, "score": w.get("score", 0), "reason": w.get("reason", "")})
+    matches.sort(key=lambda x: x["score"], reverse=True)
+    return matches
+
+
+PHASE_GUIDANCE = {
+    "new":              "Час для намірів і внутрішньої роботи. Дій не потрібно — сіяти зерна.",
+    "waxing_crescent":  "Місяць росте — починай, пропонуй, рухайся вперед.",
+    "first_quarter":    "Перший опір — не здавайся, просувай почате.",
+    "waxing_gibbous":   "Набираєш темп — доводь до результату, не розпорошуйся.",
+    "full":             "Пік емоцій і ясності — побачиш результати або правду.",
+    "waning_gibbous":   "Час ділитись і передавати далі. Аналізуй що спрацювало.",
+    "last_quarter":     "Відпусти те що не працює. Не починай нового.",
+    "balsamic":         "Відпочинок і перезавантаження. Мінімум дій — максимум рефлексії.",
+}
+
+SIGN_ENERGY = {
+    "aries":       "енергія дії і ініціативи",
+    "taurus":      "стабільність, фінанси, тіло",
+    "gemini":      "комунікації і навчання",
+    "cancer":      "дім, емоції, близькі",
+    "leo":         "творчість, самовираження, лідерство",
+    "virgo":       "порядок, деталі, здоров'я",
+    "libra":       "партнерства, домовленості, баланс",
+    "scorpio":     "глибина, трансформація, чесність з собою",
+    "sagittarius": "розширення, навчання, нові горизонти",
+    "capricorn":   "кар'єра, структура, довгострокове",
+    "aquarius":    "нестандартні рішення, спільнота, свобода",
+    "pisces":      "інтуїція, творчість, духовне",
+}
+
+
+def generate_today_report():
+    from engine.synthesizer import _make_narrative
+
     today = datetime.now()
     birth_data = load_birth_data()
 
@@ -250,45 +389,82 @@ def generate_today_report() -> str:
     scores = score_day(daily_data)
     overall = get_overall_score(scores)
     label = get_day_label(overall, scores)
-    warnings = get_warnings(daily_data)
     recs = get_recommendations(daily_data, scores)
 
     weekday_ua = WEEKDAY_UA[today.weekday()]
-    date_str = f"{weekday_ua}, {today.day}.{today.month:02d}"
+    phase = daily_data["moon_phase"]
+    sign = daily_data["moon_sign"]
+    phase_emoji = get_phase_emoji(phase)
+    phase_ua = get_phase_name_ua(phase)
+    sign_ua = get_sign_name_ua(sign)
 
-    # Score emoji
+    lines = [f"🔮 {weekday_ua}, {today.day}.{today.month:02d}"]
+    lines.append(f"{phase_emoji} {phase_ua} у {sign_ua}")
+    lines.append("")
+
     if overall >= 5:
-        score_icon = "🟢"
+        lines.append("🟢 День для активних дій — використай по максимуму.")
     elif overall >= 2:
-        score_icon = "🟡"
+        lines.append("🟡 Хороший день — дій у своєму темпі.")
     elif overall >= -1:
-        score_icon = "⚪"
+        if daily_data.get("moon_voc") or daily_data.get("mercury_retrograde"):
+            lines.append("⚪ Нейтрально, але є перешкоди — обирай моменти.")
+        else:
+            lines.append("⚪ Рівний день — можна діяти, але вибірково.")
     elif overall >= -4:
-        score_icon = "🟠"
+        lines.append("🟠 Краще не форсувати — завершуй почате, не починай нового.")
     else:
-        score_icon = "🔴"
+        lines.append("🔴 День для відпочинку і рефлексії. Великі рішення — на потім.")
 
-    phase_emoji = get_phase_emoji(daily_data["moon_phase"])
-    sign_ua = get_sign_name_ua(daily_data["moon_sign"])
-
-    flags = []
     if daily_data.get("mercury_retrograde"):
-        flags.append("☿ Меркурій ретро — перевіряй деталі")
+        lines.append("☿ Меркурій ретро — перечитуй перед підписом, перевіряй деталі.")
     if daily_data.get("moon_voc"):
-        flags.append("🌀 VOC — не починай нового")
-
-    lines = [f"{score_icon} {date_str} — {label}"]
-    lines.append(f"{phase_emoji} Місяць у {sign_ua}")
-
-    if flags:
-        lines.append("  " + " · ".join(flags))
+        lines.append("🌀 Місяць без курсу — не починай нічого важливого прямо зараз.")
 
     if recs["best_for"]:
-        lines.append("✅ " + ", ".join(recs["best_for"][:3]))
+        lines.append("")
+        lines.append("✅ Русло дня: " + ", ".join(recs["best_for"][:3]).lower())
     if recs["avoid"]:
-        lines.append("🚫 Уникай: " + ", ".join(recs["avoid"][:2]))
-    if recs["tip"]:
-        lines.append(f"💡 {recs['tip']}")
+        lines.append("🚫 Відкласти: " + ", ".join(recs["avoid"][:2]).lower())
+
+    today_str = today.strftime("%Y-%m-%d")
+    goal_hits = _get_goal_windows_for_date(today_str)
+    if goal_hits:
+        lines.append("")
+        for gh in goal_hits[:3]:
+            lines.append(f"📌 Вдалий день для: {gh['goal']}")
+
+    pkg = _load_interpret_package(today.year, today.month)
+    if pkg:
+        transits = _get_today_transits(pkg, today_str)
+
+        narratives = []
+        for t in transits[:5]:
+            n = _make_narrative(t)
+            if n:
+                narratives.append(n)
+
+        peak_narratives = [n for n, t in zip(narratives, transits) if t.get("peak_date") == today_str]
+        if peak_narratives:
+            lines.append("")
+            n = peak_narratives[0]
+            lines.append(f"{n['icon']} Пік сьогодні: {n['title']}")
+            lines.append(f"→ {n['action']}")
+
+        bg = [n for n, t in zip(narratives, transits) if t.get("peak_date") != today_str]
+        if bg and not peak_narratives:
+            lines.append("")
+            n = bg[0]
+            lines.append(f"{n['icon']} {n['title']}")
+            lines.append(f"→ {n['action']}")
+
+    sign_note = SIGN_ENERGY.get(sign, "")
+    phase_note = PHASE_GUIDANCE.get(phase, "")
+    if phase_note:
+        lines.append("")
+        lines.append(f"💡 {phase_note}")
+        if sign_note:
+            lines.append(f"   Фокус дня: {sign_note}.")
 
     return "\n".join(lines)
 
@@ -343,6 +519,12 @@ def generate_week_report() -> str:
     from datetime import timedelta
     lines = [f"📅 Астро-тиждень з {today.strftime('%d.%m')}:", ""]
 
+    end_day = today + timedelta(days=6)
+    goal_windows = _get_goal_windows_for_range(
+        today.strftime("%Y-%m-%d"), end_day.strftime("%Y-%m-%d")
+    )
+    goal_dates = {gw["date"] for gw in goal_windows}
+
     for i in range(7):
         day = today + timedelta(days=i)
         daily = get_daily_data(day, birth_data)
@@ -351,7 +533,16 @@ def generate_week_report() -> str:
         label = get_day_label(overall, scores)
         phase_emoji = get_phase_emoji(daily["moon_phase"])
         weekday = WEEKDAY_UA[day.weekday()]
-        lines.append(f"{phase_emoji} {weekday} {day.strftime('%d.%m')} — {label} ({'+' if overall > 0 else ''}{overall})")
+        day_str = day.strftime("%Y-%m-%d")
+        marker = " 📌" if day_str in goal_dates else ""
+        lines.append(f"{phase_emoji} {weekday} {day.strftime('%d.%m')} — {label} ({'+' if overall > 0 else ''}{overall}){marker}")
+
+    if goal_windows:
+        lines.append("")
+        lines.append("📌 Вікна для цілей цього тижня:")
+        for gw in goal_windows:
+            d = gw["date"][5:]
+            lines.append(f"  {d} — {gw['goal']} (+{gw['score']})")
 
     return "\n".join(lines)
 

@@ -1,11 +1,11 @@
 {
   "_meta": {
     "description": "Coordinator Agent state — orchestration, cache status, contradiction log",
-    "last_updated": "2026-05-10"
+    "last_updated": "2026-05-16"
   },
   "natal_chart_cached": true,
   "natal_chart_path": "output/data/natal_chart.json",
-  "natal_chart_computed_at": "2026-05-10",
+  "natal_chart_computed_at": "2026-05-16",
   "sessions": {
     "2026-05": {
       "forecast_ready": true,

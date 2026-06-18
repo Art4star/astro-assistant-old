@@ -8,6 +8,9 @@ case "$1" in
     shift
     python3 manage_goals.py ${@:-list}
     ;;
+  goals/recalc)
+    python3 manage_goals.py recalc
+    ;;
   yearly)
     YEAR=${2:-$(date +%Y)}
     python3 generate_report.py --type yearly_goals --year $YEAR
@@ -38,12 +41,12 @@ case "$1" in
   interpret)
     YEAR=${2:-$(date +%Y)}
     MONTH=${3:-$(date +%m)}
-    FORCE=${4:-""}
-    python3 -c "
-import sys; sys.path.insert(0, '.')
-from agents.prepare_interpret import run
-run($YEAR, $MONTH, force='$FORCE' == '--force')
-"
+    python3 interpret.py --year $YEAR --month $MONTH
+    ;;
+  interpret-dry)
+    YEAR=${2:-$(date +%Y)}
+    MONTH=${3:-$(date +%m)}
+    python3 interpret.py --year $YEAR --month $MONTH --dry-run
     ;;
   log)
     python3 -c "
@@ -90,12 +93,15 @@ else:
     echo "  astro goals add              — додати нову ціль"
     echo "  astro goals done [id]        — позначити як виконану"
     echo "  astro goals pause [id]       — відкласти ціль"
+    echo "  astro goals recalc           — перерахувати найкращі дати для всіх цілей"
+    echo "  astro goals/recalc           — те ж саме"
     echo "  astro today                  — прогноз на сьогодні + Telegram"
     echo "  astro week                   — тижневий звіт"
     echo "  astro best [активність]      — найкращі дні"
     echo "  astro setup                  — ввести натальні дані"
     echo "  astro send [тип]             — відправити в Telegram"
-    echo "  astro interpret [рік] [місяць] — підготувати дані для Claude Code"
+    echo "  astro interpret [рік] [місяць] — Claude-аналіз → Telegram"
+    echo "  astro interpret-dry [рік] [місяць] — показати prompt без виклику"
   echo "  astro open [рік] [місяць]    — відкрити HTML звіт"
     ;;
 esac

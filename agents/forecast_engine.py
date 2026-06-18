@@ -3,10 +3,14 @@ Agent 3 — Forecast Engine
 Calculates: transits (with peak_date, applying/separating, intensity),
 solar return (with natal house overlay), critical windows.
 Uses Swiss Ephemeris (pyswisseph) Moshier.
+
+FROZEN 2026-05-16 — Solar Return Placidus cusps verified. Transit logic verified.
+DO NOT MODIFY without explicit permission from Artur in the current conversation.
 """
 
 import math
 import calendar
+import pytz
 import swisseph as swe
 from datetime import datetime, timedelta
 from typing import Optional
@@ -240,32 +244,41 @@ def find_solar_return(birth_data: dict, year: int) -> dict:
             "retrograde": speed < 0,
         }
 
-    _, ascmc = swe.houses(jd_return, sr_lat, sr_lon_coord, b'W')
-    asc_lon = ascmc[0] % 360
-    mc_lon = ascmc[1] % 360
-    sr_asc_sign_idx = int(asc_lon / 30) % 12
+    # SR Placidus cusps
+    sr_cusps, sr_ascmc = swe.houses(jd_return, sr_lat, sr_lon_coord, b'P')
+    asc_lon = sr_ascmc[0] % 360
+    mc_lon = sr_ascmc[1] % 360
 
-    # Priority 6: natal house overlay
-    natal_asc_lon = birth_data["natal_planets"].get("ascendant", 275.9932)
-    natal_asc_sign_idx = int(natal_asc_lon / 30) % 12
+    # Natal Placidus cusps (computed from birth data)
+    tz = pytz.timezone(birth_data["timezone"])
+    birth_local = datetime.strptime(
+        f"{birth_data['birth_date']} {birth_data['birth_time']}", "%Y-%m-%d %H:%M"
+    )
+    birth_utc = tz.localize(birth_local).astimezone(pytz.utc)
+    jd_natal = _to_jd(birth_utc)
+    natal_cusps, _ = swe.houses(jd_natal, birth_data["latitude"], birth_data["longitude"], b'P')
 
-    def _natal_house(lon: float) -> int:
-        sign_idx = int(lon / 30) % 12
-        return (sign_idx - natal_asc_sign_idx) % 12 + 1
+    def _house_from_cusps(planet_lon: float, cusps: tuple) -> int:
+        lon = planet_lon % 360
+        for i in range(12):
+            start = cusps[i] % 360
+            end = cusps[(i + 1) % 12] % 360
+            if end > start:
+                if start <= lon < end:
+                    return i + 1
+            else:
+                if lon >= start or lon < end:
+                    return i + 1
+        return 1
 
-    def _sr_house(lon: float) -> int:
-        sign_idx = int(lon / 30) % 12
-        return (sign_idx - sr_asc_sign_idx) % 12 + 1
-
-    # Which natal house each SR planet lands in
+    # Priority 6: natal house overlay — Placidus degree-based
     sr_planets_in_natal_houses = {
-        name: _natal_house(data["longitude"])
+        name: _house_from_cusps(data["longitude"], natal_cusps)
         for name, data in sr_planets.items()
     }
 
-    # Which SR house natal planets land in
     natal_planets_in_sr_houses = {
-        name: _sr_house(lon)
+        name: _house_from_cusps(lon, sr_cusps)
         for name, lon in birth_data["natal_planets"].items()
         if isinstance(lon, (int, float))
     }

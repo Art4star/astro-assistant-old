@@ -1,1 +1,68 @@
-[]
+[
+  {
+    "date": "2026-05-16",
+    "time": "22:25",
+    "note": "Тест трекера рішень",
+    "context": {
+      "day_label": "Поляризований",
+      "overall_score": 0,
+      "moon_phase": "new",
+      "moon_sign": "taurus",
+      "mercury_retrograde": false,
+      "moon_voc": false,
+      "scores": {
+        "finance": -4,
+        "work_technical": -1,
+        "negotiations": -1,
+        "content_publishing": 2,
+        "rest_reflection": 4,
+        "new_beginnings": 1,
+        "health_body": 1
+      }
+    }
+  },
+  {
+    "date": "2026-05-17",
+    "time": "03:43",
+    "note": "Тест агентської архітектури",
+    "context": {
+      "day_label": "Поляризований",
+      "overall_score": 0,
+      "moon_phase": "new",
+      "moon_sign": "gemini",
+      "mercury_retrograde": false,
+      "moon_voc": false,
+      "scores": {
+        "finance": -6,
+        "work_technical": 2,
+        "negotiations": 1,
+        "content_publishing": 2,
+        "rest_reflection": 4,
+        "new_beginnings": 1,
+        "health_body": -2
+      }
+    }
+  },
+  {
+    "date": "2026-05-17",
+    "time": "03:44",
+    "note": "test",
+    "context": {
+      "day_label": "Поляризований",
+      "overall_score": 0,
+      "moon_phase": "new",
+      "moon_sign": "gemini",
+      "mercury_retrograde": false,
+      "moon_voc": false,
+      "scores": {
+        "finance": -6,
+        "work_technical": 2,
+        "negotiations": 1,
+        "content_publishing": 2,
+        "rest_reflection": 4,
+        "new_beginnings": 1,
+        "health_body": -2
+      }
+    }
+  }
+]

@@ -1,3 +1,5 @@
+# FROZEN 2026-05-16 — ACTIVITY_RULES, scoring thresholds, is_polarized_day verified
+# DO NOT MODIFY without explicit permission from Artur in the current conversation.
 ACTIVITY_RULES = {
     "finance": {
         "favorable": [

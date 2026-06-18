@@ -3,6 +3,9 @@ Agent 1 — Chart Parser
 Parses natal chart: planets, houses, aspects, dispositors, dominants.
 Uses Swiss Ephemeris (pyswisseph) for precise geocentric ecliptic positions.
 Output: structured dict ready for Claude Code interpretation.
+
+FROZEN 2026-05-16 — Placidus house assignment verified against astro.com.
+DO NOT MODIFY without explicit permission from Artur in the current conversation.
 """
 
 import math
@@ -146,23 +149,25 @@ def _get_degree_in_sign(lon: float) -> float:
     return round(lon % 30, 2)
 
 
-def _calc_ascendant_mc(jd: float, lat: float, lon: float) -> tuple:
-    """Returns (asc_lon, mc_lon) using Swiss Ephemeris Whole Sign."""
-    _, ascmc = swe.houses(jd, lat, lon, b'W')
-    return ascmc[0] % 360, ascmc[1] % 360
+def _calc_houses_placidus(jd: float, lat: float, lon: float) -> tuple:
+    """Returns (cusps, ascmc) using Placidus system. cusps[0..11] = H1..H12."""
+    cusps, ascmc = swe.houses(jd, lat, lon, b'P')
+    return cusps, ascmc
 
 
-def _whole_sign_houses(asc_lon: float) -> dict:
-    asc_sign_idx = int(asc_lon / 30) % 12
-    return {i + 1: PLANET_SIGNS[(asc_sign_idx + i) % 12] for i in range(12)}
-
-
-def _planet_house(planet_lon: float, houses: dict) -> int:
-    planet_sign = _get_sign(planet_lon)
-    for house_num, sign in houses.items():
-        if sign == planet_sign:
-            return house_num
-    return 0
+def _planet_house(planet_lon: float, cusps: tuple) -> int:
+    """Assigns planet to house 1-12 using Placidus cusps (degree-based)."""
+    lon = planet_lon % 360
+    for i in range(12):
+        start = cusps[i] % 360
+        end = cusps[(i + 1) % 12] % 360
+        if end > start:
+            if start <= lon < end:
+                return i + 1
+        else:  # arc wraps around 0°/360°
+            if lon >= start or lon < end:
+                return i + 1
+    return 1
 
 
 def _aspect_between(lon1: float, lon2: float) -> Optional[tuple]:
@@ -262,7 +267,9 @@ def parse_natal_chart(birth_data: dict) -> dict:
             "retrograde": speed < 0,
         }
 
-    asc_lon, mc_lon = _calc_ascendant_mc(jd, lat, lon)
+    cusps, ascmc = _calc_houses_placidus(jd, lat, lon)
+    asc_lon = ascmc[0] % 360
+    mc_lon = ascmc[1] % 360
     angles = {
         "ascendant": {
             "longitude": round(asc_lon, 4),
@@ -276,13 +283,17 @@ def parse_natal_chart(birth_data: dict) -> dict:
         },
     }
 
-    houses = _whole_sign_houses(asc_lon)
+    # Placidus house cusps: sign label per house for display
+    houses = {i + 1: _get_sign(cusps[i]) for i in range(12)}
+    # Degree-based house assignment using actual Placidus cusps
     for name in planets:
-        planets[name]["house"] = _planet_house(planets[name]["longitude"], houses)
+        planets[name]["house"] = _planet_house(planets[name]["longitude"], cusps)
 
     all_points = dict(planets)
     all_points["ascendant"] = angles["ascendant"]
     all_points["midheaven"] = angles["midheaven"]
+
+    house_cusps = {i + 1: round(cusps[i] % 360, 4) for i in range(12)}
 
     return {
         "user": {
@@ -294,6 +305,7 @@ def parse_natal_chart(birth_data: dict) -> dict:
         "planets": planets,
         "angles": angles,
         "houses": houses,
+        "house_cusps": house_cusps,
         "ascendant_ruler": SIGN_RULERS[angles["ascendant"]["sign"]],
         "aspects": _get_aspects(all_points),
         "dispositors": _get_dispositors(planets),

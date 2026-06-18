@@ -272,7 +272,7 @@
        onmouseleave="hideTooltip()">
     <div class="day-num">{{ day.num }}</div>
     <div class="day-phase">{{ day.phase_emoji }} <span class="day-sign">{{ day.sign_short }}</span></div>
-    <div class="day-icons">{% if day.mercury_retro %}☿{% endif %}{% if day.moon_voc %}🌀{% endif %}</div>
+    <div class="day-icons">{% if day.mercury_retro %}☿{% endif %}{% if day.moon_voc %}🌀{% endif %}{% if day.goal_marker %}📌{% endif %}</div>
     <div class="day-label">{{ day.label }}</div>
   </div>
 {% endif %}

@@ -1,3 +1,5 @@
+# FROZEN 2026-05-16 — verified against astro.com + pyswisseph
+# DO NOT MODIFY without explicit permission from Artur in the current conversation.
 from datetime import datetime, timedelta
 from typing import Optional
 import swisseph as swe

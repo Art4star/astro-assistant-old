@@ -1,0 +1,14 @@
+{
+  "permissionMode": "workspace-write",
+  "permissions": {
+    "defaultMode": "workspace-write",
+    "deny": [
+      "Bash(rm -rf)",
+      "Bash(rm -r)"
+    ],
+    "ask": [
+      "Bash(python3 send_telegram.py)"
+    ]
+  },
+  "model": "local"
+}

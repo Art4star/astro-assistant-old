@@ -21,6 +21,15 @@ log "  Генерую звіт (Router → ForecastAgent → ... → OutputAgent
 REPORT_PATH="$PROJ/output/reports/${YEAR}-$(printf '%02d' $MONTH)-report.html"
 log "  Готово: $REPORT_PATH"
 
+# ── Інтерпретація через Claude ──────────────────────────────────────────────
+INTERP_PATH="$PROJ/data/memory/sessions/${YEAR}-$(printf '%02d' $MONTH)/interpretation.json"
+if [ ! -f "$INTERP_PATH" ]; then
+    log "  Запускаю інтерпретацію через Claude..."
+    /usr/bin/python3 interpret.py --year "$YEAR" --month "$MONTH" || log "  ⚠️ Інтерпретація не вдалася"
+else
+    log "  Інтерпретація вже існує, пропускаю."
+fi
+
 # ── Наступний місяць (якщо >= 25-те) ─────────────────────────────────────────
 if [ "$DAY" -ge 25 ]; then
     if [ "$MONTH" -eq 12 ]; then
