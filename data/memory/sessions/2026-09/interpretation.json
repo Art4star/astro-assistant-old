@@ -1,0 +1,158 @@
+{
+  "period": "2026-09",
+  "generated_at": "2026-07-06 21:15",
+  "confidence_overall": "medium",
+  "identity_resonance": {
+    "patterns_active": [
+      "career_reinvention",
+      "overextension_jupiter"
+    ],
+    "primary_theme": "Глибока трансформація цінностей і фінансових звичок (Pluto conjunction natal Venus, intensity 47.1) на тлі туману самосприйняття (Neptune square Ascendant, 43.9) — місяць, коли треба діяти точково, а не масштабно.",
+    "tension_points": [
+      "Бажання розширення (Jupiter trine Mars, peak 2026-09-09) проти ризику перебору (Jupiter opposition true_node, peak 2026-09-15, orb 0.03) — патерн overextension_jupiter активний з confidence 0.78",
+      "Neptune square Ascendant (intensity 43.9) розмиває самооцінку саме тоді, коли Pluto вимагає незворотних рішень щодо Venus-тем: гроші, стосунки, цінності",
+      "Mars opposition natal Sun (peak 2026-09-09, orb 0.01) — зовнішній тиск або конфронтація припадає точно на день піку сприятливого Jupiter trine Mars"
+    ]
+  },
+  "timing": {
+    "best_window": {
+      "dates": "2026-09-12 – 2026-09-16",
+      "for": [
+        "конкретний кар'єрний крок (PO)",
+        "старт навчальних рутин",
+        "фізична активність і продуктивна робота",
+        "чесні розмови у стосунках"
+      ],
+      "reason": "Jupiter trine natal Mars (peak_date 2026-09-09, min_orb 0.02, status exact_within_month, intensity 20.9) залишається активним, Mars opposition Sun (peak 2026-09-09) вже відділяється, новий місяць 2026-09-11 03:27 UTC у Діві відкриває цикл. Уникати VOC 2026-09-13 16:13 – 2026-09-14 06:43 UTC (14.5 год) та 2026-09-16 05:11 – 16:41 UTC (11.5 год)."
+    },
+    "avoid_window": {
+      "dates": "2026-09-06 – 2026-09-09",
+      "reason": "Mars opposition natal Sun (peak_date 2026-09-09, min_orb 0.01, intensity 36.1) плюс Mars opposition natal Mercury (peak 2026-09-08, orb 0.20) на балсамічному Місяці — конфронтації, гострі слова, виснаження. Не ініціювати переговори і не підписувати документи."
+    },
+    "peak_tension_date": "2026-09-01 — peak_date Pluto conjunction natal Venus (intensity 47.1, найвища цього місяця), накладається на Neptune square Ascendant (43.9) того ж дня"
+  },
+  "critical_windows_analysis": [
+    {
+      "window_type": "transformation",
+      "transit": "Pluto conjunction natal Venus",
+      "peak_date": "2026-09-01",
+      "behavioral_prediction": "Статус separating (retrograde): пік вже пройдено, вересень — фаза перетравлення. За патерном career_reinvention (confidence 0.87) є схильність перебудовувати все з нуля замість точкових змін — тут це стосується грошей і стосунків, не кар'єри.",
+      "recommended_action": "Не ламати фінансову систему повністю — зафіксувати 2-3 конкретні зміни звичок (автоматичний переказ у резерв, ліміт витрат) і дати їм працювати.",
+      "confidence": "high"
+    },
+    {
+      "window_type": "confusion",
+      "transit": "Neptune square natal Ascendant",
+      "peak_date": "2026-09-01",
+      "behavioral_prediction": "Розмите самосприйняття і схильність ідеалізувати людей та можливості; в особистій сфері (ціль «нові емоції») підвищений ризик закохатись у проекцію, а не в людину.",
+      "recommended_action": "Правило 72 годин: жодних великих рішень і обіцянок під враженням. Перевіряти важливі домовленості письмово.",
+      "confidence": "medium"
+    },
+    {
+      "window_type": "overreach_risk",
+      "transit": "Jupiter opposition natal true_node",
+      "peak_date": "2026-09-15",
+      "behavioral_prediction": "Патерн overextension_jupiter (confidence 0.78): у середині місяця з'явиться спокуса взяти на себе забагато — курс C1, автошкола, PO-крок і ПМЖ одночасно. Опозиція до Вузла тягне назад у комфортну Leo-роль замість Aquarius-напрямку.",
+      "recommended_action": "Обрати максимум два пріоритети на вересень (рекомендовано: C1-курс + подача на ПМЖ). Решту свідомо перенести на жовтень.",
+      "confidence": "high"
+    },
+    {
+      "window_type": "expansion",
+      "transit": "Jupiter trine natal Mars",
+      "peak_date": "2026-09-09",
+      "behavioral_prediction": "Реальне вікно продуктивної дії (min_orb 0.02, exact_within_month), але peak_date збігається з Mars opposition Sun — енергія висока, проте день піку конфліктний.",
+      "recommended_action": "Використати хвіст транзиту 12–16 вересня для конкретного кар'єрного кроку (реєстрація на PSPO), а не сам день 9 вересня.",
+      "confidence": "medium"
+    },
+    {
+      "window_type": "liberation",
+      "transit": "Uranus trine natal Venus",
+      "peak_date": "2026-09-30",
+      "behavioral_prediction": "Applying (intensity 20.7): наприкінці місяця зростає відкритість до нових людей і несподіваних знайомств — підтримує цілі social_circle та personal_life.",
+      "recommended_action": "Кінець вересня — йти на нові події Verein, погоджуватись на спонтанні запрошення.",
+      "confidence": "medium"
+    },
+    {
+      "window_type": "consolidation",
+      "transit": "Saturn trine natal Mars",
+      "peak_date": "2026-09-01",
+      "behavioral_prediction": "Separating: дисциплінована робота, розпочата влітку, ще тримає структуру — сприяє рутинам (мова, фінанси), а не новим стартам.",
+      "recommended_action": "Закріпити щоденні рутини письмовим розкладом до 15 вересня, поки транзит в орбі.",
+      "confidence": "medium"
+    }
+  ],
+  "lunar_rhythm": {
+    "new_moon_focus": "Новий місяць 2026-09-11 03:27 UTC у Діві (падає в натальні 6-8 дім тем здоров'я і рутин): ідеально для старту C1-курсу, фінансового трекінгу і систематичних звичок. Увага: VOC 2026-09-11 07:21–23:51 UTC (16.5 год) — ініціювати або рано-вранці 11.09, або 12.09.",
+    "full_moon_release": "Повний місяць 2026-09-26 16:49 UTC у Овні (0.9°): відпустити ілюзії та завищені очікування, накопичені під Neptune square Ascendant — чесна ревізія «що реально, а що я собі намалював». Гарний момент завершити підготовку документів на ПМЖ.",
+    "voc_warnings": [
+      "2026-09-02 12:17 – 2026-09-03 11:47 UTC (23.5 год) — найдовший VOC місяця",
+      "2026-09-11 07:21 – 23:51 UTC (16.5 год) — одразу після нового місяця",
+      "2026-09-13 16:13 – 2026-09-14 06:43 UTC (14.5 год)",
+      "2026-09-16 05:11 – 16:41 UTC (11.5 год)",
+      "2026-09-23 10:23 – 2026-09-24 03:23 UTC (17 год)",
+      "2026-09-30 00:56 – 17:26 UTC (16.5 год) — не підписувати нічого в останній день місяця",
+      "2026-08-31 21:31 – 2026-09-01 08:01 UTC (10.5 год) та 2026-09-18 22:54 – 2026-09-19 04:54 UTC (6 год)"
+    ]
+  },
+  "goal_alignment": [
+    {
+      "goal_title": "Фінансова подушка — 3 місяці витрат",
+      "monthly_support": "strong",
+      "best_action_this_month": "Зафіксувати автоматичний щомісячний переказ у резерв і провести ревізію підписок/витрат у вікні нового місяця 11-12 вересня; контрольна точка 2026-09-27 (score 4, повний місяць у Овні).",
+      "transit_supporting": "Pluto conjunction natal Venus (peak 2026-09-01, intensity 47.1, separating) — трансформація фінансових звичок вже запущена, вересень — місяць закріплення нової системи"
+    },
+    {
+      "goal_title": "Переговори з начальником — PO шлях",
+      "monthly_support": "weak",
+      "best_action_this_month": "Не проводити вирішальну розмову 6-9 вересня (Mars opposition Sun/Mercury). Якщо розмова потрібна — 12-16 вересня, поза VOC; інакше готувати аргументи і перенести на жовтень.",
+      "transit_supporting": "Jupiter trine natal Mars (peak 2026-09-09, orb 0.02) дає впевненість у дії, але Mars opposition natal Mercury (peak 2026-09-08, orb 0.20) робить першу половину місяця ризикованою для комунікації"
+    },
+    {
+      "goal_title": "Product Owner — перший конкретний крок",
+      "monthly_support": "moderate",
+      "best_action_this_month": "Один крок, не три: зареєструватися на PSPO-курс/сертифікацію у вікні 12-16 вересня. Jupiter opposition true_node (peak 2026-09-15) карає за розпорошення — обмежитись одним зобов'язанням.",
+      "transit_supporting": "Jupiter trine natal Mars (peak_date 2026-09-09, intensity 20.9, exact_within_month) — енергія для конкретної кар'єрної дії"
+    },
+    {
+      "goal_title": "Deutsch B2 → C1",
+      "monthly_support": "strong",
+      "best_action_this_month": "Старт C1-курсу синхронізувати з новим місяцем у Діві (11-12 вересня) і одразу закріпити фіксований тижневий розклад занять.",
+      "transit_supporting": "Saturn trine natal Mars (peak 2026-09-01, separating, intensity 17.0) — структурована дисципліна; новий місяць 2026-09-11 у Діві підтримує навчальні рутини"
+    },
+    {
+      "goal_title": "Німецькі права",
+      "monthly_support": "moderate",
+      "best_action_this_month": "Записатися в автошколу 2026-09-27 (найкраще вікно, score 9) або 13-14 вересня (score 4). Дедлайн 30.09 нереалістичний для завершення — переформулювати ціль як «почати», не «отримати».",
+      "transit_supporting": "Scored window 2026-09-27 (score 9, повний місяць, Місяць у Овні); Jupiter opposition true_node (peak 2026-09-15) застерігає від нагромадження цього поверх C1 і ПМЖ одночасно"
+    },
+    {
+      "goal_title": "Vereine + нове соціальне коло",
+      "monthly_support": "moderate",
+      "best_action_this_month": "Активізуватися в останній тиждень вересня (25-30.09): відвідати подію Verein, ініціювати неформальний контакт з 1-2 людьми.",
+      "transit_supporting": "Uranus trine natal Venus (peak_date 2026-09-30, intensity 20.7, applying) — нові несподівані соціальні зв'язки наприкінці місяця"
+    },
+    {
+      "goal_title": "Подати на ПМЖ (Niederlassungserlaubnis)",
+      "monthly_support": "strong",
+      "best_action_this_month": "Подати документи 2026-09-27 – 2026-09-29 (вікно score 9 на 27.09; VOC 28.09 лише 0.5 год). Це головний адміністративний пріоритет місяця — встигнути до Меркурія ретро після 25.10.",
+      "transit_supporting": "Scored window 2026-09-27 (score 9); Saturn trine natal Mars (separating, intensity 17.0) підтримує закріплення довгострокового статусу"
+    },
+    {
+      "goal_title": "Особисте — нові емоції, відкритість",
+      "monthly_support": "moderate",
+      "best_action_this_month": "Вікна 9-14 вересня (score 3) для знайомств, кінець місяця — для несподіваних зустрічей. Головне правило місяця: Neptune square Ascendant (intensity 43.9) означає високий ризик ідеалізації — насолоджуватись емоціями, але не давати обіцянок і не приймати рішень про стосунки у вересні.",
+      "transit_supporting": "Neptune sextile natal Venus (peak 2026-09-01, intensity 24.8) — романтична сприйнятливість; Uranus trine natal Venus (applying, peak 2026-09-30) — нові знайомства наприкінці місяця"
+    }
+  ],
+  "solar_return_note": "SR-карта року (ASC Терези, стеліум Sun/Venus/Mars 18-19° Козерога в натальному 1 домі) робить 2026 роком особистої видимості та партнерства: натальний капрікорнський стеліум активовано повторно, а SR Moon 0° Терезів у натальному 8 домі підкреслює тему спільних ресурсів і глибокої емоційної трансформації — що резонує з Pluto conjunction Venus як головним транзитом вересня. SR Jupiter у натальному 7 домі підтримує цілі соціального кола і особистого життя, але через натальний патерн overextension_jupiter розширення має бути вибірковим.",
+  "contradictions_noted": [
+    "2026-09-09: Jupiter trine natal Mars (сприятливе вікно дії, orb 0.02) і Mars opposition natal Sun (пік конфронтації, orb 0.01) точні в один день — енергії багато, але день піку не підходить для переговорів; використовувати 12-16 вересня замість самого піку",
+    "Jupiter opposition true_node (overreach, peak 2026-09-15) проти Saturn trine Mars (consolidation, separating) — одночасний сигнал «розширюйся» і «закріплюй»; домінує Saturn-режим, бо Pluto-Venus і Neptune-ASC вимагають обережності",
+    "Натальна Venus одночасно отримує Pluto conjunction (незворотна трансформація), Neptune sextile (ідеалізація) та Uranus trine applying (звільнення) — стосунки і фінанси в потрійному фокусі з суперечливими імпульсами: глибина проти ілюзії проти свободи"
+  ],
+  "three_key_insights": [
+    "Вересень — місяць закріплення, а не старту: три найпотужніші транзити (Pluto conjunction Venus 47.1, Neptune square Ascendant 43.9, Neptune square Jupiter 26.5) вже separating — правильна стратегія: перетравити зміни у фінансах і самосприйнятті, зафіксувати нові звички, не ламати систему заново",
+    "Головне діюче вікно — 12-16 вересня (Jupiter trine Mars, orb 0.02, після нового місяця 11.09): один кар'єрний крок (PSPO) і старт C1-рутини; при цьому 6-9 вересня (Mars opposition Sun/Mercury) — уникати конфронтацій і важливих розмов",
+    "Найважливіша дата місяця для документів — 27 вересня (score 9): подача на ПМЖ до Меркурія ретро кінця жовтня; а Jupiter opposition true_node 15.09 нагадує — максимум два пріоритети, інакше спрацює патерн overextension_jupiter"
+  ]
+}

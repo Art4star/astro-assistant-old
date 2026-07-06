@@ -1,0 +1,162 @@
+{
+  "period": "2026-10",
+  "generated_at": "2026-07-06 12:00",
+  "confidence_overall": "medium",
+  "identity_resonance": {
+    "patterns_active": [
+      "career_reinvention",
+      "overextension_jupiter"
+    ],
+    "primary_theme": "Глибока перебудова цінностей і самопрезентації: Pluto conjunction natal Venus (intensity 44.7, applying) вимагає трансформації фінансових і стосункових звичок, тоді як Saturn square natal Ascendant (intensity 25.0, applying) тисне на структуру ідентичності — місяць незворотних рішень, а не косметичних правок.",
+    "tension_points": [
+      "Бажання взяти більше у вікні Jupiter sextile Moon (peak 2026-10-22) проти патерну overextension_jupiter — ризик спалити резерв, який будуєш для фінансової подушки",
+      "Neptune square natal Ascendant (separating, intensity 34.2) розмиває самооцінку саме тоді, коли Saturn square Ascendant вимагає чіткого структурного рішення — ризик самообману щодо власних меж",
+      "Pluto conjunction Venus (глибина, контроль, компульсивність у стосунках/фінансах) проти Uranus trine Venus (intensity 24.6, свобода, спонтанність) — одна й та сама сфера тягне у протилежні боки",
+      "Патерн career_reinvention (confidence 0.87): Mars square natal Midheaven (peak 2026-10-18) може спровокувати бажання «зруйнувати і переробити» кар'єрну ситуацію замість одного конкретного кроку"
+    ]
+  },
+  "timing": {
+    "best_window": {
+      "dates": "2026-10-12 – 2026-10-22",
+      "for": [
+        "перший конкретний крок до Product Owner (реєстрація на PSPO, домовленість про менторство)",
+        "подача документів на Niederlassungserlaubnis",
+        "навчання (Deutsch C1)",
+        "важливі розмови і домовленості"
+      ],
+      "reason": "Jupiter sextile natal Moon — min_orb 0.0, peak_date 2026-10-22, status exact_within_month, intensity 28.8. Зростаючий Місяць після нового місяця 2026-10-10 (Libra), scored windows цілей дають пік 2026-10-15 (score 13–15). Вікно закривається до Mercury retro після 25.10 (нотатка цілі permanent_residence)."
+    },
+    "avoid_window": {
+      "dates": "2026-10-25 – 2026-10-31",
+      "reason": "Одночасний пік Pluto conjunction natal Venus (peak_date 2026-10-31, intensity 44.7, applying) та Saturn square natal Ascendant (peak_date 2026-10-31, intensity 25.0, applying) — максимальний тиск і трансформаційна напруга наприкінці місяця; плюс Mercury retro після 25.10 за нотаткою цілей. Не підписувати, не подавати, не ініціювати — лише завершувати."
+    },
+    "peak_tension_date": "2026-10-31 — peak_date транзиту з найвищою інтенсивністю (Pluto conjunction natal Venus, intensity 44.7), посилений одночасним peak_date Saturn square natal Ascendant"
+  },
+  "critical_windows_analysis": [
+    {
+      "window_type": "transformation",
+      "transit": "Pluto conjunction natal Venus",
+      "peak_date": "2026-10-31",
+      "behavioral_prediction": "Наростаюча (applying, orb 0.85) компульсивна напруга у фінансах і стосунках: бажання все контролювати або різко «переграти» фінансову модель. Для стеліума в Козерозі з ASC-правителем Сатурном це проявиться як жорсткий аудит витрат і переоцінка того, що і хто справді цінний.",
+      "recommended_action": "Використати енергію за призначенням цілі financial_cushion: у першій половині місяця письмово зафіксувати нову структуру бюджету, наприкінці місяця — не приймати незворотних фінансових чи стосункових рішень (пік 31.10).",
+      "confidence": "high"
+    },
+    {
+      "window_type": "confusion",
+      "transit": "Neptune square natal Ascendant",
+      "peak_date": "2026-10-01",
+      "behavioral_prediction": "Транзит separating (orb 3.15, intensity 34.2) — туман щодо самопрезентації вже слабшає, але залишкова невизначеність: сумніви «хто я в цій кар'єрі», ідеалізація нових знайомств (актуально для цілі personal_life).",
+      "recommended_action": "Не переглядати самооцінку і не робити висновків про себе на початку місяця; перевіряти факти у документах двічі — Neptune-туман плюс подача на ПМЖ несумісні без подвійної перевірки.",
+      "confidence": "medium"
+    },
+    {
+      "window_type": "expansion",
+      "transit": "Jupiter sextile natal Moon",
+      "peak_date": "2026-10-22",
+      "behavioral_prediction": "Патерн overextension_jupiter (confidence 0.78): у це вікно найімовірніше захочеться взяти три нові ініціативи замість однієї. Натальний Місяць у Gemini в 6-му домі — приплив енергії піде в навчання і робочі процеси.",
+      "recommended_action": "Обрати ОДНУ ініціативу заздалегідь (рекомендовано: конкретний PO-крок до дедлайну 2026-10-31) і скерувати вікно 12–22.10 тільки в неї. Записати відмову від решти до відкриття вікна.",
+      "confidence": "high"
+    },
+    {
+      "window_type": "restructuring",
+      "transit": "Saturn square natal Ascendant",
+      "peak_date": "2026-10-31",
+      "behavioral_prediction": "Applying-тиск (intensity 25.0) наростає весь місяць: втома, відчуття що структура життя «тисне», вимога прибрати зайве. Для career_reinvention-патерну — спокуса радикального зносу замість дисциплінованого скорочення.",
+      "recommended_action": "Свідомо скоротити зобов'язання до кінця місяця: закрити хвости по документах (ПМЖ до 15.10), не додавати нових обіцянок після 22.10.",
+      "confidence": "medium"
+    },
+    {
+      "window_type": "liberation",
+      "transit": "Uranus trine natal Venus",
+      "peak_date": "2026-10-31",
+      "behavioral_prediction": "Гармонійний фон (orb 0.72, intensity 24.6) для нових соціальних контактів і свіжих емоцій без драми — прямо підтримує цілі social_circle і personal_life. Несподівані знайомства через нові середовища (Verein).",
+      "recommended_action": "Казати «так» новим соціальним запрошенням увесь місяць — це низькоризикова зона. Але не плутати Uranus-свіжість із Neptune-ілюзією: нові люди — так, ідеалізація — ні.",
+      "confidence": "medium"
+    },
+    {
+      "window_type": "confusion",
+      "transit": "Neptune square natal Jupiter",
+      "peak_date": "2026-10-01",
+      "behavioral_prediction": "Separating (intensity 22.7): залишковий ризик завищених очікувань щодо планів зростання — переоцінка того, скільки реально влізе в осінь (резонує з overextension_jupiter).",
+      "recommended_action": "Перерахувати плани на Q4 у консервативному сценарії: якщо план виглядає «легко досяжним» — урізати його на третину.",
+      "confidence": "medium"
+    }
+  ],
+  "lunar_rhythm": {
+    "new_moon_focus": "Новий місяць 2026-10-10 15:50 UTC у Libra — ініціювати домовленості й партнерські процеси: подача на Niederlassungserlaubnis (scored window 2026-10-10, score 14), запит на менторство/розмову щодо PO-шляху. Libra підтримує саме переговорний, а не силовий формат.",
+    "full_moon_release": "Повний місяць 2026-10-26 04:11 UTC у Taurus — завершити і відпустити старі фінансові звички (резонує з Pluto conjunction Venus): закрити зайві підписки/витрати, зафіксувати результати місяця. Не ініціювати нового — це вже зона avoid_window.",
+    "voc_warnings": [
+      "2026-10-03 16:24 – 2026-10-04 22:54 UTC (30.5 год) — найдовший VOC місяця, жодних подач і рішень",
+      "2026-10-07 20:40 – 2026-10-09 08:10 UTC (35.5 год) — VOC прямо перед новим місяцем: не подавати документи до ранку 09.10",
+      "2026-10-02 03:54 – 19:54 UTC (16 год)",
+      "2026-10-06 11:52 – 2026-10-07 02:52 UTC (15 год)",
+      "2026-10-11 00:51 – 15:21 UTC (14.5 год)",
+      "2026-10-13 10:29 – 2026-10-14 00:59 UTC (14.5 год)",
+      "2026-10-15 23:57 – 2026-10-16 12:57 UTC (13 год) — врахувати: пік scored window 15.10 діє до вечора",
+      "2026-10-18 18:09 – 2026-10-19 01:39 UTC (7.5 год)",
+      "2026-10-23 04:53 – 19:53 UTC (15 год)",
+      "2026-10-27 16:01 – 2026-10-28 01:01 UTC (9 год)"
+    ]
+  },
+  "goal_alignment": [
+    {
+      "goal_title": "Product Owner — перший конкретний крок",
+      "monthly_support": "strong",
+      "best_action_this_month": "До дедлайну 2026-10-31 зробити один крок: зареєструватися на PSPO-курс або зафіксувати PO-відповідальність на проекті. Оптимально 14–15.10 (scored windows: 2026-10-15 score 13, 2026-10-14 score 10) або 17.10 (score 11), до VOC 15.10 23:57 UTC.",
+      "transit_supporting": "Jupiter sextile natal Moon, peak_date 2026-10-22, status exact_within_month, intensity 28.8 — вікно зростання накриває другу декаду місяця"
+    },
+    {
+      "goal_title": "Подати на ПМЖ (Niederlassungserlaubnis)",
+      "monthly_support": "strong",
+      "best_action_this_month": "Подати документи 09–10.10 (новий місяць у Libra, scored windows score 12–14) або 15.10 (score 15, до 23:57 UTC). Категорично не тягнути після 25.10 (Mercury retro за нотаткою цілі + avoid_window 25–31.10). Через Neptune square Ascendant (intensity 34.2) — подвійна перевірка кожного документа.",
+      "transit_supporting": "Jupiter sextile natal Moon (peak 2026-10-22, intensity 28.8) підтримує процесні кроки; новий місяць 2026-10-10 у Libra — сприятливий старт адміністративних домовленостей"
+    },
+    {
+      "goal_title": "Фінансова подушка — 3 місяці витрат",
+      "monthly_support": "moderate",
+      "best_action_this_month": "У першу декаду письмово переструктурувати бюджет (нова модель витрат), на повний місяць 26.10 — закрити/скасувати зайві витрати. Не робити великих фінансових рішень 25–31.10.",
+      "transit_supporting": "Pluto conjunction natal Venus, peak_date 2026-10-31, status applying, intensity 44.7 — вимагає саме трансформації фінансових звичок, а не разових заощаджень"
+    },
+    {
+      "goal_title": "Deutsch B2 → C1",
+      "monthly_support": "strong",
+      "best_action_this_month": "Закріпити регулярний ритм C1-курсу; інтенсивні блоки планувати 12–22.10 (scored windows 12–18.10, score 9–13).",
+      "transit_supporting": "Jupiter sextile natal Moon (Moon натально в Gemini, 6-й дім — навчання і щоденні процеси), peak_date 2026-10-22, intensity 28.8"
+    },
+    {
+      "goal_title": "Переговори з начальником — PO шлях",
+      "monthly_support": "moderate",
+      "best_action_this_month": "Розмову про PO-шлях провести 14–17.10, у вікні Jupiter sextile Moon і scored windows. Уникати 18.10 ± 2 дні для конфронтаційних тем: Mars square natal Midheaven (peak_date 2026-10-18, min_orb 0.18, intensity 24.6) — ризик імпульсивного конфлікту з керівництвом.",
+      "transit_supporting": "Jupiter sextile natal Moon (peak 2026-10-22, intensity 28.8) — підтримка; Mars square Midheaven (peak 2026-10-18) — обмеження, яке треба обійти по даті"
+    },
+    {
+      "goal_title": "Vereine + нове соціальне коло",
+      "monthly_support": "moderate",
+      "best_action_this_month": "Активно відвідувати заходи Verein увесь місяць, особливо у зростаючий Місяць 12–24.10 — нові контакти формуються легко і без напруги.",
+      "transit_supporting": "Uranus trine natal Venus, peak_date 2026-10-31, status applying, orb 0.72, intensity 24.6 — вікно свободи і нових зв'язків"
+    },
+    {
+      "goal_title": "Особисте — нові емоції, відкритість",
+      "monthly_support": "moderate",
+      "best_action_this_month": "Відкритість — так, але без швидких глибоких зобов'язань: Pluto conjunction Venus (intensity 44.7) робить нові симпатії інтенсивними й компульсивними, а Neptune square Ascendant (intensity 34.2, separating) ще тримає ризик ідеалізації. Перевіряти враження часом — 2–3 тижні до висновків.",
+      "transit_supporting": "Uranus trine natal Venus (peak 2026-10-31, intensity 24.6) — свіжі емоції без драми; обмежувач: Pluto conjunction natal Venus (peak 2026-10-31, intensity 44.7)"
+    },
+    {
+      "goal_title": "Німецькі права",
+      "monthly_support": "weak",
+      "best_action_this_month": "Місяць перевантажений пріоритетнішими дедлайнами (PO-крок і ПМЖ до 31.10). Максимум — обрати автошколу і записатися на листопад-грудень; не додавати це у вікно 12–22.10, щоб не спрацював патерн overextension_jupiter.",
+      "transit_supporting": "Прямої підтримки в top_transits немає (жоден транзит ≥ 20 не адресує цю сферу); scored windows для цілі відсутні"
+    }
+  ],
+  "solar_return_note": "Solar Return 2026 (момент 2026-01-09 00:07 UTC) кладе SR Sun, Mercury, Venus, Mars і Pluto в натальний 1-й дім (sr_planets_in_natal_houses) — рік особистого перезапуску, де головний капітал і головний ризик — власна ідентичність та самопрезентація. SR Moon 0° Libra потрапляє у натальний 8-й дім — емоційний фокус року на глибоких трансформаціях, спільних ресурсах і довірі, що прямо резонує з жовтневим Pluto conjunction natal Venus. SR ASC у Libra додає партнерську лінзу: рішення року краще проходять через домовленості, а не одноосібний тиск. Для жовтня це означає: трансформація фінансів/цінностей (Pluto/Venus) — не епізод, а центральна тема річного циклу, тому жовтневі бюджетні рішення варто робити як довгострокові, а переговорний формат (розмова з керівництвом, подача документів) відповідає річному SR-акценту сильніше, ніж силовий.",
+  "contradictions_noted": [
+    "Натальний Ascendant одночасно під розширенням (Sun sextile, Venus sextile) і обмеженням (Neptune square intensity 34.2, Saturn square intensity 25.0) — з вхідних даних contradictions. Баланс: використовувати підтримуючі проблиски для конкретних кроків 12–22.10, але тримати консервативну самооцінку і не переглядати ідентичність у тумані початку місяця.",
+    "Натальна Venus одночасно під Pluto conjunction (peak 2026-10-31, intensity 44.7 — глибина, контроль, незворотність) і Uranus trine (peak 2026-10-31, intensity 24.6 — свобода, легкість, новизна). Обидва пікують 31.10: у стосунках і фінансах тягне водночас у злиття/контроль і у свободу/експеримент. Домінує Pluto (майже вдвічі вища інтенсивність, conjunction проти trine), тому кінець місяця — зона трансформаційної напруги, а Uranus дає вентиль: нові формати без незворотних зобов'язань.",
+    "Jupiter sextile Moon (expansion, peak 2026-10-22) проти Saturn square Ascendant (restructuring, applying до 31.10): вікно зростання відкривається саме коли Сатурн вимагає скорочення. Розв'язка: розширюватися в ОДНОМУ напрямі, скорочуючи решту — інакше активується патерн overextension_jupiter."
+  ],
+  "three_key_insights": [
+    "Робоче вікно місяця — 12–22 жовтня: новий місяць у Libra (10.10) плюс точний Jupiter sextile natal Moon (peak 2026-10-22, orb 0.0, intensity 28.8). У ньому мають статися і подача на ПМЖ (оптимум 09–15.10, score до 15), і перший PO-крок (оптимум 14–17.10). Після 25.10 — тільки завершення, нічого нового.",
+    "Кінець місяця (25–31.10) — пік подвійного тиску: Pluto conjunction natal Venus (44.7) і Saturn square natal Ascendant (25.0) обидва пікують 31.10. Це найнапруженіші дні жовтня для фінансів, стосунків і самооцінки — не приймати незворотних рішень, планово знизити навантаження.",
+    "Головний внутрішній ризик — overextension_jupiter (confidence 0.78): сприятливе вікно Юпітера спокушає взяти все одразу (PO-крок + ПМЖ + C1 + автошкола + нові знайомства). Дві перші цілі мають жорсткий дедлайн 31.10 — вони і тільки вони отримують вікно 12–22.10; автошкола свідомо переноситься на листопад."
+  ]
+}

@@ -27,6 +27,32 @@ def get_package_path(year: int, month: int) -> str:
     return os.path.join(OUTPUT_DATA_DIR, f"{year}-{month:02d}-interpret.json")
 
 
+def _load_active_goals(year: int, month: int) -> list:
+    """Активні цілі з goals.json; best_windows обрізані до аналізованого місяця."""
+    goals_path = os.path.join(BASE_DIR, "data", "goals.json")
+    if not os.path.exists(goals_path):
+        return []
+
+    with open(goals_path, encoding="utf-8") as f:
+        active = json.load(f).get("active", [])
+
+    period_prefix = f"{year}-{month:02d}"
+    trimmed = []
+    for g in active:
+        month_windows = [w for w in g.get("best_windows", [])
+                         if w.get("date", "").startswith(period_prefix)]
+        trimmed.append({
+            "id": g.get("id"),
+            "title": g.get("title"),
+            "category": g.get("category"),
+            "priority": g.get("priority"),
+            "deadline": g.get("deadline"),
+            "notes": g.get("notes", ""),
+            "best_windows_this_month": month_windows,
+        })
+    return trimmed
+
+
 def build_claude_prompt(year: int, month: int) -> str:
     pkg_path = get_package_path(year, month)
     if not os.path.exists(pkg_path):
@@ -34,6 +60,10 @@ def build_claude_prompt(year: int, month: int) -> str:
 
     with open(pkg_path, encoding="utf-8") as f:
         package = json.load(f)
+
+    # Цілі читаємо напряму з goals.json (ForecastAgent їх у пакет не кладе,
+    # а без них Claude повертає порожній goal_alignment)
+    package["goals"] = _load_active_goals(year, month)
 
     with open(ASTRO_PROMPT, encoding="utf-8") as f:
         system_prompt = f.read()

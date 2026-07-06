@@ -1,0 +1,1064 @@
+{
+  "generated_at": "2026-07-06 21:09",
+  "period": "2026-08",
+  "natal_chart": {
+    "user": {
+      "name": "Artur",
+      "birth_date": "1990-01-09",
+      "birth_time": "07:17",
+      "birth_city": "Legnica, Poland"
+    },
+    "angles": {
+      "ascendant": {
+        "longitude": 275.9932,
+        "sign": "capricorn",
+        "degree": 5.99
+      },
+      "midheaven": {
+        "longitude": 221.3719,
+        "sign": "scorpio",
+        "degree": 11.37
+      }
+    },
+    "houses": {
+      "1": "capricorn",
+      "2": "aquarius",
+      "3": "aries",
+      "4": "taurus",
+      "5": "gemini",
+      "6": "gemini",
+      "7": "cancer",
+      "8": "leo",
+      "9": "libra",
+      "10": "scorpio",
+      "11": "sagittarius",
+      "12": "sagittarius"
+    },
+    "ascendant_ruler": "saturn",
+    "stelliums": [
+      {
+        "sign": "capricorn",
+        "planets": [
+          "sun",
+          "mercury",
+          "saturn",
+          "uranus",
+          "neptune"
+        ]
+      }
+    ],
+    "angular_planets": [
+      "sun",
+      "mercury",
+      "venus",
+      "saturn",
+      "uranus",
+      "neptune",
+      "pluto",
+      "true_node"
+    ],
+    "dominants": {
+      "element": "earth",
+      "element_counts": {
+        "earth": 3,
+        "air": 2,
+        "fire": 1,
+        "water": 1
+      },
+      "modality": "cardinal",
+      "modality_counts": {
+        "cardinal": 4,
+        "mutable": 2,
+        "fixed": 1
+      },
+      "sign": "capricorn",
+      "sign_counts": {
+        "capricorn": 3,
+        "gemini": 1,
+        "aquarius": 1,
+        "sagittarius": 1,
+        "cancer": 1
+      }
+    },
+    "aspects": [
+      {
+        "p1": "uranus",
+        "p2": "ascendant",
+        "type": "conjunction",
+        "orb": 0.25,
+        "harmony": true
+      },
+      {
+        "p1": "sun",
+        "p2": "mercury",
+        "type": "conjunction",
+        "orb": 0.42,
+        "harmony": true
+      },
+      {
+        "p1": "pluto",
+        "p2": "true_node",
+        "type": "square",
+        "orb": 0.6,
+        "harmony": false
+      },
+      {
+        "p1": "saturn",
+        "p2": "pluto",
+        "type": "sextile",
+        "orb": 0.71,
+        "harmony": true
+      },
+      {
+        "p1": "neptune",
+        "p2": "midheaven",
+        "type": "sextile",
+        "orb": 0.96,
+        "harmony": true
+      },
+      {
+        "p1": "mercury",
+        "p2": "pluto",
+        "type": "sextile",
+        "orb": 1.02,
+        "harmony": true
+      },
+      {
+        "p1": "uranus",
+        "p2": "lilith",
+        "type": "sextile",
+        "orb": 1.09,
+        "harmony": true
+      },
+      {
+        "p1": "mars",
+        "p2": "true_node",
+        "type": "sextile",
+        "orb": 1.21,
+        "harmony": true
+      },
+      {
+        "p1": "lilith",
+        "p2": "ascendant",
+        "type": "sextile",
+        "orb": 1.34,
+        "harmony": true
+      },
+      {
+        "p1": "sun",
+        "p2": "pluto",
+        "type": "sextile",
+        "orb": 1.43,
+        "harmony": true
+      },
+      {
+        "p1": "mercury",
+        "p2": "saturn",
+        "type": "conjunction",
+        "orb": 1.73,
+        "harmony": true
+      },
+      {
+        "p1": "jupiter",
+        "p2": "ascendant",
+        "type": "opposition",
+        "orb": 1.86,
+        "harmony": false
+      },
+      {
+        "p1": "jupiter",
+        "p2": "uranus",
+        "type": "opposition",
+        "orb": 2.12,
+        "harmony": false
+      },
+      {
+        "p1": "sun",
+        "p2": "saturn",
+        "type": "conjunction",
+        "orb": 2.15,
+        "harmony": true
+      },
+      {
+        "p1": "jupiter",
+        "p2": "lilith",
+        "type": "trine",
+        "orb": 3.2,
+        "harmony": true
+      }
+    ],
+    "planets": {
+      "sun": {
+        "longitude": 288.7247,
+        "sign": "capricorn",
+        "degree": 18.72,
+        "retrograde": false,
+        "house": 1
+      },
+      "moon": {
+        "longitude": 83.0662,
+        "sign": "gemini",
+        "degree": 23.07,
+        "retrograde": false,
+        "house": 6
+      },
+      "mercury": {
+        "longitude": 288.3094,
+        "sign": "capricorn",
+        "degree": 18.31,
+        "retrograde": true,
+        "house": 1
+      },
+      "venus": {
+        "longitude": 303.9749,
+        "sign": "aquarius",
+        "degree": 3.97,
+        "retrograde": true,
+        "house": 1
+      },
+      "mars": {
+        "longitude": 255.4795,
+        "sign": "sagittarius",
+        "degree": 15.48,
+        "retrograde": false,
+        "house": 11
+      },
+      "jupiter": {
+        "longitude": 94.1298,
+        "sign": "cancer",
+        "degree": 4.13,
+        "retrograde": true,
+        "house": 6
+      },
+      "saturn": {
+        "longitude": 286.577,
+        "sign": "capricorn",
+        "degree": 16.58,
+        "retrograde": false,
+        "house": 1
+      },
+      "uranus": {
+        "longitude": 276.2482,
+        "sign": "capricorn",
+        "degree": 6.25,
+        "retrograde": false,
+        "house": 1
+      },
+      "neptune": {
+        "longitude": 282.3319,
+        "sign": "capricorn",
+        "degree": 12.33,
+        "retrograde": false,
+        "house": 1
+      },
+      "pluto": {
+        "longitude": 227.291,
+        "sign": "scorpio",
+        "degree": 17.29,
+        "retrograde": false,
+        "house": 10
+      },
+      "true_node": {
+        "longitude": 316.6944,
+        "sign": "aquarius",
+        "degree": 16.69,
+        "retrograde": true,
+        "house": 1
+      },
+      "lilith": {
+        "longitude": 217.3335,
+        "sign": "scorpio",
+        "degree": 7.33,
+        "retrograde": false,
+        "house": 9
+      }
+    }
+  },
+  "forecast": {
+    "period": "2026-08",
+    "top_transits": [
+      {
+        "transit_planet": "neptune",
+        "natal_planet": "ascendant",
+        "aspect": "square",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-01",
+        "min_orb": 1.74,
+        "status": "separating",
+        "applying_at_start": false,
+        "retrograde": true,
+        "intensity": 51.1,
+        "priority": 2
+      },
+      {
+        "transit_planet": "pluto",
+        "natal_planet": "venus",
+        "aspect": "conjunction",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-09",
+        "min_orb": 0.0,
+        "status": "exact_within_month",
+        "applying_at_start": true,
+        "retrograde": true,
+        "intensity": 50.0,
+        "priority": 1
+      },
+      {
+        "transit_planet": "mars",
+        "natal_planet": "ascendant",
+        "aspect": "opposition",
+        "first_date": "2026-08-08",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-20",
+        "min_orb": 0.01,
+        "status": "exact_within_month",
+        "applying_at_start": true,
+        "retrograde": false,
+        "intensity": 41.3,
+        "priority": 6
+      },
+      {
+        "transit_planet": "jupiter",
+        "natal_planet": "midheaven",
+        "aspect": "square",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-21",
+        "min_orb": 0.09,
+        "status": "exact_within_month",
+        "applying_at_start": true,
+        "retrograde": false,
+        "intensity": 33.1,
+        "priority": 5
+      },
+      {
+        "transit_planet": "mars",
+        "natal_planet": "moon",
+        "aspect": "conjunction",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-12",
+        "peak_date": "2026-08-01",
+        "min_orb": 0.34,
+        "status": "separating",
+        "applying_at_start": false,
+        "retrograde": false,
+        "intensity": 29.1,
+        "priority": 6
+      },
+      {
+        "transit_planet": "neptune",
+        "natal_planet": "jupiter",
+        "aspect": "square",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-09",
+        "min_orb": 0.0,
+        "status": "exact_within_month",
+        "applying_at_start": true,
+        "retrograde": true,
+        "intensity": 28.8,
+        "priority": 2
+      },
+      {
+        "transit_planet": "neptune",
+        "natal_planet": "venus",
+        "aspect": "sextile",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-17",
+        "min_orb": 0.01,
+        "status": "exact_within_month",
+        "applying_at_start": true,
+        "retrograde": true,
+        "intensity": 26.9,
+        "priority": 2
+      },
+      {
+        "transit_planet": "uranus",
+        "natal_planet": "venus",
+        "aspect": "trine",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-01",
+        "min_orb": 1.05,
+        "status": "separating",
+        "applying_at_start": false,
+        "retrograde": false,
+        "intensity": 23.1,
+        "priority": 3
+      },
+      {
+        "transit_planet": "saturn",
+        "natal_planet": "mars",
+        "aspect": "trine",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-01",
+        "min_orb": 0.76,
+        "status": "separating",
+        "applying_at_start": false,
+        "retrograde": true,
+        "intensity": 21.4,
+        "priority": 4
+      },
+      {
+        "transit_planet": "sun",
+        "natal_planet": "ascendant",
+        "aspect": "trine",
+        "first_date": "2026-08-23",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-29",
+        "min_orb": 0.18,
+        "status": "exact_within_month",
+        "applying_at_start": true,
+        "retrograde": false,
+        "intensity": 19.6,
+        "priority": 7
+      }
+    ],
+    "critical_windows": [
+      {
+        "type": "confusion",
+        "transit_planet": "neptune",
+        "natal_planet": "ascendant",
+        "aspect": "square",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-01",
+        "status": "separating",
+        "orb": 1.74,
+        "intensity": 51.1,
+        "retrograde": true,
+        "description": "Neptune square natal ascendant — невизначеність, ризик самообману."
+      },
+      {
+        "type": "transformation",
+        "transit_planet": "pluto",
+        "natal_planet": "venus",
+        "aspect": "conjunction",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-09",
+        "status": "exact_within_month",
+        "orb": 0.0,
+        "intensity": 50.0,
+        "retrograde": true,
+        "description": "Pluto conjunction natal venus — глибока трансформація, незворотні зміни."
+      },
+      {
+        "type": "overreach_risk",
+        "transit_planet": "jupiter",
+        "natal_planet": "midheaven",
+        "aspect": "square",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-21",
+        "status": "exact_within_month",
+        "orb": 0.09,
+        "intensity": 33.1,
+        "retrograde": false,
+        "description": "Jupiter square natal midheaven — ризик переоцінки, потрібен реалізм."
+      },
+      {
+        "type": "confusion",
+        "transit_planet": "neptune",
+        "natal_planet": "jupiter",
+        "aspect": "square",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-09",
+        "status": "exact_within_month",
+        "orb": 0.0,
+        "intensity": 28.8,
+        "retrograde": true,
+        "description": "Neptune square natal jupiter — невизначеність, ризик самообману."
+      },
+      {
+        "type": "liberation",
+        "transit_planet": "uranus",
+        "natal_planet": "venus",
+        "aspect": "trine",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-01",
+        "status": "separating",
+        "orb": 1.05,
+        "intensity": 23.1,
+        "retrograde": false,
+        "description": "Uranus trine natal venus — свобода, інновації, позитивні зміни."
+      },
+      {
+        "type": "consolidation",
+        "transit_planet": "saturn",
+        "natal_planet": "mars",
+        "aspect": "trine",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-01",
+        "status": "separating",
+        "orb": 0.76,
+        "intensity": 21.4,
+        "retrograde": true,
+        "description": "Saturn trine natal mars — закріпити досягнення, будувати довгострокове."
+      },
+      {
+        "type": "restructuring",
+        "transit_planet": "saturn",
+        "natal_planet": "sun",
+        "aspect": "square",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-01",
+        "status": "separating",
+        "orb": 4.0,
+        "intensity": 16.8,
+        "retrograde": true,
+        "description": "Saturn square natal sun — тиск, дисципліна, усунення зайвого."
+      },
+      {
+        "type": "overreach_risk",
+        "transit_planet": "jupiter",
+        "natal_planet": "venus",
+        "aspect": "opposition",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-23",
+        "peak_date": "2026-08-01",
+        "status": "separating",
+        "orb": 3.1,
+        "intensity": 15.0,
+        "retrograde": false,
+        "description": "Jupiter opposition natal venus — ризик переоцінки, потрібен реалізм."
+      },
+      {
+        "type": "overreach_risk",
+        "transit_planet": "jupiter",
+        "natal_planet": "true_node",
+        "aspect": "opposition",
+        "first_date": "2026-08-09",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-31",
+        "status": "applying",
+        "orb": 3.1,
+        "intensity": 15.0,
+        "retrograde": false,
+        "description": "Jupiter opposition natal true_node — ризик переоцінки, потрібен реалізм."
+      },
+      {
+        "type": "expansion",
+        "transit_planet": "jupiter",
+        "natal_planet": "mars",
+        "aspect": "trine",
+        "first_date": "2026-08-12",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-31",
+        "status": "applying",
+        "orb": 1.88,
+        "intensity": 12.5,
+        "retrograde": false,
+        "description": "Jupiter trine natal mars — вікно зростання, сприятливий час."
+      },
+      {
+        "type": "restructuring",
+        "transit_planet": "saturn",
+        "natal_planet": "mercury",
+        "aspect": "square",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-01",
+        "status": "separating",
+        "orb": 3.59,
+        "intensity": 11.2,
+        "retrograde": true,
+        "description": "Saturn square natal mercury — тиск, дисципліна, усунення зайвого."
+      },
+      {
+        "type": "consolidation",
+        "transit_planet": "saturn",
+        "natal_planet": "true_node",
+        "aspect": "sextile",
+        "first_date": "2026-08-01",
+        "last_date": "2026-08-31",
+        "peak_date": "2026-08-01",
+        "status": "separating",
+        "orb": 1.97,
+        "intensity": 10.7,
+        "retrograde": true,
+        "description": "Saturn sextile natal true_node — закріпити досягнення, будувати довгострокове."
+      }
+    ],
+    "solar_return": {
+      "moment": "2026-01-09 00:07 UTC",
+      "location_used": "49.6317N, 8.3697E",
+      "planets": {
+        "sun": {
+          "longitude": 288.7248,
+          "sign": "capricorn",
+          "degree": 18.72,
+          "retrograde": false
+        },
+        "moon": {
+          "longitude": 180.0148,
+          "sign": "libra",
+          "degree": 0.01,
+          "retrograde": false
+        },
+        "mercury": {
+          "longitude": 281.0567,
+          "sign": "capricorn",
+          "degree": 11.06,
+          "retrograde": false
+        },
+        "venus": {
+          "longitude": 289.2779,
+          "sign": "capricorn",
+          "degree": 19.28,
+          "retrograde": false
+        },
+        "mars": {
+          "longitude": 288.8439,
+          "sign": "capricorn",
+          "degree": 18.84,
+          "retrograde": false
+        },
+        "jupiter": {
+          "longitude": 110.2911,
+          "sign": "cancer",
+          "degree": 20.29,
+          "retrograde": true
+        },
+        "saturn": {
+          "longitude": 356.6822,
+          "sign": "pisces",
+          "degree": 26.68,
+          "retrograde": false
+        },
+        "uranus": {
+          "longitude": 57.7516,
+          "sign": "taurus",
+          "degree": 27.75,
+          "retrograde": true
+        },
+        "neptune": {
+          "longitude": 359.6237,
+          "sign": "pisces",
+          "degree": 29.62,
+          "retrograde": false
+        },
+        "pluto": {
+          "longitude": 302.9644,
+          "sign": "aquarius",
+          "degree": 2.96,
+          "retrograde": false
+        },
+        "true_node": {
+          "longitude": 340.304,
+          "sign": "pisces",
+          "degree": 10.3,
+          "retrograde": false
+        }
+      },
+      "ascendant": {
+        "longitude": 200.7431,
+        "sign": "libra",
+        "degree": 20.74
+      },
+      "midheaven": {
+        "longitude": 116.7634,
+        "sign": "cancer",
+        "degree": 26.76
+      },
+      "sr_planets_in_natal_houses": {
+        "sun": 1,
+        "moon": 8,
+        "mercury": 1,
+        "venus": 1,
+        "mars": 1,
+        "jupiter": 7,
+        "saturn": 2,
+        "uranus": 4,
+        "neptune": 2,
+        "pluto": 1,
+        "true_node": 2
+      },
+      "natal_planets_in_sr_houses": {
+        "sun": 3,
+        "moon": 9,
+        "mercury": 3,
+        "venus": 4,
+        "mars": 2,
+        "jupiter": 9,
+        "saturn": 3,
+        "uranus": 3,
+        "neptune": 3,
+        "pluto": 2,
+        "true_node": 4,
+        "ascendant": 3,
+        "midheaven": 1
+      }
+    },
+    "all_transits_count": 135
+  },
+  "lunar_calendar": {
+    "period": "2026-08",
+    "day_by_day": [
+      {
+        "date": "2026-08-01",
+        "moon_sign": "pisces",
+        "moon_degree": 12.5,
+        "phase_name": "waning_gibbous",
+        "phase_emoji": "🌖",
+        "phase_angle": 213.2
+      },
+      {
+        "date": "2026-08-02",
+        "moon_sign": "pisces",
+        "moon_degree": 25.3,
+        "phase_name": "waning_gibbous",
+        "phase_emoji": "🌖",
+        "phase_angle": 225.1
+      },
+      {
+        "date": "2026-08-03",
+        "moon_sign": "aries",
+        "moon_degree": 8.4,
+        "phase_name": "waning_gibbous",
+        "phase_emoji": "🌖",
+        "phase_angle": 237.2
+      },
+      {
+        "date": "2026-08-04",
+        "moon_sign": "aries",
+        "moon_degree": 21.8,
+        "phase_name": "last_quarter",
+        "phase_emoji": "🌗",
+        "phase_angle": 249.6
+      },
+      {
+        "date": "2026-08-05",
+        "moon_sign": "taurus",
+        "moon_degree": 5.4,
+        "phase_name": "last_quarter",
+        "phase_emoji": "🌗",
+        "phase_angle": 262.3
+      },
+      {
+        "date": "2026-08-06",
+        "moon_sign": "taurus",
+        "moon_degree": 19.3,
+        "phase_name": "last_quarter",
+        "phase_emoji": "🌗",
+        "phase_angle": 275.2
+      },
+      {
+        "date": "2026-08-07",
+        "moon_sign": "gemini",
+        "moon_degree": 3.5,
+        "phase_name": "last_quarter",
+        "phase_emoji": "🌗",
+        "phase_angle": 288.5
+      },
+      {
+        "date": "2026-08-08",
+        "moon_sign": "gemini",
+        "moon_degree": 18.0,
+        "phase_name": "balsamic",
+        "phase_emoji": "🌘",
+        "phase_angle": 302.0
+      },
+      {
+        "date": "2026-08-09",
+        "moon_sign": "cancer",
+        "moon_degree": 2.6,
+        "phase_name": "balsamic",
+        "phase_emoji": "🌘",
+        "phase_angle": 315.7
+      },
+      {
+        "date": "2026-08-10",
+        "moon_sign": "cancer",
+        "moon_degree": 17.3,
+        "phase_name": "balsamic",
+        "phase_emoji": "🌘",
+        "phase_angle": 329.4
+      },
+      {
+        "date": "2026-08-11",
+        "moon_sign": "leo",
+        "moon_degree": 2.1,
+        "phase_name": "new_moon",
+        "phase_emoji": "🌑",
+        "phase_angle": 343.2
+      },
+      {
+        "date": "2026-08-12",
+        "moon_sign": "leo",
+        "moon_degree": 16.7,
+        "phase_name": "new_moon",
+        "phase_emoji": "🌑",
+        "phase_angle": 356.8
+      },
+      {
+        "date": "2026-08-13",
+        "moon_sign": "virgo",
+        "moon_degree": 1.0,
+        "phase_name": "new_moon",
+        "phase_emoji": "🌑",
+        "phase_angle": 10.2
+      },
+      {
+        "date": "2026-08-14",
+        "moon_sign": "virgo",
+        "moon_degree": 15.0,
+        "phase_name": "waxing_crescent",
+        "phase_emoji": "🌒",
+        "phase_angle": 23.3
+      },
+      {
+        "date": "2026-08-15",
+        "moon_sign": "virgo",
+        "moon_degree": 28.7,
+        "phase_name": "waxing_crescent",
+        "phase_emoji": "🌒",
+        "phase_angle": 36.0
+      },
+      {
+        "date": "2026-08-16",
+        "moon_sign": "libra",
+        "moon_degree": 12.0,
+        "phase_name": "waxing_crescent",
+        "phase_emoji": "🌒",
+        "phase_angle": 48.3
+      },
+      {
+        "date": "2026-08-17",
+        "moon_sign": "libra",
+        "moon_degree": 24.9,
+        "phase_name": "waxing_crescent",
+        "phase_emoji": "🌒",
+        "phase_angle": 60.2
+      },
+      {
+        "date": "2026-08-18",
+        "moon_sign": "scorpio",
+        "moon_degree": 7.4,
+        "phase_name": "first_quarter",
+        "phase_emoji": "🌓",
+        "phase_angle": 71.8
+      },
+      {
+        "date": "2026-08-19",
+        "moon_sign": "scorpio",
+        "moon_degree": 19.7,
+        "phase_name": "first_quarter",
+        "phase_emoji": "🌓",
+        "phase_angle": 83.1
+      },
+      {
+        "date": "2026-08-20",
+        "moon_sign": "sagittarius",
+        "moon_degree": 1.7,
+        "phase_name": "first_quarter",
+        "phase_emoji": "🌓",
+        "phase_angle": 94.2
+      },
+      {
+        "date": "2026-08-21",
+        "moon_sign": "sagittarius",
+        "moon_degree": 13.7,
+        "phase_name": "first_quarter",
+        "phase_emoji": "🌓",
+        "phase_angle": 105.2
+      },
+      {
+        "date": "2026-08-22",
+        "moon_sign": "sagittarius",
+        "moon_degree": 25.6,
+        "phase_name": "waxing_gibbous",
+        "phase_emoji": "🌔",
+        "phase_angle": 116.1
+      },
+      {
+        "date": "2026-08-23",
+        "moon_sign": "capricorn",
+        "moon_degree": 7.4,
+        "phase_name": "waxing_gibbous",
+        "phase_emoji": "🌔",
+        "phase_angle": 127.1
+      },
+      {
+        "date": "2026-08-24",
+        "moon_sign": "capricorn",
+        "moon_degree": 19.4,
+        "phase_name": "waxing_gibbous",
+        "phase_emoji": "🌔",
+        "phase_angle": 138.1
+      },
+      {
+        "date": "2026-08-25",
+        "moon_sign": "aquarius",
+        "moon_degree": 1.5,
+        "phase_name": "waxing_gibbous",
+        "phase_emoji": "🌔",
+        "phase_angle": 149.2
+      },
+      {
+        "date": "2026-08-26",
+        "moon_sign": "aquarius",
+        "moon_degree": 13.8,
+        "phase_name": "full_moon",
+        "phase_emoji": "🌕",
+        "phase_angle": 160.5
+      },
+      {
+        "date": "2026-08-27",
+        "moon_sign": "aquarius",
+        "moon_degree": 26.3,
+        "phase_name": "full_moon",
+        "phase_emoji": "🌕",
+        "phase_angle": 172.0
+      },
+      {
+        "date": "2026-08-28",
+        "moon_sign": "pisces",
+        "moon_degree": 9.0,
+        "phase_name": "full_moon",
+        "phase_emoji": "🌕",
+        "phase_angle": 183.8
+      },
+      {
+        "date": "2026-08-29",
+        "moon_sign": "pisces",
+        "moon_degree": 22.0,
+        "phase_name": "full_moon",
+        "phase_emoji": "🌕",
+        "phase_angle": 195.8
+      },
+      {
+        "date": "2026-08-30",
+        "moon_sign": "aries",
+        "moon_degree": 5.2,
+        "phase_name": "waning_gibbous",
+        "phase_emoji": "🌖",
+        "phase_angle": 208.0
+      },
+      {
+        "date": "2026-08-31",
+        "moon_sign": "aries",
+        "moon_degree": 18.6,
+        "phase_name": "waning_gibbous",
+        "phase_emoji": "🌖",
+        "phase_angle": 220.5
+      }
+    ],
+    "new_moon": "2026-08-12 17:36 UTC",
+    "full_moon": "2026-08-28 04:18 UTC",
+    "voc_windows": [
+      {
+        "start": "2026-08-02 14:06 UTC",
+        "end": "2026-08-02 20:36 UTC",
+        "entering_sign": "aries",
+        "duration_hours": 6.5
+      },
+      {
+        "start": "2026-08-04 20:35 UTC",
+        "end": "2026-08-05 02:35 UTC",
+        "entering_sign": "taurus",
+        "duration_hours": 6.0
+      },
+      {
+        "start": "2026-08-07 05:37 UTC",
+        "end": "2026-08-07 06:07 UTC",
+        "entering_sign": "gemini",
+        "duration_hours": 0.5
+      },
+      {
+        "start": "2026-08-09 06:45 UTC",
+        "end": "2026-08-09 07:45 UTC",
+        "entering_sign": "cancer",
+        "duration_hours": 1.0
+      },
+      {
+        "start": "2026-08-10 08:38 UTC",
+        "end": "2026-08-11 08:38 UTC",
+        "entering_sign": "leo",
+        "duration_hours": 24.0
+      },
+      {
+        "start": "2026-08-12 19:18 UTC",
+        "end": "2026-08-13 10:18 UTC",
+        "entering_sign": "virgo",
+        "duration_hours": 15.0
+      },
+      {
+        "start": "2026-08-13 20:49 UTC",
+        "end": "2026-08-15 14:19 UTC",
+        "entering_sign": "libra",
+        "duration_hours": 41.5
+      },
+      {
+        "start": "2026-08-17 13:16 UTC",
+        "end": "2026-08-17 21:46 UTC",
+        "entering_sign": "scorpio",
+        "duration_hours": 8.5
+      },
+      {
+        "start": "2026-08-20 04:30 UTC",
+        "end": "2026-08-20 08:30 UTC",
+        "entering_sign": "sagittarius",
+        "duration_hours": 4.0
+      },
+      {
+        "start": "2026-08-22 20:29 UTC",
+        "end": "2026-08-22 20:59 UTC",
+        "entering_sign": "capricorn",
+        "duration_hours": 0.5
+      },
+      {
+        "start": "2026-08-24 08:31 UTC",
+        "end": "2026-08-25 09:01 UTC",
+        "entering_sign": "aquarius",
+        "duration_hours": 24.5
+      },
+      {
+        "start": "2026-08-26 23:33 UTC",
+        "end": "2026-08-27 19:03 UTC",
+        "entering_sign": "pisces",
+        "duration_hours": 19.5
+      },
+      {
+        "start": "2026-08-28 18:07 UTC",
+        "end": "2026-08-30 02:37 UTC",
+        "entering_sign": "aries",
+        "duration_hours": 32.5
+      }
+    ]
+  },
+  "contradictions": [
+    {
+      "natal_point": "ascendant",
+      "expanding": [
+        "sun trine"
+      ],
+      "restricting": [
+        "neptune square"
+      ],
+      "note": "Натальний ascendant одночасно під тиском розширення і обмеження. Вкажи обидві сили і як їх збалансувати."
+    }
+  ],
+  "activated_patterns": [
+    {
+      "id": "career_reinvention",
+      "theme": "career restructuring under external pressure",
+      "behavioral_signature": "crisis triggers complete redesign, not minor adjustment",
+      "confidence": 0.87
+    },
+    {
+      "id": "overextension_jupiter",
+      "theme": "overcommits during Jupiter expansion windows",
+      "behavioral_signature": "takes on too much, burns capacity reserve",
+      "confidence": 0.78
+    }
+  ]
+}
