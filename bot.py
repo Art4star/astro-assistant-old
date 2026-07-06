@@ -23,7 +23,7 @@ from engine.interpreter import (
 )
 from engine.lunar import (
     get_phase_emoji, get_phase_name_ua,
-    get_sign_name_ua, get_sign_emoji
+    get_sign_name_ua, get_sign_emoji, get_sign_in_ua
 )
 from generate_report import (
     generate_today_report, generate_week_report,
@@ -110,7 +110,7 @@ def cmd_today(date=None):
     sign = daily["moon_sign"]
 
     lines = [f"🔮 {weekday}, {date.day}.{date.month:02d}"]
-    lines.append(f"{get_phase_emoji(phase)} {get_phase_name_ua(phase)} у {get_sign_name_ua(sign)}")
+    lines.append(f"{get_phase_emoji(phase)} {get_phase_name_ua(phase)} {get_sign_in_ua(sign)}")
     lines.append("")
 
     if overall >= 5:
@@ -236,7 +236,7 @@ def cmd_ask(question, chat_id):
 ## Поточний контекст
 
 Сьогодні: {today.strftime('%d.%m.%Y')}, {WEEKDAY_UA[today.weekday()]}
-Місяць: {get_phase_name_ua(daily['moon_phase'])} у {get_sign_name_ua(daily['moon_sign'])}
+Місяць: {get_phase_name_ua(daily['moon_phase'])} {get_sign_in_ua(daily['moon_sign'])}
 Оцінка дня: {overall} ({get_day_label(overall, scores)})
 Найкраще для: {', '.join(recs['best_for'][:3]) if recs['best_for'] else 'немає'}
 Уникати: {', '.join(recs['avoid'][:2]) if recs['avoid'] else 'немає'}

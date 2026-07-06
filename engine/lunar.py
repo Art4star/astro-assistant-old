@@ -54,6 +54,19 @@ def get_sign_name_ua(sign: str) -> str:
     return SIGN_UA.get(sign, sign)
 
 
+SIGN_UA_LOCATIVE = {
+    "aries": "в Овні", "taurus": "у Тельці", "gemini": "у Близнюках",
+    "cancer": "у Раку", "leo": "у Леві", "virgo": "у Діві",
+    "libra": "у Терезах", "scorpio": "у Скорпіоні", "sagittarius": "у Стрільці",
+    "capricorn": "у Козерозі", "aquarius": "у Водолії", "pisces": "у Рибах",
+}
+
+
+def get_sign_in_ua(sign: str) -> str:
+    """Знак з прийменником у місцевому відмінку: 'в Овні', 'у Тельці'."""
+    return SIGN_UA_LOCATIVE.get(sign, f"у {SIGN_UA.get(sign, sign)}")
+
+
 def get_month_lunar_events(year: int, month: int) -> dict:
     import calendar
     _, days = calendar.monthrange(year, month)

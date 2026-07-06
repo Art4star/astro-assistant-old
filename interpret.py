@@ -60,21 +60,25 @@ def build_claude_prompt(year: int, month: int) -> str:
 
 
 def run_claude(prompt: str) -> str:
+    # prompt через stdin: --allowedTools варіадичний і "з'їдає" позиційний аргумент
     cmd = [
         "claude", "-p",
         "--output-format", "text",
         "--no-session-persistence",
         "--allowedTools", "",
-        prompt,
     ]
 
     print(f"[interpret] Запускаю Claude CLI...")
+    env = os.environ.copy()
+    env.pop("ANTHROPIC_API_KEY", None)  # інакше CLI бере API-ключ (без кредитів) замість PRO-підписки
     result = subprocess.run(
         cmd,
+        input=prompt,
         capture_output=True,
         text=True,
         timeout=300,
         cwd=BASE_DIR,
+        env=env,
     )
 
     if result.returncode != 0:

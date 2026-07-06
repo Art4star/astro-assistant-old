@@ -396,10 +396,11 @@ def generate_today_report():
     sign = daily_data["moon_sign"]
     phase_emoji = get_phase_emoji(phase)
     phase_ua = get_phase_name_ua(phase)
-    sign_ua = get_sign_name_ua(sign)
+    from engine.lunar import get_sign_in_ua
+    sign_ua = get_sign_in_ua(sign)
 
     lines = [f"🔮 {weekday_ua}, {today.day}.{today.month:02d}"]
-    lines.append(f"{phase_emoji} {phase_ua} у {sign_ua}")
+    lines.append(f"{phase_emoji} {phase_ua} {sign_ua}")
     lines.append("")
 
     if overall >= 5:
