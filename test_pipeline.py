@@ -12,7 +12,7 @@
 import json
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR)
@@ -139,6 +139,16 @@ phase_ua = get_phase_name_ua(daily["moon_phase"])
 check("get_phase_name_ua — українська назва", isinstance(phase_ua, str) and len(phase_ua) > 2,
       f"got: {phase_ua!r}")
 
+from engine.lunar import get_moon_sign_change
+
+sign_change_at, next_sign = get_moon_sign_change(TEST_DATE)
+check("get_moon_sign_change — datetime у межах 72 год",
+      sign_change_at is not None and timedelta(0) < sign_change_at - TEST_DATE <= timedelta(hours=72),
+      f"got: {sign_change_at}")
+check("get_moon_sign_change — наступний знак відрізняється від поточного",
+      next_sign is not None and next_sign != daily["moon_sign"],
+      f"current: {daily['moon_sign']}, next: {next_sign}")
+
 
 # ═══════════════════════════════════════════════════
 # 4. MONTH DATA → calculator batch
@@ -212,6 +222,20 @@ if narratives:
         check(f"narrative має '{key}'", key in n, f"keys: {list(n.keys())}")
     check("narrative.title — непорожній str", isinstance(n["title"], str) and len(n["title"]) > 5)
     check("narrative.action — непорожній str", isinstance(n["action"], str) and len(n["action"]) > 5)
+
+from engine.synthesizer import _format_until
+
+check("_format_until — 'до 31 липня'", _format_until("2026-07-31") == "до 31 липня",
+      f"got: {_format_until('2026-07-31')!r}")
+check("_format_until — порожній рядок без дати", _format_until("") == "")
+
+n_dyn = _make_narrative({
+    "transit_planet": "neptune", "aspect": "square", "natal_planet": "ascendant",
+    "intensity": 50, "peak_date": "2026-07-01", "last_date": "2026-07-31",
+})
+check("нептун-квадрат: дата в action береться з транзиту", "до 31 липня" in n_dyn["action"],
+      f"action: {n_dyn['action']!r}")
+check("нема захардкодженого 'до середини червня'", "середини червня" not in n_dyn["action"])
 
 goals = []
 goals_path = os.path.join(BASE_DIR, "data", "goals.json")
@@ -313,10 +337,36 @@ check("generate_today_report — непорожній str", isinstance(today_tex
 check("містить емодзі дня (🔮)", "🔮" in today_text)
 check("містить фазу місяця", any(e in today_text for e in "🌑🌒🌓🌔🌕🌖🌗🌘"))
 check("містить рекомендацію (✅ або 🔴)", "✅" in today_text or "🔴" in today_text or "⚪" in today_text)
-check("містить пораду (💡)", "💡" in today_text)
 check("НЕ містить raw transit names (conjunction/square/trine)",
       "conjunction" not in today_text and "square" not in today_text and "trine" not in today_text,
       "технічні терміни потрапили в Telegram")
+check("НЕ містить застарілу дату 'до середини червня'", "середини червня" not in today_text)
+
+# Щоденна варіативність: два послідовні дні не мають бути дослівно однаковими
+import generate_report as _gr_mod
+_real_datetime = datetime
+
+
+class _FakeDT(datetime):
+    _now = None
+
+    @classmethod
+    def now(cls, tz=None):
+        return cls._now
+
+
+_day_texts = []
+try:
+    _gr_mod.datetime = _FakeDT
+    for _d in (datetime(2026, 7, 7, 8, 0), datetime(2026, 7, 8, 8, 0)):
+        _FakeDT._now = _FakeDT(_d.year, _d.month, _d.day, _d.hour, _d.minute)
+        _day_texts.append(generate_today_report())
+finally:
+    _gr_mod.datetime = _real_datetime
+
+_bodies = [t.split("\n", 1)[1] for t in _day_texts]
+check("послідовні дні (7 та 8 липня) — різний текст", _day_texts[0] != _day_texts[1])
+check("тіла повідомлень відрізняються не лише датою", _bodies[0] != _bodies[1])
 
 
 # ═══════════════════════════════════════════════════

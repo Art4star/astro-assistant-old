@@ -46,12 +46,24 @@ def _format_peak(peak_date: str) -> str:
         return ""
 
 
+def _format_until(date_str: str) -> str:
+    """'2026-07-31' → 'до 31 липня'. Порожній рядок якщо дати немає."""
+    if not date_str:
+        return ""
+    try:
+        d = datetime.strptime(date_str, "%Y-%m-%d")
+        return f"до {d.day} {MONTH_NAMES_GEN.get(d.month, '')}"
+    except Exception:
+        return ""
+
+
 def _make_narrative(transit: dict) -> Optional[dict]:
     planet  = transit.get("transit_planet", "").lower()
     aspect  = transit.get("aspect", "").lower()
     natal   = transit.get("natal_planet", "").lower()
     intens  = transit.get("intensity", 0)
     peak    = _format_peak(transit.get("peak_date", ""))
+    until   = _format_until(transit.get("last_date", ""))
     area    = _NATAL_AREA.get(natal, "general")
     a_lbl   = _AREA_LABEL.get(area, "поточних справ")
 
@@ -61,7 +73,9 @@ def _make_narrative(transit: dict) -> Optional[dict]:
         return dict(icon="🌫", intensity=intens, peak=peak,
             title="Туман в орієнтирах і самопочутті",
             impact="Наприкінці місяця складніше зрозуміти чого ти насправді хочеш — і як тебе сприймають інші. Межа між своїм і чужим розмита, енергія ніби вислизає.",
-            action="Не приймай великих рішень про напрямок до середини червня. Фіксуй думки письмово — але не дій на них одразу.")
+            action="Не приймай великих рішень про напрямок"
+                   + (f" — щонайменше {until}" if until else " найближчим часом")
+                   + ". Фіксуй думки письмово — але не дій на них одразу.")
 
     if planet == "neptune" and "square" in aspect and natal in ("jupiter", "saturn", "mercury"):
         return dict(icon="🌫", intensity=intens, peak=peak,
@@ -73,7 +87,9 @@ def _make_narrative(transit: dict) -> Optional[dict]:
         return dict(icon="⚡", intensity=intens, peak=peak,
             title="Гострі питання про гроші або партнерства",
             impact="Якщо є незакрите питання про гроші, власність або ділові партнерства — воно почне відчуватись дуже гостро наприкінці місяця.",
-            action="Не чекай кризи — ініціюй розмову або перегляд угоди до 25-го, поки ще є вікно дій.")
+            action="Не чекай кризи — ініціюй розмову або перегляд угоди сам, поки ще є вікно дій"
+                   + (f" ({peak})" if peak else "")
+                   + ".")
 
     if planet == "pluto" and "square" in aspect and natal in ("sun", "ascendant", "saturn"):
         return dict(icon="⚡", intensity=intens, peak=peak,

@@ -3,7 +3,7 @@ import argparse
 import json
 import os
 import sys
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 import calendar
 
 from dotenv import load_dotenv
@@ -396,11 +396,17 @@ def generate_today_report():
     sign = daily_data["moon_sign"]
     phase_emoji = get_phase_emoji(phase)
     phase_ua = get_phase_name_ua(phase)
-    from engine.lunar import get_sign_in_ua
+    from engine.lunar import get_sign_in_ua, get_moon_sign_change
     sign_ua = get_sign_in_ua(sign)
 
+    sign_change_at, next_sign = get_moon_sign_change(today)
+    sign_changes_today = sign_change_at is not None and sign_change_at.date() == today.date()
+
     lines = [f"🔮 {weekday_ua}, {today.day}.{today.month:02d}"]
-    lines.append(f"{phase_emoji} {phase_ua} {sign_ua}")
+    moon_line = f"{phase_emoji} {phase_ua} {sign_ua}"
+    if sign_changes_today:
+        moon_line += f" (до {sign_change_at:%H:%M} → {get_sign_name_ua(next_sign)})"
+    lines.append(moon_line)
     lines.append("")
 
     if overall >= 5:
@@ -420,7 +426,10 @@ def generate_today_report():
     if daily_data.get("mercury_retrograde"):
         lines.append("☿ Меркурій ретро — перечитуй перед підписом, перевіряй деталі.")
     if daily_data.get("moon_voc"):
-        lines.append("🌀 Місяць без курсу — не починай нічого важливого прямо зараз.")
+        if sign_changes_today:
+            lines.append(f"🌀 Місяць без курсу до {sign_change_at:%H:%M} — важливе відклади до цього часу.")
+        else:
+            lines.append("🌀 Місяць без курсу — не починай нічого важливого прямо зараз.")
 
     if recs["best_for"]:
         lines.append("")
@@ -439,33 +448,40 @@ def generate_today_report():
     if pkg:
         transits = _get_today_transits(pkg, today_str)
 
-        narratives = []
-        for t in transits[:5]:
+        pairs = []
+        seen_titles = set()
+        for t in transits[:6]:
             n = _make_narrative(t)
-            if n:
-                narratives.append(n)
+            if n and n["title"] not in seen_titles:
+                seen_titles.add(n["title"])
+                pairs.append((t, n))
 
-        peak_narratives = [n for n, t in zip(narratives, transits) if t.get("peak_date") == today_str]
+        peak_narratives = [n for t, n in pairs if t.get("peak_date") == today_str]
         if peak_narratives:
             lines.append("")
             n = peak_narratives[0]
             lines.append(f"{n['icon']} Пік сьогодні: {n['title']}")
             lines.append(f"→ {n['action']}")
-
-        bg = [n for n, t in zip(narratives, transits) if t.get("peak_date") != today_str]
-        if bg and not peak_narratives:
+        elif pairs:
+            # Ротація за днем, щоб не показувати той самий довгий транзит щодня
+            _, n = pairs[today.toordinal() % len(pairs)]
             lines.append("")
-            n = bg[0]
             lines.append(f"{n['icon']} {n['title']}")
             lines.append(f"→ {n['action']}")
 
+    # Поради про фазу/знак — тільки в день зміни, щоб не повторювати те саме щодня
+    prev_data = get_daily_data(today - timedelta(days=1), birth_data)
+    phase_is_new = prev_data.get("moon_phase") != phase
+    sign_is_new = prev_data.get("moon_sign") != sign
+
     sign_note = SIGN_ENERGY.get(sign, "")
     phase_note = PHASE_GUIDANCE.get(phase, "")
-    if phase_note:
+    if (phase_is_new and phase_note) or (sign_is_new and sign_note):
         lines.append("")
+    if phase_is_new and phase_note:
         lines.append(f"💡 {phase_note}")
-        if sign_note:
-            lines.append(f"   Фокус дня: {sign_note}.")
+    if sign_is_new and sign_note:
+        lines.append(f"🧭 Новий фокус: {sign_note}.")
 
     return "\n".join(lines)
 

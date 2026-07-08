@@ -67,6 +67,45 @@ def get_sign_in_ua(sign: str) -> str:
     return SIGN_UA_LOCATIVE.get(sign, f"у {SIGN_UA.get(sign, sign)}")
 
 
+def get_moon_sign_change(date: datetime):
+    """Найближчий перехід Місяця в наступний знак після date.
+
+    Повертає (datetime, sign_key) з точністю до хвилини,
+    або (None, None), якщо перехід не знайдено протягом 72 годин.
+    """
+    import swisseph as swe
+    from engine.calculator import _to_jd, _get_sign
+
+    lon = _get_longitude(swe.MOON, _to_jd(date))
+    boundary = ((int(lon / 30) + 1) * 30.0) % 360.0
+
+    def crossed(dt: datetime) -> bool:
+        lon_at = _get_longitude(swe.MOON, _to_jd(dt))
+        if boundary == 0.0:
+            return lon_at < 30.0
+        return lon_at >= boundary
+
+    lo, hi = date, None
+    check = date
+    for _ in range(72):
+        check += timedelta(hours=1)
+        if crossed(check):
+            lo, hi = check - timedelta(hours=1), check
+            break
+    if hi is None:
+        return None, None
+
+    while hi - lo > timedelta(minutes=1):
+        mid = lo + (hi - lo) / 2
+        if crossed(mid):
+            hi = mid
+        else:
+            lo = mid
+
+    next_sign = _get_sign(_get_longitude(swe.MOON, _to_jd(hi)))
+    return hi, next_sign
+
+
 def get_month_lunar_events(year: int, month: int) -> dict:
     import calendar
     _, days = calendar.monthrange(year, month)
